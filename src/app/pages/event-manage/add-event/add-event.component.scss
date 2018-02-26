@@ -1,0 +1,95 @@
+:host {
+  display: block;
+  background: #fff url('/assets/img/backgrounds/1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100%;
+  min-width: 100%;
+}
+
+mat-horizontal-stepper{
+  overflow: visible;
+  mat-step{
+    overflow: visible;
+  }
+}
+
+.step-border{
+  width: 90%;
+  margin: 20px auto;
+  display: block;
+  min-width: 320px;
+  max-width: 1000px;
+  box-shadow: 0 0 5px gray;
+  padding: 20px;
+  margin-top: 3vh;
+  @media only screen and (max-width: 600px)  {
+    mat-form-field{
+      width: 100%;
+      padding: 0;
+      padding-right: 20px;
+    }
+  }
+  @media only screen and (min-width: 600px)  {
+    mat-form-field{
+      width: 45%;
+      padding: 0;
+      padding-right: 20px;
+    }
+  }
+  .step1{
+    mat-form-field{
+      width: 100%;
+    }
+  }
+  .sub_input{
+    width: 100%;
+    display: block;
+    @media only screen and (max-width: 600px)  {
+      .date-range{
+        width: 100%;
+        display: block;
+        float: left;
+        mat-form-field{
+          width: 45%;
+          padding: 0;
+          padding-right: 5px;
+        }
+      }
+    }
+    @media only screen and (min-width: 600px)  {
+      .date-range{
+        width: 50%;
+        display: block;
+        float: right;
+        mat-form-field{
+          width: 45%;
+          padding: 0;
+          padding-right: 5px;
+        }
+      }
+    }
+  }
+  .submit{
+    width: 25%;
+    background-color: #ff9702;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 30px;
+    display: block;
+    margin: 0 auto;
+    margin-top: 30px;
+  }
+  .btns{
+    width: 80%;
+    display: block;
+    margin: 0 auto;
+    height: 50px;
+    margin-top: 25px;
+    button{
+      width: 25%;
+      background-color: #ff9702;
+      color: #fff;
+      margin: 0 12px;
+    }
+  }
+}

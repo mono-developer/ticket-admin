@@ -1,0 +1,28 @@
+<ms-page-header [title]="page_title"></ms-page-header>
+  <div class="sales-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+
+      <!-- Section column -->
+      <ng-container matColumnDef="section">
+        <mat-header-cell *matHeaderCellDef> Section </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.section}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="image">
+        <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+        <mat-cell *matCellDef="let element"> <img [src]="element.image" alt=""></mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="button">
+        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-button>{{element.button}}</button>
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>

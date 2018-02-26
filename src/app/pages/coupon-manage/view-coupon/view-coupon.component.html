@@ -1,0 +1,40 @@
+<ms-page-header [title]="page_title"></ms-page-header>
+<div class="sales-container mat-elevation-z8">
+  <mat-table #table [dataSource]="dataSource">
+    <!-- Code Column -->
+    <ng-container matColumnDef="code">
+      <mat-header-cell *matHeaderCellDef> Pramotional Code </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Description of the Coupon </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="discount">
+      <mat-header-cell *matHeaderCellDef> Discount % </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.discount}} </mat-cell>
+    </ng-container>
+
+    <!-- Weight Column -->
+    <ng-container matColumnDef="state">
+        <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.state}} </mat-cell>
+      </ng-container>
+
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-button><mat-icon>border_color</mat-icon></button>
+        <button mat-button><mat-icon>delete</mat-icon></button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+</div>

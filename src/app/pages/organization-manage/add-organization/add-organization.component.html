@@ -1,0 +1,60 @@
+<ms-page-header [title]="page_title"></ms-page-header>
+<div class="main_div">
+
+  <form class="title">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Organization Name" [value]="orgData.o_name">
+    </mat-form-field>
+  </form>
+
+  <form>
+      <mat-form-field>
+        <input type="number" matInput placeholder="Registration of the Organization" [value]="orgData.o_number">
+      </mat-form-field>
+  </form>
+
+  <form>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Contact Person" [value]="orgData.person">
+    </mat-form-field>
+  </form>
+
+  <form>
+    <mat-form-field>
+      <input type="email" matInput placeholder="Email" [value]="orgData.eamil">
+    </mat-form-field>
+  </form>
+
+  <form>
+    <mat-form-field>
+      <input type="password" matInput placeholder="Password" [value]="orgData.password">
+    </mat-form-field>
+  </form>
+
+  <form>
+    <mat-form-field>
+      <input type="tel" matInput placeholder="Mobile" [value]="orgData.mobile">
+    </mat-form-field>
+  </form>
+
+  <form>
+    <mat-form-field>
+      <input type="text" matInput placeholder="Address" [value]="orgData.address">
+    </mat-form-field>
+  </form>
+
+  <div class="state">
+
+    <mat-form-field class="state_list">
+        <mat-select placeholder="Select State">
+          <mat-option *ngFor="let state of stateList" [value]="orgData.value">
+            {{ state.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+  </div>
+
+  <button mat-raised-button class="submit">Submit</button>
+
+</div>

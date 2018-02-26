@@ -1,0 +1,50 @@
+:host {
+  display: block;
+  background: #fff url('/assets/img/backgrounds/1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  min-height: 100%;
+  min-width: 100%;
+}
+.main_div{
+  width: 90%;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 0 0 5px;
+  margin-top: 5vh;
+  padding: 30px 5%;
+  background-color: #fff;
+
+  form{
+    margin-bottom: 20px;
+    mat-form-field{
+      width: 100%;
+    }
+  }
+  .description{
+    margin-bottom: 30px;
+  }
+  .state{
+    width: 100%;
+    margin-bottom: 30px;
+    .state_list{
+      width: 100%;
+    }
+  }
+  .submit{
+    width: 80%;
+    min-width: 300px;
+    max-width: 500px;
+    background-color: #ff9702;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 30px;
+    display: block;
+    margin: 0 auto;
+  }
+
+}
+
+
+
+

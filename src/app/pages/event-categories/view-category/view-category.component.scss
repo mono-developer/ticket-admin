@@ -1,0 +1,33 @@
+.cms-container {
+  display: flex;
+  flex-direction: column;
+  margin: 5%;
+  mat-table{
+    mat-header-row{
+      background: #84cce7;
+      mat-header-cell{
+        padding: 5px;
+      }
+    }
+    mat-row, mat-header-row{
+      mat-cell, mat-header-cell{
+        padding: 5px;
+      }
+      button{
+        margin: 3px;
+        padding: 3px;
+        min-width: 30px;
+        height: 30px;
+        line-height: 20px;
+        background: #ff9603;
+        color: white;
+        width: 30px;
+      }
+    }
+  }
+}
+
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}

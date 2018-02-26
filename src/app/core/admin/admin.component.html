@@ -1,0 +1,40 @@
+<div class="buy-now-toolbar mat-elevation-z4" *ngIf="buyNowToolbarVisible">
+  <div class="rainbow" fxLayout="row">
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex>
+      <div class="name" fxHide fxShow.gt-sm>Fury - Angular 4 Material Design Admin Template - Save 100s of hours designing and coding with this template</div>
+      <a href="https://themeforest.net/item/fury-angular-2-material-design-admin-template/19325966?ref=visurel" class="action" mat-raised-button color="accent">
+        <mat-icon class="icon">shopping_basket</mat-icon>
+        GET IT HERE
+      </a>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="start center">
+      <button type="button" mat-icon-button (click)="buyNowToolbarVisible = false">
+        <mat-icon class="close">close</mat-icon>
+      </button>
+    </div>
+  </div>
+</div>
+
+<mat-sidenav-container class="admin-container">
+
+  <mat-sidenav class="quickpanel" [opened]="quickpanelOpen" align="end" mode="over" #quickpanel>
+
+    <ms-quickpanel></ms-quickpanel>
+
+  </mat-sidenav>
+
+  <mat-sidenav class="sidenav" [opened]="sidenavOpen" align="start" [mode]="sidenavMode" msIconSidenav #sidenav>
+
+    <ms-sidenav></ms-sidenav>
+
+  </mat-sidenav>
+
+  <div class="content-container" fxLayout="column">
+    <ms-toolbar [quickpanel]="quickpanel" [sidenav]="sidenav"></ms-toolbar>
+
+    <div class="main-container" #scrollContainer>
+      <router-outlet (activate)="onActivate($event, scrollContainer)"></router-outlet>
+    </div>
+  </div>
+
+</mat-sidenav-container>

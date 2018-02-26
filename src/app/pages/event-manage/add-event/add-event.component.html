@@ -1,0 +1,177 @@
+<!-- <button mat-raised-button (click)="isLinear = true" id="toggle-linear">Enable linear mode</button> -->
+
+<mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
+
+  <mat-step [stepControl]="firstFormGroup">
+
+    <div class="step-border">
+      <form [formGroup]="firstFormGroup" class="step1">
+
+        <ng-template matStepLabel>STEP 1</ng-template>
+
+        <mat-form-field >
+          <mat-select placeholder="Select a Category" formControlName="firstCtrl" required>
+            <mat-option *ngFor="let category of categoryList" [value]="category.id">
+              {{ category.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="text" matInput placeholder="Name of the Event" formControlName="firstCtrl" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="text" matInput placeholder="Meeting Place" formControlName="firstCtrl" required>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input type="text" matInput placeholder="City" formControlName="firstCtrl" required>
+        </mat-form-field>
+
+        <mat-form-field >
+          <mat-select placeholder="Select Organization" formControlName="firstCtrl" required>
+            <mat-option *ngFor="let org of organizationList" [value]="org.id">
+              {{ org.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <button class="submit" mat-button matStepperNext>Next</button>
+
+      </form>
+    </div>
+
+  </mat-step>
+
+  <mat-step [stepControl]="secondFormGroup">
+
+    <div class="step-border">
+      <form [formGroup]="secondFormGroup">
+        <ng-template matStepLabel>Step2</ng-template>
+
+        <div>
+          <h4>Event Details</h4>
+          <mat-form-field>
+            <input matInput [matDatepicker]="picker1" placeholder="Event Start Date">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field>
+            <input type="time" matInput placeholder="Event Start Time" formControlName="secondCtrl" required>
+          </mat-form-field>
+        </div>
+
+        <div>
+          <h4>Seat Details</h4>
+
+          <div class="sub_input">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Location" formControlName="secondCtrl" required>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input type="number" matInput placeholder="Price of the bill" formControlName="secondCtrl" required>
+            </mat-form-field>
+          </div>
+
+          <div class="sub_input">
+            <mat-form-field>
+              <input type="number" matInput placeholder="Number of tickets per row" formControlName="secondCtrl" required>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input type="text" matInput placeholder="Type of Charge" formControlName="secondCtrl" required>
+            </mat-form-field>
+          </div>
+
+          <div class="sub_input">
+            <mat-form-field>
+              <input type="number" matInput placeholder="Load amount (%)" formControlName="secondCtrl" required>
+            </mat-form-field>
+
+            <mat-form-field>
+              <input type="number" matInput placeholder="Quantity" formControlName="secondCtrl" required>
+            </mat-form-field>
+          </div>
+
+          <div class="sub_input">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Discount Type" formControlName="secondCtrl" required>
+            </mat-form-field>
+
+            <div class="date-range">
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker_s" placeholder="Start Date">
+                  <mat-datepicker-toggle matSuffix [for]="picker_s"></mat-datepicker-toggle>
+                  <mat-datepicker #picker_s></mat-datepicker>
+                </mat-form-field>
+
+                <mat-form-field>
+                  <input matInput [matDatepicker]="picker_e" placeholder="End Date">
+                  <mat-datepicker-toggle matSuffix [for]="picker_e"></mat-datepicker-toggle>
+                  <mat-datepicker #picker_e></mat-datepicker>
+                </mat-form-field>
+            </div>
+          </div>
+
+          <div class="sub_input">
+            <mat-form-field>
+              <input type="number" matInput placeholder="Price %" formControlName="secondCtrl" required>
+            </mat-form-field>
+
+            <mat-form-field >
+              <mat-select placeholder="Select Yes if seat category in Box" formControlName="secondCtrl" required>
+                <mat-option *ngFor="let item of boxList" [value]="item.id">
+                  {{ item.name }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+        <!-- <mat-form-field> -->
+            <input type="file" placeholder="Discount Type" formControlName="secondCtrl" required>
+        <!-- </mat-form-field> -->
+
+        <div class="btns">
+          <button style="float: left;" mat-button matStepperPrevious>Back</button>
+          <button style="float: right;" mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </div>
+
+  </mat-step>
+
+<!-- Step 3 -->
+  <mat-step [stepControl]="thirdFormGroup">
+    <div class="step-border3">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>Step3</ng-template>
+        <mat-form-field>
+          <input matInput [(ngModel)]="name" placeholder="What's your name?" formControlName="thirdCtrl" required>
+        </mat-form-field>
+
+        <button mat-raised-button (click)="openDialog()">Pick one</button>
+
+        <li *ngIf="modalDate">
+          You chose: <i>{{animal}}</i>
+        </li>
+        <div>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </form>
+    </div>
+  </mat-step>
+
+  <mat-step>
+    <ng-template matStepLabel>Step4</ng-template>
+    You are now done.
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+   
+</mat-horizontal-stepper>

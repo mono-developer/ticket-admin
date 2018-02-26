@@ -1,0 +1,47 @@
+<div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
+  <div class="register mat-elevation-z12">
+    <div class="register-header" fxLayout="column" fxLayoutAlign="center center">
+      <img src="assets/img/logo.png">
+    </div>
+    <form #form="ngForm" (ngSubmit)="register()">
+      <div class="register-content" fxLayout="column" fxLayoutAlign="start stretch">
+
+        <mat-form-field>
+          <input matInput placeholder="Name" type="text" name="name" required [(ngModel)]="name">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="E-Mail" type="email" name="email" required [(ngModel)]="email">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="password">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Password (Confirm)" type="password" name="password-confirm" required [(ngModel)]="passwordConfirm">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="Cell Phone" type="tel" name="phone" required [(ngModel)]="phone">
+        </mat-form-field>
+
+        <mat-form-field>
+          <input matInput placeholder="City" type="text" name="city" required [(ngModel)]="city">
+        </mat-form-field>
+
+        <div class="extra-options" fxLayout="row" fxLayoutAlign="center center">
+          <mat-checkbox class="remember-me">I accept the <a href="#">terms and conditions.</a></mat-checkbox>
+        </div>
+
+        <button color="primary" mat-raised-button [disabled]="!form.valid">Register</button>
+
+        <p class="note">Already have an account?<br/> <a [routerLink]="['/login']">Sign in here</a></p>
+
+        <button class="social_btn" mat-raised-button><img src="assets/img/icons/fb_icon.png" alt=""> Log in with Facebook</button>
+
+        <button class="social_btn google" mat-raised-button><img src="assets/img/icons/gmail_icon.png" alt="">Sign in with Google+</button>
+      </div>
+    </form>
+  </div>
+</div>

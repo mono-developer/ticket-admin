@@ -1,0 +1,37 @@
+.main_div{
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+  display: block;
+  box-shadow: 0 0 5px;
+  margin-top: 5vh;
+  padding: 30px 5%;
+  background-color: #fff;
+
+  form{
+    margin-bottom: 20px;
+    mat-form-field{
+      width: 100%;
+    }
+  }
+
+  .state{
+    width: 100%;
+    margin-bottom: 30px;
+    .state_list{
+      width: 100%;
+    }
+  }
+
+  .submit{
+    width: 80%;
+    min-width: 300px;
+    background-color: #ff9702;
+    color: #fff;
+    font-size: 18px;
+    margin-top: 30px;
+    display: block;
+    margin: 0 auto;
+  }
+
+}

@@ -1,0 +1,34 @@
+<div class="main-toolbar mat-elevation-z2">
+  <div fxLayout="row" fxLayoutAlign="start center" fxHide="false" fxHide.gt-sm>
+    <button (click)="sidenav.open()" mat-icon-button>
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start center" fxFlex="500px" fxHide fxShow.gt-md>
+    <ms-search-bar></ms-search-bar>
+  </div>
+
+  <ms-breadcrumbs *ngIf="showBreadcrumbs" [fxHide]="true" [fxHide.gt-sm]="false"></ms-breadcrumbs>
+
+  <span fxFlex></span>
+
+  <button [fxHide]="true" [fxHide.gt-sm]="false" mat-button class="fullscreen-toggle" (click)="toggleFullscreen()">
+    <mat-icon *ngIf="!isFullscreen">fullscreen</mat-icon>
+    <mat-icon *ngIf="isFullscreen">fullscreen_exit</mat-icon>
+  </button>
+
+  <ms-search></ms-search>
+
+  <div class="">
+    <ms-toolbar-notifications></ms-toolbar-notifications>
+  </div>
+
+  <div class="user-button-container">
+    <ms-toolbar-user-button></ms-toolbar-user-button>
+  </div>
+
+  <button mat-button class="quickpanel-toggle" (click)="quickpanel.open()">
+    <mat-icon>format_align_right</mat-icon>
+  </button>
+</div>

@@ -1,0 +1,19 @@
+<ms-page-header [title]="page_title"></ms-page-header>
+<div class="main_div">
+
+  <form class="title">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Title" [value]="letterData.title">
+    </mat-form-field>
+  </form>
+
+
+  <div class="description">
+    <p>Description</p>
+    <quill-editor></quill-editor>
+  </div>
+
+
+  <button mat-raised-button class="submit">Submit</button>
+
+</div>

@@ -1,0 +1,39 @@
+<ms-page-header [title]="page_title"></ms-page-header>
+<div class="main_div">
+
+  <form class="title">
+    <mat-form-field>
+      <input type="text" matInput placeholder="Organization Name" [value]="couponData.name">
+    </mat-form-field>
+  </form>
+
+  <form>
+    <mat-form-field>
+      <textarea matInput placeholder="Leave a comment"></textarea>
+    </mat-form-field>
+  </form>
+
+  <form>
+    <mat-form-field>
+      <input matInput [matDatepicker]="picker" placeholder="Valid Date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  </form>
+
+
+  <div class="state">
+
+    <mat-form-field class="state_list">
+        <mat-select placeholder="Select State">
+          <mat-option *ngFor="let state of stateList" [value]="couponData.value">
+            {{ state.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+  </div>
+
+  <button mat-raised-button class="submit">Add Coupon</button>
+
+</div>

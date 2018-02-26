@@ -1,0 +1,43 @@
+<ms-page-header [title]="page_title"></ms-page-header>
+<div class="cms-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+
+      <!-- Category Column -->
+      <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef> Event Category </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.category}} </mat-cell>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Name of the Event </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
+      </ng-container>
+
+      <!-- Place Column -->
+      <ng-container matColumnDef="place">
+        <mat-header-cell *matHeaderCellDef> Meeting Place </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.place}} </mat-cell>
+      </ng-container>
+
+      <!-- State Column -->
+      <ng-container matColumnDef="state">
+        <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.state}} </mat-cell>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="symbol">
+        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+        <mat-cell *matCellDef="let element">
+          <button mat-button><mat-icon>border_color</mat-icon></button>
+          <button mat-button><mat-icon>delete</mat-icon></button>
+          <button mat-button><mat-icon>date_range</mat-icon></button>
+
+        </mat-cell>
+      </ng-container>
+
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+  </div>
