@@ -59,11 +59,6 @@ export class SidenavService {
     menu.addSubItem(newsletters, 'Add Newslatters', '/bullentin/add-bullentin', 2);
 
     let banner_images = menu.addItem('Banner Images', 'burst_mode', '/banner-images', 11);
-
-    let news = menu.addItem('News', 'fiber_new', null, 12);
-    menu.addSubItem(news, 'View News', '/news/view-news', 1);
-    menu.addSubItem(news, 'Add News', '/news/add-news', 2);
-
   }
 
   addItem(name: string, icon: string, route: any, position: number, badge?: string, badgeColor?: string, customClass?: string) {

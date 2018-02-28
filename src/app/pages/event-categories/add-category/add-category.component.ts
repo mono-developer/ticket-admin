@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class AddCategoryComponent implements OnInit {
 
   page_title: string = "Add Category";
-  cateData: any = { name: '', value: '' };
+  cateData: any = { cate_name: '', value: '' };
   stateList: any;
 
   constructor() {
@@ -19,6 +19,10 @@ export class AddCategoryComponent implements OnInit {
   }
 
   ngOnInit() {
+  }
+
+  submit(){
+    console.log(this.cateData);
   }
 
 }

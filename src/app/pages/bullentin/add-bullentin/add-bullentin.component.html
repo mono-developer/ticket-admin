@@ -3,17 +3,17 @@
 
   <form class="title">
     <mat-form-field>
-      <input type="text" matInput placeholder="Title" [value]="letterData.title">
+      <input type="text" matInput placeholder="Title" name="title" [(ngModel)]="letterData.title">
     </mat-form-field>
   </form>
 
 
   <div class="description">
     <p>Description</p>
-    <quill-editor></quill-editor>
+    <quill-editor name="description" [(ngModel)]="letterData.description"></quill-editor>
   </div>
 
 
-  <button mat-raised-button class="submit">Submit</button>
+  <button mat-raised-button class="submit" (click)="submit()">Submit</button>
 
 </div>

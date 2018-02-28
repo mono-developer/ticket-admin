@@ -14,6 +14,7 @@ import * as _ from 'lodash';
 })
 export class AddSaleUsersComponent implements OnInit {
 
+  salesUsers: any = { first_name: '', email: '', password:'', phone: '', city:'' };
   constructor() { }
 
   ngOnInit() {
@@ -23,4 +24,7 @@ export class AddSaleUsersComponent implements OnInit {
     return _.escape(text);
   }
 
+  submit(){
+    console.log(this.salesUsers);
+  }
 }

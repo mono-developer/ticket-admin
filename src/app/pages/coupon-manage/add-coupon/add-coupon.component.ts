@@ -9,17 +9,20 @@ export class AddCouponComponent implements OnInit {
 
   page_title: string = "Add Coupon";
   stateList: any;
-  couponData : any = { name: '', value: ''}
+  couponData : any = { name: '', comment: '', date: '', value: ''}
 
   constructor() {
 
     this.stateList = [ { id: 0, name: 'Activate'},
                        { id: 1, name: 'Deactivate'}
-                      ];
+                    ];
 
    }
 
   ngOnInit() {
   }
 
+  submit() {
+    console.log(this.couponData);
+  }
 }

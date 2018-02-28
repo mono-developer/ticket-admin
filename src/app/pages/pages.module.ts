@@ -40,8 +40,6 @@ import { AddCouponComponent } from './coupon-manage/add-coupon/add-coupon.compon
 import { ViewCouponComponent } from './coupon-manage/view-coupon/view-coupon.component';
 import { ViewBullentinComponent } from './bullentin/view-bullentin/view-bullentin.component';
 import { AddBullentinComponent } from './bullentin/add-bullentin/add-bullentin.component';
-import { AddNewsComponent } from './news/add-news/add-news.component';
-import { ViewNewsComponent } from './news/view-news/view-news.component';
 import { BannerImagesComponent } from './banner-images/banner-images.component';
 import { UsersManageComponent } from './users-manage/users-manage.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -53,6 +51,8 @@ import { DateReportsComponent } from './reports/date-reports/date-reports.compon
 
 import { PageHeaderModule } from "../core/page-header/page-header.module";
 import { MatIconRegistry, MatStepperModule, MatTableModule, MatDialogModule,} from "@angular/material";
+import { UserService } from "../../provide/user-service";
+import { BaseService } from "../../provide/base-service";
 
 @NgModule({
   imports: [
@@ -108,8 +108,6 @@ import { MatIconRegistry, MatStepperModule, MatTableModule, MatDialogModule,} fr
     ViewCouponComponent,
     ViewBullentinComponent,
     AddBullentinComponent,
-    AddNewsComponent,
-    ViewNewsComponent,
     BannerImagesComponent,
     UsersManageComponent,
     DashboardComponent,
@@ -122,6 +120,8 @@ import { MatIconRegistry, MatStepperModule, MatTableModule, MatDialogModule,} fr
   ],
   providers: [
     D3ChartService,
+    UserService,
+    BaseService
   ]
 })
 export class PagesModule { }

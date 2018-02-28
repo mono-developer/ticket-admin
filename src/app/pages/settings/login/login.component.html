@@ -3,19 +3,19 @@
     <div class="login-header" fxLayout="column" fxLayoutAlign="center center">
       <img src="assets/img/logo.png">
     </div>
-    <form #form="ngForm" (ngSubmit)="login()">
+    <form #form="ngForm">
       <div class="login-content" fxLayout="column" fxLayoutAlign="start stretch">
           <mat-form-field>
-            <input matInput placeholder="E-Mail" type="text" name="email" required [(ngModel)]="email">
+            <input matInput placeholder="E-Mail" type="text" name="email" required [(ngModel)]="user.email">
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="password">
+            <input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="user.password">
           </mat-form-field>
           <div class="extra-options" fxLayout="row" fxLayoutAlign="space-between center">
             <mat-checkbox class="remember-me">Remember Me</mat-checkbox>
             <a class="forgot-password" [routerLink]="['/forgot-password']">Forgot Password?</a>
           </div>
-          <button color="primary" mat-raised-button [disabled]="!form.valid">SIGN IN</button>
+          <button color="primary" mat-raised-button [disabled]="!form.valid" (click)="doLogin()">SIGN IN</button>
         <p class="note">Don't have an account?<br/> <a [routerLink]="['/register']">Click here to create one</a></p>
       </div>
     </form>

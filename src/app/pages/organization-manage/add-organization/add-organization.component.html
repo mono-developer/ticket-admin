@@ -1,53 +1,47 @@
 <ms-page-header [title]="page_title"></ms-page-header>
 <div class="main_div">
 
-  <form class="title">
+  <form>
     <mat-form-field>
-      <input type="text" matInput placeholder="Organization Name" [value]="orgData.o_name">
+      <input type="text" matInput placeholder="Organization Name" name="name" [(ngModel)]="orgData.name">
     </mat-form-field>
   </form>
 
   <form>
       <mat-form-field>
-        <input type="number" matInput placeholder="Registration of the Organization" [value]="orgData.o_number">
+        <input type="number" matInput placeholder="Registration of the Organization" name="number" [(ngModel)]="orgData.number">
       </mat-form-field>
   </form>
 
   <form>
     <mat-form-field>
-      <input type="text" matInput placeholder="Contact Person" [value]="orgData.person">
+      <input type="text" matInput placeholder="Contact Person" name="person" [(ngModel)]="orgData.person">
     </mat-form-field>
   </form>
 
   <form>
     <mat-form-field>
-      <input type="email" matInput placeholder="Email" [value]="orgData.eamil">
+      <input type="email" matInput placeholder="Email" name="email" [(ngModel)]="orgData.eamil">
     </mat-form-field>
   </form>
 
   <form>
     <mat-form-field>
-      <input type="password" matInput placeholder="Password" [value]="orgData.password">
+      <input type="tel" matInput placeholder="Mobile" name="mobile" [(ngModel)]="orgData.mobile">
     </mat-form-field>
   </form>
 
   <form>
     <mat-form-field>
-      <input type="tel" matInput placeholder="Mobile" [value]="orgData.mobile">
-    </mat-form-field>
-  </form>
-
-  <form>
-    <mat-form-field>
-      <input type="text" matInput placeholder="Address" [value]="orgData.address">
+      <input type="text" matInput placeholder="Address" name="address" [(ngModel)]="orgData.address">
     </mat-form-field>
   </form>
 
   <div class="state">
 
     <mat-form-field class="state_list">
-        <mat-select placeholder="Select State">
-          <mat-option *ngFor="let state of stateList" [value]="orgData.value">
+        <mat-select placeholder="Select State" name="state" [(ngModel)]="orgData.value">
+          <mat-option *ngFor="let state of stateList" [value]="state.id">
             {{ state.name }}
           </mat-option>
         </mat-select>
@@ -55,6 +49,6 @@
 
   </div>
 
-  <button mat-raised-button class="submit">Submit</button>
+  <button mat-raised-button class="submit" (click)="submit()">Submit</button>
 
 </div>

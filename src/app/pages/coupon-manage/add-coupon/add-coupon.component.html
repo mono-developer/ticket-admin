@@ -3,19 +3,19 @@
 
   <form class="title">
     <mat-form-field>
-      <input type="text" matInput placeholder="Organization Name" [value]="couponData.name">
+      <input type="text" matInput placeholder="Organization Name" name="name" [(ngModel)]="couponData.name">
     </mat-form-field>
   </form>
 
   <form>
     <mat-form-field>
-      <textarea matInput placeholder="Leave a comment"></textarea>
+      <textarea matInput placeholder="Leave a comment" name="comment" [(ngModel)]="couponData.comment"></textarea>
     </mat-form-field>
   </form>
 
   <form>
     <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Valid Date">
+      <input matInput [matDatepicker]="picker" placeholder="Valid Date" name="date" [(ngModel)]="couponData.date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
@@ -25,8 +25,8 @@
   <div class="state">
 
     <mat-form-field class="state_list">
-        <mat-select placeholder="Select State">
-          <mat-option *ngFor="let state of stateList" [value]="couponData.value">
+        <mat-select placeholder="Select State" name="state" [(ngModel)]="couponData.value">
+          <mat-option *ngFor="let state of stateList" [value]="state.id">
             {{ state.name }}
           </mat-option>
         </mat-select>
@@ -34,6 +34,6 @@
 
   </div>
 
-  <button mat-raised-button class="submit">Add Coupon</button>
+  <button mat-raised-button class="submit" (click)="submit()">Add Coupon</button>
 
 </div>

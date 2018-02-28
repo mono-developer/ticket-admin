@@ -9,15 +9,19 @@ export class AddOrganizationComponent implements OnInit {
 
   page_title : string = "Add Organization";
   stateList: any;
-  orgData: any = { o_name: '', o_number: '', person: '', eamil: '', password: '', mobile: '', address: '', value: ''  }
+  orgData: any = { name: '', number: '', person: '', eamil: '', mobile: '', address: '', value: '' }
   constructor() {
 
-    this.stateList = [ { id: 0, name: 'Activate'},
-                       { id: 1, name: 'Deactivate'}
+    this.stateList = [ { id: 0, name: 'Activate', value: true },
+                       { id: 1, name: 'Deactivate', value: false }
                       ];
   }
 
   ngOnInit() {
+  }
+
+  submit() {
+    console.log(this.orgData);
   }
 
 }

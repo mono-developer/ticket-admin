@@ -3,19 +3,19 @@
 <div class="main_div">
   <form>
     <mat-form-field>
-      <input type="text" matInput placeholder="Title" [(ngModel)]="cmsData.title">
+      <input type="text" matInput placeholder="Title" name="title" [(ngModel)]="cmsData.title">
     </mat-form-field>
   </form>
 
   <div class="description">
     <p>Description</p>
-    <quill-editor [(ngModel)]="cmsData.description"></quill-editor>
+    <quill-editor name="description" [(ngModel)]="cmsData.description"></quill-editor>
   </div>
 
   <div class="state">
     <mat-form-field class="state_list">
-      <mat-select placeholder="Select State" [(ngModel)]="cmsData.state">
-        <mat-option *ngFor="let state of stateList" [value]="state.id">
+      <mat-select placeholder="Select State" name="state" [(ngModel)]="cmsData.state">
+        <mat-option *ngFor="let state of stateList" [value]="state.value">
           {{ state.name }}
         </mat-option>
       </mat-select>

@@ -23,10 +23,10 @@
       <ng-container matColumnDef="symbol">
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button mat-button><mat-icon>border_color</mat-icon></button>
-          <button mat-button><mat-icon>delete</mat-icon></button>
-          <button mat-button><mat-icon>add_circle_outline</mat-icon></button>
-          <button mat-button><mat-icon>call_made</mat-icon></button>
+          <button mat-button (click)="edit(element)"><mat-icon>border_color</mat-icon></button>
+          <button mat-button (click)="delete(element)"><mat-icon>delete</mat-icon></button>
+          <button mat-button (click)="newCMS()"><mat-icon>add_circle_outline</mat-icon></button>
+          <button mat-button (click)="goSubpage(element)"><mat-icon>call_made</mat-icon></button>
 
         </mat-cell>
       </ng-container>
