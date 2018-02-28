@@ -154,8 +154,8 @@
 
         <button mat-raised-button (click)="openDialog()">Pick one</button>
 
-        <li *ngIf="modalDate">
-          You chose: <i>{{animal}}</i>
+        <li *ngIf="modalData">
+          You chose: <i>{{modalData.animal}}</i>
         </li>
         <div>
           <button mat-button matStepperPrevious>Back</button>

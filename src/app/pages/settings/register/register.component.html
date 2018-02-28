@@ -7,15 +7,15 @@
       <div class="register-content" fxLayout="column" fxLayoutAlign="start stretch">
 
         <mat-form-field>
-          <input matInput placeholder="Name" type="text" name="name" required [(ngModel)]="name">
+          <input matInput placeholder="Name" type="text" name="name" required [(ngModel)]="resData.name">
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="E-Mail" type="email" name="email" required [(ngModel)]="email">
+          <input matInput placeholder="E-Mail" type="email" name="email" required [(ngModel)]="resData.email">
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="password">
+          <input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="resData.password">
         </mat-form-field>
 
         <mat-form-field>
@@ -23,11 +23,11 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Cell Phone" type="tel" name="phone" required [(ngModel)]="phone">
+          <input matInput placeholder="Cell Phone" type="tel" name="phone" required [(ngModel)]="resData.phone">
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="City" type="text" name="city" required [(ngModel)]="city">
+          <input matInput placeholder="City" type="text" name="city" required [(ngModel)]="resData.city">
         </mat-form-field>
 
         <div class="extra-options" fxLayout="row" fxLayoutAlign="center center">
