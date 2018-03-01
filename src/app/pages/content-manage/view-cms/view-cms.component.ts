@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { json } from 'd3';
 
 import { BaseService } from "../../../../provide/base-service";
-import { UserService } from "../../../../provide/user-service";
+import { DataService } from "../../../../provide/data-service";
 
 @Component({
   selector: 'ms-view-cms',
@@ -19,10 +19,11 @@ export class ViewCMSComponent implements OnInit {
   displayedColumns = ['title', 'description', 'state', 'symbol'];
   dataSource:any;
   isLoading: boolean;
+
   constructor(
     public router: Router,
     public baseService: BaseService,
-    public userService: UserService
+    public dataService: DataService
   ) { }
 
   ngOnInit() {
@@ -32,7 +33,7 @@ export class ViewCMSComponent implements OnInit {
 
   getcmsList(){
     this.isLoading = true;
-    this.userService.getData(this.url)
+    this.dataService.getData(this.url)
       .subscribe(
         (data) => {
           this.isLoading = false;
@@ -54,7 +55,7 @@ export class ViewCMSComponent implements OnInit {
 
   delete(item) {
     this.isLoading = true;
-    this.userService.deleteData(this.url, item._id)
+    this.dataService.deleteData(this.url, item._id)
       .subscribe(
         (data) => {
           console.log('cmsData', data);

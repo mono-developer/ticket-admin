@@ -53,6 +53,7 @@ import { PageHeaderModule } from "../core/page-header/page-header.module";
 import { MatIconRegistry, MatStepperModule, MatTableModule, MatDialogModule,} from "@angular/material";
 import { UserService } from "../../provide/user-service";
 import { BaseService } from "../../provide/base-service";
+import { DataService } from "../../provide/data-service";
 
 @NgModule({
   imports: [
@@ -127,7 +128,8 @@ import { BaseService } from "../../provide/base-service";
   providers: [
     D3ChartService,
     UserService,
-    BaseService
+    BaseService,
+    DataService
   ]
 })
 export class PagesModule { }

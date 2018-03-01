@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { fadeInAnimation } from "../../../route.animation";
 import { ActivatedRoute } from '@angular/router';
 import { BaseService } from "../../../../provide/base-service";
-import { UserService } from "../../../../provide/user-service";
+import { DataService } from "../../../../provide/data-service";
 
 @Component({
   selector: 'ms-add-cms',
@@ -27,7 +27,7 @@ export class AddCMSComponent implements OnInit {
     private router: Router,
     public route: ActivatedRoute,
     public baseService: BaseService,
-    public userService: UserService
+    public dataService: DataService
   ) {
 
     this.cmsData = { title: '', description: '', state: '' };
@@ -50,7 +50,7 @@ export class AddCMSComponent implements OnInit {
 
   getcmsData(id) {
     this.isLoading = true;
-    this.userService.getData(this.url + "/" + id)
+    this.dataService.getData(this.url + "/" + id)
       .subscribe(
         (data) => {
           this.isLoading = false;
@@ -76,7 +76,7 @@ export class AddCMSComponent implements OnInit {
 
   postcmsData() {
     this.isLoading = true;
-    this.userService.postData(this.url, this.cmsData)
+    this.dataService.postData(this.url, this.cmsData)
       .subscribe(
         (data) => {
           console.log('cmsData', data);
@@ -93,7 +93,7 @@ export class AddCMSComponent implements OnInit {
 
   putcmsData() {
     this.isLoading = true;
-    this.userService.patchData(this.url, this.id, this.cmsData)
+    this.dataService.patchData(this.url, this.id, this.cmsData)
       .subscribe(
         (data) => {
           console.log('cmsData', data);
