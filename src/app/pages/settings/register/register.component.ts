@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {fadeInAnimation} from "../../../route.animation";
 import { Router } from "@angular/router";
 import { MatDialogRef, MatDialog } from "@angular/material";
+import { BaseService } from "../../../../provide/base-service";
 import { UserService } from "../../../../provide/user-service";
 import { Observable } from 'rxjs/Rx';
 
@@ -23,6 +24,7 @@ export class RegisterComponent implements OnInit {
   passwordConfirm: string;
   constructor(
     private router: Router,
+    public baseService: BaseService,
     public userService: UserService,
     public dialog: MatDialog
   ) { }
@@ -45,17 +47,14 @@ export class RegisterComponent implements OnInit {
     this.isLoading = true;
     this.userService.signup(this.resData)
       .subscribe(
-
         (data) => {
           this.isLoading = false;
-          console.log('data', data);
           sessionStorage.setItem('OAuthInfo', JSON.stringify(data));
           this.router.navigate(['/']);
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           this.openDialog();
           return true;
         });
@@ -65,10 +64,8 @@ export class RegisterComponent implements OnInit {
     this.dialogRef1 = this.dialog.open(SignupErrorDialog, {
       disableClose: false
     });
-
     this.dialogRef1.afterClosed()
   }
-
 }
 
 // Comfirm Password Error Dialog

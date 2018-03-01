@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from "@angular/router";
 import { fadeInAnimation } from "../../../route.animation";
 import { ActivatedRoute } from '@angular/router';
+import { BaseService } from "../../../../provide/base-service";
+import { UserService } from "../../../../provide/user-service";
 
 @Component({
   selector: 'ms-add-cms',
@@ -14,38 +17,52 @@ import { ActivatedRoute } from '@angular/router';
 export class AddCMSComponent implements OnInit {
 
   page_title: string = 'Add New Page';
-
+  id: string;
+  url: string;
   cmsData: any;
   stateList: any;
-  cmsList: any;
+  isLoading: boolean = false;
 
   constructor(
-    public route: ActivatedRoute
+    private router: Router,
+    public route: ActivatedRoute,
+    public baseService: BaseService,
+    public userService: UserService
   ) {
-    this.cmsData = { title: '', description: '', state: ''};
-    this.cmsList = [  { id: 1, title: 'Press Notices', description: 'A page to do the tsting, A page to do the tsting, A page to do the tsting', state: 'Active', symbol: 'H' },
-                      { id: 2, title: 'Hello', description: 'Helium', state: 'Active', symbol: 'He' },
-                      { id: 3, title: 'No mouth', description: 'Lithium', state: 'Active', symbol: 'Li' }
-                  ];
+
+    this.cmsData = { title: '', description: '', state: '' };
+
     this.stateList = [ { id: 0, name: 'Active', state: true},
                        { id: 1, name: 'Deactivate', state: false}
                     ];
-
   }
 
   ngOnInit() {
-    let item = this.route.snapshot.paramMap.get('item');
-    console.log('item', item);
-    if(item){
-      let getItem = this.filterItems(item);
-      this.cmsData = getItem[0];
+    this.id = this.route.snapshot.paramMap.get('item');
+    this.url = this.baseService.contentURL;
+    console.log('item', this.id);
+    if(this.id){
+      this.getcmsData(this.id);
+    }else{
+      this.cmsData = { title: '', description: '', state: '' };
     }
-    console.log('item', this.cmsData);
   }
 
-  filterItems(searchItem) {
-    return this.cmsList.filter(
-      item => searchItem.indexOf(item.id) > -1);
+  getcmsData(id) {
+    this.isLoading = true;
+    this.userService.getData(this.url + "/" + id)
+      .subscribe(
+        (data) => {
+          this.isLoading = false;
+          console.log('cmsData', data);
+          this.cmsData = data;
+          return true;
+        },
+        err => {
+          this.isLoading = false;
+          console.log('errorData', err);
+          return true;
+        });
   }
 
   setNewUser(value) {
@@ -54,6 +71,41 @@ export class AddCMSComponent implements OnInit {
 
   submit() {
     console.log( this.cmsData);
+    this.id ? this.putcmsData() : this.postcmsData();
+  }
+
+  postcmsData() {
+    this.isLoading = true;
+    this.userService.postData(this.url, this.cmsData)
+      .subscribe(
+        (data) => {
+          console.log('cmsData', data);
+          this.router.navigate(['content-manage/view-cms']);
+          return true;
+        },
+        error => {
+          this.isLoading = false;
+          console.log('errorData', error);
+          return true;
+        }
+      )
+  }
+
+  putcmsData() {
+    this.isLoading = true;
+    this.userService.patchData(this.url, this.id, this.cmsData)
+      .subscribe(
+        (data) => {
+          console.log('cmsData', data);
+          this.router.navigate(['content-manage/view-cms']);
+          return true;
+        },
+        error => {
+          this.isLoading = false;
+          console.log('errorData', error);
+          return true;
+        }
+      )
   }
 
 }

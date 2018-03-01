@@ -9,6 +9,7 @@ export class BaseService {
   public baseUrl = "https://ticket2018.herokuapp.com/api";
   public loginUrl= this.baseUrl + "/login";
   public signupUrl = this.baseUrl + "/signup";
+  public contentURL = this.baseUrl + "/content";
 
   constructor(public http: Http) {
     console.log('Hello BaseService Provider');

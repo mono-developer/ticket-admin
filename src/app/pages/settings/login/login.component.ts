@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from "@angular/router";
+import { MatDialogRef, MatDialog } from "@angular/material";
 import { fadeInAnimation } from "../../../route.animation";
+import { BaseService } from "../../../../provide/base-service";
 import { UserService } from "../../../../provide/user-service";
 import { Observable } from 'rxjs/Rx';
-// import { LoadingOverlayComponent } from '../../../core/loading-overlay/loading-overlay.component';
 
 import * as _ from 'lodash';
-import { MatDialogRef, MatDialog } from "@angular/material";
 
 
 @Component({
@@ -20,38 +20,59 @@ import { MatDialogRef, MatDialog } from "@angular/material";
 })
 export class LoginComponent implements OnInit {
   dialogRef: MatDialogRef<LoginErrorDialog>;
-  result: string;
   userData: any = { email: '', password: '' };
   isLoading: boolean = false;
+  isRemember: boolean = false;
 
   constructor(
     private router: Router,
+    public baseService: BaseService,
     public userService: UserService,
     public dialog: MatDialog,
-    // public isLoading: LoadingOverlayComponent
-  ) { }
+  ) {  }
 
   ngOnInit() {
     sessionStorage.removeItem('OAuthInfo');
+    let userData = sessionStorage.getItem('UserData');
+    if(userData){
+      this.userData = JSON.parse(userData);
+    }else{
+      sessionStorage.removeItem('UserData');
+      this.userData = { email: '', password: '' };
+    }
+
+  }
+
+  changedRemember() {
+    console.log(this.isRemember);
   }
 
   login() {
+
+    console.log(this.userData);
+    if(this.isRemember == true){
+      sessionStorage.setItem('UserData', JSON.stringify(this.userData));
+    }else{
+      sessionStorage.removeItem('UserData');
+    }
+
     this.isLoading = true;
+
     this.userService.login(this.userData)
       .subscribe(
         (data) => {
           this.isLoading = false;
-        console.log('DataLogin',data);
-        sessionStorage.setItem('OAuthInfo', JSON.stringify(data));
-        this.router.navigate(['/']);
-        return true;
-      },
-      err => {
-        this.isLoading = false;
-        console.log('errorData', err);
-        this.openDialog();
-        return true;
-      });
+          console.log('DataLogin',data);
+          sessionStorage.setItem('OAuthInfo', JSON.stringify(data));
+          this.router.navigate(['/']);
+          return true;
+        },
+        err => {
+          this.isLoading = false;
+          console.log('errorData', err);
+          this.openDialog();
+          return true;
+        });
   }
 
   openDialog() {

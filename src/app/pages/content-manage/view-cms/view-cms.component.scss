@@ -3,7 +3,8 @@
   flex-direction: column;
   margin: 5%;
   mat-table{
-  mat-header-row{
+    max-height: calc(100vh - 250px);
+    mat-header-row{
       background: #84cce7;
       mat-header-cell{
         padding: 5px;

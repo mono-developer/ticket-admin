@@ -1,7 +1,7 @@
 <div fxLayout="row" fxLayoutAlign="center center" style="height: 100%;">
   <div class="login mat-elevation-z12">
     <div class="login-header" fxLayout="column" fxLayoutAlign="center center">
-      <img src="assets/img/logo.png">
+      <img src="assets/img/icons/icon-dark.png">
     </div>
     <form #form="ngForm" (ngSubmit)="login()">
       <div class="login-content" fxLayout="column" fxLayoutAlign="start stretch">
@@ -12,7 +12,7 @@
             <input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="userData.password">
           </mat-form-field>
           <div class="extra-options" fxLayout="row" fxLayoutAlign="space-between center">
-            <mat-checkbox class="remember-me">Remember Me</mat-checkbox>
+            <mat-checkbox class="remember-me" name="remember" [(ngModel)]="isRemember">Remember Me</mat-checkbox>
             <a class="forgot-password" [routerLink]="['/forgot-password']">Forgot Password?</a>
           </div>
           <button color="primary" mat-raised-button [disabled]="!form.valid">SIGN IN</button>

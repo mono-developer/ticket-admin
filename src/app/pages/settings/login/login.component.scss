@@ -15,6 +15,9 @@
   .login-header {
     background: $app-color;
     padding: 24px;
+    img{
+      width: 150px;
+    }
   }
 
   .login-content {

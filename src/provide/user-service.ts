@@ -10,7 +10,15 @@ const options = new RequestOptions({ headers: headers });
 @Injectable()
 export class UserService {
 
+  token: string;
+
   constructor(public http: Http , public baseService: BaseService) {
+    let oAuthRawInfo = sessionStorage.getItem('OAuthInfo');
+    let oAuthInfo = JSON.parse(oAuthRawInfo);
+    console.log(oAuthInfo);
+    oAuthInfo ? this.token = oAuthInfo.token : '';
+    // this.token = oAuthInfo.token;
+    // console.log(this.token);
   }
 
   login(body) {
@@ -21,6 +29,30 @@ export class UserService {
 
   signup(body) {
     return this.http.post(this.baseService.signupUrl, body, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error || 'Server error'));
+  }
+
+  getData(url) {
+    return this.http.get(url + "?token=" + this.token, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error || 'Server error'));
+  }
+
+  postData(url, body) {
+    return this.http.post(url + "?token=" + this.token, body, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error || 'Server error'));
+  }
+
+  patchData(url, id, body) {
+    return this.http.patch(url + "/" + id + "?token=" + this.token, body, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error || 'Server error'));
+  }
+
+  deleteData(url, id){
+    return this.http.delete(url + "/" + id + "?token=" + this.token, options)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error || 'Server error'));
   }

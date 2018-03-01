@@ -3,6 +3,9 @@ import {MatTableDataSource} from '@angular/material';
 import { Router } from '@angular/router';
 import { json } from 'd3';
 
+import { BaseService } from "../../../../provide/base-service";
+import { UserService } from "../../../../provide/user-service";
+
 @Component({
   selector: 'ms-view-cms',
   templateUrl: './view-cms.component.html',
@@ -11,45 +14,73 @@ import { json } from 'd3';
 export class ViewCMSComponent implements OnInit {
 
   page_title: string = 'View Pages';
-
+  url: string;
+  cmsList: Element[];
   displayedColumns = ['title', 'description', 'state', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource:any;
+  isLoading: boolean;
   constructor(
-    public router: Router
+    public router: Router,
+    public baseService: BaseService,
+    public userService: UserService
   ) { }
 
   ngOnInit() {
+    this.url = this.baseService.contentURL;
+    this.getcmsList();
+  }
+
+  getcmsList(){
+    this.isLoading = true;
+    this.userService.getData(this.url)
+      .subscribe(
+        (data) => {
+          this.isLoading = false;
+          console.log('cmsList', data);
+          this.cmsList = data;
+          this.dataSource = new MatTableDataSource(this.cmsList);
+          return true;
+        },
+        err => {
+          this.isLoading = false;
+          console.log('errorData', err);
+          return true;
+        });
   }
 
   edit(item: any) {
-    console.log("senddata", item);
-    this.router.navigate(['content-manage/add-cms', { item: item.id }]);
-
+    this.router.navigate(['content-manage/add-cms', { item: item._id }]);
   }
+
   delete(item) {
+    this.isLoading = true;
+    this.userService.deleteData(this.url, item._id)
+      .subscribe(
+        (data) => {
+          console.log('cmsData', data);
+          this.getcmsList();
+          return true;
+        },
+        error => {
+          this.isLoading = false;
+          console.log('errorData', error);
+          return true;
+        }
+      )
+  }
+
+  changedState(item) {
     console.log(item);
   }
 
   newCMS() {
-
+    this.router.navigate(['content-manage/add-cms']);
   }
+
   goSubpage(item) {
     console.log(item);
   }
 
 }
 
-export interface Element {
-  id: number;
-  title: string;
-  description: string;
-  state: string;
-  symbol: string;
-}
 
-const ELEMENT_DATA: Element[] = [
-  { id: 1, title: 'Press Notices', description: 'A page to do the tsting, A page to do the tsting, A page to do the tsting', state: 'Active', symbol: 'H'},
-  { id: 2, title: 'Hello', description: 'Helium', state: 'Active', symbol: 'He'},
-  { id: 3, title: 'No mouth', description: 'Lithium', state: 'Active', symbol: 'Li'},
-
-];

@@ -15,7 +15,7 @@
   <div class="state">
     <mat-form-field class="state_list">
       <mat-select placeholder="Select State" name="state" [(ngModel)]="cmsData.state">
-        <mat-option *ngFor="let state of stateList" [value]="state.id">
+        <mat-option *ngFor="let state of stateList" [value]="state.state">
           {{ state.name }}
         </mat-option>
       </mat-select>
@@ -23,6 +23,6 @@
   </div>
 
   <button mat-raised-button class="submit" (click)="submit()">Submit</button>
-
+  <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
 </div>
 

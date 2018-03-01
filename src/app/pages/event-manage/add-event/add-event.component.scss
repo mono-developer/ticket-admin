@@ -92,4 +92,23 @@ mat-horizontal-stepper{
       margin: 0 12px;
     }
   }
+
+  .seat_details {
+    .seat_header{
+      display: block;
+      p{
+        display: inline-block;
+      }
+      button{
+        background: #ff9702;
+        width: 25px;
+        min-width: 25px;
+        border-radius: 50%;
+        padding: 0;
+        height: 25px;
+        line-height: 20px;
+        color: #fff;
+      }
+    }
+  }
 }
