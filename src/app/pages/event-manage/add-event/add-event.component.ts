@@ -78,6 +78,10 @@ export class AddEventComponent implements OnInit {
     });
   }
 
+  addSeat() {
+    console.log('addSeat');
+  }
+
 }
 
 
