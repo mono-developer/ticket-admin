@@ -15,7 +15,7 @@
   <div class="state">
     <mat-form-field class="state_list">
       <mat-select placeholder="Select State" name="state" [(ngModel)]="cmsData.state">
-        <mat-option *ngFor="let state of stateList" [value]="state.value">
+        <mat-option *ngFor="let state of stateList" [value]="state.id">
           {{ state.name }}
         </mat-option>
       </mat-select>

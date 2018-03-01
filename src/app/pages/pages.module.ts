@@ -43,9 +43,9 @@ import { AddBullentinComponent } from './bullentin/add-bullentin/add-bullentin.c
 import { BannerImagesComponent } from './banner-images/banner-images.component';
 import { UsersManageComponent } from './users-manage/users-manage.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LoginComponent } from './settings/login/login.component';
+import { LoginComponent, LoginErrorDialog } from './settings/login/login.component';
 import { ForgotPasswordComponent } from './settings/forgot-password/forgot-password.component';
-import { RegisterComponent } from './settings/register/register.component';
+import { RegisterComponent, SignupErrorDialog, PasswordErrorDialog } from './settings/register/register.component';
 import { GeneralReportsComponent } from './reports/general-reports/general-reports.component';
 import { DateReportsComponent } from './reports/date-reports/date-reports.component';
 
@@ -79,7 +79,10 @@ import { BaseService } from "../../provide/base-service";
     MatDialogModule,
   ],
   entryComponents: [
-    AddEventDialogComponent
+    AddEventDialogComponent,
+    LoginErrorDialog,
+    SignupErrorDialog,
+    PasswordErrorDialog
   ],
   declarations: [
     WidgetComponent,
@@ -117,6 +120,9 @@ import { BaseService } from "../../provide/base-service";
     GeneralReportsComponent,
     DateReportsComponent,
     AddEventDialogComponent,
+    LoginErrorDialog,
+    SignupErrorDialog,
+    PasswordErrorDialog
   ],
   providers: [
     D3ChartService,

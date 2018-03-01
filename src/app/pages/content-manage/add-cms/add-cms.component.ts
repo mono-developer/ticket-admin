@@ -27,8 +27,8 @@ export class AddCMSComponent implements OnInit {
                       { id: 2, title: 'Hello', description: 'Helium', state: 'Active', symbol: 'He' },
                       { id: 3, title: 'No mouth', description: 'Lithium', state: 'Active', symbol: 'Li' }
                   ];
-    this.stateList = [ { id: 0, name: 'Activate'},
-                       { id: 1, name: 'Deactivate'}
+    this.stateList = [ { id: 0, name: 'Active', state: true},
+                       { id: 1, name: 'Deactivate', state: false}
                     ];
 
   }

@@ -1,23 +1,28 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Http, Headers, RequestOptions, Response } from '@angular/http';
 import { BaseService } from "./base-service";
 import { Observable } from 'rxjs';
 import 'rxjs/add/operator/map';
 
-const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-};
+const headers = new Headers({ 'Content-Type': 'application/json' });
+const options = new RequestOptions({ headers: headers });
 
 @Injectable()
 export class UserService {
 
-  constructor(public http: HttpClient , public baseService: BaseService) {
+  constructor(public http: Http , public baseService: BaseService) {
   }
 
-  login(username, password) {
-    let body = { email: username, password: password };
-    return this.http.post(this.baseService.loginUrl, body, httpOptions);
+  login(body) {
+    return this.http.post(this.baseService.loginUrl, body, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error || 'Server error'));
+  }
 
+  signup(body) {
+    return this.http.post(this.baseService.signupUrl, body, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error || 'Server error'));
   }
 
 

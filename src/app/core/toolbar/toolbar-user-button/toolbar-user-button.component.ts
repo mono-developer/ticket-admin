@@ -8,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
 export class ToolbarUserButtonComponent implements OnInit {
 
   isOpen: boolean;
-
+  name: string;
   constructor() { }
 
   ngOnInit() {
+    let oAuthRawInfo = JSON.parse(sessionStorage.getItem('OAuthInfo'));
+    this.name = oAuthRawInfo.user.name;
   }
 
   toggleDropdown() {

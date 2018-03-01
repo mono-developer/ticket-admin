@@ -31,7 +31,6 @@ export class SidenavComponent implements OnInit, OnDestroy {
     this._itemsSubscription = this.sidenavService.items$
       .subscribe((items: SidenavItem[]) => {
         this.items = this.sortRecursive(items, 'position');
-        console.log('items', this.items);
       });
 
     this._routerEventsSubscription = this.router.events.subscribe((event) => {
