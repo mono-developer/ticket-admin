@@ -8,9 +8,9 @@
       </ng-container>
 
       <!-- Name Column -->
-      <ng-container matColumnDef="email">
+      <ng-container matColumnDef="sales_email">
         <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.sales_email}} </mat-cell>
       </ng-container>
 
       <!-- Weight Column -->
@@ -22,19 +22,20 @@
       <!-- Weight Column -->
       <ng-container matColumnDef="state">
           <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.state}} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{element.state ? 'Active' : 'Inactive'}} </mat-cell>
         </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="symbol">
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button mat-button><mat-icon>border_color</mat-icon></button>
-          <button mat-button><mat-icon>delete</mat-icon></button>
+          <button mat-button (click)="edit(element)"><mat-icon>border_color</mat-icon></button>
+          <button mat-button (click)="delete(element)"><mat-icon>delete</mat-icon></button>
         </mat-cell>
       </ng-container>
 
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
+    <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
   </div>

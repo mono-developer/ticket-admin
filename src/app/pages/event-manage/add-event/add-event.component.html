@@ -2,11 +2,12 @@
 
 <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
 
+
+  <!-- Step 1 -->
   <mat-step [stepControl]="firstFormGroup">
 
     <div class="step-border">
       <form [formGroup]="firstFormGroup" class="step1">
-
         <ng-template matStepLabel>STEP 1</ng-template>
 
         <mat-form-field >
@@ -38,146 +39,265 @@
         </mat-form-field>
 
         <button class="submit" mat-button matStepperNext>Next</button>
-
       </form>
     </div>
 
   </mat-step>
 
+  <!-- Step 2 -->
   <mat-step [stepControl]="secondFormGroup">
 
     <div class="step-border">
       <form [formGroup]="secondFormGroup">
         <ng-template matStepLabel>Step2</ng-template>
 
-        <div class="event_details">
+        <!-- Event Details  -->
+        <div class="details-border">
           <h4>Event Details</h4>
-          <mat-form-field>
-            <input matInput [matDatepicker]="picker1" placeholder="Event Start Date">
-            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-            <mat-datepicker #picker1></mat-datepicker>
-          </mat-form-field>
-
-          <mat-form-field>
-            <input type="time" matInput placeholder="Event Start Time" formControlName="secondCtrl" required>
-          </mat-form-field>
+          <div class="details_header">
+            <p>Add new event details</p>
+            <button mat-button class="add_seat" (click)="openEventDialog()">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+          <div class="cms-container mat-elevation-z8">
+            <mat-table #table [dataSource]="dataSource2">
+              <!-- Location -->
+              <ng-container matColumnDef="date">
+                <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.time}} {{element.date | date: 'dd'}}/{{element.date| date:'MM'}}/{{element.date| date: 'yyyy'}}</mat-cell>
+              </ng-container>
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="symbol">
+                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                <mat-cell *matCellDef="let element; let index = index">
+                  <button mat-button (click)="editEvent(element)">
+                    <mat-icon>border_color</mat-icon>
+                  </button>
+                  <button mat-button (click)="deleteEvent(index)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
+            </mat-table>
+          </div>
         </div>
 
-        <div class="seat_details">
-
+        <!--  Seat Details -->
+        <div class="details-border">
           <h4>Seat Details</h4>
-
-          <div class="seat_header">
+          <div class="details_header">
             <p>Add new seat details</p>
-            <button mat-button class="add_seat" (click)="addSeat()"><mat-icon>add</mat-icon></button>
+            <button mat-button class="add_seat" (click)="openSeatDialog()"><mat-icon>add</mat-icon></button>
           </div>
-
-          <!-- <div class="sub_input">
-            <mat-form-field>
-              <input type="text" matInput placeholder="Location" formControlName="secondCtrl" required>
-            </mat-form-field>
-
-            <mat-form-field>
-              <input type="number" matInput placeholder="Price of the bill" formControlName="secondCtrl" required>
-            </mat-form-field>
+          <div class="cms-container mat-elevation-z8">
+            <mat-table #table [dataSource]="dataSource">
+              <!-- Location -->
+              <ng-container matColumnDef="location">
+                <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+                <mat-cell *matCellDef="let element"> {{element.location}} </mat-cell>
+              </ng-container>
+              <!-- Price of the Bill Column -->
+              <ng-container matColumnDef="bill">
+                <mat-header-cell *matHeaderCellDef> Price of the Bill </mat-header-cell>
+                <mat-cell *matCellDef="let element" [innerHTML]="element.bill_price"></mat-cell>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="tickets">
+                <mat-header-cell *matHeaderCellDef> Number of Tickets per row </mat-header-cell>
+                <mat-cell *matCellDef="let element" [innerHTML]="element.tickets_number"></mat-cell>
+              </ng-container>
+              <!-- Name Column -->
+              <ng-container matColumnDef="type">
+                <mat-header-cell *matHeaderCellDef>Type of charge </mat-header-cell>
+                <mat-cell *matCellDef="let element" [innerHTML]="element.type_charge"></mat-cell>
+              </ng-container>
+              <!-- Symbol Column -->
+              <ng-container matColumnDef="symbol">
+                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                <mat-cell *matCellDef="let element; let index = index">
+                  <button mat-button (click)="editSeat(element)">
+                    <mat-icon>border_color</mat-icon>
+                  </button>
+                  <button mat-button (click)="deleteSeat(index)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+            </mat-table>
           </div>
+        </div>
 
-          <div class="sub_input">
-            <mat-form-field>
-              <input type="number" matInput placeholder="Number of tickets per row" formControlName="secondCtrl" required>
-            </mat-form-field>
+        <div class="btns">
+          <button style="float: left;" mat-button matStepperPrevious>Back</button>
+          <button style="float: right;" mat-button matStepperNext>Next</button>
+        </div>
 
-            <mat-form-field>
-              <input type="text" matInput placeholder="Type of Charge" formControlName="secondCtrl" required>
-            </mat-form-field>
+      </form>
+  </div>
+
+  </mat-step>
+
+<!-- Step 3 -->
+  <mat-step [stepControl]="thirdFormGroup">
+    <div class="step-border">
+      <form [formGroup]="thirdFormGroup">
+        <ng-template matStepLabel>Step3</ng-template>
+
+        <!-- Image Event -->
+        <div class="event">
+          <div class="left-event">
+            <p>Image of the Event</p>
+            <label id="#bb" class="uploadImg"><mat-icon>add</mat-icon>
+              <input type="file" id="File" (change)="eventImage($event)" size="60">
+            </label>
+            <p class="under-title">(image size must be 1080 * 400px)</p>
           </div>
-
-          <div class="sub_input">
-            <mat-form-field>
-              <input type="number" matInput placeholder="Load amount (%)" formControlName="secondCtrl" required>
-            </mat-form-field>
-
-            <mat-form-field>
-              <input type="number" matInput placeholder="Quantity" formControlName="secondCtrl" required>
-            </mat-form-field>
+          <div class="right-event">
+            <!-- <p>Please Select Image </p> -->
+            <img src="../../../../assets/img/backgrounds/sslide.jpg" alt="">
           </div>
-
-          <div class="sub_input">
-            <mat-form-field>
-              <input type="text" matInput placeholder="Discount Type" formControlName="secondCtrl" required>
-            </mat-form-field>
-
-            <div class="date-range">
-                <mat-form-field>
-                  <input matInput [matDatepicker]="picker_s" placeholder="Start Date">
-                  <mat-datepicker-toggle matSuffix [for]="picker_s"></mat-datepicker-toggle>
-                  <mat-datepicker #picker_s></mat-datepicker>
-                </mat-form-field>
-
-                <mat-form-field>
-                  <input matInput [matDatepicker]="picker_e" placeholder="End Date">
-                  <mat-datepicker-toggle matSuffix [for]="picker_e"></mat-datepicker-toggle>
-                  <mat-datepicker #picker_e></mat-datepicker>
-                </mat-form-field>
-            </div>
+        </div>
+        <!--Map  Event -->
+        <div class="event">
+          <div class="left-event">
+            <p>Map of the Event</p>
+            <label id="#bb" class="uploadImg"><mat-icon>add</mat-icon>
+              <input type="file" id="File" (change)="eventImage($event)" size="60">
+            </label>
+            <p class="under-title">(image size must be 1080 * 400px)</p>
           </div>
-
-          <div class="sub_input">
+          <div class="right-event">
+            <!-- <p>Please Select Image </p> -->
+            <img src="../../../../assets/img/backgrounds/sseat.jpg" alt="">
+          </div>
+        </div>
+        <!-- Coupon -->
+        <div class="event">
+          <div class="left-event">
+            <p>Coupons</p>
+          </div>
+          <div class="right-event">
             <mat-form-field>
-              <input type="number" matInput placeholder="Price %" formControlName="secondCtrl" required>
-            </mat-form-field>
-
-            <mat-form-field >
-              <mat-select placeholder="Select Yes if seat category in Box" formControlName="secondCtrl" required>
-                <mat-option *ngFor="let item of boxList" [value]="item.id">
-                  {{ item.name }}
+              <mat-select placeholder="Select Counpon">
+                <mat-option *ngFor="let item of couponList" [value]="item.discount">
+                  {{ item.code }}
                 </mat-option>
               </mat-select>
             </mat-form-field>
-          </div> -->
+          </div>
         </div>
-        <!-- <mat-form-field> -->
-            <!-- <input type="file" placeholder="Discount Type" formControlName="secondCtrl" required> -->
-        <!-- </mat-form-field> -->
+        <!-- Reservation -->
+        <div class="event">
+          <div class="left-event">
+            <p>Reservation</p>
+          </div>
+          <div class="right-event">
+            <mat-slide-toggle></mat-slide-toggle>
+          </div>
+        </div>
+        <!-- TIcket Event -->
+        <div class="event">
+          <div class="left-event">
+            <p>Image of the Ticket Template</p>
+            <label id="#bb" class="uploadImg">
+              <mat-icon>add</mat-icon>
+              <input type="file" id="File" (change)="eventImage($event)" size="60">
+            </label>
+            <p class="under-title">(image size must be 1080 * 400px)</p>
+          </div>
+          <div class="right-event">
+            <!-- <p>Please Select Image </p> -->
+            <img src="../../../../assets/img/backgrounds/sticket.jpg" alt="">
+          </div>
+        </div>
 
         <div class="btns">
           <button style="float: left;" mat-button matStepperPrevious>Back</button>
           <button style="float: right;" mat-button matStepperNext>Next</button>
         </div>
       </form>
-    </div>
 
-  </mat-step>
-
-<!-- Step 3 -->
-  <mat-step [stepControl]="thirdFormGroup">
-    <div class="step-border3">
-      <form [formGroup]="thirdFormGroup">
-        <ng-template matStepLabel>Step3</ng-template>
-        <mat-form-field>
-          <input matInput [(ngModel)]="name" placeholder="What's your name?" formControlName="thirdCtrl" required>
-        </mat-form-field>
-
-        <button mat-raised-button (click)="openDialog()">Pick one</button>
-
-        <li *ngIf="modalData">
-          You chose: <i>{{modalData.animal}}</i>
-        </li>
-        <div>
-          <button mat-button matStepperPrevious>Back</button>
-          <button mat-button matStepperNext>Next</button>
-        </div>
-      </form>
     </div>
   </mat-step>
 
+  <!-- Step 4 -->
   <mat-step>
     <ng-template matStepLabel>Step4</ng-template>
-    You are now done.
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+
+    <div class="step-border">
+      <!-- Select Ticket -->
+      <div class="event">
+        <div class="left-event">
+          <p>Selection of tickets</p>
+        </div>
+        <div class="right-event">
+          <div fxFlex>
+            <div fxLayout="column">
+              <mat-checkbox [(ngModel)]="printCheck" style="margin-bottom: 15px;">
+                Print ballot directly
+              </mat-checkbox>
+              <mat-checkbox color="primary" [(ngModel)]="pickCheck" style="margin-bottom: 15px;">
+                Pick up the ticket at the point of sale
+              </mat-checkbox>
+              <mat-checkbox color="warn" [(ngModel)]="purchaserCheck" style="margin-bottom: 15px;">
+                Purchaser will send a ballot requesting an additional charge
+              </mat-checkbox>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Select Ticket -->
+      <div class="event">
+        <div class="left-event">
+          <p>Additional Information</p>
+        </div>
+        <div class="right-event">
+          <mat-form-field>
+            <textarea matInput placeholder="Information Additional" name="comment"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Select Ticket -->
+      <div class="event">
+        <div class="left-event">
+          <p>Program information</p>
+        </div>
+        <div class="right-event">
+          <mat-form-field>
+            <textarea matInput placeholder="Information of Program" name="comment"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <!-- Select Ticket -->
+      <div class="event">
+        <div class="left-event">
+          <p>Event status</p>
+        </div>
+        <div class="right-event">
+          <mat-form-field>
+            <mat-select placeholder="Select State">
+              <mat-option *ngFor="let item of stateList" [value]="item.id">
+                {{ item.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="btns">
+        <button style="float: left;" mat-button matStepperPrevious>Back</button>
+        <button style="float: right;" mat-button matStepperNext (click)="done()">Done</button>
+      </div>
     </div>
+
   </mat-step>
    
 </mat-horizontal-stepper>

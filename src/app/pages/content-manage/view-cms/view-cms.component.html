@@ -1,38 +1,38 @@
 <ms-page-header [title]="page_title"></ms-page-header>
 <div class="cms-container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource">
+  <mat-table #table [dataSource]="dataSource">
 
-      <ng-container matColumnDef="title">
-        <mat-header-cell *matHeaderCellDef> Page Title </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
-      </ng-container>
+    <ng-container matColumnDef="title">
+      <mat-header-cell *matHeaderCellDef> Page Title </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+    </ng-container>
 
-      <!-- Name Column -->
-      <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
-        <mat-cell *matCellDef="let element" [innerHTML]="element.description"></mat-cell>
-      </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+      <mat-cell *matCellDef="let element" [innerHTML]="element.description"></mat-cell>
+    </ng-container>
 
-      <!-- Weight Column -->
-      <ng-container matColumnDef="state">
-        <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.state ? 'Active' : 'Inactive'}} </mat-cell>
-      </ng-container>
+    <!-- Weight Column -->
+    <ng-container matColumnDef="state">
+      <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{element.state ? 'Active' : 'Inactive'}} </mat-cell>
+    </ng-container>
 
-      <!-- Symbol Column -->
-      <ng-container matColumnDef="symbol">
-        <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-        <mat-cell *matCellDef="let element">
-          <button mat-button (click)="edit(element)"><mat-icon>border_color</mat-icon></button>
-          <button mat-button (click)="delete(element)"><mat-icon>delete</mat-icon></button>
-          <button mat-button (click)="newCMS()"><mat-icon>add_circle_outline</mat-icon></button>
-          <button mat-button (click)="goSubpage(element)"><mat-icon>call_made</mat-icon></button>
+    <!-- Symbol Column -->
+    <ng-container matColumnDef="symbol">
+      <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-button (click)="edit(element)"><mat-icon>border_color</mat-icon></button>
+        <button mat-button (click)="delete(element)"><mat-icon>delete</mat-icon></button>
+        <button mat-button (click)="newCMS()"><mat-icon>add_circle_outline</mat-icon></button>
+        <button mat-button (click)="goSubpage(element)"><mat-icon>call_made</mat-icon></button>
 
-        </mat-cell>
-      </ng-container>
+      </mat-cell>
+    </ng-container>
 
-      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-    <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
-  </div>
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
+</div>

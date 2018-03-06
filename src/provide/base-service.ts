@@ -10,6 +10,7 @@ export class BaseService {
   public loginUrl= this.baseUrl + "/login";
   public signupUrl = this.baseUrl + "/signup";
   public contentURL = this.baseUrl + "/content";
+  public salesUserURL = this.baseUrl + "/salesteam"
 
   constructor(public http: Http) {
     console.log('Hello BaseService Provider');

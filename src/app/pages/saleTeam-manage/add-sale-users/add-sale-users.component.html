@@ -1,32 +1,36 @@
+<ms-page-header [title]="page_title"></ms-page-header>
 <div class="main-box">
 
     <div class="demo-preview" fxLayout="row" fxLayoutAlign="center center">
 
       <div class="add-box" >
         <mat-form-field static>
-            <input type="text" matInput placeholder="First Name" name="first_name" [(ngModel)]="salesUsers.first_name">
+            <input type="text" matInput placeholder="First Name" name="first_name" [(ngModel)]="salesUserData.first_name">
             <span matPrefix><mat-icon>person</mat-icon></span>
         </mat-form-field>
         <mat-form-field static>
-          <input type="email" matInput placeholder="Email" name="email" [(ngModel)]="salesUsers.email">
+          <input type="email" matInput placeholder="Email" name="email" [(ngModel)]="salesUserData.sales_email">
           <span matPrefix><mat-icon>email</mat-icon></span>
         </mat-form-field>
         <mat-form-field fxFlex>
-          <input type="password" matInput placeholder="Password" name="password" [(ngModel)]="salesUsers.password">
+          <input type="password" matInput placeholder="Password" name="password" [(ngModel)]="salesUserData.password">
           <span matPrefix><mat-icon>vpn_key</mat-icon></span>
         </mat-form-field>
         <mat-form-field fxFlex>
-          <input type="tel" matInput placeholder="Mobile" name="phone" [(ngModel)]="salesUsers.phone">
+          <input type="tel" matInput placeholder="Mobile" name="phone" [(ngModel)]="salesUserData.phone">
           <span matPrefix><mat-icon>phonelink_setup</mat-icon></span>
         </mat-form-field>
-        <mat-form-field fxFlex style="margin-bottom: 40px;">
-            <input matInput placeholder="City" name="city" [(ngModel)]="salesUsers.city">
-            <span matPrefix><mat-icon>cached  </mat-icon></span>
+        <mat-form-field class="state_list">
+          <mat-select placeholder="Select State" name="state" [(ngModel)]="salesUserData.state">
+            <mat-option *ngFor="let state of stateList" [value]="state.state">
+              {{ state.name }}
+            </mat-option>
+          </mat-select>
         </mat-form-field>
 
-      <button mat-raised-button class="submit" (click)="submit()">Submit</button>
+        <button mat-raised-button class="submit" (click)="submit()">Submit</button>
       </div>
 
     </div>
-
+  <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
 </div>

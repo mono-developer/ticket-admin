@@ -70,10 +70,6 @@ export class ViewCMSComponent implements OnInit {
       )
   }
 
-  changedState(item) {
-    console.log(item);
-  }
-
   newCMS() {
     this.router.navigate(['content-manage/add-cms']);
   }

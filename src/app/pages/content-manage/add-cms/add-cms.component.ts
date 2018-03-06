@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from "@angular/router";
+import { Router, ActivatedRoute } from "@angular/router";
 import { fadeInAnimation } from "../../../route.animation";
-import { ActivatedRoute } from '@angular/router';
 import { BaseService } from "../../../../provide/base-service";
 import { DataService } from "../../../../provide/data-service";
 
@@ -33,7 +32,7 @@ export class AddCMSComponent implements OnInit {
     this.cmsData = { title: '', description: '', state: '' };
 
     this.stateList = [ { id: 0, name: 'Active', state: true},
-                       { id: 1, name: 'Deactivate', state: false}
+                       { id: 1, name: 'Inative', state: false}
                     ];
   }
 
@@ -63,10 +62,6 @@ export class AddCMSComponent implements OnInit {
           console.log('errorData', err);
           return true;
         });
-  }
-
-  setNewUser(value) {
-    console.log('selected');
   }
 
   submit() {

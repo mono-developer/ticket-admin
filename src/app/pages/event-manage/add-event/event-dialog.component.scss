@@ -1,0 +1,46 @@
+
+.mat-dialog-content{
+  padding: 0 10px;
+  margin: 0 -10px;
+}
+
+.date_picker {
+  width: 50%;
+  display: inline-block;
+  mat-form-field {
+    width: 48%;
+  }
+}
+.mat-dialog-actions {
+  width: 90%;
+  margin: 0 auto;
+  button {
+    background: #ff9702;
+    color: #fff;
+    width: 30%;
+    margin: 20px 10%;
+  }
+}
+
+@media only screen and (max-width: 520px) {
+  .date_picker {
+    width: 100%;
+  }
+  mat-form-field {
+    width: 100%;
+  }
+  .mat-dialog-actions {
+    button {
+      margin: 20px 5%;
+    }
+  }
+
+}
+
+
+
+
+
+
+
+

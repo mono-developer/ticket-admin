@@ -33,7 +33,7 @@ import { AddSaleUsersComponent } from './saleTeam-manage/add-sale-users/add-sale
 import { AddCategoryComponent } from './event-categories/add-category/add-category.component';
 import { ViewCategoryComponent } from './event-categories/view-category/view-category.component';
 import { ViewEventComponent } from './event-manage/view-event/view-event.component';
-import { AddEventComponent, AddEventDialogComponent } from './event-manage/add-event/add-event.component';
+import { AddEventComponent, EventDatailsDialogComponent, SeatDatailsDialogComponent } from './event-manage/add-event/add-event.component';
 import { AddOrganizationComponent } from './organization-manage/add-organization/add-organization.component';
 import { ViewOrganizationComponent } from './organization-manage/view-organization/view-organization.component';
 import { AddCouponComponent } from './coupon-manage/add-coupon/add-coupon.component';
@@ -54,6 +54,7 @@ import { MatIconRegistry, MatStepperModule, MatTableModule, MatDialogModule,} fr
 import { UserService } from "../../provide/user-service";
 import { BaseService } from "../../provide/base-service";
 import { DataService } from "../../provide/data-service";
+import { UploadFileService } from '../../provide/upload-file.service';
 
 @NgModule({
   imports: [
@@ -80,7 +81,8 @@ import { DataService } from "../../provide/data-service";
     MatDialogModule,
   ],
   entryComponents: [
-    AddEventDialogComponent,
+    EventDatailsDialogComponent,
+    SeatDatailsDialogComponent,
     LoginErrorDialog,
     SignupErrorDialog,
     PasswordErrorDialog
@@ -120,7 +122,8 @@ import { DataService } from "../../provide/data-service";
     RegisterComponent,
     GeneralReportsComponent,
     DateReportsComponent,
-    AddEventDialogComponent,
+    EventDatailsDialogComponent,
+    SeatDatailsDialogComponent,
     LoginErrorDialog,
     SignupErrorDialog,
     PasswordErrorDialog
@@ -129,7 +132,8 @@ import { DataService } from "../../provide/data-service";
     D3ChartService,
     UserService,
     BaseService,
-    DataService
+    DataService,
+    UploadFileService
   ]
 })
 export class PagesModule { }

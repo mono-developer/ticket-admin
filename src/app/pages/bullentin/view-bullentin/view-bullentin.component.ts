@@ -13,6 +13,7 @@ export class ViewBullentinComponent implements OnInit {
 
   displayedColumns = ['title', 'description', 'symbol'];
   dataSource = new MatTableDataSource(ELEMENT_DATA);
+
   constructor(
     public router: Router
   ) { }
@@ -44,3 +45,4 @@ const ELEMENT_DATA: Element[] = [
   { id: 3, title: 'Main Headlines', description: 'We are testing now for newsletter', symbol: '2'},
   { id: 4, title: 'Proof', description: 'I need to test this', symbol: '3'},
 ];
+

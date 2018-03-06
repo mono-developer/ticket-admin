@@ -14,6 +14,7 @@ import { SortablejsModule } from 'angular-sortablejs';
 import { ScrollbarModule } from './core/scrollbar/scrollbar.module';
 
 import { AccessService } from '../provide/access.service';
+import { UploadFileService } from '../provide/upload-file.service';
 
 
 @NgModule({
@@ -36,8 +37,8 @@ import { AccessService } from '../provide/access.service';
   ],
   providers: [
     MatIconRegistry,
-    AccessService
-
+    AccessService,
+    UploadFileService
   ],
   bootstrap: [AppComponent]
 })
