@@ -158,8 +158,8 @@
             <p class="under-title">(image size must be 1080 * 400px)</p>
           </div>
           <div class="right-event">
-            <!-- <p>Please Select Image </p> -->
-            <img src="../../../../assets/img/backgrounds/sslide.jpg" alt="">
+            <p *ngIf="!eventImg">Please Upload Event Image </p>
+            <img *ngIf="eventImg" [src]="eventImg" alt="">
           </div>
         </div>
         <!--Map  Event -->
@@ -167,13 +167,13 @@
           <div class="left-event">
             <p>Map of the Event</p>
             <label id="#bb" class="uploadImg"><mat-icon>add</mat-icon>
-              <input type="file" id="File" (change)="eventImage($event)" size="60">
+              <input type="file" id="File" (change)="seatImage($event)" size="60">
             </label>
             <p class="under-title">(image size must be 1080 * 400px)</p>
           </div>
           <div class="right-event">
-            <!-- <p>Please Select Image </p> -->
-            <img src="../../../../assets/img/backgrounds/sseat.jpg" alt="">
+            <p *ngIf="!seatImg">Please Upload Seat Image </p>
+            <img *ngIf="seatImg" [src]="seatImg" alt="">
           </div>
         </div>
         <!-- Coupon -->
@@ -206,13 +206,13 @@
             <p>Image of the Ticket Template</p>
             <label id="#bb" class="uploadImg">
               <mat-icon>add</mat-icon>
-              <input type="file" id="File" (change)="eventImage($event)" size="60">
+              <input type="file" id="File" (change)="ticketImage($event)" size="60">
             </label>
             <p class="under-title">(image size must be 1080 * 400px)</p>
           </div>
           <div class="right-event">
-            <!-- <p>Please Select Image </p> -->
-            <img src="../../../../assets/img/backgrounds/sticket.jpg" alt="">
+            <p *ngIf="!ticketImg">Please Upload Image </p>
+            <img *ngIf="ticketImg" [src]="ticketImg" alt="">
           </div>
         </div>
 
@@ -221,7 +221,7 @@
           <button style="float: right;" mat-button matStepperNext>Next</button>
         </div>
       </form>
-
+      <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
     </div>
   </mat-step>
 
@@ -299,5 +299,7 @@
     </div>
 
   </mat-step>
+
+
    
 </mat-horizontal-stepper>

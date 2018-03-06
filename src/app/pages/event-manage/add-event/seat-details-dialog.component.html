@@ -54,11 +54,11 @@
     </mat-select>
   </mat-form-field>
 
-  <!-- <mat-form-field> -->
-<label for="imageUpload">Image Upload</label>
-<input type="file" (change)="fileEvent($event)" name="imageUpload" id="imageUpload" />
+<label id="#bb"> Upload Image
+  <input type="file" id="File" (change)="fileEvent($event)" size="60">
+</label>
 
-<img [src]="detail_img" alt="">
+<img class="img_url" [src]="data.modalData.image" alt="">
 
 
 </div>
@@ -66,3 +66,4 @@
   <button mat-button (click)="onNoClick()">No Thanks</button>
   <button mat-button [mat-dialog-close]="data.modalData" cdkFocusInitial>Ok</button>
 </div>
+<ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>

@@ -39,11 +39,18 @@ export class AddEventComponent implements OnInit {
 
   printCheck: boolean;
   pickCheck: boolean;
-  purchaserCheck: boolean
+  purchaserCheck: boolean;
+
+  eventImg: any;
+  seatImg: any;
+  ticketImg: any;
+
+  isLoading: boolean = false;
 
   constructor(
     private _formBuilder: FormBuilder,
     public dialog: MatDialog,
+    private uploadService: UploadFileService,
   ) {
     this.categoryList = [ { id: 0, name: 'Music'},
                           { id: 1, name: 'Sports'},
@@ -129,6 +136,7 @@ export class AddEventComponent implements OnInit {
       discount: '',
       price_pecent: '',
       ok_value: '',
+      image: ''
     };
 
     let dialogRef = this.dialog.open(SeatDatailsDialogComponent, {
@@ -167,15 +175,48 @@ export class AddEventComponent implements OnInit {
   //  Step 3
 
   eventImage(event: any) {
+    this.isLoading = true;
     const file = event.target.files[0];
-    console.log(file);
+    this.uploadService.uploadfile(file).subscribe((data: any) => {
+      this.isLoading = false;
+      console.log("aaaaaaa", data);
+      this.eventImg = data.Location;
+    }, (err) => {
+      this.isLoading = false;
+      console.log("errror", err);
+    });
+  }
+
+  seatImage(event: any) {
+    this.isLoading = true;
+    const file = event.target.files[0];
+    this.uploadService.uploadfile(file).subscribe((data: any) => {
+      this.isLoading = false;
+      console.log("aaaaaaa", data);
+      // let data: any = data.Location
+      this.seatImg = data.Location;
+    }, (err) => {
+      this.isLoading = false;
+      console.log("errror", err);
+    });
+  }
+
+  ticketImage(event: any) {
+    this.isLoading = true;
+    const file = event.target.files[0];
+    this.uploadService.uploadfile(file).subscribe((data: any) => {
+      this.isLoading = false;
+      console.log("aaaaaaa", data);
+      this.ticketImg = data.Location;
+    }, (err) => {
+      this.isLoading = false;
+      console.log("errror", err);
+    });
   }
 
   done(){
     console.log('done');
   }
-
-
 
 }
 
@@ -206,7 +247,8 @@ export class SeatDatailsDialogComponent {
   public boxList: any = [ { id: 0, name: "Yes", value: true },
                           { id: 1, name: "No", value: false }
                         ];
-  public detail_img: any;
+  public detail_img: any = false;
+  isLoading: boolean;
 
   constructor(
     private uploadService: UploadFileService,
@@ -219,17 +261,18 @@ export class SeatDatailsDialogComponent {
   }
 
   fileEvent(event: any) {
+    this.isLoading = true;
     const file = event.target.files[0];
-    this.uploadService.uploadfile(file);
+    this.uploadService.uploadfile(file).subscribe((data: any) => {
+      this.isLoading = false;
+      console.log("aaaaaaa", data);
+      this.data.modalData.image = data.Location;
+    }, (err) => {
+      this.isLoading = false;
+      console.log("errror", err);
+    });
   }
-  // fileEvent(event: any) {
-  //   const file = event.target.files[0];
-  //   this.uploadService.uploadfile(file).subscribe(data =>{
-  //     console.log("aaaaaaa",data);
-  //   },(err)=> {
-  //     console.log("errror", err);
-  //   });
-  // }
+
 
 
 
