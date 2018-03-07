@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import { Router } from '@angular/router';
 import { json } from 'd3';
+import { BaseService } from "../../../../provide/base-service";
+import { DataService } from "../../../../provide/data-service";
 
 @Component({
   selector: 'ms-view-bullentin',
@@ -10,39 +12,62 @@ import { json } from 'd3';
 })
 export class ViewBullentinComponent implements OnInit {
   page_title: string = 'View Newsletter';
-
+  url: string;
+  letterList: any;
   displayedColumns = ['title', 'description', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
+  dataSource: any;
+  isLoading: boolean = false;
 
   constructor(
-    public router: Router
+    public router: Router,
+    public baseService: BaseService,
+    public dataService: DataService
   ) { }
 
   ngOnInit() {
+    this.url = this.baseService.newsLetterURL;
+    this.getNewsLetterList();
+  }
+
+  getNewsLetterList() {
+    this.isLoading = true;
+    this.dataService.getData(this.url)
+      .subscribe(
+        (data) => {
+          this.isLoading = false;
+          console.log('letterList', data);
+          this.letterList = data;
+          this.dataSource = new MatTableDataSource(this.letterList);
+          return true;
+        },
+        err => {
+          this.isLoading = false;
+          console.log('errorData', err);
+          return true;
+        });
   }
 
   edit(item: any) {
     console.log("senddata",item);
-    this.router.navigate(['bullentin/add-bullentin', { item: item.id }]);
-
+    this.router.navigate(['bullentin/add-bullentin', { item: item._id }]);
   }
-  delete(item) {
-    console.log(item);
+
+  delete(item: any) {
+    this.isLoading = true;
+    this.dataService.deleteData(this.url, item._id)
+      .subscribe(
+        (data) => {
+          console.log('letterList', data);
+          this.getNewsLetterList();
+          return true;
+        },
+        error => {
+          this.isLoading = false;
+          console.log('errorData', error);
+          return true;
+        }
+      )
   }
 
 }
-
-export interface Element {
-  id: number;
-  title: string;
-  description: string;
-  symbol: string;
-}
-
-const ELEMENT_DATA: Element[] = [
-  { id: 1, title: 'Test', description: 'Testing for the newsletter', symbol: '0'},
-  { id: 2, title: 'TESTING NEWSLETTER IN FEB', description: 'testing', symbol: '1'},
-  { id: 3, title: 'Main Headlines', description: 'We are testing now for newsletter', symbol: '2'},
-  { id: 4, title: 'Proof', description: 'I need to test this', symbol: '3'},
-];
 

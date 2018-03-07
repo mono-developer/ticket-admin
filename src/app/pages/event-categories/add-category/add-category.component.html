@@ -4,7 +4,7 @@
 
   <form class="title">
     <mat-form-field class="title_input">
-      <input matInput placeholder="New Category Name" name="cate_name" [(ngModel)]="cateData.cate_name">
+      <input matInput placeholder="New Category Name" name="cate_name" [(ngModel)]="categoryData.name">
     </mat-form-field>
   </form>
 
@@ -12,9 +12,9 @@
   <div class="state">
 
     <mat-form-field class="state_list">
-        <mat-select placeholder="Select State" name="state" [(ngModel)]="cateData.value">
-          <mat-option *ngFor="let state of stateList" [value]="state.id">
-            {{ state.value }}
+        <mat-select placeholder="Select State" name="state" [(ngModel)]="categoryData.state">
+          <mat-option *ngFor="let state of stateList" [value]="state.value">
+            {{ state.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -23,7 +23,6 @@
 
 
   <button class="submit" mat-raised-button (click)="submit()">Submit</button>
-
-
+  <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
 
 </div>

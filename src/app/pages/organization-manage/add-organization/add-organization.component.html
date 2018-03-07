@@ -9,7 +9,7 @@
 
   <form>
       <mat-form-field>
-        <input type="number" matInput placeholder="Registration of the Organization" name="number" [(ngModel)]="orgData.number">
+        <input type="tel" matInput placeholder="Registration of the Organization" name="number" [(ngModel)]="orgData.reg_number">
       </mat-form-field>
   </form>
 
@@ -21,7 +21,7 @@
 
   <form>
     <mat-form-field>
-      <input type="email" matInput placeholder="Email" name="email" [(ngModel)]="orgData.eamil">
+      <input type="email" matInput placeholder="Email" name="email" [(ngModel)]="orgData.org_email">
     </mat-form-field>
   </form>
 
@@ -40,8 +40,8 @@
   <div class="state">
 
     <mat-form-field class="state_list">
-        <mat-select placeholder="Select State" name="state" [(ngModel)]="orgData.value">
-          <mat-option *ngFor="let state of stateList" [value]="state.id">
+        <mat-select placeholder="Select State" name="state" [(ngModel)]="orgData.state">
+          <mat-option *ngFor="let state of stateList" [value]="state.value">
             {{ state.name }}
           </mat-option>
         </mat-select>
@@ -50,5 +50,5 @@
   </div>
 
   <button mat-raised-button class="submit" (click)="submit()">Submit</button>
-
+  <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
 </div>

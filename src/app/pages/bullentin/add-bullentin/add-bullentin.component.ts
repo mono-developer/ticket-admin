@@ -1,49 +1,106 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { routeAnimation } from "../../../route.animation";
+import { Router, ActivatedRoute } from "@angular/router";
+import { BaseService } from "../../../../provide/base-service";
+import { DataService } from "../../../../provide/data-service";
+import * as _ from 'lodash';
 
 @Component({
   selector: 'ms-add-bullentin',
   templateUrl: './add-bullentin.component.html',
-  styleUrls: ['./add-bullentin.component.scss']
+  styleUrls: ['./add-bullentin.component.scss'],
+  host: {
+    '[@routeAnimation]': 'true'
+  },
+  animations: [routeAnimation]
 })
 export class AddBullentinComponent implements OnInit {
 
 
   page_title: string = 'Add NewsLetter';
-
-  letterData: any = { title: '', description: '' };
+  id: string;
+  url: string;
+  letterData: any;
   letterList: any;
+  isLoading: boolean = false;
   constructor(
-    public router: Router,
-    public route: ActivatedRoute
+    private router: Router,
+    public route: ActivatedRoute,
+    public baseService: BaseService,
+    public dataService: DataService
   ) {
-    this.letterList = [
-      { id: 1, title: 'Test', description: 'Testing for the newsletter', symbol: '' },
-      { id: 2, title: 'TESTING NEWSLETTER IN FEB', description: 'testing', symbol: '' },
-      { id: 3, title: 'Main Headlines', description: 'We are testing now for newsletter', symbol: '' },
-      { id: 4, title: 'Proof', description: 'I need to test this', symbol: '' },
-    ];
+    this.letterData = { title: '', description: '' };
    }
 
   ngOnInit() {
-    let item = this.route.snapshot.paramMap.get('item');
-    console.log('item', item);
-    if(item){
-      let getItem = this.filterItems(item);
-      this.letterData = getItem[0];
+    this.id = this.route.snapshot.paramMap.get('item');
+    this.url = this.baseService.newsLetterURL;
+    console.log('item', this.id);
+    if (this.id) {
+      this.getNewsLetterData(this.id);
+    } else {
+      this.letterData = { title: '', description: '' };
     }
-
-    console.log('item', this.letterData);
   }
 
-  filterItems(searchItem) {
-    return this.letterList.filter(
-      item => searchItem.indexOf(item.id) > -1);
+  getNewsLetterData(id) {
+    this.isLoading = true;
+    this.dataService.getData(this.url + "/" + id)
+      .subscribe(
+        (data) => {
+          this.isLoading = false;
+          console.log('letterData', data);
+          this.letterData = data;
+          return true;
+        },
+        err => {
+          this.isLoading = false;
+          console.log('errorData', err);
+          return true;
+        });
   }
 
   submit() {
     console.log(this.letterData);
-    this.router.navigate(['bullentin/view-bullentin']);
+    this.id ? this.putLetterData() : this.postLetterData();
+  }
+
+  postLetterData() {
+    this.isLoading = true;
+    this.dataService.postData(this.url, this.letterData)
+      .subscribe(
+        (data) => {
+          console.log('letterData', data);
+          this.router.navigate(['bullentin/view-bullentin']);
+          return true;
+        },
+        error => {
+          this.isLoading = false;
+          console.log('errorData', error);
+          return true;
+        }
+      )
+  }
+
+  putLetterData() {
+    this.isLoading = true;
+    this.dataService.patchData(this.url, this.id, this.letterData)
+      .subscribe(
+        (data) => {
+          console.log('letterData', data);
+          this.router.navigate(['bullentin/view-bullentin']);
+          return true;
+        },
+        error => {
+          this.isLoading = false;
+          console.log('errorData', error);
+          return true;
+        }
+      )
+  }
+
+  getEscaped(text: string) {
+    return _.escape(text);
   }
 
 }

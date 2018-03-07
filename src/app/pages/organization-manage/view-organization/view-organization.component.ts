@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
+import { Router } from '@angular/router';
+import { json } from 'd3';
+
+import { BaseService } from "../../../../provide/base-service";
+import { DataService } from "../../../../provide/data-service";
 
 @Component({
   selector: 'ms-view-organization',
@@ -9,28 +14,62 @@ import {MatTableDataSource} from '@angular/material';
 export class ViewOrganizationComponent implements OnInit {
 
   page_title: string = 'View Organization';
-
+  url: string;
+  orgList: Element[];
   displayedColumns = ['name', 'person', 'email', 'phone', 'state', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-  constructor() { }
+  dataSource: any;
+  isLoading: boolean;
+
+  constructor(
+    public router: Router,
+    public baseService: BaseService,
+    public dataService: DataService
+  ) {
+   }
 
   ngOnInit() {
+  this.url = this.baseService.organizationURL;
+  this.getOrgList();
+  }
+
+  getOrgList(){
+    this.isLoading = true;
+    this.dataService.getData(this.url)
+      .subscribe(
+        (data) => {
+          this.isLoading = false;
+          console.log('orgData', data);
+          this.orgList = data;
+          this.dataSource = new MatTableDataSource(this.orgList);
+          return true;
+        },
+        err => {
+          this.isLoading = false;
+          console.log('errorData', err);
+          return true;
+        });
+  }
+
+  edit(item: any) {
+    this.router.navigate(['organization-manage/add-organization', { item: item._id }]);
+  }
+
+  delete(item) {
+    this.isLoading = true;
+    this.dataService.deleteData(this.url, item._id)
+      .subscribe(
+        (data) => {
+          console.log('orgData', data);
+          this.getOrgList();
+          return true;
+        },
+        error => {
+          this.isLoading = false;
+          console.log('errorData', error);
+          return true;
+        }
+      )
   }
 
 }
 
-export interface Element {
-  name: string;
-  person: string;
-  email: string;
-  phone: string;
-  state: string;
-  symbol: string;
-}
-
-const ELEMENT_DATA: Element[] = [
-  { name: 'Minoru', person: 'Kobayashi', email: 'minorumadamr@hotmail.com', phone: '123456789', state: 'Active', symbol: ''},
-  { name: 'Daniel', person: 'Garrido', email: 'Daniel@alphavictoria.com', phone: '987654321', state: 'Active', symbol: ''},
-  { name: 'Chan', person: 'Han', email: 'chan_handevok@hotmail.com', phone: '4567945422', state: 'Active', symbol: ''},
-  { name: 'Andres', person: 'Garcia', email: 'andres@sample.com', phone: '1026146408', state: 'Active',symbol: ''},
-];

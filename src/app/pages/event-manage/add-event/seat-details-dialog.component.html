@@ -5,11 +5,11 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input type="number" matInput placeholder="Price of the bill" name="bill_price" [(ngModel)]="data.modalData.bill_price">
+    <input type="number" matInput placeholder="Price of Ticket" name="ticket_price" [(ngModel)]="data.modalData.ticket_price">
   </mat-form-field>
 
   <mat-form-field>
-    <input type="number" matInput placeholder="Number of tickets per row" name="tickets_number" [(ngModel)]="data.modalData.tickets_number">
+    <input type="number" matInput placeholder="Number of tickets per location" name="tickets_number" [(ngModel)]="data.modalData.tickets_number">
   </mat-form-field>
 
   <mat-form-field>
@@ -21,7 +21,7 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input type="number" matInput placeholder="Quantity" name="quantity" [(ngModel)]="data.modalData.quantity">
+    <input type="number" matInput placeholder="Quantity Service Charge" name="quantity" [(ngModel)]="data.modalData.quantity">
   </mat-form-field>
 
   <mat-form-field>
@@ -43,11 +43,11 @@
   </div>
 
   <mat-form-field>
-    <input type="number" matInput placeholder="Price" name="price_percent" [(ngModel)]="data.modalData.price_percent">
+    <input type="number" matInput placeholder="Price Discount %" name="price_percent" [(ngModel)]="data.modalData.price_percent">
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select placeholder="Select State" name="state" [(ngModel)]="data.modalData.ok_value">
+    <mat-select placeholder="Seat Category Box" name="state" [(ngModel)]="data.modalData.ok_value">
       <mat-option *ngFor="let state of boxList" [value]="state.value">
         {{ state.name }}
       </mat-option>

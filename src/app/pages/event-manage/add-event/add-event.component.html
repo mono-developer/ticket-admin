@@ -12,7 +12,7 @@
 
         <mat-form-field >
           <mat-select placeholder="Select a Category" formControlName="firstCtrl" required>
-            <mat-option *ngFor="let category of categoryList" [value]="category.id">
+            <mat-option *ngFor="let category of categoryList" [value]="category._id">
               {{ category.name }}
             </mat-option>
           </mat-select>
@@ -30,13 +30,18 @@
           <input type="text" matInput placeholder="City" formControlName="firstCtrl" required>
         </mat-form-field>
 
-        <mat-form-field >
-          <mat-select placeholder="Select Organization" formControlName="firstCtrl" required>
-            <mat-option *ngFor="let org of organizationList" [value]="org.id">
-              {{ org.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <div class="org_details">
+          <mat-form-field>
+            <mat-select placeholder="Select Organization" formControlName="firstCtrl" required>
+              <mat-option *ngFor="let org of organizationList" [value]="org._id">
+                {{ org.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button mat-button (click)="addOrg()">
+            <mat-icon>add_circle_outline</mat-icon>
+          </button>
+        </div>
 
         <button class="submit" mat-button matStepperNext>Next</button>
       </form>

@@ -1,10 +1,14 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {fadeInAnimation} from "../../../route.animation";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import { Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource} from '@angular/material';
 import { UploadFileService } from '../../../../provide/upload-file.service';
 import { select } from 'd3';
 import { Observable } from 'rxjs';
+
+import { BaseService } from "../../../../provide/base-service";
+import { DataService } from "../../../../provide/data-service";
 
 @Component({
   selector: 'ms-add-event',
@@ -50,21 +54,11 @@ export class AddEventComponent implements OnInit {
   constructor(
     private _formBuilder: FormBuilder,
     public dialog: MatDialog,
+    public router: Router,
     private uploadService: UploadFileService,
+    public baseService: BaseService,
+    public dataService: DataService
   ) {
-    this.categoryList = [ { id: 0, name: 'Music'},
-                          { id: 1, name: 'Sports'},
-                          { id: 2, name: 'Theater'},
-                          { id: 3, name: 'Concerts'},
-                          { id: 4, name: 'Family'},
-                          { id: 5, name: 'Others'}
-                    ];
-    this.organizationList = [ { id: 0, name: "Organization1"},
-                              { id: 1, name: "Organization2"},
-                              { id: 2, name: "Organization3"},
-                              { id: 3, name: "Organization4"},
-                              { id: 4, name: "Organization5"},
-                    ];
     this.couponList = [
                   { code: 'SAVE100', description: 'New year Offer', discount: '10', state: 'Active', symbol: '' },
                   { code: 'SAVE10', description: 'NEW YEAR OFFER', discount: '12', state: 'Active', symbol: '' }
@@ -88,6 +82,44 @@ export class AddEventComponent implements OnInit {
     // this.fourFormGroup = this._formBuilder.group({
     //   fourCtrl: ['', Validators.required]
     // });
+    this.getCategoryData();
+    this.getOrgData();
+  }
+
+  getCategoryData() {
+    let cate_url = this.baseService.categoryURL;
+    this.dataService.getData(cate_url)
+      .subscribe(
+        (data) => {
+          console.log('categoryData', data);
+          this.categoryList = data;
+          this.dataSource = new MatTableDataSource(this.categoryList);
+          return true;
+        },
+        err => {
+          console.log('errorData', err);
+          return true;
+        });
+  }
+
+  getOrgData() {
+    let org_url = this.baseService.organizationURL;
+    this.dataService.getData(org_url)
+      .subscribe(
+        (data) => {
+          console.log('orgData', data);
+          this.organizationList = data;
+          this.dataSource = new MatTableDataSource(this.organizationList);
+          return true;
+        },
+        err => {
+          console.log('errorData', err);
+          return true;
+        });
+  }
+
+  addOrg() {
+    this.router.navigate(['organization-manage/add-organization']);
   }
 
   openEventDialog(): void {

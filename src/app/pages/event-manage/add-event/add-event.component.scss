@@ -175,6 +175,20 @@ mat-horizontal-stepper{
     }
   }
 
+  .org_details{
+    width: 100%;
+    display: inline-flex;
+    button{
+      background: #ff9702;
+      margin: 10px 0px;
+      width: 40px;
+      min-width: 40px;
+      padding: 0;
+      height: 40px;
+      color: #fff;
+    }
+  }
+
 }
 
 
