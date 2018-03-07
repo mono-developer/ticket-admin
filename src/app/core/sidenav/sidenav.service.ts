@@ -42,9 +42,9 @@ export class SidenavService {
 
     let user_manage = menu.addItem('User Management', 'person', '/users-manage', 6);
 
-    let organization_manage = menu.addItem('Organization Management', 'group_add', null, 7);
-    menu.addSubItem(organization_manage, 'View Organizations', '/organization-manage/view-organization', 1);
-    menu.addSubItem(organization_manage, 'Add Organization', '/organization-manage/add-organization', 2);
+    let organization_manage = menu.addItem('Event Organizer', 'group_add', null, 7);
+    menu.addSubItem(organization_manage, 'View Organizer', '/organization-manage/view-organization', 1);
+    menu.addSubItem(organization_manage, 'Add Organizer', '/organization-manage/add-organization', 2);
 
     let reports = menu.addItem('Reports', 'report', null, 8);
     menu.addSubItem(reports, 'Gereral Reports ', '/reports/general-reports', 1);
