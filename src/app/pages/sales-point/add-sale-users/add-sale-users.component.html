@@ -5,21 +5,32 @@
 
       <div class="add-box" >
         <mat-form-field static>
-            <input type="text" matInput placeholder="First Name" name="first_name" [(ngModel)]="salesUserData.first_name">
+            <input type="text" matInput placeholder="New of the point of Sale" name="sales_name" [(ngModel)]="salesUserData.sales_name">
             <span matPrefix><mat-icon>person</mat-icon></span>
         </mat-form-field>
+
         <mat-form-field static>
           <input type="email" matInput placeholder="Email" name="email" [(ngModel)]="salesUserData.sales_email">
           <span matPrefix><mat-icon>email</mat-icon></span>
         </mat-form-field>
+
         <mat-form-field fxFlex>
           <input type="password" matInput placeholder="Password" name="password" [(ngModel)]="salesUserData.password">
           <span matPrefix><mat-icon>vpn_key</mat-icon></span>
         </mat-form-field>
+
         <mat-form-field fxFlex>
-          <input type="tel" matInput placeholder="Mobile" name="phone" [(ngModel)]="salesUserData.phone">
+          <input type="tel" matInput placeholder="Contact Number" name="phone" [(ngModel)]="salesUserData.phone">
           <span matPrefix><mat-icon>phonelink_setup</mat-icon></span>
         </mat-form-field>
+
+        <mat-form-field fxFlex>
+          <input type="text" matInput placeholder="Job Title" name="title" [(ngModel)]="salesUserData.title">
+          <span matPrefix>
+            <mat-icon>title</mat-icon>
+          </span>
+        </mat-form-field>
+
         <mat-form-field class="state_list">
           <mat-select placeholder="Select State" name="state" [(ngModel)]="salesUserData.state">
             <mat-option *ngFor="let state of stateList" [value]="state.state">

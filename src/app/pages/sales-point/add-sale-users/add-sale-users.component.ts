@@ -29,7 +29,7 @@ export class AddSaleUsersComponent implements OnInit {
     public baseService: BaseService,
     public dataService: DataService
   ) {
-    this.salesUserData = { first_name: '', sales_email: '', password: '', phone: '', state: '' };
+    this.salesUserData = { sales_name: '', sales_email: '', password: '', phone: '', title: '', state: '' };
     this.stateList = [  { id: 0, name: 'Active', state: true },
                         { id: 1, name: 'Inative', state: false }
                     ];
@@ -42,7 +42,7 @@ export class AddSaleUsersComponent implements OnInit {
     if (this.id) {
       this.getSalesUserData(this.id);
     } else {
-      this.salesUserData = { first_name: '', sales_email: '', password: '', phone: '', state: '' };
+      this.salesUserData = { sales_name: '', sales_email: '', password: '', phone: '', title: '', state: '' };
     }
   }
 
@@ -52,7 +52,7 @@ export class AddSaleUsersComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('userData', data);
+          console.log('salesUserData', data);
           this.salesUserData = data;
           return true;
         },
@@ -73,8 +73,8 @@ export class AddSaleUsersComponent implements OnInit {
     this.dataService.postData(this.url, this.salesUserData)
       .subscribe(
         (data) => {
-          console.log('userData', data);
-          this.router.navigate(['saleTeam-manage/view-sale-users']);
+          console.log('salesUserData', data);
+          this.router.navigate(['sales-point/view-sale-users']);
           return true;
         },
         error => {
@@ -91,7 +91,7 @@ export class AddSaleUsersComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('userData', data);
-          this.router.navigate(['saleTeam-manage/view-sale-users']);
+          this.router.navigate(['sales-point/view-sale-users']);
           return true;
         },
         error => {

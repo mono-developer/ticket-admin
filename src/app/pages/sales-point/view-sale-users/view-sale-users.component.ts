@@ -15,7 +15,7 @@ export class ViewSaleUsersComponent implements OnInit {
   page_title: string = 'Management of sales teams';
   url: string;
   usersList: Element[];
-  displayedColumns = ['first_name', 'sales_email', 'phone', 'state', 'symbol'];
+  displayedColumns = ['first_name', 'sales_email', 'phone', 'title', 'state', 'symbol'];
   dataSource: any;
   isLoading: boolean = false;
 
@@ -49,7 +49,7 @@ export class ViewSaleUsersComponent implements OnInit {
   }
 
   edit(item: any) {
-    this.router.navigate(['saleTeam-manage/add-sale-users', { item: item._id }]);
+    this.router.navigate(['sales-point/add-sale-users', { item: item._id }]);
   }
 
   delete(item: any) {

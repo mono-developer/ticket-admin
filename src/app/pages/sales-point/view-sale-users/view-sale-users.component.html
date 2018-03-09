@@ -3,23 +3,29 @@
     <mat-table #table [dataSource]="dataSource">
 
       <ng-container matColumnDef="first_name">
-        <mat-header-cell *matHeaderCellDef> First Name </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.first_name}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Sales User </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.sales_name}} </mat-cell>
       </ng-container>
 
-      <!-- Name Column -->
+      <!-- Email Column -->
       <ng-container matColumnDef="sales_email">
         <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.sales_email}} </mat-cell>
       </ng-container>
 
-      <!-- Weight Column -->
+      <!-- Phone Column -->
       <ng-container matColumnDef="phone">
-        <mat-header-cell *matHeaderCellDef> Mobile Phone Number </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef> Phone Number </mat-header-cell>
         <mat-cell *matCellDef="let element"> {{element.phone}} </mat-cell>
       </ng-container>
 
-      <!-- Weight Column -->
+      <!-- Title Column -->
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef> Job Title </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+      </ng-container>
+
+      <!-- Active Column -->
       <ng-container matColumnDef="state">
           <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
           <mat-cell *matCellDef="let element"> {{element.state ? 'Active' : 'Inactive'}} </mat-cell>
