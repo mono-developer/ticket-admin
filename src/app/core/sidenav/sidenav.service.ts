@@ -28,9 +28,9 @@ export class SidenavService {
     menu.addSubItem(content_manage, 'View Pages', '/content-manage/view-cms', 1);
     menu.addSubItem(content_manage, 'Add Page', '/content-manage/add-cms', 2);
 
-    let team_manage = menu.addItem('Management of sales teams', 'group', null, 3);
-    menu.addSubItem(team_manage, 'View sales team user', '/saleTeam-manage/view-sale-users', 1);
-    menu.addSubItem(team_manage, 'Add user of the sales team', '/saleTeam-manage/add-sale-users', 2);
+    let team_manage = menu.addItem('Point of Sales', 'group', null, 3);
+    menu.addSubItem(team_manage, 'View sales user', '/sales-point/view-sale-users', 1);
+    menu.addSubItem(team_manage, 'Add sales user', '/sales-point/add-sale-users', 2);
 
     let event_category = menu.addItem('Event Categories', 'event_note', null, 4);
     menu.addSubItem(event_category, 'View Categories', '/event-categories/view-category', 1);
@@ -50,7 +50,7 @@ export class SidenavService {
     menu.addSubItem(reports, 'Gereral Reports ', '/reports/general-reports', 1);
     menu.addSubItem(reports, 'Date of Reports', '/reports/date-reports', 2);
 
-    let coupon_manage = menu.addItem('Managemant of coupons', 'credit_card', null, 9);
+    let coupon_manage = menu.addItem('Coupon Management', 'credit_card', null, 9);
     menu.addSubItem(coupon_manage, 'View Counpons', '/coupon-manage/view-coupon', 1);
     menu.addSubItem(coupon_manage, 'Add Coupon', '/coupon-manage/add-coupon', 2);
 

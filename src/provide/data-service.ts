@@ -16,8 +16,8 @@ export class DataService {
   constructor(public http: Http, public baseService: BaseService) {
     let oAuthRawInfo = sessionStorage.getItem('OAuthInfo');
     let oAuthInfo = JSON.parse(oAuthRawInfo);
-    console.log(oAuthInfo);
     oAuthInfo ? this.token = oAuthInfo.token : '';
+
   }
 
   getData(url) {

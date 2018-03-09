@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
+import { Router } from '@angular/router';
+import { json } from 'd3';
+import { BaseService } from "../../../../provide/base-service";
+import { DataService } from "../../../../provide/data-service";
 
 @Component({
   selector: 'ms-view-coupon',
@@ -8,26 +12,65 @@ import {MatTableDataSource} from '@angular/material';
 })
 export class ViewCouponComponent implements OnInit {
 
-  page_title: string = 'Management of sales teams';
+  page_title: string = 'View Coupons';
+  url: string;
+  couponList: any;
+  displayedColumns = ['code', 'description', 'discount', 'valid_date', 'state', 'symbol'];
+  dataSource: any;
+  isLoading: boolean = false;
 
-  displayedColumns = ['code', 'description', 'discount', 'state', 'symbol'];
-  dataSource = new MatTableDataSource(ELEMENT_DATA);
-  constructor() { }
+  constructor(
+    public router: Router,
+    public baseService: BaseService,
+    public dataService: DataService
+  ) {
+
+   }
 
   ngOnInit() {
+    this.url = this.baseService.couponURL;
+    this.getCouponList();
   }
 
-}
+  getCouponList() {
+    this.isLoading = true;
+    this.dataService.getData(this.url)
+      .subscribe(
+        (data) => {
+          this.isLoading = false;
+          console.log('letterList', data);
+          this.couponList = data;
+          this.dataSource = new MatTableDataSource(this.couponList);
+          return true;
+        },
+        err => {
+          this.isLoading = false;
+          console.log('errorData', err);
+          return true;
+        });
+  }
 
-export interface Element {
-  code: string;
-  description: string;
-  discount: string;
-  state: string;
-  symbol: string;
-}
+  edit(item: any) {
+    console.log("senddata", item);
+    this.router.navigate(['coupon-manage/add-coupon', { item: item._id }]);
+  }
 
-const ELEMENT_DATA: Element[] = [
-  { code: 'SAVE100', description: 'New year Offer', discount: '10', state: 'Active', symbol: ''},
-  { code: 'SAVE10', description: 'NEW YEAR OFFER', discount: '12', state: 'Active', symbol: ''},
-];
+  delete(item: any) {
+    this.isLoading = true;
+    this.dataService.deleteData(this.url, item._id)
+      .subscribe(
+        (data) => {
+          console.log('couponList', data);
+          this.getCouponList();
+          return true;
+        },
+        error => {
+          this.isLoading = false;
+          console.log('errorData', error);
+          return true;
+        }
+      )
+  }
+
+
+}

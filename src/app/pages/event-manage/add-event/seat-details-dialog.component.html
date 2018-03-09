@@ -54,11 +54,11 @@
     </mat-select>
   </mat-form-field>
 
-<label id="#bb"> Upload Image
+<label id="#img"> Upload Image
   <input type="file" id="File" (change)="fileEvent($event)" size="60">
 </label>
-
-<img class="img_url" [src]="data.modalData.image" alt="">
+<p [ngStyle]="{'color': isImage ? 'red' : 'green' }" *ngIf="!data.modalData.img">The size should be 960px x 450px</p>
+<img id="sky" class="img_url" [src]="data.modalData.image" alt="">
 
 
 </div>

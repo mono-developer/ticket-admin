@@ -21,7 +21,6 @@ export class AddBullentinComponent implements OnInit {
   id: string;
   url: string;
   letterData: any;
-  letterList: any;
   isLoading: boolean = false;
   constructor(
     private router: Router,

@@ -156,64 +156,68 @@
         <!-- Image Event -->
         <div class="event">
           <div class="left-event">
-            <p>Image of the Event</p>
+            <p class="top-title">Image of the Event</p>
             <label id="#bb" class="uploadImg"><mat-icon>add</mat-icon>
               <input type="file" id="File" (change)="eventImage($event)" size="60">
             </label>
-            <p class="under-title">(image size must be 1080 * 400px)</p>
+            <p [ngStyle]="{'color': isEventImge ? 'red' : 'green'}">(image size must be 1080 * 400px)</p>
           </div>
           <div class="right-event">
             <p *ngIf="!eventImg">Please Upload Event Image </p>
             <img *ngIf="eventImg" [src]="eventImg" alt="">
           </div>
         </div>
+
         <!--Map  Event -->
         <div class="event">
           <div class="left-event">
-            <p>Map of the Event</p>
+            <p class="top-title">Map of the Event</p>
             <label id="#bb" class="uploadImg"><mat-icon>add</mat-icon>
               <input type="file" id="File" (change)="seatImage($event)" size="60">
             </label>
-            <p class="under-title">(image size must be 1080 * 400px)</p>
+            <p [ngStyle]="{'color': isSeatImg ? 'red' : 'green'}">(image size must be 524px * 365px)</p>
           </div>
           <div class="right-event">
             <p *ngIf="!seatImg">Please Upload Seat Image </p>
             <img *ngIf="seatImg" [src]="seatImg" alt="">
           </div>
         </div>
+
         <!-- Coupon -->
         <div class="event">
           <div class="left-event">
-            <p>Coupons</p>
+            <p class="top-title">Coupons</p>
           </div>
           <div class="right-event">
             <mat-form-field>
               <mat-select placeholder="Select Counpon">
                 <mat-option *ngFor="let item of couponList" [value]="item.discount">
-                  {{ item.code }}
+                  {{item.pro_code}}
                 </mat-option>
               </mat-select>
             </mat-form-field>
           </div>
         </div>
+
         <!-- Reservation -->
         <div class="event">
           <div class="left-event">
-            <p>Reservation</p>
+            <p class="top-title">Reservation</p>
           </div>
           <div class="right-event">
             <mat-slide-toggle></mat-slide-toggle>
           </div>
         </div>
+
         <!-- TIcket Event -->
         <div class="event">
           <div class="left-event">
-            <p>Image of the Ticket Template</p>
+            <p class="top-title">Image of the Ticket Template</p>
             <label id="#bb" class="uploadImg">
               <mat-icon>add</mat-icon>
               <input type="file" id="File" (change)="ticketImage($event)" size="60">
             </label>
-            <p class="under-title">(image size must be 1080 * 400px)</p>
+            <p [ngStyle]="{'color': isTicketImg ? 'red' : 'green'}">(image size must be 590px * 968px)</p>
           </div>
           <div class="right-event">
             <p *ngIf="!ticketImg">Please Upload Image </p>
@@ -226,8 +230,8 @@
           <button style="float: right;" mat-button matStepperNext>Next</button>
         </div>
       </form>
-      <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
     </div>
+    <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
   </mat-step>
 
   <!-- Step 4 -->
@@ -304,7 +308,6 @@
     </div>
 
   </mat-step>
-
 
    
 </mat-horizontal-stepper>

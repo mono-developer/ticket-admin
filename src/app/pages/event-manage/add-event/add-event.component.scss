@@ -137,6 +137,11 @@ mat-horizontal-stepper{
       p {
         float: left;
         margin-right: 10px;
+        font-size: 12px;
+      }
+      .top-title{
+         text-decoration: underline;
+         font-size: 18px;
       }
       .uploadImg {
         background: #ff9603;

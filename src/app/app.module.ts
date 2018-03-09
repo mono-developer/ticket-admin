@@ -8,6 +8,7 @@ import { RoutingModule } from "./app-routing.module";
 import { RouterModule, Routes } from '@angular/router';
 import { CommonModule } from "@angular/common";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { AlertsModule } from 'angular-alert-module';
 import { CoreModule } from './core/core.module';
 import { PagesModule } from './pages/pages.module';
 import { SortablejsModule } from 'angular-sortablejs';
@@ -34,6 +35,7 @@ import { UploadFileService } from '../provide/upload-file.service';
     MatStepperModule,
     MatTableModule,
     MatDialogModule,
+    AlertsModule.forRoot(),
   ],
   providers: [
     MatIconRegistry,

@@ -87,6 +87,7 @@ export class AddCMSComponent implements OnInit {
   }
 
   putcmsData() {
+    console.log(this.cmsData);
     this.isLoading = true;
     this.dataService.patchData(this.url, this.id, this.cmsData)
       .subscribe(

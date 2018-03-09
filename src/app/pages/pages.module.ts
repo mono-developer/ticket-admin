@@ -22,14 +22,15 @@ import { HttpModule } from '@angular/http';
 import { RoutingModule } from '../app-routing.module';
 import { MaterialComponentsModule } from '../material-components.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { AlertsModule } from 'angular-alert-module';
 import { AgmCoreModule } from '@agm/core';
 import { HighlightModule } from '../core/highlightjs/highlight.module';
 import { QuillModule } from 'ngx-quill';
 import { ScrollbarModule } from '../core/scrollbar/scrollbar.module';
 import { AddCMSComponent } from './content-manage/add-cms/add-cms.component';
 import { ViewCMSComponent } from './content-manage/view-cms/view-cms.component';
-import { ViewSaleUsersComponent } from './saleTeam-manage/view-sale-users/view-sale-users.component';
-import { AddSaleUsersComponent } from './saleTeam-manage/add-sale-users/add-sale-users.component';
+import { ViewSaleUsersComponent } from './sales-point/view-sale-users/view-sale-users.component';
+import { AddSaleUsersComponent } from './sales-point/add-sale-users/add-sale-users.component';
 import { AddCategoryComponent } from './event-categories/add-category/add-category.component';
 import { ViewCategoryComponent } from './event-categories/view-category/view-category.component';
 import { ViewEventComponent } from './event-manage/view-event/view-event.component';
@@ -55,6 +56,7 @@ import { UserService } from "../../provide/user-service";
 import { BaseService } from "../../provide/base-service";
 import { DataService } from "../../provide/data-service";
 import { UploadFileService } from '../../provide/upload-file.service';
+import { ImageSize } from "../../provide/image-size";
 
 @NgModule({
   imports: [
@@ -79,6 +81,7 @@ import { UploadFileService } from '../../provide/upload-file.service';
     MatStepperModule,
     MatTableModule,
     MatDialogModule,
+    AlertsModule.forRoot(),
   ],
   entryComponents: [
     EventDatailsDialogComponent,
@@ -133,7 +136,8 @@ import { UploadFileService } from '../../provide/upload-file.service';
     UserService,
     BaseService,
     DataService,
-    UploadFileService
+    UploadFileService,
+    ImageSize,
   ]
 })
 export class PagesModule { }

@@ -4,8 +4,8 @@ import { AdminComponent } from "./core/admin/admin.component";
 
 import { AddCMSComponent } from './pages/content-manage/add-cms/add-cms.component';
 import { ViewCMSComponent } from './pages/content-manage/view-cms/view-cms.component';
-import { ViewSaleUsersComponent } from './pages/saleTeam-manage/view-sale-users/view-sale-users.component';
-import { AddSaleUsersComponent } from './pages/saleTeam-manage/add-sale-users/add-sale-users.component';
+import { ViewSaleUsersComponent } from './pages/sales-point/view-sale-users/view-sale-users.component';
+import { AddSaleUsersComponent } from './pages/sales-point/add-sale-users/add-sale-users.component';
 import { AddCategoryComponent } from './pages/event-categories/add-category/add-category.component';
 import { ViewCategoryComponent } from './pages/event-categories/view-category/view-category.component';
 import { ViewEventComponent } from './pages/event-manage/view-event/view-event.component';
@@ -35,8 +35,8 @@ const routes: Routes = [
         { path: '', component: DashboardComponent },
         { path: 'content-manage/view-cms', component: ViewCMSComponent },
         { path: 'content-manage/add-cms', component: AddCMSComponent },
-        { path: 'saleTeam-manage/view-sale-users', component: ViewSaleUsersComponent },
-        { path: 'saleTeam-manage/add-sale-users', component: AddSaleUsersComponent },
+        { path: 'sales-point/view-sale-users', component: ViewSaleUsersComponent },
+        { path: 'sales-point/add-sale-users', component: AddSaleUsersComponent },
         { path: 'event-categories/view-category', component: ViewCategoryComponent },
         { path: 'event-categories/add-category', component: AddCategoryComponent },
         { path: 'event-manage/view-event', component: ViewEventComponent },

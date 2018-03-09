@@ -45,8 +45,8 @@ export class SidenavComponent implements OnInit, OnDestroy {
     this.breadcrumbService.addFriendlyNameForRoute('/', "Dashboard");
     this.breadcrumbService.addFriendlyNameForRoute('/content-manage/view-cms', "View Pages");
     this.breadcrumbService.addFriendlyNameForRoute('/content-manage/add-cms', "Add Pages");
-    this.breadcrumbService.addFriendlyNameForRoute('/saleTeam-manage/view-sale-users', "View sales team users");
-    this.breadcrumbService.addFriendlyNameForRoute('/saleTeam-manage/Add-sale-users', "Add sales team users");
+    this.breadcrumbService.addFriendlyNameForRoute('/sales-point/view-sale-users', "View sales users");
+    this.breadcrumbService.addFriendlyNameForRoute('/sales-point/Add-sale-users', "Add sales users");
     this.breadcrumbService.addFriendlyNameForRoute('/event-categories/view-category', "View Category");
     this.breadcrumbService.addFriendlyNameForRoute('/event-categories/add-category', "Add Category");
     this.breadcrumbService.addFriendlyNameForRoute('/users-manage', "User Management");
@@ -58,8 +58,8 @@ export class SidenavComponent implements OnInit, OnDestroy {
     this.breadcrumbService.addFriendlyNameForRoute('/reports/date-reports', "Date of Reports");
     this.breadcrumbService.addFriendlyNameForRoute('/coupon-manage/view-coupon', "View Coupons");
     this.breadcrumbService.addFriendlyNameForRoute('/coupon-manage/add-coupon', "Add Coupon");
-    this.breadcrumbService.addFriendlyNameForRoute('//bullentin/view-bullentin', "View Bullentins");
-    this.breadcrumbService.addFriendlyNameForRoute('//bullentin/add-bullentin', "Add Bullentin");
+    this.breadcrumbService.addFriendlyNameForRoute('/bullentin/view-bullentin', "View Bullentins");
+    this.breadcrumbService.addFriendlyNameForRoute('/bullentin/add-bullentin', "Add Bullentin");
     this.breadcrumbService.addFriendlyNameForRoute('/banner-images', "Banner Images");
 
   }

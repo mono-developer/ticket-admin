@@ -4,37 +4,45 @@
     <!-- Code Column -->
     <ng-container matColumnDef="code">
       <mat-header-cell *matHeaderCellDef> Pramotional Code </mat-header-cell>
-      <mat-cell *matCellDef="let element"> {{element.code}} </mat-cell>
+      <mat-cell *matCellDef="let element"> {{element.pro_code}} </mat-cell>
     </ng-container>
 
-    <!-- Name Column -->
+    <!-- description Column -->
     <ng-container matColumnDef="description">
       <mat-header-cell *matHeaderCellDef> Description of the Coupon </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.description}} </mat-cell>
     </ng-container>
 
-    <!-- Weight Column -->
+    <!-- Discount Column -->
     <ng-container matColumnDef="discount">
       <mat-header-cell *matHeaderCellDef> Discount % </mat-header-cell>
       <mat-cell *matCellDef="let element"> {{element.discount}} </mat-cell>
     </ng-container>
 
+    <!-- Discount Column -->
+    <ng-container matColumnDef="valid_date">
+      <mat-header-cell *matHeaderCellDef> Valid Until </mat-header-cell>
+
+      <mat-cell *matCellDef="let element" maxlength="15"> {{element.valid_date | date: 'dd'}}/{{element.valid_date| date:'MM'}}/{{element.valid_date| date: 'yyyy'}} </mat-cell>
+    </ng-container>
+
     <!-- Weight Column -->
     <ng-container matColumnDef="state">
         <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.state}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.state ? 'Active' : 'Inactive'}} </mat-cell>
       </ng-container>
 
     <!-- Symbol Column -->
     <ng-container matColumnDef="symbol">
       <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <button mat-button><mat-icon>border_color</mat-icon></button>
-        <button mat-button><mat-icon>delete</mat-icon></button>
+        <button mat-button (click)="edit(element)"><mat-icon>border_color</mat-icon></button>
+        <button mat-button (click)="delete(element)"><mat-icon>delete</mat-icon></button>
       </mat-cell>
     </ng-container>
 
     <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
     <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
   </mat-table>
+  <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
 </div>
