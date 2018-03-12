@@ -2,16 +2,15 @@
 
 <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
 
-
   <!-- Step 1 -->
   <mat-step [stepControl]="firstFormGroup">
 
     <div class="step-border">
-      <form [formGroup]="firstFormGroup" class="step1">
+      <form #form="ngForm" class="step1">
         <ng-template matStepLabel>STEP 1</ng-template>
 
         <mat-form-field >
-          <mat-select placeholder="Select a Category" formControlName="firstCtrl" required>
+          <mat-select placeholder="Select a Category" name="category" required [(ngModel)]="eventData.category_id">
             <mat-option *ngFor="let category of categoryList" [value]="category._id">
               {{ category.name }}
             </mat-option>
@@ -19,20 +18,20 @@
         </mat-form-field>
 
         <mat-form-field>
-          <input type="text" matInput placeholder="Name of the Event" formControlName="firstCtrl" required>
+          <input type="text" matInput placeholder="Name of the Event" name="name" required [(ngModel)]="eventData.event_name">
         </mat-form-field>
 
         <mat-form-field>
-          <input type="text" matInput placeholder="Meeting Place" formControlName="firstCtrl" required>
+          <input type="text" matInput placeholder="Meeting Place" name="place" required [(ngModel)]="eventData.meeting_place">
         </mat-form-field>
 
         <mat-form-field>
-          <input type="text" matInput placeholder="City" formControlName="firstCtrl" required>
+          <input type="text" matInput placeholder="City" name="city" required [(ngModel)]="eventData.city">
         </mat-form-field>
 
         <div class="org_details">
           <mat-form-field>
-            <mat-select placeholder="Select Organization" formControlName="firstCtrl" required>
+            <mat-select placeholder="Select Organization" name="origanization" required [(ngModel)]="eventData.org_id">
               <mat-option *ngFor="let org of organizationList" [value]="org._id">
                 {{ org.name }}
               </mat-option>
@@ -43,17 +42,17 @@
           </button>
         </div>
 
-        <button class="submit" mat-button matStepperNext>Next</button>
+        <button class="submit" [disabled]="!form.valid" mat-button matStepperNext>Next</button>
       </form>
     </div>
-
+  <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
   </mat-step>
 
   <!-- Step 2 -->
-  <mat-step [stepControl]="secondFormGroup">
+  <mat-step>
 
     <div class="step-border">
-      <form [formGroup]="secondFormGroup">
+      <form>
         <ng-template matStepLabel>Step2</ng-template>
 
         <!-- Event Details  -->
@@ -66,7 +65,7 @@
             </button>
           </div>
           <div class="cms-container mat-elevation-z8">
-            <mat-table #table [dataSource]="dataSource2">
+            <mat-table #table [dataSource]="dataSource1">
               <!-- Location -->
               <ng-container matColumnDef="date">
                 <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
@@ -84,8 +83,8 @@
                   </button>
                 </mat-cell>
               </ng-container>
-              <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
+              <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
             </mat-table>
           </div>
         </div>
@@ -98,7 +97,7 @@
             <button mat-button class="add_seat" (click)="openSeatDialog()"><mat-icon>add</mat-icon></button>
           </div>
           <div class="cms-container mat-elevation-z8">
-            <mat-table #table [dataSource]="dataSource">
+            <mat-table #table [dataSource]="dataSource2">
               <!-- Location -->
               <ng-container matColumnDef="location">
                 <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
@@ -106,12 +105,12 @@
               </ng-container>
               <!-- Price of the Bill Column -->
               <ng-container matColumnDef="bill">
-                <mat-header-cell *matHeaderCellDef> Price of the Bill </mat-header-cell>
-                <mat-cell *matCellDef="let element" [innerHTML]="element.bill_price"></mat-cell>
+                <mat-header-cell *matHeaderCellDef> Price of Ticket </mat-header-cell>
+                <mat-cell *matCellDef="let element" [innerHTML]="element.ticket_price"></mat-cell>
               </ng-container>
               <!-- Name Column -->
               <ng-container matColumnDef="tickets">
-                <mat-header-cell *matHeaderCellDef> Number of Tickets per row </mat-header-cell>
+                <mat-header-cell *matHeaderCellDef> Number of Tickets per Location </mat-header-cell>
                 <mat-cell *matCellDef="let element" [innerHTML]="element.tickets_number"></mat-cell>
               </ng-container>
               <!-- Name Column -->
@@ -131,8 +130,8 @@
                   </button>
                 </mat-cell>
               </ng-container>
-              <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+              <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
             </mat-table>
           </div>
         </div>
@@ -163,8 +162,8 @@
             <p [ngStyle]="{'color': isEventImge ? 'red' : 'green'}">(image size must be 1080 * 400px)</p>
           </div>
           <div class="right-event">
-            <p *ngIf="!eventImg">Please Upload Event Image </p>
-            <img *ngIf="eventImg" [src]="eventImg" alt="">
+            <p *ngIf="!eventData.event_bg">Please Upload Event Image </p>
+            <img *ngIf="eventData.event_bg" [src]="eventData.event_bg" alt="">
           </div>
         </div>
 
@@ -178,8 +177,8 @@
             <p [ngStyle]="{'color': isSeatImg ? 'red' : 'green'}">(image size must be 524px * 365px)</p>
           </div>
           <div class="right-event">
-            <p *ngIf="!seatImg">Please Upload Seat Image </p>
-            <img *ngIf="seatImg" [src]="seatImg" alt="">
+            <p *ngIf="!eventData.event_map">Please Upload Seat Image </p>
+            <img *ngIf="eventData.event_map" [src]="eventData.event_map" alt="">
           </div>
         </div>
 
@@ -190,8 +189,8 @@
           </div>
           <div class="right-event">
             <mat-form-field>
-              <mat-select placeholder="Select Counpon">
-                <mat-option *ngFor="let item of couponList" [value]="item.discount">
+              <mat-select placeholder="Select Counpon" [(ngModel)]="eventData.coupon_id">
+                <mat-option *ngFor="let item of couponList" [value]="item._id">
                   {{item.pro_code}}
                 </mat-option>
               </mat-select>
@@ -220,8 +219,8 @@
             <p [ngStyle]="{'color': isTicketImg ? 'red' : 'green'}">(image size must be 590px * 968px)</p>
           </div>
           <div class="right-event">
-            <p *ngIf="!ticketImg">Please Upload Image </p>
-            <img *ngIf="ticketImg" [src]="ticketImg" alt="">
+            <p *ngIf="!eventData.ticket_image">Please Upload Image </p>
+            <img *ngIf="eventData.ticket_image" [src]="eventData.ticket_image" alt="">
           </div>
         </div>
 
@@ -247,13 +246,13 @@
         <div class="right-event">
           <div fxFlex>
             <div fxLayout="column">
-              <mat-checkbox [(ngModel)]="printCheck" style="margin-bottom: 15px;">
+              <mat-checkbox [(ngModel)]="eventData.value_print" style="margin-bottom: 15px;">
                 Print ballot directly
               </mat-checkbox>
-              <mat-checkbox color="primary" [(ngModel)]="pickCheck" style="margin-bottom: 15px;">
+              <mat-checkbox color="primary" [(ngModel)]="eventData.value_pick" style="margin-bottom: 15px;">
                 Pick up the ticket at the point of sale
               </mat-checkbox>
-              <mat-checkbox color="warn" [(ngModel)]="purchaserCheck" style="margin-bottom: 15px;">
+              <mat-checkbox color="warn" [(ngModel)]="eventData.value_purchaser" style="margin-bottom: 15px;">
                 Purchaser will send a ballot requesting an additional charge
               </mat-checkbox>
             </div>
@@ -268,7 +267,7 @@
         </div>
         <div class="right-event">
           <mat-form-field>
-            <textarea matInput placeholder="Information Additional" name="comment"></textarea>
+            <textarea matInput placeholder="Information Additional" name="comment" [(ngModel)]="eventData.add_info"></textarea>
           </mat-form-field>
         </div>
       </div>
@@ -280,7 +279,7 @@
         </div>
         <div class="right-event">
           <mat-form-field>
-            <textarea matInput placeholder="Information of Program" name="comment"></textarea>
+            <textarea matInput placeholder="Information of Program" name="comment" [(ngModel)]="eventData.program_info"></textarea>
           </mat-form-field>
         </div>
       </div>
@@ -292,8 +291,8 @@
         </div>
         <div class="right-event">
           <mat-form-field>
-            <mat-select placeholder="Select State">
-              <mat-option *ngFor="let item of stateList" [value]="item.id">
+            <mat-select placeholder="Select State" [(ngModel)]="eventData.status">
+              <mat-option *ngFor="let item of stateList" [value]="item.state">
                 {{ item.name }}
               </mat-option>
             </mat-select>
@@ -306,7 +305,7 @@
         <button style="float: right;" mat-button matStepperNext (click)="done()">Done</button>
       </div>
     </div>
-
+    <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
   </mat-step>
 
    

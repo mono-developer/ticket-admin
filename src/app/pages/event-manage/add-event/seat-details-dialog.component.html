@@ -5,49 +5,49 @@
   </mat-form-field>
 
   <mat-form-field>
-    <input type="number" matInput placeholder="Price of Ticket" name="ticket_price" [(ngModel)]="data.modalData.ticket_price">
+    <input type="tel" matInput placeholder="Price of Ticket" name="ticket_price" [(ngModel)]="data.modalData.ticket_price">
   </mat-form-field>
 
   <mat-form-field>
-    <input type="number" matInput placeholder="Number of tickets per location" name="tickets_number" [(ngModel)]="data.modalData.tickets_number">
+    <input type="tel" matInput placeholder="Number of tickets per location" name="tickets_number" [(ngModel)]="data.modalData.tickets_number">
   </mat-form-field>
 
   <mat-form-field>
-    <input type="text" matInput placeholder="Type of charge" name="type_charge" [(ngModel)]="data.modalData.type_charge">
+    <input type="tel" matInput placeholder="Type of charge" name="type_charge" [(ngModel)]="data.modalData.type_charge">
   </mat-form-field>
 
   <mat-form-field>
-    <input type="number" matInput placeholder="Load Amount (%)" name="load_amount" [(ngModel)]="data.modalData.load_amount">
+    <input type="tel" matInput placeholder="Load Amount (%)" name="load_amount" [(ngModel)]="data.modalData.amount">
   </mat-form-field>
 
   <mat-form-field>
-    <input type="number" matInput placeholder="Quantity Service Charge" name="quantity" [(ngModel)]="data.modalData.quantity">
+    <input type="tel" matInput placeholder="Quantity Service Charge" name="quantity" [(ngModel)]="data.modalData.quantity">
   </mat-form-field>
 
   <mat-form-field>
-    <input type="text" matInput placeholder="Discount Type" name="type_discount" [(ngModel)]="data.modalData.discount">
+    <input type="text" matInput placeholder="Discount Type" name="type_discount" [(ngModel)]="data.modalData.discount_type">
   </mat-form-field>
 
   <div class="date_picker">
     <mat-form-field>
-      <input matInput [matDatepicker]="start" placeholder="Start Date" [(ngModel)]="data.modalData.start_date">
+      <input matInput [matDatepicker]="start" placeholder="Start Date" [(ngModel)]="data.modalData.date_start">
       <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
       <mat-datepicker #start></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field>
-      <input matInput [matDatepicker]="end" placeholder="End Date" [(ngModel)]="data.modalData.end_date">
+      <input matInput [matDatepicker]="end" placeholder="End Date" [(ngModel)]="data.modalData.date_end">
       <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
       <mat-datepicker #end></mat-datepicker>
     </mat-form-field>
   </div>
 
   <mat-form-field>
-    <input type="number" matInput placeholder="Price Discount %" name="price_percent" [(ngModel)]="data.modalData.price_percent">
+    <input type="tel" matInput placeholder="Price Discount %" name="price_percent" [(ngModel)]="data.modalData.discount_price">
   </mat-form-field>
 
   <mat-form-field>
-    <mat-select placeholder="Seat Category Box" name="state" [(ngModel)]="data.modalData.ok_value">
+    <mat-select placeholder="Seat Category Box" name="state" [(ngModel)]="data.modalData.seat_value">
       <mat-option *ngFor="let state of boxList" [value]="state.value">
         {{ state.name }}
       </mat-option>
@@ -57,8 +57,8 @@
 <label id="#img"> Upload Image
   <input type="file" id="File" (change)="fileEvent($event)" size="60">
 </label>
-<p [ngStyle]="{'color': isImage ? 'red' : 'green' }" *ngIf="!data.modalData.img">The size should be 960px x 450px</p>
-<img id="sky" class="img_url" [src]="data.modalData.image" alt="">
+<p [ngStyle]="{'color': data.modalData.detail_img ? 'red' : 'green' }">The size should be 960px x 450px</p>
+<img id="sky" class="img_url" [src]="data.modalData.detail_img" alt="">
 
 
 </div>

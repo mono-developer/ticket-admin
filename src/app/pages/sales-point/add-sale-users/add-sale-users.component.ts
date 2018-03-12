@@ -91,6 +91,7 @@ export class AddSaleUsersComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('userData', data);
+          this.isLoading = false;
           this.router.navigate(['sales-point/view-sale-users']);
           return true;
         },

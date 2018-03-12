@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {fadeInAnimation} from "../../../route.animation";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource} from '@angular/material';
 import { AlertsService } from 'angular-alert-module';
 import { UploadFileService } from '../../../../provide/upload-file.service';
@@ -29,28 +29,25 @@ export class AddEventComponent implements OnInit {
   thirdFormGroup: FormGroup;
   fourFormGroup: FormGroup;
 
-  eventList: any = [];
-  seatList: any = [];
+  id: string;
+  url: string;
+  eventData: any;
   couponList: any = [];
   stateList: any;
   categoryList: any;
   organizationList: any;
-  boxList: any;
 
-  displayedColumns = ['location', 'bill', 'tickets', 'type', 'symbol'];
-  displayedColumns2 = ['date', 'symbol'];
-  dataSource: any;
+  dataSource1: any;
   dataSource2: any;
+  displayedColumns1 = ['date', 'symbol'];
+  displayedColumns2 = ['location', 'bill', 'tickets', 'type', 'symbol'];
 
   printCheck: boolean;
   pickCheck: boolean;
   purchaserCheck: boolean;
 
-  eventImg: any;
   isEventImge: boolean = false;
-  seatImg: any;
   isSeatImg: boolean = false;
-  ticketImg: any;
   isTicketImg: boolean = false;
 
   isLoading: boolean = false;
@@ -59,14 +56,34 @@ export class AddEventComponent implements OnInit {
     private _formBuilder: FormBuilder,
     public dialog: MatDialog,
     public router: Router,
+    public route: ActivatedRoute,
     private uploadService: UploadFileService,
     public baseService: BaseService,
     public dataService: DataService,
     private imageSize: ImageSize,
   ) {
-     this.stateList = [  { id: 0, name: 'Active', state: true },
+    this.stateList = [  { id: 0, name: 'Active', state: true },
                         { id: 1, name: 'Inative', state: false }
                       ];
+    this.eventData = {
+          category_id: '',
+          event_name: '',
+          meeting_place: '',
+          city: '',
+          org_id: '',
+          event_details: [],
+          seat_details: [],
+          event_bg: '',
+          event_map: '',
+          coupon_id: '',
+          ticket_image: '',
+          value_print: false,
+          value_pick: false,
+          value_purchaser: false,
+          add_info: '',
+          program_info: '',
+          status: ''
+      }
 
   }
 
@@ -83,22 +100,43 @@ export class AddEventComponent implements OnInit {
     // this.fourFormGroup = this._formBuilder.group({
     //   fourCtrl: ['', Validators.required]
     // });
+    this.id = this.route.snapshot.paramMap.get('item');
+    this.url = this.baseService.eventURL;
     this.getCategoryData();
-    this.getOrgData();
-    this.getCouponData();
+  }
+
+  getEventData(id) {
+
+    this.dataService.getData(this.url + "/" + id)
+      .subscribe(
+        (data) => {
+          this.isLoading = false;
+          console.log('eventData', data);
+          this.eventData = data;
+          this.dataSource1 = new MatTableDataSource(this.eventData.event_details);;
+          this.dataSource2 = new MatTableDataSource(this.eventData.seat_details);;
+          return true;
+        },
+        err => {
+          this.isLoading = false;
+          console.log('errorData', err);
+          return true;
+        });
   }
 
   getCategoryData() {
+    this.isLoading = true;
     let cate_url = this.baseService.categoryURL;
     this.dataService.getData(cate_url)
       .subscribe(
         (data) => {
           console.log('categoryData', data);
           this.categoryList = data;
-          this.dataSource = new MatTableDataSource(this.categoryList);
+          this.getOrgData();
           return true;
         },
         err => {
+          this.isLoading = false;
           console.log('errorData', err);
           return true;
         });
@@ -111,7 +149,7 @@ export class AddEventComponent implements OnInit {
         (data) => {
           console.log('orgData', data);
           this.organizationList = data;
-          this.dataSource = new MatTableDataSource(this.organizationList);
+          this.getCouponData();
           return true;
         },
         err => {
@@ -127,7 +165,11 @@ export class AddEventComponent implements OnInit {
         (data) => {
           console.log('couponList', data);
           this.couponList = data;
-          this.dataSource = new MatTableDataSource(this.couponList);
+          if(this.id){
+            this.getEventData(this.id);
+          }else{
+            this.isLoading = false;
+          }
           return true;
         },
         err => {
@@ -155,8 +197,9 @@ export class AddEventComponent implements OnInit {
       if(result == undefined){
         console.log(result);
       }else{
-        this.eventList.push(result);
-        this.dataSource2 = new MatTableDataSource(this.eventList);
+        this.eventData.event_details.push(result);
+        console.log(this.eventData.event_details);
+        this.dataSource1 = new MatTableDataSource(this.eventData.event_details);
       }
     });
   }
@@ -170,24 +213,13 @@ export class AddEventComponent implements OnInit {
   }
 
   deleteEvent(index) {
-    this.seatList.splice(index, 1);
-    this.dataSource = new MatTableDataSource(this.eventList);
+    this.eventData.event_details.splice(index, 1);
+    this.dataSource1 = new MatTableDataSource(this.eventData.event_details);
   }
 
   openSeatDialog(): void {
 
-   let modalData: any = {
-      location: '',
-      bill_price: '',
-      tickets_number: '',
-      type_charge: '',
-      load_amount: '',
-      quantity: '',
-      discount: '',
-      price_pecent: '',
-      ok_value: '',
-      image: ''
-    };
+   let modalData: any = {};
 
     let dialogRef = this.dialog.open(SeatDatailsDialogComponent, {
       width: '470px',
@@ -199,8 +231,8 @@ export class AddEventComponent implements OnInit {
         console.log('undefined');
       } else {
         console.log(result);
-        this.seatList.push(result);
-        this.dataSource = new MatTableDataSource(this.seatList);
+        this.eventData.seat_details.push(result);
+        this.dataSource2 = new MatTableDataSource(this.eventData.seat_details);
       }
     });
   }
@@ -214,8 +246,8 @@ export class AddEventComponent implements OnInit {
   }
 
   deleteSeat(index) {
-    this.seatList.splice(index, 1);
-    this.dataSource = new MatTableDataSource(this.seatList);
+    this.eventData.seat_details.splice(index, 1);
+    this.dataSource2 = new MatTableDataSource(this.eventData.seat_details);
   }
 
   convertDate(date) {
@@ -230,15 +262,13 @@ export class AddEventComponent implements OnInit {
     this.imageSize.sizeImage(file, (size)=>{
       if (size.width == 1080 && size.height == 400) {
         this.uploadImage(file, (image)=>{
-          this.eventImg = image;
+          this.eventData.event_bg = image;
         });
       }else{
         console.log('fdsafds');
         this.isEventImge = true;
       }
     });
-
-
   }
 
   seatImage(event: any) {
@@ -247,7 +277,7 @@ export class AddEventComponent implements OnInit {
     this.imageSize.sizeImage(file, (size) => {
       if (size.width == 524 && size.height == 365) {
         this.uploadImage(file, (image) => {
-          this.seatImg = image;
+          this.eventData.event_map = image;
         })
       } else {
         this.isSeatImg = true;
@@ -261,7 +291,7 @@ export class AddEventComponent implements OnInit {
     this.imageSize.sizeImage(file, (size) => {
       if (size.width == 590 && size.height == 968) {
         this.uploadImage(file, (image) => {
-          this.ticketImg = image;
+          this.eventData.ticket_image = image;
         })
       } else {
         console.log('fdsafdsa');
@@ -282,12 +312,49 @@ export class AddEventComponent implements OnInit {
     });
   }
 
+  postEventData() {
+    this.isLoading = true;
+    this.dataService.postData(this.url, this.eventData)
+      .subscribe(
+        (data) => {
+          console.log('eventData', data);
+          this.router.navigate(['event-manage/view-event']);
+          return true;
+        },
+        error => {
+          this.isLoading = false;
+          console.log('errorData', error);
+          return true;
+        }
+      )
+  }
+
+  putEventData() {
+    this.isLoading = true;
+    this.dataService.patchData(this.url, this.id, this.eventData)
+      .subscribe(
+        (data) => {
+          this.isLoading = false;
+          console.log('eventData', data);
+          this.router.navigate(['event-manage/view-event']);
+          return true;
+        },
+        error => {
+          this.isLoading = false;
+          console.log('errorData', error);
+          return true;
+        }
+      )
+  }
+
   done(){
-    console.log('done');
+    console.log(this.eventData);
+    this.id ? this.putEventData() : this.postEventData();
   }
 
 }
 
+// Event Details Dialog
 @Component({
   selector: 'event-details-dialog',
   templateUrl: './event-details-dialog.component.html',
@@ -304,19 +371,18 @@ export class EventDatailsDialogComponent {
     this.dialogRef1.close();
   }
 }
-
+// Seat Deails Dialog
 @Component({
   selector: 'seat-details-dialog',
   templateUrl: './seat-details-dialog.component.html',
   styleUrls: ['./event-dialog.component.scss'],
 })
 export class SeatDatailsDialogComponent {
-  public boxList: any = [ { id: 0, name: "Yes", value: true },
-                          { id: 1, name: "No", value: false }
-                        ];
-  public detail_img: any = false;
-  isLoading: boolean = false;
-  private isImage: boolean = false;
+  boxList: any = [  { id: 0, name: "Yes", value: true },
+                    { id: 1, name: "No", value: false }
+                  ];
+  public isLoading: boolean = false;
+  // private isGetImage: boolean = false;
 
   constructor(
     private alerts: AlertsService,
@@ -335,10 +401,11 @@ export class SeatDatailsDialogComponent {
     this.imageSize.sizeImage(file, (size)=>{
       if (size.width == 960 && size.height == 450) {
         this.uploadImage(file, (image)=>{
-         this.detail_img = image;
+          console.log(image);
+          this.data.modalData.detail_img = image;
         })
       } else {
-        this.isImage = true;
+        // this.isGetImage = true;
       }
     });
   }
@@ -348,6 +415,7 @@ export class SeatDatailsDialogComponent {
     this.uploadService.uploadfile(file).subscribe((data: any) => {
       this.isLoading = false;
       let imageURL = data.Location;
+      console.log(imageURL);
       callback(imageURL);
     }, (err) => {
       this.isLoading = false;

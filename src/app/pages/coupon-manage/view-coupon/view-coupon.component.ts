@@ -38,7 +38,7 @@ export class ViewCouponComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('letterList', data);
+          console.log('couponList', data);
           this.couponList = data;
           this.dataSource = new MatTableDataSource(this.couponList);
           return true;

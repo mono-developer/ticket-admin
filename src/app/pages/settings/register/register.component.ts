@@ -22,12 +22,18 @@ export class RegisterComponent implements OnInit {
   isLoading: boolean = false;
   resData:any = { name: '', email: '', password:'', phone: '', city: '' }
   passwordConfirm: string;
+  accessList: any;
   constructor(
     private router: Router,
     public baseService: BaseService,
     public userService: UserService,
     public dialog: MatDialog
-  ) { }
+  ) {
+    this.accessList = [ { level: '0', name: 'Admin' },
+                        { level: '1', name: 'Event Organizor' },
+                        { level: '2', name: 'Point of Sale' }
+                      ];
+  }
 
   ngOnInit() {
   }

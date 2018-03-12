@@ -87,6 +87,7 @@ export class AddBullentinComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('letterData', data);
+          this.isLoading = false;
           this.router.navigate(['bullentin/view-bullentin']);
           return true;
         },

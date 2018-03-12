@@ -93,6 +93,7 @@ export class AddCategoryComponent implements OnInit {
     this.dataService.patchData(this.url, this.id, this.categoryData)
       .subscribe(
         (data) => {
+          this.isLoading = false;
           console.log('categoryData', data);
           this.router.navigate(['event-categories/view-category']);
           return true;

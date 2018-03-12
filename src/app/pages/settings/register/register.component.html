@@ -30,6 +30,14 @@
           <input matInput placeholder="City" type="text" name="city" required [(ngModel)]="resData.city">
         </mat-form-field>
 
+        <mat-form-field>
+          <mat-select placeholder="Select a Category" name="category" required>
+            <mat-option *ngFor="let access of accessList" [value]="access.level">
+              {{ access.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <div class="extra-options" fxLayout="row" fxLayoutAlign="center center">
           <mat-checkbox class="remember-me">I accept the <a href="#">terms and conditions.</a></mat-checkbox>
         </div>
