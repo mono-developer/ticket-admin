@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ViewOrganizationComponent } from './view-organization.component';
+import { ViewOrganizorComponent } from './view-organizor.component';
 
-describe('ViewOrganizationComponent', () => {
-  let component: ViewOrganizationComponent;
-  let fixture: ComponentFixture<ViewOrganizationComponent>;
+describe('ViewOrganizorComponent', () => {
+  let component: ViewOrganizorComponent;
+  let fixture: ComponentFixture<ViewOrganizorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ViewOrganizationComponent ]
+      declarations: [ViewOrganizorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ViewOrganizationComponent);
+    fixture = TestBed.createComponent(ViewOrganizorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

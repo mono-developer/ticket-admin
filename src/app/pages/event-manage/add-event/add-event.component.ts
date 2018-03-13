@@ -25,17 +25,17 @@ export class AddEventComponent implements OnInit {
 
   isLinear = false;
   firstFormGroup: FormGroup;
-  secondFormGroup: FormGroup;
+  // secondFormGroup: FormGroup;
   thirdFormGroup: FormGroup;
   fourFormGroup: FormGroup;
 
   id: string;
   url: string;
-  eventData: any;
+  eventData: any = {};
   couponList: any = [];
   stateList: any;
   categoryList: any;
-  organizationList: any;
+  organizorList: any;
 
   dataSource1: any;
   dataSource2: any;
@@ -64,45 +64,35 @@ export class AddEventComponent implements OnInit {
   ) {
     this.stateList = [  { id: 0, name: 'Active', state: true },
                         { id: 1, name: 'Inative', state: false }
-                      ];
-    this.eventData = {
-          category_id: '',
-          event_name: '',
-          meeting_place: '',
-          city: '',
-          org_id: '',
-          event_details: [],
-          seat_details: [],
-          event_bg: '',
-          event_map: '',
-          coupon_id: '',
-          ticket_image: '',
-          value_print: false,
-          value_pick: false,
-          value_purchaser: false,
-          add_info: '',
-          program_info: '',
-          status: ''
-      }
-
+                    ];
   }
 
   ngOnInit() {
+
     this.firstFormGroup = this._formBuilder.group({
-      firstCtrl: ['', Validators.required]
-    });
-    this.secondFormGroup = this._formBuilder.group({
-      secondCtrl: ['', Validators.required]
+      oneCtrl: ['', Validators.required],
+      twoCtrl: ['', Validators.required],
+      threeCtrl: ['', Validators.required],
+      fourCtrl: ['', Validators.required],
+      fiveCtrl: ['', Validators.required]
     });
     this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required]
+      thirdCtrl: ['', Validators.required],
+      fourthCtrl: ['', Validators.required],
     });
-    // this.fourFormGroup = this._formBuilder.group({
-    //   fourCtrl: ['', Validators.required]
-    // });
+    this.fourFormGroup = this._formBuilder.group({
+      sixCtrl: ['', Validators.required],
+      sevenCtrl: ['', Validators.required],
+      eightCtrl: ['', Validators.required],
+      nineCtrl: ['', Validators.required],
+      tenCtrl: ['', Validators.required],
+      elevenCtrl: ['', Validators.required],
+
+    });
     this.id = this.route.snapshot.paramMap.get('item');
     this.url = this.baseService.eventURL;
     this.getCategoryData();
+
   }
 
   getEventData(id) {
@@ -111,10 +101,10 @@ export class AddEventComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('eventData', data);
+          console.log(data);
           this.eventData = data;
-          this.dataSource1 = new MatTableDataSource(this.eventData.event_details);;
-          this.dataSource2 = new MatTableDataSource(this.eventData.seat_details);;
+          this.dataSource1 = new MatTableDataSource(data.event_details);
+          this.dataSource2 = new MatTableDataSource(data.seat_details);
           return true;
         },
         err => {
@@ -130,7 +120,6 @@ export class AddEventComponent implements OnInit {
     this.dataService.getData(cate_url)
       .subscribe(
         (data) => {
-          console.log('categoryData', data);
           this.categoryList = data;
           this.getOrgData();
           return true;
@@ -143,12 +132,11 @@ export class AddEventComponent implements OnInit {
   }
 
   getOrgData() {
-    let org_url = this.baseService.organizationURL;
+    let org_url = this.baseService.organizorURL;
     this.dataService.getData(org_url)
       .subscribe(
         (data) => {
-          console.log('orgData', data);
-          this.organizationList = data;
+          this.organizorList = data;
           this.getCouponData();
           return true;
         },
@@ -163,11 +151,10 @@ export class AddEventComponent implements OnInit {
     this.dataService.getData(org_url)
       .subscribe(
         (data) => {
-          console.log('couponList', data);
           this.couponList = data;
-          if(this.id){
+          if (this.id) {
             this.getEventData(this.id);
-          }else{
+          } else {
             this.isLoading = false;
           }
           return true;
@@ -179,7 +166,7 @@ export class AddEventComponent implements OnInit {
   }
 
   addOrg() {
-    this.router.navigate(['organization-manage/add-organization']);
+    this.router.navigate(['organizor-manage/add-organizor']);
   }
 
   openEventDialog(): void {
@@ -294,7 +281,7 @@ export class AddEventComponent implements OnInit {
           this.eventData.ticket_image = image;
         })
       } else {
-        console.log('fdsafdsa');
+        console.log('error');
         this.isTicketImg = true;
       }
     });
@@ -317,7 +304,6 @@ export class AddEventComponent implements OnInit {
     this.dataService.postData(this.url, this.eventData)
       .subscribe(
         (data) => {
-          console.log('eventData', data);
           this.router.navigate(['event-manage/view-event']);
           return true;
         },

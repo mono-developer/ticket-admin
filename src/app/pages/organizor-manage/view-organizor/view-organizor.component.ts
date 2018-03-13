@@ -7,13 +7,13 @@ import { BaseService } from "../../../../provide/base-service";
 import { DataService } from "../../../../provide/data-service";
 
 @Component({
-  selector: 'ms-view-organization',
-  templateUrl: './view-organization.component.html',
-  styleUrls: ['./view-organization.component.scss']
+  selector: 'ms-view-organizor',
+  templateUrl: './view-organizor.component.html',
+  styleUrls: ['./view-organizor.component.scss']
 })
-export class ViewOrganizationComponent implements OnInit {
+export class ViewOrganizorComponent implements OnInit {
 
-  page_title: string = 'View Organization';
+  page_title: string = 'View Organizor';
   url: string;
   orgList: Element[];
   displayedColumns = ['name', 'person', 'email', 'phone', 'state', 'symbol'];
@@ -28,7 +28,7 @@ export class ViewOrganizationComponent implements OnInit {
    }
 
   ngOnInit() {
-  this.url = this.baseService.organizationURL;
+  this.url = this.baseService.organizorURL;
   this.getOrgList();
   }
 
@@ -51,7 +51,7 @@ export class ViewOrganizationComponent implements OnInit {
   }
 
   edit(item: any) {
-    this.router.navigate(['organization-manage/add-organization', { item: item._id }]);
+    this.router.navigate(['organizor-manage/add-organizor', { item: item._id }]);
   }
 
   delete(item) {

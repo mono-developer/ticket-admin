@@ -10,8 +10,8 @@ import { AddCategoryComponent } from './pages/event-categories/add-category/add-
 import { ViewCategoryComponent } from './pages/event-categories/view-category/view-category.component';
 import { ViewEventComponent } from './pages/event-manage/view-event/view-event.component';
 import { AddEventComponent } from './pages/event-manage/add-event/add-event.component';
-import { AddOrganizationComponent } from './pages/organization-manage/add-organization/add-organization.component';
-import { ViewOrganizationComponent } from './pages/organization-manage/view-organization/view-organization.component';
+import { AddOrganizorComponent } from './pages/organizor-manage/add-organizor/add-organizor.component';
+import { ViewOrganizorComponent } from './pages/organizor-manage/view-organizor/view-organizor.component';
 import { AddCouponComponent } from './pages/coupon-manage/add-coupon/add-coupon.component';
 import { ViewCouponComponent } from './pages/coupon-manage/view-coupon/view-coupon.component';
 import { ViewBullentinComponent } from './pages/bullentin/view-bullentin/view-bullentin.component';
@@ -42,8 +42,8 @@ const routes: Routes = [
         { path: 'event-manage/view-event', component: ViewEventComponent },
         { path: 'event-manage/add-event', component: AddEventComponent },
         { path: 'users-manage', component: UsersManageComponent },
-        { path: 'organization-manage/view-organization', component: ViewOrganizationComponent },
-        { path: 'organization-manage/add-organization', component: AddOrganizationComponent },
+        { path: 'organizor-manage/view-organizor', component: ViewOrganizorComponent },
+        { path: 'organizor-manage/add-organizor', component: AddOrganizorComponent },
         { path: 'reports/general-reports', component: GeneralReportsComponent },
         { path: 'reports/date-reports', component: DateReportsComponent },
         { path: 'coupon-manage/view-coupon', component: ViewCouponComponent },

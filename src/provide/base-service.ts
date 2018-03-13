@@ -10,7 +10,7 @@ export class BaseService {
   public signupUrl = this.baseUrl + "/signup";
   public contentURL = this.baseUrl + "/content";
   public salesUserURL = this.baseUrl + "/sales";
-  public organizationURL = this.baseUrl + "/organization";
+  public organizorURL = this.baseUrl + "/organization";
   public newsLetterURL = this.baseUrl + "/newsletter";
   public categoryURL = this.baseUrl + "/category";
   public couponURL = this.baseUrl + "/coupon";

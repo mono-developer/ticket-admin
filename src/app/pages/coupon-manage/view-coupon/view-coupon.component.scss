@@ -1,8 +1,10 @@
 .sales-container {
   display: flex;
   flex-direction: column;
-  margin: 5%;
-  mat-table{
+  margin: 20px;
+  max-height: calc(100% - 100px);
+  mat-table {
+    max-height: 100%;
     mat-header-row{
       background: #84cce7;
       mat-header-cell{

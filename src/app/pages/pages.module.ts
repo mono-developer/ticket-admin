@@ -35,8 +35,8 @@ import { AddCategoryComponent } from './event-categories/add-category/add-catego
 import { ViewCategoryComponent } from './event-categories/view-category/view-category.component';
 import { ViewEventComponent } from './event-manage/view-event/view-event.component';
 import { AddEventComponent, EventDatailsDialogComponent, SeatDatailsDialogComponent } from './event-manage/add-event/add-event.component';
-import { AddOrganizationComponent } from './organization-manage/add-organization/add-organization.component';
-import { ViewOrganizationComponent } from './organization-manage/view-organization/view-organization.component';
+import { AddOrganizorComponent } from './organizor-manage/add-organizor/add-organizor.component';
+import { ViewOrganizorComponent } from './organizor-manage/view-organizor/view-organizor.component';
 import { AddCouponComponent } from './coupon-manage/add-coupon/add-coupon.component';
 import { ViewCouponComponent } from './coupon-manage/view-coupon/view-coupon.component';
 import { ViewBullentinComponent } from './bullentin/view-bullentin/view-bullentin.component';
@@ -111,8 +111,8 @@ import { ImageSize } from "../../provide/image-size";
     ViewCategoryComponent,
     ViewEventComponent,
     AddEventComponent,
-    AddOrganizationComponent,
-    ViewOrganizationComponent,
+    AddOrganizorComponent,
+    ViewOrganizorComponent,
     AddCouponComponent,
     ViewCouponComponent,
     ViewBullentinComponent,

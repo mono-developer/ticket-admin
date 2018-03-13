@@ -5,17 +5,17 @@ import { BaseService } from "../../../../provide/base-service";
 import { DataService } from "../../../../provide/data-service";
 
 @Component({
-  selector: 'ms-add-organization',
-  templateUrl: './add-organization.component.html',
-  styleUrls: ['./add-organization.component.scss'],
+  selector: 'ms-add-organizor',
+  templateUrl: './add-organizor.component.html',
+  styleUrls: ['./add-organizor.component.scss'],
   host: {
     '[@routeAnimation]': 'true'
   },
   animations: [routeAnimation]
 })
-export class AddOrganizationComponent implements OnInit {
+export class AddOrganizorComponent implements OnInit {
 
-  page_title : string = "Add Organization";
+  page_title : string = "Add Organizor";
   id: string;
   url: string;
   stateList: any;
@@ -44,7 +44,7 @@ export class AddOrganizationComponent implements OnInit {
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('item');
-    this.url = this.baseService.organizationURL;
+    this.url = this.baseService.organizorURL;
     console.log('item', this.id);
     if (this.id) {
       this.getOrgData(this.id);
@@ -90,7 +90,7 @@ export class AddOrganizationComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('orgData', data);
-          this.router.navigate(['organization-manage/view-organization']);
+          this.router.navigate(['organizor-manage/view-organizor']);
           return true;
         },
         error => {
@@ -107,7 +107,7 @@ export class AddOrganizationComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('cmsData', data);
-          this.router.navigate(['organization-manage/view-organization']);
+          this.router.navigate(['organizor-manage/view-organizor']);
           return true;
         },
         error => {
