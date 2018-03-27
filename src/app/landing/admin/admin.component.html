@@ -1,0 +1,11 @@
+
+<div class="content-container" fxLayout="column">
+
+  <ms-toolbar></ms-toolbar>
+  <div class="main-container" #scrollContainer style="background: #323232">
+    <router-outlet (activate)="onActivate($event, scrollContainer)"></router-outlet>
+  </div>
+
+  </div>
+
+

@@ -1,0 +1,17 @@
+@import "../../../styles/var";
+
+:host {
+  z-index: $z-index__main-toolbar;
+}
+
+.toolbar-box{
+  height: 100px;
+  background-color: #00d7c3;
+  .logo-img {
+    width: 150px;
+    height: 75px;
+    display: block;
+    padding: 10px;
+  }
+
+}

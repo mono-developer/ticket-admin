@@ -1,0 +1,22 @@
+
+h1{
+  text-align: center;
+}
+mat-form-field{
+  width: 100%;
+}
+
+.btns{
+  width: 80%;
+  margin: 0 auto;
+  button{
+    border: 1px solid green;
+    width: 100px;
+  }
+  .left-btn{
+    float: left;
+  }
+  .right-btn{
+    float: right;
+  }
+}

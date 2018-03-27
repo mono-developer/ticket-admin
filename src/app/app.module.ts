@@ -11,8 +11,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AlertsModule } from 'angular-alert-module';
 import { CoreModule } from './core/core.module';
 import { PagesModule } from './pages/pages.module';
+import { LandingModule } from './landing/landing.module';
 import { SortablejsModule } from 'angular-sortablejs';
 import { ScrollbarModule } from './core/scrollbar/scrollbar.module';
+// import { SwiperModule } from 'angular2-useful-swiper'; //or for angular-cli the path will be ../../node_modules/angular2-useful-swiper
 
 import { AccessService } from '../provide/access.service';
 import { UploadFileService } from '../provide/upload-file.service';
@@ -30,11 +32,13 @@ import { UploadFileService } from '../provide/upload-file.service';
     BrowserAnimationsModule,
     CoreModule,
     PagesModule,
+    LandingModule,
     SortablejsModule,
     ScrollbarModule,
     MatStepperModule,
     MatTableModule,
     MatDialogModule,
+    // SwiperModule,
     AlertsModule.forRoot(),
   ],
   providers: [

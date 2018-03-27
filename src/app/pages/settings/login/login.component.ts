@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
           this.isLoading = false;
           console.log('DataLogin',data);
           sessionStorage.setItem('OAuthInfo', JSON.stringify(data));
-          this.router.navigate(['/']);
+          this.router.navigate(['/dashboard']);
           return true;
         },
         err => {

@@ -31,7 +31,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
-  { path: '', component: AdminComponent, canActivate: [AccessService], children: [
+  { path: 'dashboard', component: AdminComponent, canActivate: [AccessService], children: [
         { path: '', component: DashboardComponent },
         { path: 'content-manage/view-cms', component: ViewCMSComponent },
         { path: 'content-manage/add-cms', component: AddCMSComponent },

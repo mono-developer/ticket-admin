@@ -22,7 +22,7 @@ export class SearchBarComponent implements OnInit {
 
   ngOnInit() {
 
-    this.recentlyVisited.push(this.sidenavService.getSidenavItemByRoute('/'));
+    this.recentlyVisited.push(this.sidenavService.getSidenavItemByRoute('/dashboard'));
 
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {

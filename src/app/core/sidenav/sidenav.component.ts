@@ -42,25 +42,25 @@ export class SidenavComponent implements OnInit, OnDestroy {
       }
     });
 
-    this.breadcrumbService.addFriendlyNameForRoute('/', "Dashboard");
-    this.breadcrumbService.addFriendlyNameForRoute('/content-manage/view-cms', "View Pages");
-    this.breadcrumbService.addFriendlyNameForRoute('/content-manage/add-cms', "Add Pages");
-    this.breadcrumbService.addFriendlyNameForRoute('/sales-point/view-sale-users', "View sales users");
-    this.breadcrumbService.addFriendlyNameForRoute('/sales-point/Add-sale-users', "Add sales users");
-    this.breadcrumbService.addFriendlyNameForRoute('/event-categories/view-category', "View Category");
-    this.breadcrumbService.addFriendlyNameForRoute('/event-categories/add-category', "Add Category");
-    this.breadcrumbService.addFriendlyNameForRoute('/users-manage', "User Management");
-    this.breadcrumbService.addFriendlyNameForRoute('/event-manage/view-event', "View Events");
-    this.breadcrumbService.addFriendlyNameForRoute('/event-manage/add-event', "Add Events");
-    this.breadcrumbService.addFriendlyNameForRoute('/organizor-manage/view-organizor', "View Organizor");
-    this.breadcrumbService.addFriendlyNameForRoute('/organizor-manage/add-organizor', "Add Organizor");
-    this.breadcrumbService.addFriendlyNameForRoute('/reports/general-reports', "Gereral Reports");
-    this.breadcrumbService.addFriendlyNameForRoute('/reports/date-reports', "Date of Reports");
-    this.breadcrumbService.addFriendlyNameForRoute('/coupon-manage/view-coupon', "View Coupons");
-    this.breadcrumbService.addFriendlyNameForRoute('/coupon-manage/add-coupon', "Add Coupon");
-    this.breadcrumbService.addFriendlyNameForRoute('/bullentin/view-bullentin', "View Bullentins");
-    this.breadcrumbService.addFriendlyNameForRoute('/bullentin/add-bullentin', "Add Bullentin");
-    this.breadcrumbService.addFriendlyNameForRoute('/banner-images', "Banner Images");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard', "Dashboard");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/content-manage/view-cms', "View Pages");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/content-manage/add-cms', "Add Pages");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/sales-point/view-sale-users', "View sales users");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/sales-point/Add-sale-users', "Add sales users");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/event-categories/view-category', "View Category");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/event-categories/add-category', "Add Category");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/users-manage', "User Management");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/event-manage/view-event', "View Events");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/event-manage/add-event', "Add Events");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/organizor-manage/view-organizor', "View Organizor");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/organizor-manage/add-organizor', "Add Organizor");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/reports/general-reports', "Gereral Reports");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/reports/date-reports', "Date of Reports");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/coupon-manage/view-coupon', "View Coupons");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/coupon-manage/add-coupon', "Add Coupon");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/bullentin/view-bullentin', "View Bullentins");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/bullentin/add-bullentin', "Add Bullentin");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/banner-images', "Banner Images");
 
   }
 

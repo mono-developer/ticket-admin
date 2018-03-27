@@ -8,11 +8,9 @@ import { D3, D3ChartService } from "../../../charts/nvD3/nvD3.service";
 })
 export class LineChartWidgetComponent implements OnInit {
 
-  @Input('data')
-  data: any;
+  @Input('data')  data: any;
 
-  @Input('options')
-  options: any;
+  @Input('options')  options: any;
 
   chartOptions: any;
 

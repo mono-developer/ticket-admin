@@ -8,6 +8,8 @@
 @import "styles/_inbox.scss";
 @import "styles/_calendar.scss";
 @import "styles/_misc.scss";
+@import "styles/_style.scss";
+
 
 @keyframes pageLoad {
   from {
@@ -36,3 +38,138 @@
   z-index: 9999;
   pointer-events: none;
 }
+
+.main-content {
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  margin: 0 auto;
+}
+
+@media screen and (min-width: 768px) {
+  .main-content {
+    width: 750px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .main-content {
+    width: 970px;
+  }
+}
+
+.event-sec {
+  width: 100%;
+  max-width: 1170px;
+  margin: 0 auto;
+  margin-top: 50px;
+  h2 {
+    color: lightgray;
+  }
+  h4 {
+    color: #fff;
+  }
+  p {
+    color: darkgray;
+  }
+  .category {
+    background: darkslategrey;
+    padding: 25px 15px;
+    display: block;
+    .cell {
+      mat-icon {
+        font-size: 30px;
+      }
+      h4 {
+        margin-top: 15px;
+      }
+    }
+  }
+  .contact {
+    width: 55%;
+    height: 400px;
+    float: left;
+    background-color: #3f3f3f;
+    padding: 30px 20px;
+    h3 {
+      color: #fff;
+    }
+    form {
+      mat-form-field {
+        width: 100%;
+        input {
+          color: white;
+        }
+        .mat-input-wrapper {
+          .mat-input-flex {
+            .mat-input-infix {
+              span {
+                label {
+                  color: #fff;
+                }
+              }
+            }
+          }
+        }
+      }
+      .submit {
+        background-color: darkslateblue;
+        color: white;
+        float: right;
+        margin-top: 10px;
+      }
+    }
+  }
+  .venue {
+    width: 40%;
+    height: 300px;
+    display: block;
+    background-color: green;
+    float: right;
+  }
+  @media screen and (max-width: 767px) {
+    .contact,
+    .venue {
+      width: 100%;
+      margin-bottom: 20px;
+    }
+  }
+  .tab-bg {
+    background: #dbdbdb;
+  }
+  .timeline-wrap {
+    background-color: #323232;
+    ul {
+      padding: 0;
+      li {
+        .timeline-panel,
+        .timeline-badge {
+          background: #5b6159;
+        }
+      }
+    }
+  }
+}
+
+.footer-end {
+  width: 100%;
+  display: block;
+  margin: 100px 0;
+  .title {
+    font-size: 20px;
+    color: #fff;
+    text-align: center;
+  }
+  .sub_title {
+    text-align: center;
+    font-size: 18px;
+    color: whitesmoke;
+  }
+  img {
+    width: 70px;
+    margin: 0 auto;
+    display: block;
+  }
+}
+

@@ -1,20 +1,23 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { WidgetComponent } from '../core/widgets/widgets-v1/widget-v1/widget-v1.component';
-import { LineChartWidgetComponent } from '../core/widgets/widgets-v1/line-chart-widget/line-chart-widget.component';
-import { SourceOverviewWidgetComponent } from '../core/widgets/widgets-v1/source-overview-widget/source-overview-widget.component';
-import { nvD3 } from '../core/charts/nvD3/nvD3.component';
-import { BarChartComponent } from '../core/widgets/bar-chart/bar-chart.component';
-import { LineChartComponent } from '../core/widgets/line-chart/line-chart.component';
-import { RecentSalesComponent } from '../core/widgets/recent-sales/recent-sales.component';
-import { PieChartComponent } from '../core/widgets/pie-chart/pie-chart.component';
-import { GoogleMapsWidgetComponent } from '../core/widgets/google-maps-widget/google-maps-widget.component';
-import { ActivityComponent } from '../core/widgets/activity/activity.component';
-import { TrafficSourcesComponent } from '../core/widgets/traffic-sources/traffic-sources.component';
-import { LoadingOverlayComponent } from '../core/loading-overlay/loading-overlay.component';
+
+import { WidgetseModule } from '../core/widgets/widgets.module';
+import { LoadingOverlayModule } from '../core/loading-overlay/loading-overlay.module';
+// import { WidgetComponent } from '../core/widgets/widgets-v1/widget-v1/widget-v1.component';
+// import { LineChartWidgetComponent } from '../core/widgets/widgets-v1/line-chart-widget/line-chart-widget.component';
+// import { SourceOverviewWidgetComponent } from '../core/widgets/widgets-v1/source-overview-widget/source-overview-widget.component';
+// import { nvD3 } from '../core/charts/nvD3/nvD3.component';
+// import { BarChartComponent } from '../core/widgets/bar-chart/bar-chart.component';
+// import { LineChartComponent } from '../core/widgets/line-chart/line-chart.component';
+// import { RecentSalesComponent } from '../core/widgets/recent-sales/recent-sales.component';
+// import { PieChartComponent } from '../core/widgets/pie-chart/pie-chart.component';
+// import { GoogleMapsWidgetComponent } from '../core/widgets/google-maps-widget/google-maps-widget.component';
+// import { ActivityComponent } from '../core/widgets/activity/activity.component';
+// import { TrafficSourcesComponent } from '../core/widgets/traffic-sources/traffic-sources.component';
+// import { LoadingOverlayComponent } from '../core/loading-overlay/loading-overlay.component';
 import { environment } from "../../environments/environment";
 import { SortablejsModule, SortablejsOptions } from 'angular-sortablejs';
-import { D3ChartService } from '../core/charts/nvD3/nvD3.service';
+// import { D3ChartService } from '../core/charts/nvD3/nvD3.service';
 import { CalendarModule } from 'angular-calendar';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -82,6 +85,8 @@ import { ImageSize } from "../../provide/image-size";
     MatTableModule,
     MatDialogModule,
     AlertsModule.forRoot(),
+    WidgetseModule,
+    LoadingOverlayModule
   ],
   entryComponents: [
     EventDatailsDialogComponent,
@@ -91,18 +96,18 @@ import { ImageSize } from "../../provide/image-size";
     PasswordErrorDialog
   ],
   declarations: [
-    WidgetComponent,
-    LineChartWidgetComponent,
-    SourceOverviewWidgetComponent,
-    nvD3,
-    BarChartComponent,
-    LineChartComponent,
-    RecentSalesComponent,
-    PieChartComponent,
-    GoogleMapsWidgetComponent,
-    ActivityComponent,
-    TrafficSourcesComponent,
-    LoadingOverlayComponent,
+    // WidgetComponent,
+    // LineChartWidgetComponent,
+    // SourceOverviewWidgetComponent,
+    // nvD3,
+    // BarChartComponent,
+    // LineChartComponent,
+    // RecentSalesComponent,
+    // PieChartComponent,
+    // GoogleMapsWidgetComponent,
+    // ActivityComponent,
+    // TrafficSourcesComponent,
+    // LoadingOverlayComponent,
     AddCMSComponent,
     ViewCMSComponent,
     ViewSaleUsersComponent,
@@ -132,7 +137,7 @@ import { ImageSize } from "../../provide/image-size";
     PasswordErrorDialog
   ],
   providers: [
-    D3ChartService,
+    // D3ChartService,
     UserService,
     BaseService,
     DataService,

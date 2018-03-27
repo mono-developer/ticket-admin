@@ -1,0 +1,19 @@
+
+
+<h1 mat-dialog-title>{{data.name}} </h1>
+<div mat-dialog-content>
+  <mat-form-field>
+    <input type="text"  placeholder="User Name" matInput [(ngModel)]="data.username">
+  </mat-form-field>
+
+  <mat-form-field>
+    <input type="email"  placeholder="Email" matInput [(ngModel)]="data.userEmail">
+  </mat-form-field>
+
+</div>
+
+<div mat-dialog-actions class="btns">
+  <button mat-button class="left-btn" (click)="onNoClick()">No Thanks</button>
+  <button mat-button [mat-dialog-close]="data.modalData" cdkFocusInitial>Book</button>
+</div>
+

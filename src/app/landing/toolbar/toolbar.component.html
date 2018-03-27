@@ -1,0 +1,22 @@
+<div class="main-toolbar mat-elevation-z2 toolbar-box">
+  <img class="logo-img" src="../../../assets/img/icons/icon-dark.png" alt="">
+  <!-- <ms-breadcrumbs *ngIf="showBreadcrumbs" [fxHide]="true" [fxHide.gt-sm]="false"></ms-breadcrumbs> -->
+
+  <span fxFlex></span>
+
+  <button [fxHide]="true" [fxHide.gt-sm]="false" mat-button class="fullscreen-toggle" (click)="toggleFullscreen()">
+    <mat-icon *ngIf="!isFullscreen">fullscreen</mat-icon>
+    <mat-icon *ngIf="isFullscreen">fullscreen_exit</mat-icon>
+  </button>
+
+  <ms-search></ms-search>
+
+  <div class="">
+    <ms-toolbar-notifications></ms-toolbar-notifications>
+  </div>
+
+  <div class="user-button-container">
+    <ms-toolbar-user-button></ms-toolbar-user-button>
+  </div>
+
+</div>
