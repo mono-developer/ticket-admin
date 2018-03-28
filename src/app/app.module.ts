@@ -14,8 +14,7 @@ import { PagesModule } from './pages/pages.module';
 import { LandingModule } from './landing/landing.module';
 import { SortablejsModule } from 'angular-sortablejs';
 import { ScrollbarModule } from './core/scrollbar/scrollbar.module';
-// import { SwiperModule } from 'angular2-useful-swiper'; //or for angular-cli the path will be ../../node_modules/angular2-useful-swiper
-
+// import { SwiperModule } from 'angular2-useful-swiper'; //or for angular-cli the path will be ../../node_modules/angular2-useful-swipe
 import { AccessService } from '../provide/access.service';
 import { UploadFileService } from '../provide/upload-file.service';
 import { AgmCoreModule } from '@agm/core';
