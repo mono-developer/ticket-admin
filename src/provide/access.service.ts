@@ -38,8 +38,9 @@ export class AccessService implements CanActivate {
 
   getCanAccess(): boolean {
     let oAuthRawInfo = sessionStorage.getItem('OAuthInfo');
+    console.log('oAuthRawInfo', oAuthRawInfo);
     let oAuthInfo = JSON.parse(oAuthRawInfo);
-    return oAuthRawInfo !== undefined &&
-      oAuthInfo !== null;
+    console.log('oAuthInfo', oAuthInfo);
+    return oAuthRawInfo !== undefined && oAuthInfo !== null;
   }
 }

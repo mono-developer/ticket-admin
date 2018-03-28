@@ -18,6 +18,7 @@ import { ScrollbarModule } from './core/scrollbar/scrollbar.module';
 
 import { AccessService } from '../provide/access.service';
 import { UploadFileService } from '../provide/upload-file.service';
+import { AgmCoreModule } from '@agm/core';
 
 
 @NgModule({
@@ -40,6 +41,10 @@ import { UploadFileService } from '../provide/upload-file.service';
     MatDialogModule,
     // SwiperModule,
     AlertsModule.forRoot(),
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyCA4T-nbBt9fN_rO6Au3EB7XTil_P-cqVI",
+      libraries: ["places"]
+    }),
   ],
   providers: [
     MatIconRegistry,

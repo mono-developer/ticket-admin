@@ -33,7 +33,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.router.navigate(['./dashboard']);
+    // this.router.navigate(['./login']);
     // this._mediaSubscription.unsubscribe();
   }
 

@@ -1,11 +1,27 @@
 
 
-<h1 mat-dialog-title>{{data.name.event_name}}</h1>
+<!-- <h1 mat-dialog-title>{{data.name.event_name}}</h1>
 <div mat-dialog-content>
 
   Descriptions
 </div>
 <div mat-dialog-actions>
   <button mat-button [mat-dialog-close]="data.modalData" cdkFocusInitial>OK</button>
-</div>
+</div> -->
 
+
+<mat-card class="example-card">
+  <mat-card-header>
+    <mat-card-title>{{data.event_name}}</mat-card-title>
+    <mat-card-subtitle>{{data.category.name}}</mat-card-subtitle>
+  </mat-card-header>
+  <img mat-card-image style="width: 100%; margin:0 auto" [src]="data.event_bg" alt="Photo of a Shiba Inu">
+  <mat-card-content>
+    <p>{{data.add_info}}</p>
+    <div class="date"><img src="assets/img/icons/location.png" alt="">{{data.meeting_place}}</div>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button [mat-dialog-close]="data.data" mat-button>OK</button>
+  </mat-card-actions>
+</mat-card>

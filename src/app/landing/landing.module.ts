@@ -10,6 +10,7 @@ import { QuillModule } from 'ngx-quill';
 import { SwiperModule } from 'angular2-useful-swiper'; //or for angular-cli the path will be ../../node_modules/angular2-useful-swiper
 
 import { MainComponent, BookingDialogComponent, DescriptionDialogComponent } from './main/main.component';
+import { BookingComponent, LocationDialogComponent } from './booking/booking.component';
 import { AdminComponent } from './admin/admin.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SearchComponent } from './toolbar/search/search.component';
@@ -30,6 +31,8 @@ import { TicketDataService } from "../../provide/ticketDemoService";
 import { BaseService } from "../../provide/base-service";
 import { DataService } from "../../provide/data-service";
 
+import { AgmCoreModule } from '@agm/core';
+
 
 @NgModule({
   imports: [
@@ -48,18 +51,27 @@ import { DataService } from "../../provide/data-service";
     CalendarModule.forRoot(),
     ScrollbarModule,
     SwiperModule,
+    MatStepperModule,
     MatDialogModule,
+    MatTableModule,
     LoadingOverlayModule,
-    WidgetseModule
+    WidgetseModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyCA4T-nbBt9fN_rO6Au3EB7XTil_P-cqVI",
+      libraries: ["places"]
+    }),
   ],
   entryComponents: [
     BookingDialogComponent,
-    DescriptionDialogComponent
+    DescriptionDialogComponent,
+    LocationDialogComponent
   ],
   declarations: [
     MainComponent,
     BookingDialogComponent,
     DescriptionDialogComponent,
+    BookingComponent,
+    LocationDialogComponent,
     AdminComponent,
     ToolbarComponent,
     SearchComponent,

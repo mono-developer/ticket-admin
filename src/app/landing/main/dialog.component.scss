@@ -20,3 +20,28 @@ mat-form-field{
     float: right;
   }
 }
+
+.example-card {
+  max-width: 400px;
+  mat-card-title{
+    font-size: 20px;
+  }
+  mat-card-content{
+    .date{
+      img {
+        width: 20px;
+        margin-bottom: -7px;
+      }
+    }
+
+  }
+  button{
+    margin: 0 auto;
+    display: block;
+    border: 2px solid #728de6;
+    margin-right: 5px;
+  }
+}
+
+
+

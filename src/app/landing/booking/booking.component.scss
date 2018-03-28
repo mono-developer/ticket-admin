@@ -1,0 +1,71 @@
+
+.container{
+  width: 80%;
+  max-width: 970px;
+  display: block;
+  margin: 0 auto;
+  height: 100%;
+  padding: 5% 0;
+  mat-card{
+    max-width: 100%;
+  }
+
+}
+
+.description{
+  display: inline-block;
+  width: 100%;
+  h2{
+    margin: 15px 0;
+  }
+  .field{
+    width: 350px;
+    float: left;
+    img{
+      width: 80%;
+      min-width: 250px;
+    }
+  }
+  .about{
+    width: calc(100% - 350px);
+    float: left;
+    mat-form-field{
+      width: 100%;
+    }
+    .location{
+      width: 100%;
+      display: inline-block;
+      margin-top: 12px;
+      img{
+        width: 25px;
+        margin-bottom: -5px;
+      }
+      button{
+        font-size: 18px;
+        color: dodgerblue;
+      }
+    }
+  }
+}
+
+table{
+  border: 1px solid gray;
+  thead{
+    tr{
+      background: #0a7dbf;
+      th{
+        color: #fff;
+      }
+    }
+  }
+}
+
+.page__control{
+  padding: 20px 0;
+}
+
+agm-map {
+  height: 300px;
+}
+
+

@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@agm/core@1.0.0-beta.2":
+"@agm/core@^1.0.0-beta.2":
   version "1.0.0-beta.2"
   resolved "https://registry.yarnpkg.com/@agm/core/-/core-1.0.0-beta.2.tgz#da15c0a5e86fe9e1178f14c36a3e0ffc14f9ad77"
 
@@ -215,6 +215,10 @@
 "@types/d3@^3", "@types/d3@^3.5.17":
   version "3.5.38"
   resolved "https://registry.yarnpkg.com/@types/d3/-/d3-3.5.38.tgz#76f8f2e9159ae562965b2fa0e6fbee1aa643a1bc"
+
+"@types/googlemaps@^3.30.8":
+  version "3.30.8"
+  resolved "https://registry.yarnpkg.com/@types/googlemaps/-/googlemaps-3.30.8.tgz#cc6ab90f79f3a8b799860ea1d70252a221af702e"
 
 "@types/jasmine@2.5.53":
   version "2.5.53"

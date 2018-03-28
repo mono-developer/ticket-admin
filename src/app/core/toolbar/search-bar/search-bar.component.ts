@@ -33,17 +33,11 @@ export class SearchBarComponent implements OnInit {
         if (index > -1) {
           this.recentlyVisited.splice(index, 1);
         }
-        // if(item) {
-        //   this.recentlyVisited.unshift(item);
-        // }
-
 
         if (this.recentlyVisited.length > 5) {
           this.recentlyVisited.pop();
         }
-        console.log('recent', this.recentlyVisited);
       }
-
     });
   }
 

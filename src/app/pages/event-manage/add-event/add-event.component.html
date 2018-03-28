@@ -3,313 +3,313 @@
 <mat-horizontal-stepper [linear]="isLinear" #stepper="matHorizontalStepper">
 
   <!-- Step 1 -->
-  <mat-step [stepControl]="firstFormGroup">
+    <mat-step [stepControl]="firstFormGroup">
 
-    <div class="step-border">
-      <form class="step1" [formGroup]="firstFormGroup">
-        <ng-template matStepLabel>STEP 1</ng-template>
+        <div class="step-border">
+            <form class="step1" [formGroup]="firstFormGroup">
+                <ng-template matStepLabel>STEP 1</ng-template>
 
-        <mat-form-field >
-          <mat-select placeholder="Select a Category" name="category" [(ngModel)]="eventData.category_id" formControlName="oneCtrl" required>
-            <mat-option *ngFor="let category of categoryList" [value]="category._id">
-              {{ category.name }}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+                <mat-form-field >
+                    <mat-select placeholder="Select a Category" name="category" [(ngModel)]="eventData.category_id" formControlName="oneCtrl" required>
+                        <mat-option *ngFor="let category of categoryList" [value]="category._id">
+                        {{ category.name }}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
 
-        <mat-form-field>
-          <input type="text" matInput placeholder="Name of the Event" name="name" [(ngModel)]="eventData.event_name" formControlName="twoCtrl" required>
-        </mat-form-field>
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Name of the Event" name="name" [(ngModel)]="eventData.event_name" formControlName="twoCtrl" required>
+                </mat-form-field>
 
-        <mat-form-field>
-          <input type="text" matInput placeholder="Meeting Place" name="place" [(ngModel)]="eventData.meeting_place" formControlName="threeCtrl" required>
-        </mat-form-field>
+                <mat-form-field>
+                    <input matInput placeholder="Meeting Place" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" [(ngModel)]="eventData.meeting_place" #search [formControl]="searchControl">
+                </mat-form-field>
 
-        <mat-form-field>
-          <input type="text" matInput placeholder="City" name="city" [(ngModel)]="eventData.city" formControlName="fourCtrl" required>
-        </mat-form-field>
+                <mat-form-field>
+                    <input type="text" matInput placeholder="City" name="city" [(ngModel)]="eventData.city" formControlName="fourCtrl" required>
+                </mat-form-field>
 
-        <div class="org_details">
-          <mat-form-field>
-            <mat-select placeholder="Select Organizor" name="org" [(ngModel)]="eventData.org_id" formControlName="fiveCtrl" required>
-              <mat-option *ngFor="let org of organizorList" [value]="org._id">
-                {{ org.name }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <button mat-button (click)="addOrg()">
-            <mat-icon>add_circle_outline</mat-icon>
-          </button>
+                <div class="org_details">
+                    <mat-form-field>
+                        <mat-select placeholder="Select Organizor" name="org" [(ngModel)]="eventData.org_id" formControlName="fiveCtrl" required>
+                            <mat-option *ngFor="let org of organizorList" [value]="org._id">
+                                {{ org.name }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                    <button mat-button (click)="addOrg()">
+                        <mat-icon>add_circle_outline</mat-icon>
+                    </button>
+                </div>
+
+                <button class="submit" mat-button matStepperNext>Next</button>
+            </form>
         </div>
-
-        <button class="submit" mat-button matStepperNext>Next</button>
-      </form>
-    </div>
-  <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
-  </mat-step>
+        <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
+    </mat-step>
 
   <!-- Step 2 -->
-  <mat-step>
+    <mat-step>
 
-    <div class="step-border">
-      <form>
-        <ng-template matStepLabel>Step2</ng-template>
+        <div class="step-border">
+            <form>
+                <ng-template matStepLabel>Step2</ng-template>
 
-        <!-- Event Details  -->
-        <div class="details-border">
-          <h4>Event Details</h4>
-          <div class="details_header">
-            <p>Add new event details</p>
-            <button mat-button class="add_seat" (click)="openEventDialog()">
-              <mat-icon>add</mat-icon>
-            </button>
-          </div>
-          <div class="cms-container mat-elevation-z8">
-            <mat-table #table [dataSource]="dataSource1">
-              <!-- Location -->
-              <ng-container matColumnDef="date">
-                <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
-                <mat-cell *matCellDef="let element">{{element.time}} {{element.date | date: 'dd'}}/{{element.date| date:'MM'}}/{{element.date| date: 'yyyy'}}</mat-cell>
-              </ng-container>
-              <!-- Symbol Column -->
-              <ng-container matColumnDef="symbol">
-                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-                <mat-cell *matCellDef="let element; let index = index">
-                  <button mat-button (click)="editEvent(element)">
-                    <mat-icon>border_color</mat-icon>
-                  </button>
-                  <button mat-button (click)="deleteEvent(index)">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </mat-cell>
-              </ng-container>
-              <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
-            </mat-table>
-          </div>
+                <!-- Event Details  -->
+                <div class="details-border">
+                    <h4>Event Details</h4>
+                    <div class="details_header">
+                        <p>Add new event details</p>
+                        <button mat-button class="add_seat" (click)="openEventDialog()">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </div>
+                    <div class="cms-container mat-elevation-z8">
+                        <mat-table #table [dataSource]="dataSource1">
+                        <!-- Location -->
+                        <ng-container matColumnDef="date">
+                            <mat-header-cell *matHeaderCellDef> Date </mat-header-cell>
+                            <mat-cell *matCellDef="let element">{{element.time}} {{element.date | date: 'dd'}}/{{element.date| date:'MM'}}/{{element.date| date: 'yyyy'}}</mat-cell>
+                        </ng-container>
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="symbol">
+                            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                            <mat-cell *matCellDef="let element; let index = index">
+                            <button mat-button (click)="editEvent(element)">
+                                <mat-icon>border_color</mat-icon>
+                            </button>
+                            <button mat-button (click)="deleteEvent(index)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row>
+                        </mat-table>
+                    </div>
+                </div>
+
+            <!--  Seat Details -->
+                <div class="details-border">
+                    <h4>Seat Details</h4>
+                    <div class="details_header">
+                        <p>Add new seat details</p>
+                        <button mat-button class="add_seat" (click)="openSeatDialog()"><mat-icon>add</mat-icon></button>
+                    </div>
+                    <div class="cms-container mat-elevation-z8">
+                        <mat-table #table [dataSource]="dataSource2">
+                        <!-- Location -->
+                        <ng-container matColumnDef="location">
+                            <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
+                            <mat-cell *matCellDef="let element"> {{element.location}} </mat-cell>
+                        </ng-container>
+                        <!-- Price of the Bill Column -->
+                        <ng-container matColumnDef="bill">
+                            <mat-header-cell *matHeaderCellDef> Price of Ticket </mat-header-cell>
+                            <mat-cell *matCellDef="let element" [innerHTML]="element.ticket_price"></mat-cell>
+                        </ng-container>
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="tickets">
+                            <mat-header-cell *matHeaderCellDef> Number of Tickets per Location </mat-header-cell>
+                            <mat-cell *matCellDef="let element" [innerHTML]="element.tickets_number"></mat-cell>
+                        </ng-container>
+                        <!-- Name Column -->
+                        <ng-container matColumnDef="type">
+                            <mat-header-cell *matHeaderCellDef>Type of charge </mat-header-cell>
+                            <mat-cell *matCellDef="let element" [innerHTML]="element.type_charge"></mat-cell>
+                        </ng-container>
+                        <!-- Symbol Column -->
+                        <ng-container matColumnDef="symbol">
+                            <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
+                            <mat-cell *matCellDef="let element; let index = index">
+                            <button mat-button (click)="editSeat(element)">
+                                <mat-icon>border_color</mat-icon>
+                            </button>
+                            <button mat-button (click)="deleteSeat(index)">
+                                <mat-icon>delete</mat-icon>
+                            </button>
+                            </mat-cell>
+                        </ng-container>
+                        <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
+                        </mat-table>
+                    </div>
+                </div>
+
+                <div class="btns">
+                    <button style="float: left;" mat-button matStepperPrevious>Back</button>
+                    <button style="float: right;" mat-button matStepperNext>Next</button>
+                </div>
+
+            </form>
         </div>
 
-        <!--  Seat Details -->
-        <div class="details-border">
-          <h4>Seat Details</h4>
-          <div class="details_header">
-            <p>Add new seat details</p>
-            <button mat-button class="add_seat" (click)="openSeatDialog()"><mat-icon>add</mat-icon></button>
-          </div>
-          <div class="cms-container mat-elevation-z8">
-            <mat-table #table [dataSource]="dataSource2">
-              <!-- Location -->
-              <ng-container matColumnDef="location">
-                <mat-header-cell *matHeaderCellDef> Location </mat-header-cell>
-                <mat-cell *matCellDef="let element"> {{element.location}} </mat-cell>
-              </ng-container>
-              <!-- Price of the Bill Column -->
-              <ng-container matColumnDef="bill">
-                <mat-header-cell *matHeaderCellDef> Price of Ticket </mat-header-cell>
-                <mat-cell *matCellDef="let element" [innerHTML]="element.ticket_price"></mat-cell>
-              </ng-container>
-              <!-- Name Column -->
-              <ng-container matColumnDef="tickets">
-                <mat-header-cell *matHeaderCellDef> Number of Tickets per Location </mat-header-cell>
-                <mat-cell *matCellDef="let element" [innerHTML]="element.tickets_number"></mat-cell>
-              </ng-container>
-              <!-- Name Column -->
-              <ng-container matColumnDef="type">
-                <mat-header-cell *matHeaderCellDef>Type of charge </mat-header-cell>
-                <mat-cell *matCellDef="let element" [innerHTML]="element.type_charge"></mat-cell>
-              </ng-container>
-              <!-- Symbol Column -->
-              <ng-container matColumnDef="symbol">
-                <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
-                <mat-cell *matCellDef="let element; let index = index">
-                  <button mat-button (click)="editSeat(element)">
-                    <mat-icon>border_color</mat-icon>
-                  </button>
-                  <button mat-button (click)="deleteSeat(index)">
-                    <mat-icon>delete</mat-icon>
-                  </button>
-                </mat-cell>
-              </ng-container>
-              <mat-header-row *matHeaderRowDef="displayedColumns2"></mat-header-row>
-              <mat-row *matRowDef="let row; columns: displayedColumns2;"></mat-row>
-            </mat-table>
-          </div>
+    </mat-step>
+
+    <!-- Step 3 -->
+    <mat-step [stepControl]="thirdFormGroup">
+        <div class="step-border">
+            <form [formGroup]="thirdFormGroup">
+                <ng-template matStepLabel>Step3</ng-template>
+
+                <!-- Image Event -->
+                <div class="event">
+                    <div class="left-event">
+                        <p class="top-title">Image of the Event</p>
+                        <label id="#bb" class="uploadImg"><mat-icon>add</mat-icon>
+                        <input type="file" id="File" (change)="eventImage($event)" size="60">
+                        </label>
+                        <p [ngStyle]="{'color': isEventImge ? 'red' : 'green'}">(image size must be 1080 * 400px)</p>
+                    </div>
+                    <div class="right-event">
+                        <p *ngIf="!eventData.event_bg">Please Upload Event Image </p>
+                        <img *ngIf="eventData.event_bg" [src]="eventData.event_bg" alt="">
+                    </div>
+                </div>
+
+                <!--Map  Event -->
+                <div class="event">
+                    <div class="left-event">
+                        <p class="top-title">Map of the Event</p>
+                        <label id="#bb" class="uploadImg"><mat-icon>add</mat-icon>
+                        <input type="file" id="File" (change)="seatImage($event)" size="60">
+                        </label>
+                        <p [ngStyle]="{'color': isSeatImg ? 'red' : 'green'}">(image size must be 524px * 365px)</p>
+                    </div>
+                    <div class="right-event">
+                        <p *ngIf="!eventData.event_map">Please Upload Seat Image </p>
+                        <img *ngIf="eventData.event_map" [src]="eventData.event_map" alt="">
+                    </div>
+                </div>
+
+                <!-- Coupon -->
+                <div class="event">
+                    <div class="left-event">
+                        <p class="top-title">Coupons</p>
+                    </div>
+                    <div class="right-event">
+                        <mat-form-field>
+                            <mat-select placeholder="Select Counpon" name="coupon" [(ngModel)]="eventData.coupon_id" formControlName="thirdCtrl" required>
+                                <mat-option *ngFor="let item of couponList" [value]="item._id">
+                                {{item.pro_code}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- Reservation -->
+                <div class="event">
+                    <div class="left-event">
+                        <p class="top-title">Reservation</p>
+                    </div>
+                    <div class="right-event">
+                        <mat-slide-toggle [(ngModel)]="eventData.reservation" formControlName="fourthCtrl" required></mat-slide-toggle>
+                    </div>
+                </div>
+
+                <!-- TIcket Event -->
+                <div class="event">
+                    <div class="left-event">
+                        <p class="top-title">Image of the Ticket Template</p>
+                        <label id="#bb" class="uploadImg">
+                            <mat-icon>add</mat-icon>
+                            <input type="file" id="File" (change)="ticketImage($event)" size="60">
+                        </label>
+                        <p [ngStyle]="{'color': isTicketImg ? 'red' : 'green'}">(image size must be 590px * 968px)</p>
+                    </div>
+                    <div class="right-event">
+                        <p *ngIf="!eventData.ticket_image">Please Upload Image </p>
+                        <img *ngIf="eventData.ticket_image" [src]="eventData.ticket_image" alt="">
+                    </div>
+                </div>
+
+                <div class="btns">
+                    <button style="float: left;" mat-button matStepperPrevious>Back</button>
+                    <button style="float: right;" mat-button matStepperNext>Next</button>
+                </div>
+            </form>
         </div>
-
-        <div class="btns">
-          <button style="float: left;" mat-button matStepperPrevious>Back</button>
-          <button style="float: right;" mat-button matStepperNext>Next</button>
-        </div>
-
-      </form>
-  </div>
-
-  </mat-step>
-
-<!-- Step 3 -->
-  <mat-step [stepControl]="thirdFormGroup">
-    <div class="step-border">
-      <form [formGroup]="thirdFormGroup">
-        <ng-template matStepLabel>Step3</ng-template>
-
-        <!-- Image Event -->
-        <div class="event">
-          <div class="left-event">
-            <p class="top-title">Image of the Event</p>
-            <label id="#bb" class="uploadImg"><mat-icon>add</mat-icon>
-              <input type="file" id="File" (change)="eventImage($event)" size="60">
-            </label>
-            <p [ngStyle]="{'color': isEventImge ? 'red' : 'green'}">(image size must be 1080 * 400px)</p>
-          </div>
-          <div class="right-event">
-            <p *ngIf="!eventData.event_bg">Please Upload Event Image </p>
-            <img *ngIf="eventData.event_bg" [src]="eventData.event_bg" alt="">
-          </div>
-        </div>
-
-        <!--Map  Event -->
-        <div class="event">
-          <div class="left-event">
-            <p class="top-title">Map of the Event</p>
-            <label id="#bb" class="uploadImg"><mat-icon>add</mat-icon>
-              <input type="file" id="File" (change)="seatImage($event)" size="60">
-            </label>
-            <p [ngStyle]="{'color': isSeatImg ? 'red' : 'green'}">(image size must be 524px * 365px)</p>
-          </div>
-          <div class="right-event">
-            <p *ngIf="!eventData.event_map">Please Upload Seat Image </p>
-            <img *ngIf="eventData.event_map" [src]="eventData.event_map" alt="">
-          </div>
-        </div>
-
-        <!-- Coupon -->
-        <div class="event">
-          <div class="left-event">
-            <p class="top-title">Coupons</p>
-          </div>
-          <div class="right-event">
-            <mat-form-field>
-              <mat-select placeholder="Select Counpon" name="coupon" [(ngModel)]="eventData.coupon_id" formControlName="thirdCtrl" required>
-                <mat-option *ngFor="let item of couponList" [value]="item._id">
-                  {{item.pro_code}}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <!-- Reservation -->
-        <div class="event">
-          <div class="left-event">
-            <p class="top-title">Reservation</p>
-          </div>
-          <div class="right-event">
-            <mat-slide-toggle [(ngModel)]="eventData.reservation" formControlName="fourthCtrl" required></mat-slide-toggle>
-          </div>
-        </div>
-
-        <!-- TIcket Event -->
-        <div class="event">
-          <div class="left-event">
-            <p class="top-title">Image of the Ticket Template</p>
-            <label id="#bb" class="uploadImg">
-              <mat-icon>add</mat-icon>
-              <input type="file" id="File" (change)="ticketImage($event)" size="60">
-            </label>
-            <p [ngStyle]="{'color': isTicketImg ? 'red' : 'green'}">(image size must be 590px * 968px)</p>
-          </div>
-          <div class="right-event">
-            <p *ngIf="!eventData.ticket_image">Please Upload Image </p>
-            <img *ngIf="eventData.ticket_image" [src]="eventData.ticket_image" alt="">
-          </div>
-        </div>
-
-        <div class="btns">
-          <button style="float: left;" mat-button matStepperPrevious>Back</button>
-          <button style="float: right;" mat-button matStepperNext>Next</button>
-        </div>
-      </form>
-    </div>
-    <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
-  </mat-step>
+        <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
+    </mat-step>
 
   <!-- Step 4 -->
-  <mat-step [stepControl]="fourFormGroup">
-    <form [formGroup]="fourFormGroup">
-      <ng-template matStepLabel>Step4</ng-template>
+    <mat-step [stepControl]="fourFormGroup">
+        <form [formGroup]="fourFormGroup">
+            <ng-template matStepLabel>Step4</ng-template>
 
-      <div class="step-border">
-        <!-- Select Ticket -->
-        <div class="event">
-          <div class="left-event">
-            <p>Selection of tickets</p>
-          </div>
-          <div class="right-event">
-            <div fxFlex>
-              <div fxLayout="column">
-                <mat-checkbox [(ngModel)]="eventData.value_print" style="margin-bottom: 15px;" formControlName="sixCtrl" required>
-                  Print ballot directly
-                </mat-checkbox>
-                <mat-checkbox color="primary" [(ngModel)]="eventData.value_pick" style="margin-bottom: 15px;" formControlName="sevenCtrl" required>
-                  Pick up the ticket at the point of sale
-                </mat-checkbox>
-                <mat-checkbox color="warn" [(ngModel)]="eventData.value_purchaser" style="margin-bottom: 15px;" formControlName="eightCtrl" required>
-                  Purchaser will send a ballot requesting an additional charge
-                </mat-checkbox>
-              </div>
+            <div class="step-border">
+                <!-- Select Ticket -->
+                <div class="event">
+                    <div class="left-event">
+                        <p>Selection of tickets</p>
+                    </div>
+                    <div class="right-event">
+                        <div fxFlex>
+                            <div fxLayout="column">
+                                <mat-checkbox [(ngModel)]="eventData.value_print" style="margin-bottom: 15px;" formControlName="sixCtrl" required>
+                                    Print ballot directly
+                                </mat-checkbox>
+                                <mat-checkbox color="primary" [(ngModel)]="eventData.value_pick" style="margin-bottom: 15px;" formControlName="sevenCtrl" required>
+                                    Pick up the ticket at the point of sale
+                                </mat-checkbox>
+                                <mat-checkbox color="warn" [(ngModel)]="eventData.value_purchaser" style="margin-bottom: 15px;" formControlName="eightCtrl" required>
+                                    Purchaser will send a ballot requesting an additional charge
+                                </mat-checkbox>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Select Ticket -->
+                <div class="event">
+                    <div class="left-event">
+                        <p>Additional Information</p>
+                    </div>
+                    <div class="right-event">
+                        <mat-form-field>
+                            <textarea matInput placeholder="Information Additional" name="comment" [(ngModel)]="eventData.add_info" formControlName="nineCtrl" required></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- Select Ticket -->
+                <div class="event">
+                    <div class="left-event">
+                        <p>Program information</p>
+                    </div>
+                    <div class="right-event">
+                        <mat-form-field>
+                            <textarea matInput placeholder="Information of Program" name="comment" [(ngModel)]="eventData.program_info" formControlName="tenCtrl" required></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <!-- Select Ticket -->
+                <div class="event">
+                    <div class="left-event">
+                        <p>Event status</p>
+                    </div>
+                    <div class="right-event">
+                        <mat-form-field>
+                            <mat-select placeholder="Select State" [(ngModel)]="eventData.status" formControlName="elevenCtrl" required>
+                                <mat-option *ngFor="let item of stateList" [value]="item.state">
+                                {{ item.name }}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+
+                <div class="btns">
+                    <button style="float: left;" mat-button matStepperPrevious>Back</button>
+                    <button style="float: right;" mat-button matStepperNext (click)="done()">Done</button>
+                </div>
             </div>
-          </div>
-        </div>
+        </form>
 
-        <!-- Select Ticket -->
-        <div class="event">
-          <div class="left-event">
-            <p>Additional Information</p>
-          </div>
-          <div class="right-event">
-            <mat-form-field>
-              <textarea matInput placeholder="Information Additional" name="comment" [(ngModel)]="eventData.add_info" formControlName="nineCtrl" required></textarea>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <!-- Select Ticket -->
-        <div class="event">
-          <div class="left-event">
-            <p>Program information</p>
-          </div>
-          <div class="right-event">
-            <mat-form-field>
-              <textarea matInput placeholder="Information of Program" name="comment" [(ngModel)]="eventData.program_info" formControlName="tenCtrl" required></textarea>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <!-- Select Ticket -->
-        <div class="event">
-          <div class="left-event">
-            <p>Event status</p>
-          </div>
-          <div class="right-event">
-            <mat-form-field>
-              <mat-select placeholder="Select State" [(ngModel)]="eventData.status" formControlName="elevenCtrl" required>
-                <mat-option *ngFor="let item of stateList" [value]="item.state">
-                  {{ item.name }}
-                </mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-        </div>
-
-        <div class="btns">
-          <button style="float: left;" mat-button matStepperPrevious>Back</button>
-          <button style="float: right;" mat-button matStepperNext (click)="done()">Done</button>
-        </div>
-      </div>
-    </form>
-
-    <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
-  </mat-step>
+        <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
+    </mat-step>
 
    
 </mat-horizontal-stepper>

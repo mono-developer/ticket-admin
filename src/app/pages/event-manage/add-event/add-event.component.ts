@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, NgZone, ElementRef } from '@angular/core';
 import {fadeInAnimation} from "../../../route.animation";
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -12,6 +12,11 @@ import { BaseService } from "../../../../provide/base-service";
 import { DataService } from "../../../../provide/data-service";
 import { ImageSize } from "../../../../provide/image-size";
 
+import { } from 'googlemaps';
+import { MapsAPILoader } from '@agm/core';
+import { FormControl } from '@angular/forms';
+
+
 @Component({
   selector: 'ms-add-event',
   templateUrl: './add-event.component.html',
@@ -22,6 +27,8 @@ import { ImageSize } from "../../../../provide/image-size";
   animations: [ fadeInAnimation ]
 })
 export class AddEventComponent implements OnInit {
+  @ViewChild("search")
+  public searchElementRef: ElementRef;
 
   isLinear = false;
   firstFormGroup: FormGroup;
@@ -49,8 +56,9 @@ export class AddEventComponent implements OnInit {
   isEventImge: boolean = false;
   isSeatImg: boolean = false;
   isTicketImg: boolean = false;
-
   isLoading: boolean = false;
+
+  public searchControl: FormControl;
 
   constructor(
     private _formBuilder: FormBuilder,
@@ -61,10 +69,14 @@ export class AddEventComponent implements OnInit {
     public baseService: BaseService,
     public dataService: DataService,
     private imageSize: ImageSize,
+
+    private mapsAPILoader: MapsAPILoader,
+    private ngZone: NgZone
   ) {
-    this.stateList = [  { id: 0, name: 'Active', state: true },
-                        { id: 1, name: 'Inative', state: false }
-                    ];
+    this.stateList = [
+      { id: 0, name: 'Active', state: true },
+      { id: 1, name: 'Inative', state: false }
+    ];
   }
 
   ngOnInit() {
@@ -72,14 +84,16 @@ export class AddEventComponent implements OnInit {
     this.firstFormGroup = this._formBuilder.group({
       oneCtrl: ['', Validators.required],
       twoCtrl: ['', Validators.required],
-      threeCtrl: ['', Validators.required],
+      // threeCtrl: ['', Validators.required],
       fourCtrl: ['', Validators.required],
       fiveCtrl: ['', Validators.required]
     });
+
     this.thirdFormGroup = this._formBuilder.group({
       thirdCtrl: ['', Validators.required],
       fourthCtrl: ['', Validators.required],
     });
+
     this.fourFormGroup = this._formBuilder.group({
       sixCtrl: ['', Validators.required],
       sevenCtrl: ['', Validators.required],
@@ -92,6 +106,28 @@ export class AddEventComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('item');
     this.url = this.baseService.eventURL;
     this.getCategoryData();
+
+    //create search FormControl
+    this.searchControl = new FormControl();
+
+    //load Places Autocomplete
+    this.mapsAPILoader.load().then(() => {
+
+      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
+        types: ["address"]
+      });
+      autocomplete.addListener("place_changed", () => {
+        this.ngZone.run(() => {
+          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
+
+          this.eventData.meeting_place = place.formatted_address;
+          console.log('Location', this.eventData.meeting_place);
+          if (place.geometry === undefined || place.geometry === null) {
+            return;
+          }
+        });
+      });
+    });
 
   }
 
@@ -141,6 +177,7 @@ export class AddEventComponent implements OnInit {
           return true;
         },
         err => {
+          this.isLoading = false;
           console.log('errorData', err);
           return true;
         });
@@ -160,13 +197,14 @@ export class AddEventComponent implements OnInit {
           return true;
         },
         err => {
+          this.isLoading = false;
           console.log('errorData', err);
           return true;
         });
   }
 
   addOrg() {
-    this.router.navigate(['organizor-manage/add-organizor']);
+    this.router.navigate(['/dashboard/organizor-manage/add-organizor']);
   }
 
   openEventDialog(): void {
@@ -184,6 +222,8 @@ export class AddEventComponent implements OnInit {
       if(result == undefined){
         console.log(result);
       }else{
+        console.log(result);
+        this.eventData.event_details == undefined ? this.eventData.event_details = []: console.log(this.eventData.event_details);
         this.eventData.event_details.push(result);
         console.log(this.eventData.event_details);
         this.dataSource1 = new MatTableDataSource(this.eventData.event_details);
@@ -218,6 +258,7 @@ export class AddEventComponent implements OnInit {
         console.log('undefined');
       } else {
         console.log(result);
+        this.eventData.seat_details == undefined ? this.eventData.seat_details = [] : console.log(this.eventData.seat_details);
         this.eventData.seat_details.push(result);
         this.dataSource2 = new MatTableDataSource(this.eventData.seat_details);
       }
@@ -304,7 +345,7 @@ export class AddEventComponent implements OnInit {
     this.dataService.postData(this.url, this.eventData)
       .subscribe(
         (data) => {
-          this.router.navigate(['event-manage/view-event']);
+          this.router.navigate(['dashboard/event-manage/view-event']);
           return true;
         },
         error => {
@@ -322,7 +363,7 @@ export class AddEventComponent implements OnInit {
         (data) => {
           this.isLoading = false;
           console.log('eventData', data);
-          this.router.navigate(['event-manage/view-event']);
+          this.router.navigate(['dashboard/event-manage/view-event']);
           return true;
         },
         error => {

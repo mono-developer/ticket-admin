@@ -56,7 +56,7 @@ export class ViewEventComponent implements OnInit {
 
   edit(item: any) {
     console.log("senddata", item);
-    this.router.navigate(['event-manage/add-event', { item: item._id }]);
+    this.router.navigate(['./dashboard/event-manage/add-event', { item: item._id }]);
   }
 
   delete(item: any) {

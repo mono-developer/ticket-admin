@@ -104,27 +104,29 @@ export class MainComponent implements OnInit, AfterViewInit {
             });
     }
 
-    openBookingDialog(eventName): void {
-        console.log('test');
+    openBookingDialog(eventData): void {
+        console.log(eventData);
         let dialogRef = this.dialog.open(BookingDialogComponent, {
         width: '350px',
-        data: { name: eventName, username: this.username, userEmail: this.useremail }
+        data: { name: eventData.event_name, username: this.username, userEmail: this.useremail }
         });
 
         dialogRef.afterClosed().subscribe(result => {
             console.log(result);
+          this.router.navigate(['booking', { id: eventData._id}]);
         });
     }
 
     openDescriptionDialog(data): void {
         console.log('Description');
         let dialogRef = this.dialog.open(DescriptionDialogComponent, {
-            width: '350px',
-            data: { name: data }
+            width: '400px',
+            data: data
         });
 
         dialogRef.afterClosed().subscribe(result => {
             console.log(result);
+
         });
     }
 
@@ -136,6 +138,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     styleUrls: ['./dialog.component.scss'],
 })
 export class BookingDialogComponent {
+
 
 constructor(
     public dialogRef: MatDialogRef<BookingDialogComponent>,
