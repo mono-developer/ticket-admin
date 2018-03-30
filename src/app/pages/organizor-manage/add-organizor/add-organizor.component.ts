@@ -90,7 +90,7 @@ export class AddOrganizorComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('orgData', data);
-          this.router.navigate(['organizor-manage/view-organizor']);
+          this.router.navigate(['dashboard/organizor-manage/view-organizor']);
           return true;
         },
         error => {
@@ -107,7 +107,7 @@ export class AddOrganizorComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('cmsData', data);
-          this.router.navigate(['organizor-manage/view-organizor']);
+          this.router.navigate(['dashboard/organizor-manage/view-organizor']);
           return true;
         },
         error => {

@@ -49,7 +49,7 @@ export class ViewCategoryComponent implements OnInit {
 
   edit(item: any) {
     console.log("senddata", item);
-    this.router.navigate(['event-categories/add-category', { item: item._id }]);
+    this.router.navigate(['dashboard/event-categories/add-category', { item: item._id }]);
   }
 
   delete(item: any) {

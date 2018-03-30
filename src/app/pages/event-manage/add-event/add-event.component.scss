@@ -71,13 +71,12 @@ mat-horizontal-stepper{
   }
   .submit{
     width: 25%;
-    background-color: #ff9702;
-    color: #fff;
     font-size: 18px;
     margin-top: 30px;
     display: block;
     margin: 0 auto;
-    margin-top: 30px;
+    left: 60%;
+    border: 2px solid green;
   }
   .btns{
     width: 80%;
@@ -87,9 +86,8 @@ mat-horizontal-stepper{
     margin-top: 25px;
     button{
       width: 25%;
-      background-color: #ff9702;
-      color: #fff;
       margin: 0 12px;
+      border: 2px solid green;
     }
   }
 

@@ -81,28 +81,6 @@ export class AddEventComponent implements OnInit {
 
   ngOnInit() {
 
-    this.firstFormGroup = this._formBuilder.group({
-      oneCtrl: ['', Validators.required],
-      twoCtrl: ['', Validators.required],
-      // threeCtrl: ['', Validators.required],
-      fourCtrl: ['', Validators.required],
-      fiveCtrl: ['', Validators.required]
-    });
-
-    this.thirdFormGroup = this._formBuilder.group({
-      thirdCtrl: ['', Validators.required],
-      fourthCtrl: ['', Validators.required],
-    });
-
-    this.fourFormGroup = this._formBuilder.group({
-      sixCtrl: ['', Validators.required],
-      sevenCtrl: ['', Validators.required],
-      eightCtrl: ['', Validators.required],
-      nineCtrl: ['', Validators.required],
-      tenCtrl: ['', Validators.required],
-      elevenCtrl: ['', Validators.required],
-
-    });
     this.id = this.route.snapshot.paramMap.get('item');
     this.url = this.baseService.eventURL;
     this.getCategoryData();
@@ -214,7 +192,7 @@ export class AddEventComponent implements OnInit {
     };
 
     let dialogRef1 = this.dialog.open(EventDatailsDialogComponent, {
-      width: '470px',
+      width: '350px',
       data: { modalData: modalData }
     });
 
@@ -425,6 +403,7 @@ export class SeatDatailsDialogComponent {
 
   fileEvent(event: any) {
     const file = event.target.files[0];
+    console.log(file);
     this.imageSize.sizeImage(file, (size)=>{
       if (size.width == 960 && size.height == 450) {
         this.uploadImage(file, (image)=>{

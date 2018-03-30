@@ -52,7 +52,7 @@ export class ViewCouponComponent implements OnInit {
 
   edit(item: any) {
     console.log("senddata", item);
-    this.router.navigate(['coupon-manage/add-coupon', { item: item._id }]);
+    this.router.navigate(['dashboard/coupon-manage/add-coupon', { item: item._id }]);
   }
 
   delete(item: any) {

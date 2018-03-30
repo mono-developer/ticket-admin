@@ -1,69 +1,72 @@
 <h1 mat-dialog-title style="text-align: center">Add Seat Deatails</h1>
 <div mat-dialog-content>
-  <mat-form-field>
-    <input type="text" matInput placeholder="Location" name="location" [(ngModel)]="data.modalData.location">
-  </mat-form-field>
+  <form #form="ngForm">
+    <div class="form-container">
+      <mat-form-field style="width: 49%">
+        <input type="text" matInput placeholder="Location" name="location" [(ngModel)]="data.modalData.location" required>
+      </mat-form-field>
 
-  <mat-form-field>
-    <input type="tel" matInput placeholder="Price of Ticket" name="ticket_price" [(ngModel)]="data.modalData.ticket_price">
-  </mat-form-field>
+      <mat-form-field style="width: 49%">
+        <input type="tel" matInput placeholder="Price of Ticket" name="ticket_price" [(ngModel)]="data.modalData.ticket_price" required>
+      </mat-form-field>
 
-  <mat-form-field>
-    <input type="tel" matInput placeholder="Number of tickets per location" name="tickets_number" [(ngModel)]="data.modalData.tickets_number">
-  </mat-form-field>
+      <mat-form-field style="width: 49%">
+        <input type="tel" matInput placeholder="Number of tickets per location" name="tickets_number" [(ngModel)]="data.modalData.tickets_number" required>
+      </mat-form-field>
 
-  <mat-form-field>
-    <input type="tel" matInput placeholder="Type of charge" name="type_charge" [(ngModel)]="data.modalData.type_charge">
-  </mat-form-field>
+      <mat-form-field style="width: 49%">
+        <input type="tel" matInput placeholder="Type of charge" name="type_charge" [(ngModel)]="data.modalData.type_charge" required>
+      </mat-form-field>
 
-  <mat-form-field>
-    <input type="tel" matInput placeholder="Load Amount (%)" name="load_amount" [(ngModel)]="data.modalData.amount">
-  </mat-form-field>
+      <mat-form-field style="width: 49%">
+        <input type="tel" matInput placeholder="Load Amount (%)" name="load_amount" [(ngModel)]="data.modalData.amount" required>
+      </mat-form-field>
 
-  <mat-form-field>
-    <input type="tel" matInput placeholder="Quantity Service Charge" name="quantity" [(ngModel)]="data.modalData.quantity">
-  </mat-form-field>
+      <mat-form-field style="width: 49%">
+        <input type="tel" matInput placeholder="Quantity Service Charge" name="quantity" [(ngModel)]="data.modalData.quantity" required>
+      </mat-form-field>
 
-  <mat-form-field>
-    <input type="text" matInput placeholder="Discount Type" name="type_discount" [(ngModel)]="data.modalData.discount_type">
-  </mat-form-field>
+      <mat-form-field style="width: 49%">
+        <input type="text" matInput placeholder="Discount Type" name="type_discount" [(ngModel)]="data.modalData.discount_type" required>
+      </mat-form-field>
 
-  <div class="date_picker">
-    <mat-form-field>
-      <input matInput [matDatepicker]="start" placeholder="Start Date" [(ngModel)]="data.modalData.date_start">
-      <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
-      <mat-datepicker #start></mat-datepicker>
-    </mat-form-field>
+      <div class="date_picker">
+        <mat-form-field>
+          <input matInput [matDatepicker]="start" placeholder="Start Date" name="start_date" [(ngModel)]="data.modalData.date_start" required>
+          <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+          <mat-datepicker #start></mat-datepicker>
+        </mat-form-field>
 
-    <mat-form-field>
-      <input matInput [matDatepicker]="end" placeholder="End Date" [(ngModel)]="data.modalData.date_end">
-      <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
-      <mat-datepicker #end></mat-datepicker>
-    </mat-form-field>
-  </div>
+        <mat-form-field style="width: 49%">
+          <input matInput [matDatepicker]="end" placeholder="End Date" name="end_date" [(ngModel)]="data.modalData.date_end" required>
+          <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+          <mat-datepicker #end></mat-datepicker>
+        </mat-form-field>
+      </div>
 
-  <mat-form-field>
-    <input type="tel" matInput placeholder="Price Discount %" name="price_percent" [(ngModel)]="data.modalData.discount_price">
-  </mat-form-field>
+      <mat-form-field style="width: 49%">
+        <input type="tel" matInput placeholder="Price Discount %" name="price_percent" [(ngModel)]="data.modalData.discount_price" required>
+      </mat-form-field>
 
-  <mat-form-field>
-    <mat-select placeholder="Seat Category Box" name="state" [(ngModel)]="data.modalData.seat_value">
-      <mat-option *ngFor="let state of boxList" [value]="state.value">
-        {{ state.name }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+      <mat-form-field style="width: 49%">
+        <mat-select placeholder="Seat Category Box" name="state" [(ngModel)]="data.modalData.seat_value">
+          <mat-option *ngFor="let state of boxList" [value]="state.value">
+            {{ state.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
 
-<label id="#img"> Upload Image
-  <input type="file" id="File" (change)="fileEvent($event)" size="60">
-</label>
-<p [ngStyle]="{'color': data.modalData.detail_img ? 'red' : 'green' }">The size should be 960px x 450px</p>
-<img id="sky" class="img_url" [src]="data.modalData.detail_img" alt="">
-
+      <label id="#img"> Upload Image
+        <input type="file" id="File" (change)="fileEvent($event)" size="60">
+      </label>
+      <p [ngStyle]="{'color': data.modalData.detail_img ? 'red' : 'green' }">The size should be 960px x 450px</p>
+      <img id="sky" class="img_url" [src]="data.modalData.detail_img" alt="">
+    </div>
+  </form>
 
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.modalData" cdkFocusInitial>Ok</button>
+  <button mat-button [mat-dialog-close]="data.modalData" [disabled]="!form.valid || !data.modalData.seat_value" cdkFocusInitial>Ok</button>
 </div>
 <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>

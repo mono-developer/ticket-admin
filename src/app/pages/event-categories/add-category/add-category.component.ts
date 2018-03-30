@@ -77,7 +77,7 @@ export class AddCategoryComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('categoryData', data);
-          this.router.navigate(['event-categories/view-category']);
+          this.router.navigate(['dashboard/event-categories/view-category']);
           return true;
         },
         error => {
@@ -95,7 +95,7 @@ export class AddCategoryComponent implements OnInit {
         (data) => {
           this.isLoading = false;
           console.log('categoryData', data);
-          this.router.navigate(['event-categories/view-category']);
+          this.router.navigate(['dashboard/event-categories/view-category']);
           return true;
         },
         error => {

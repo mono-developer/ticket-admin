@@ -28,6 +28,7 @@ export class ViewCMSComponent implements OnInit {
 
   ngOnInit() {
     this.url = this.baseService.contentURL;
+    console.log(this.url);
     this.getcmsList();
   }
 
@@ -50,7 +51,7 @@ export class ViewCMSComponent implements OnInit {
   }
 
   edit(item: any) {
-    this.router.navigate(['content-manage/add-cms', { item: item._id }]);
+    this.router.navigate(['dashboard/content-manage/add-cms', { item: item._id }]);
   }
 
   delete(item) {
@@ -71,7 +72,7 @@ export class ViewCMSComponent implements OnInit {
   }
 
   newCMS() {
-    this.router.navigate(['content-manage/add-cms']);
+    this.router.navigate(['dashboard/content-manage/add-cms']);
   }
 
   goSubpage(item) {

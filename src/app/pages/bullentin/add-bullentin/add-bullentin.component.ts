@@ -70,7 +70,7 @@ export class AddBullentinComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('letterData', data);
-          this.router.navigate(['bullentin/view-bullentin']);
+          this.router.navigate(['dashboard/bullentin/view-bullentin']);
           return true;
         },
         error => {
@@ -88,7 +88,7 @@ export class AddBullentinComponent implements OnInit {
         (data) => {
           console.log('letterData', data);
           this.isLoading = false;
-          this.router.navigate(['bullentin/view-bullentin']);
+          this.router.navigate(['dashboard/bullentin/view-bullentin']);
           return true;
         },
         error => {

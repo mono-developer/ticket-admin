@@ -6,11 +6,11 @@
     <mat-step [stepControl]="firstFormGroup">
 
         <div class="step-border">
-            <form class="step1" [formGroup]="firstFormGroup">
+            <form class="step1" #form="ngForm">
                 <ng-template matStepLabel>STEP 1</ng-template>
 
                 <mat-form-field >
-                    <mat-select placeholder="Select a Category" name="category" [(ngModel)]="eventData.category_id" formControlName="oneCtrl" required>
+                    <mat-select placeholder="Select a Category" name="category" [(ngModel)]="eventData.category_id" required>
                         <mat-option *ngFor="let category of categoryList" [value]="category._id">
                         {{ category.name }}
                         </mat-option>
@@ -18,20 +18,20 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input type="text" matInput placeholder="Name of the Event" name="name" [(ngModel)]="eventData.event_name" formControlName="twoCtrl" required>
+                    <input type="text" matInput placeholder="Name of the Event" name="name" [(ngModel)]="eventData.event_name" required>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input matInput placeholder="Meeting Place" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" [(ngModel)]="eventData.meeting_place" #search [formControl]="searchControl">
+                    <input matInput placeholder="Meeting Place" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" name="meeting_place" [(ngModel)]="eventData.meeting_place" #search [formControl]="searchControl" required>
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input type="text" matInput placeholder="City" name="city" [(ngModel)]="eventData.city" formControlName="fourCtrl" required>
+                    <input type="text" matInput placeholder="City" name="city" [(ngModel)]="eventData.city" required>
                 </mat-form-field>
 
                 <div class="org_details">
                     <mat-form-field>
-                        <mat-select placeholder="Select Organizor" name="org" [(ngModel)]="eventData.org_id" formControlName="fiveCtrl" required>
+                        <mat-select placeholder="Select Organizor" name="org" [(ngModel)]="eventData.org_id" required>
                             <mat-option *ngFor="let org of organizorList" [value]="org._id">
                                 {{ org.name }}
                             </mat-option>
@@ -42,7 +42,7 @@
                     </button>
                 </div>
 
-                <button class="submit" mat-button matStepperNext>Next</button>
+                <button class="submit" color="secondary" mat-raised-button style="margin-left: 8px;" [disabled]="!form.valid || !eventData.category_id || !eventData.org_id || !eventData.meeting_place" matStepperNext>Next</button>
             </form>
         </div>
         <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
@@ -137,8 +137,8 @@
                 </div>
 
                 <div class="btns">
-                    <button style="float: left;" mat-button matStepperPrevious>Back</button>
-                    <button style="float: right;" mat-button matStepperNext>Next</button>
+                    <button style="float: left;" color="secondary" mat-raised-button mat-button>Back</button>
+                    <button style="float: right;"color="secondary" mat-raised-button mat-button matStepperNext [disabled]="!eventData.event_details || !eventData.seat_details">Next</button>
                 </div>
 
             </form>
@@ -149,7 +149,7 @@
     <!-- Step 3 -->
     <mat-step [stepControl]="thirdFormGroup">
         <div class="step-border">
-            <form [formGroup]="thirdFormGroup">
+            <form #form3="ngForm">
                 <ng-template matStepLabel>Step3</ng-template>
 
                 <!-- Image Event -->
@@ -189,7 +189,7 @@
                     </div>
                     <div class="right-event">
                         <mat-form-field>
-                            <mat-select placeholder="Select Counpon" name="coupon" [(ngModel)]="eventData.coupon_id" formControlName="thirdCtrl" required>
+                            <mat-select placeholder="Select Counpon" name="coupon" [(ngModel)]="eventData.coupon_id"  required>
                                 <mat-option *ngFor="let item of couponList" [value]="item._id">
                                 {{item.pro_code}}
                                 </mat-option>
@@ -204,7 +204,7 @@
                         <p class="top-title">Reservation</p>
                     </div>
                     <div class="right-event">
-                        <mat-slide-toggle [(ngModel)]="eventData.reservation" formControlName="fourthCtrl" required></mat-slide-toggle>
+                        <mat-slide-toggle [(ngModel)]="eventData.reservation" name="reservation" required></mat-slide-toggle>
                     </div>
                 </div>
 
@@ -226,7 +226,7 @@
 
                 <div class="btns">
                     <button style="float: left;" mat-button matStepperPrevious>Back</button>
-                    <button style="float: right;" mat-button matStepperNext>Next</button>
+                    <button style="float: right;" mat-button matStepperNext [disabled]="!form3.valid || !eventData.ticket_image || !eventData.reservation || !eventData.coupon_id || !eventData.event_map || !eventData.event_bg">Next</button>
                 </div>
             </form>
         </div>
@@ -235,7 +235,7 @@
 
   <!-- Step 4 -->
     <mat-step [stepControl]="fourFormGroup">
-        <form [formGroup]="fourFormGroup">
+        <form #form4="ngForm">
             <ng-template matStepLabel>Step4</ng-template>
 
             <div class="step-border">
@@ -247,13 +247,13 @@
                     <div class="right-event">
                         <div fxFlex>
                             <div fxLayout="column">
-                                <mat-checkbox [(ngModel)]="eventData.value_print" style="margin-bottom: 15px;" formControlName="sixCtrl" required>
+                                <mat-checkbox [(ngModel)]="eventData.value_print" style="margin-bottom: 15px;" name="print" required>
                                     Print ballot directly
                                 </mat-checkbox>
-                                <mat-checkbox color="primary" [(ngModel)]="eventData.value_pick" style="margin-bottom: 15px;" formControlName="sevenCtrl" required>
+                                <mat-checkbox color="primary" [(ngModel)]="eventData.value_pick" style="margin-bottom: 15px;" name="pick" required>
                                     Pick up the ticket at the point of sale
                                 </mat-checkbox>
-                                <mat-checkbox color="warn" [(ngModel)]="eventData.value_purchaser" style="margin-bottom: 15px;" formControlName="eightCtrl" required>
+                                <mat-checkbox color="warn" [(ngModel)]="eventData.value_purchaser" style="margin-bottom: 15px;" name="purchaser" required>
                                     Purchaser will send a ballot requesting an additional charge
                                 </mat-checkbox>
                             </div>
@@ -268,7 +268,7 @@
                     </div>
                     <div class="right-event">
                         <mat-form-field>
-                            <textarea matInput placeholder="Information Additional" name="comment" [(ngModel)]="eventData.add_info" formControlName="nineCtrl" required></textarea>
+                            <textarea matInput placeholder="Information Additional" name="comment" [(ngModel)]="eventData.add_info" required></textarea>
                         </mat-form-field>
                     </div>
                 </div>
@@ -280,7 +280,7 @@
                     </div>
                     <div class="right-event">
                         <mat-form-field>
-                            <textarea matInput placeholder="Information of Program" name="comment" [(ngModel)]="eventData.program_info" formControlName="tenCtrl" required></textarea>
+                            <textarea matInput placeholder="Information of Program" name="comment" [(ngModel)]="eventData.program_info" required></textarea>
                         </mat-form-field>
                     </div>
                 </div>
@@ -292,7 +292,7 @@
                     </div>
                     <div class="right-event">
                         <mat-form-field>
-                            <mat-select placeholder="Select State" [(ngModel)]="eventData.status" formControlName="elevenCtrl" required>
+                            <mat-select placeholder="Select State" [(ngModel)]="eventData.status" name="state" required>
                                 <mat-option *ngFor="let item of stateList" [value]="item.state">
                                 {{ item.name }}
                                 </mat-option>
@@ -303,7 +303,7 @@
 
                 <div class="btns">
                     <button style="float: left;" mat-button matStepperPrevious>Back</button>
-                    <button style="float: right;" mat-button matStepperNext (click)="done()">Done</button>
+                    <button style="float: right;" mat-button matStepperNext [disabled]="!form4.valid || !eventData.status || !eventData.program_info || !eventData.add_info" (click)="done()">Done</button>
                 </div>
             </div>
         </form>

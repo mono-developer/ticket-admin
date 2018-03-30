@@ -76,7 +76,7 @@ export class AddCouponComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('couponData', data);
-          this.router.navigate(['coupon-manage/view-coupon']);
+          this.router.navigate(['dashboard/coupon-manage/view-coupon']);
           return true;
         },
         error => {
@@ -94,7 +94,7 @@ export class AddCouponComponent implements OnInit {
         (data) => {
           this.isLoading = false;
           console.log('couponData', data);
-          this.router.navigate(['coupon-manage/view-coupon']);
+          this.router.navigate(['dashboard/coupon-manage/view-coupon']);
           return true;
         },
         error => {

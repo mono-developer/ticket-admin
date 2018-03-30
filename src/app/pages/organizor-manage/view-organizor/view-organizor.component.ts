@@ -51,7 +51,7 @@ export class ViewOrganizorComponent implements OnInit {
   }
 
   edit(item: any) {
-    this.router.navigate(['organizor-manage/add-organizor', { item: item._id }]);
+    this.router.navigate(['dashboard/organizor-manage/add-organizor', { item: item._id }]);
   }
 
   delete(item) {

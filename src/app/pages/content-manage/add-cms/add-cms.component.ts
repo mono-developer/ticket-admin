@@ -75,7 +75,7 @@ export class AddCMSComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('cmsData', data);
-          this.router.navigate(['content-manage/view-cms']);
+          this.router.navigate(['dashboard/content-manage/view-cms']);
           return true;
         },
         error => {
@@ -93,7 +93,7 @@ export class AddCMSComponent implements OnInit {
         (data) => {
           this.isLoading = false;
           console.log('cmsData', data);
-          this.router.navigate(['content-manage/view-cms']);
+          this.router.navigate(['dashboard/content-manage/view-cms']);
           return true;
         },
         error => {

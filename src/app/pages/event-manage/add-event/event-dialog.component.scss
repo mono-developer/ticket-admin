@@ -12,29 +12,31 @@
   }
 }
 .mat-dialog-actions {
-  width: 90%;
+  width: 250px;
   margin: 0 auto;
+  padding: 0 12px;
   button {
-    background: #ff9702;
-    color: #fff;
-    width: 30%;
-    margin: 20px 10%;
+    width: 100px;
+    border: 2px solid green;
+    width: 100px;
   }
+}
+
+.form-contanier{
+  padding: 16px;
+  display: block !important;
 }
 
 @media only screen and (max-width: 520px) {
   .date_picker {
     width: 100%;
   }
-  mat-form-field {
-    width: 100%;
-  }
+
   .mat-dialog-actions {
     button {
       margin: 20px 5%;
     }
   }
-
 }
 
 label {

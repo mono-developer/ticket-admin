@@ -49,7 +49,7 @@ export class ViewSaleUsersComponent implements OnInit {
   }
 
   edit(item: any) {
-    this.router.navigate(['sales-point/add-sale-users', { item: item._id }]);
+    this.router.navigate(['dashboard/sales-point/add-sale-users', { item: item._id }]);
   }
 
   delete(item: any) {

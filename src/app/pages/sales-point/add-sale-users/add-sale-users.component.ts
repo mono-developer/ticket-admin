@@ -74,7 +74,7 @@ export class AddSaleUsersComponent implements OnInit {
       .subscribe(
         (data) => {
           console.log('salesUserData', data);
-          this.router.navigate(['sales-point/view-sale-users']);
+          this.router.navigate(['dashboard/sales-point/view-sale-users']);
           return true;
         },
         error => {
@@ -92,7 +92,7 @@ export class AddSaleUsersComponent implements OnInit {
         (data) => {
           console.log('userData', data);
           this.isLoading = false;
-          this.router.navigate(['sales-point/view-sale-users']);
+          this.router.navigate(['dashboard/sales-point/view-sale-users']);
           return true;
         },
         error => {

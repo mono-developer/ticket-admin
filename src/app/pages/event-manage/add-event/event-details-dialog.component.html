@@ -2,19 +2,23 @@
 
 <h1 mat-dialog-title>Add Event Details</h1>
 <div mat-dialog-content>
-  <mat-form-field>
-    <input matInput [matDatepicker]="picker1" placeholder="Event Start Date" [(ngModel)]="data.modalData.date">
-    <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
-    <mat-datepicker #picker1></mat-datepicker>
-  </mat-form-field>
+  <form #form="ngForm">
+    <div fxLayout="column" style="padding: 16px;">
+      <mat-form-field>
+        <input matInput name="date" [matDatepicker]="picker1" placeholder="Event Start Date" [(ngModel)]="data.modalData.date" required>
+        <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
 
-  <mat-form-field>
-    <input type="time" matInput placeholder="Event Start Time" [(ngModel)]="data.modalData.time">
-  </mat-form-field>
+      <mat-form-field>
+        <input type="time" matInput placeholder="Event Start Time" name="time" [(ngModel)]="data.modalData.time" required>
+      </mat-form-field>
+    </div>
+    </form>
 
 </div>
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.modalData" cdkFocusInitial>Ok</button>
+  <button mat-raised-button [mat-dialog-close]="data.modalData" [disabled]="!form.valid" cdkFocusInitial>Ok</button>
 </div>
 

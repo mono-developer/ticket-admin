@@ -1,100 +1,158 @@
 
-<div class="container">
+<div class="booking-container">
 
-  <mat-card fxFlex="90%" style="padding: 0;">
-    <mat-toolbar color="primary">Payment Integrating</mat-toolbar>
-
-    <mat-card-content>
-      <mat-tab-group [selectedIndex]="selectedIndex">
-
-        <mat-tab label="ACCOUNT DETAILS">
-          <form>
-            <div fxLayout="column" style="padding: 16px;">
-              <div class="description">
-                <div class="field">
-                  <img src="../../../assets/img/backgrounds/gallery-1.jpg" alt="">
-                </div>
-                <div class="about">
-                  <h2>Great Concert</h2>
-                  <mat-form-field>
-                    <mat-select placeholder="Select Date" ([ngModel])="selectedDate" #t (change)="onChange(t.value)" >
-                      <mat-option *ngFor="let item of eventData.event_details" [value]="item.date + item.time">
-                        {{ item.date | date: 'dd/mm/yyyy' }}, {{item.time}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
-                  <div class="location">
-                    <img src="assets/img/icons/location.png" alt="">
-                    <button mat-button (click)="openLocationDialog(eventData.meeting_place)">{{eventData.meeting_place}}</button>
-                  </div>
-                </div>
-              </div>
-
-              <table class="table" *ngIf="table">
-                <thead>
-                  <tr>
-                    <th>Type of ticket</th>
-                    <th>Date range</th>
-                    <th>Service tax</th>
-                    <th>Discount</th>
-                    <th>Price of the Bill</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr *ngFor="let item of eventData.seat_details">
-                    <td>{{item.type_charge}}</td>
-                    <td>{{item.date_start | date: 'dd/mm/yyyy'}} - {{item.date_end | date: 'dd/mm/yyyy'}}</td>
-                    <td>{{item.discount_price}}</td>
-                    <td>{{item.ticket_price}}</td>
-                    <td>{{item.amount}}</td>
-                  </tr>
-                </tbody>
-              </table>
-
-
-              <div fxLayout="row" fxLayoutAlign="end center" class="page__control">
-                <button mat-button type="button" disabled>Previous</button>
-                <button color="primary" mat-raised-button style="margin-left: 8px;" [disabled]="!table" (click)="nextStep()" type="button">Next</button>
-              </div>
-
+  <mat-horizontal-stepper  #stepper="matHorizontalStepper">
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Select Date</ng-template>
+        <div fxLayout="column" style="padding: 16px;">
+          <div class="description">
+            <div class="field date_field">
+              <img src="../../../assets/img/backgrounds/gallery-1.jpg" alt="">
             </div>
-          </form>
-        </mat-tab>
-
-        <mat-tab label="YOUR ADDRESS" [disabled]="!table">
-          <form #form2="ngForm">
-            <div fxLayout="column" style="padding: 16px;">
-
-              <div fxLayout="row" fxLayoutAlign="end center">
-                <button mat-button type="button" (click)="previousStep()">Previous</button>
-                <button color="primary" mat-raised-button style="margin-left: 8px;" [disabled]="!form2.valid" (click)="nextStep()" type="button">Next</button>
+            <div class="about date_about">
+              <h2>Great Concert</h2>
+              <mat-form-field>
+                <mat-select placeholder="Select Date" ([ngModel])="s__Date" #t (change)="onChange(t.value)">
+                  <mat-option *ngFor="let item of eventData.event_details" [value]="item.date + item.time">
+                    {{ item.date | date: 'dd/mm/yyyy' }}, {{item.time}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+              <div class="location">
+                <img src="assets/img/icons/location.png" alt="">
+                <button mat-button (click)="openLocationDialog(eventData.meeting_place)">{{eventData.meeting_place}}</button>
               </div>
             </div>
-          </form>
-        </mat-tab>
-
-        <mat-tab label="BILLING DETAILS" [disabled]="!form2.valid">
-          <form #form3="ngForm">
-            <div fxLayout="column" style="padding: 16px;">
-
-              <div fxLayout="row" fxLayoutAlign="end center">
-                <button mat-button type="button" (click)="previousStep()">Previous</button>
-                <button color="primary" mat-raised-button style="margin-left: 8px;" [disabled]="!form3.valid" (click)="nextStep()" type="button">Next</button>
-              </div>
-            </div>
-          </form>
-        </mat-tab>
-
-        <mat-tab label="CONFIRMATION" [disabled]="!form3.valid">
-          <div fxLayout="column" style="padding: 16px;">
-            <h1>Congratulations!</h1>
-            <p>You submitted the form.</p>
           </div>
-        </mat-tab>
 
-      </mat-tab-group>
-    </mat-card-content>
-  </mat-card>
+          <table class="table" *ngIf="isStep1Table">
+            <thead>
+              <tr>
+                <th>Location</th>
+                <th>Date range</th>
+                <th>Service tax</th>
+                <th>Discount</th>
+                <th>Price of the Bill</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let item of eventData.seat_details">
+                <td>{{item.location}}</td>
+                <td>{{item.date_start | date: 'dd/mm/yyyy'}} - {{item.date_end | date: 'dd/mm/yyyy'}}</td>
+                <td>{{item.discount_price}}</td>
+                <td>{{item.ticket_price}}</td>
+                <td>{{item.amount}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div fxLayout="row" fxLayoutAlign="end center" class="page__control">
+            <button mat-button type="button" disabled>Previous</button>
+            <button color="primary" mat-raised-button style="margin-left: 8px;" [disabled]="!isStep1Table" matStepperNext type="button">Next</button>
+          </div>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <form>
+        <ng-template matStepLabel>Fill out your address</ng-template>
+        <div class="description">
+          <div class="about date_about">
+            <h2>{{eventData.event_name}}</h2>
+            <!-- <p><span>Organizer Name: </span> {{eventData.org}} </p>
+            <p><span>Date: </span> {{s__Date}} </p>
+            <p><span>Meeting Place: </span> {{eventData.meeting_place}} </p> -->
+
+            <table class="data__table">
+              <tbody>
+                <tr>
+                  <td>Organizer:</td>
+                  <td>{{eventData.org}}</td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td>Date:</td>
+                  <td>{{s__Date}}</td>
+                </tr>
+              </tbody>
+              <tbody>
+                <tr>
+                  <td>Meeting Place:</td>
+                  <td>{{eventData.meeting_place}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="field date_field">
+            <img src="../../../assets/img/backgrounds/gallery-1.jpg" alt="">
+          </div>
+        </div>
+
+        <div class="description">
+          <div class="field location_field">
+            <img src="../../../assets/img/backgrounds/sseat.jpg" alt="">
+          </div>
+          <div class="about location_about">
+            <mat-form-field>
+              <mat-select placeholder="Select your Seat" ([ngModel])="s__Location" #b (change)="onChangedLocation(b.value)">
+                <mat-option *ngFor="let item of eventData.seat_details" [value]="item.location">
+                  {{ item.location }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="isStep2Table">
+              <input type="number" matInput placeholder="Quantity" ([ngModel])="s__quantity" name="quantity" required>
+            </mat-form-field>
+
+            <mat-form-field *ngIf="isStep2Table">
+              <mat-select placeholder="Favorite Ticket" ([ngModel])="s__ballot" name="ballot" required>
+                <mat-option *ngFor="let item of ballotList" [value]="item.value">
+                  {{ item.title }}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <table class="table" *ngIf="isStep2Table">
+          <thead>
+            <tr>
+              <th>Location</th>
+              <th>Date range</th>
+              <th>Service tax</th>
+              <th>Discount</th>
+              <th>Price of the Bill</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>{{locationData.location}}</td>
+              <td>{{locationData.date_start | date: 'dd/mm/yyyy'}} - {{locationData.date_end | date: 'dd/mm/yyyy'}}</td>
+              <td>{{locationData.discount_price}}</td>
+              <td>{{locationData.ticket_price}}</td>
+              <td>{{locationData.amount}}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div fxLayout="row" fxLayoutAlign="end center" class="page__control">
+          <button mat-button matStepperPrevious>Back</button>
+          <button color="primary" mat-button mat-raised-button style="margin-left: 8px;" [disabled]="!isStep2Table" matStepperNext type="button">Next</button>
+        </div>
+      </form>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      You are now done.
+      <div >
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button (click)="stepper.reset()">Reset</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
 
 
 </div>

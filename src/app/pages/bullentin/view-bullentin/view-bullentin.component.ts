@@ -49,7 +49,7 @@ export class ViewBullentinComponent implements OnInit {
 
   edit(item: any) {
     console.log("senddata",item);
-    this.router.navigate(['bullentin/add-bullentin', { item: item._id }]);
+    this.router.navigate(['dashboard/bullentin/add-bullentin', { item: item._id }]);
   }
 
   delete(item: any) {
