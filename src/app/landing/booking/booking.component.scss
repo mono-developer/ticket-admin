@@ -1,4 +1,11 @@
 
+mat-horizontal-stepper{
+  min-height: 100%;
+  background: #c9c9c9;
+}
+
+
+
 .booking-container{
   width: 100%;
   max-width: 970px;
@@ -113,6 +120,76 @@ table{
 
 agm-map {
   height: 300px;
+}
+
+// Booking Information
+
+.event_details {
+  display: flex;
+  align-items: center;
+  img{
+    width: 500px;
+    display: block;
+    margin: 0 auto;
+    height: 100%;
+    margin-right: 50px;
+  }
+  table{
+    width: 100%;
+    border: none;
+    background: transparent;
+    td:nth-child(1){
+      font-size: 18px;
+      color: #000;
+      text-align: center;
+      width: 40%;
+    }
+    td:nth-child(2){
+      font-size: 16px;
+      color: #3e3e3e;
+    }
+  }
+}
+
+.coupon{
+  display: flex;
+  width: 100%;
+  .discount-coupon{
+    width: 50%;
+    padding: 20px;
+    .apply{
+      display: flex;
+      width: 100%;
+      .coupon_input{
+        width: 60%;
+        height: 30px;
+        font-size: 20px;
+        background: #f3f2f2ed;
+        display: block;
+      }
+      button{
+        background: green;
+        margin-left: 20px;
+        height: 35px;
+        color: #fff;
+      }
+    }
+  }
+
+  .total_value{
+    width: 100%;
+    background: #fff;
+    thead{
+      th {
+        background: transparent;
+        color: tomato;
+        width: 50%;
+      }
+
+    }
+
+
+  }
 }
 
 

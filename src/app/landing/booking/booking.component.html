@@ -2,6 +2,8 @@
 <div class="booking-container">
 
   <mat-horizontal-stepper  #stepper="matHorizontalStepper">
+
+    <!-- Step 1 -->
     <mat-step>
       <form>
         <ng-template matStepLabel>Select Date</ng-template>
@@ -19,9 +21,10 @@
                   </mat-option>
                 </mat-select>
               </mat-form-field>
-              <div class="location">
+              <div class="location" *ngIf="eventData.meeting_place" >
                 <img src="assets/img/icons/location.png" alt="">
-                <button mat-button (click)="openLocationDialog(eventData.meeting_place)">{{eventData.meeting_place}}</button>
+                <button mat-button (click)="openLocationDialog(eventData.meeting_place)" style="padding: 0">{{eventData.meeting_place}}</button>
+                <img src="assets/img/icons/navigator.png" style="margin-bottom: -5px" alt="" (mouseenter)="openLocationDialog(eventData.meeting_place)">
               </div>
             </div>
           </div>
@@ -46,17 +49,19 @@
               </tr>
             </tbody>
           </table>
-          <div fxLayout="row" fxLayoutAlign="end center" class="page__control">
-            <button mat-button type="button" disabled>Previous</button>
-            <button color="primary" mat-raised-button style="margin-left: 8px;" [disabled]="!isStep1Table" matStepperNext type="button">Next</button>
-          </div>
+
         </div>
       </form>
+      <div fxLayout="row" fxLayoutAlign="end center" class="page__control">
+        <button mat-button type="button" disabled>Previous</button>
+        <button color="primary" mat-raised-button style="margin-left: 8px;" [disabled]="!isStep1Table" matStepperNext type="button">Next</button>
+      </div>
     </mat-step>
 
+    <!-- Step 1 -->
     <mat-step>
       <form>
-        <ng-template matStepLabel>Fill out your address</ng-template>
+        <ng-template matStepLabel>Select Seat and Ticket</ng-template>
         <div class="description">
           <div class="about date_about">
             <h2>{{eventData.event_name}}</h2>
@@ -143,13 +148,130 @@
         </div>
       </form>
     </mat-step>
+    <!-- Step 3 -->
+    <mat-step>
+      <ng-template matStepLabel>Booking Information</ng-template>
+
+        <div class="event_details">
+          <img src="../../../assets/img/backgrounds/gallery-1.jpg" alt="">
+
+          <table>
+            <h2>Event Details</h2>
+            <tbody>
+              <tr>
+                <td>Organizer Name:</td>
+                <td>rewqrewqrewq</td>
+              </tr>
+              <tr>
+                <td>Date:</td>
+                <td>{{s__Date}}</td>
+              </tr>
+              <tr>
+                <td>Meeting Place:</td>
+                <td>{{eventData.meeting_place}}</td>
+              </tr>
+
+            </tbody>
+          </table>
+        </div>
+
+        <h2>Booking Information</h2>
+        <div>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>Ticket Category</th>
+                <th>Ticket Quantity</th>
+                <th>Ticket Price</th>
+                <th>Total Price</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>ewqrewqrew</td>
+                <td>rewqrewqrewq</td>
+                <td>ewqrewqrew</td>
+                <td>rewqrewqrewq</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center" class="page__control">
+          <button mat-button matStepperPrevious>Back</button>
+          <button color="primary" mat-button mat-raised-button style="margin-left: 8px;" matStepperNext type="button">Next</button>
+        </div>
+    </mat-step>
+
 
     <mat-step>
-      <ng-template matStepLabel>Done</ng-template>
-      You are now done.
-      <div >
+      <ng-template matStepLabel>PSE Payment</ng-template>
+      <div class="description">
+        <div class="about date_about">
+          <h2>{{eventData.event_name}}</h2>
+          <table class="data__table">
+            <tbody>
+              <tr>
+                <td>Organizer:</td>
+                <td>{{eventData.org}}</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>Date:</td>
+                <td>{{s__Date}}</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>Meeting Place:</td>
+                <td>{{eventData.meeting_place}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="field date_field">
+          <img src="../../../assets/img/backgrounds/gallery-1.jpg" alt="">
+        </div>
+      </div>
+      <div class="coupon">
+        <div class="discount-coupon">
+          <h3>DISCOUNT COUPON</h3>
+          <div class="apply">
+            <input type="number" class="coupon_input" placeholder="1234">
+            <button mat-button>Apply Coupon</button>
+          </div>
+        </div>
+        <table class="total_vaule">
+          <thead>
+            <tr>
+              <th>Ticket Category</th>
+              <th>Ticket Quantity</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Organizer:</td>
+              <td>{{eventData.org}}</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <td>Date:</td>
+              <td>{{s__Date}}</td>
+            </tr>
+          </tbody>
+          <tbody>
+            <tr>
+              <td>Meeting Place:</td>
+              <td>{{eventData.meeting_place}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="end center" class="page__control">
         <button mat-button matStepperPrevious>Back</button>
-        <button mat-button (click)="stepper.reset()">Reset</button>
+        <button color="primary" mat-button mat-raised-button style="margin-left: 8px;" matStepperNext type="button">Next</button>
       </div>
     </mat-step>
   </mat-horizontal-stepper>

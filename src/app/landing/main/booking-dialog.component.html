@@ -2,18 +2,19 @@
 
 <h1 mat-dialog-title>{{data.name}} </h1>
 <div mat-dialog-content>
-  <mat-form-field>
-    <input type="text"  placeholder="User Name" matInput [(ngModel)]="data.username">
-  </mat-form-field>
+  <form #form="ngForm">
+    <mat-form-field>
+      <input type="text" placeholder="User Name" name="username" matInput [(ngModel)]="data.username" required>
+    </mat-form-field>
 
-  <mat-form-field>
-    <input type="email"  placeholder="Email" matInput [(ngModel)]="data.userEmail">
-  </mat-form-field>
-
+    <mat-form-field>
+      <input type="email" placeholder="Email" name="email" matInput [(ngModel)]="data.userEmail" required>
+    </mat-form-field>
+  </form>
 </div>
 
 <div mat-dialog-actions class="btns">
   <button mat-button class="left-btn" (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Book</button>
+  <button mat-button [mat-dialog-close]="data" [disabled]="!form.valid" cdkFocusInitial>Book</button>
 </div>
 

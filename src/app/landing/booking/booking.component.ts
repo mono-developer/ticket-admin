@@ -97,6 +97,10 @@ export class BookingComponent implements OnInit {
     this.locationData = locationData[0];
   }
 
+  next() {
+
+  }
+
 }
 
 @Component({

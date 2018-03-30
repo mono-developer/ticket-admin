@@ -105,7 +105,6 @@ export class MainComponent implements OnInit, AfterViewInit {
     }
 
     openBookingDialog(eventData): void {
-        console.log(eventData);
         let dialogRef = this.dialog.open(BookingDialogComponent, {
         width: '350px',
         data: { name: eventData.event_name, username: this.username, userEmail: this.useremail }
@@ -113,7 +112,10 @@ export class MainComponent implements OnInit, AfterViewInit {
 
         dialogRef.afterClosed().subscribe(result => {
             console.log(result);
-          this.router.navigate(['booking', { id: eventData._id}]);
+            if(result){
+              this.router.navigate(['booking', { id: eventData._id }]);
+            }
+
         });
     }
 
@@ -142,7 +144,9 @@ export class BookingDialogComponent {
 
 constructor(
     public dialogRef: MatDialogRef<BookingDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) { }
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+      console.log(this.data);
+    }
 
 onNoClick(): void {
         this.dialogRef.close();
