@@ -112,8 +112,9 @@ export class MainComponent implements OnInit, AfterViewInit {
 
         dialogRef.afterClosed().subscribe(result => {
             console.log(result);
+            let customerData = { name: result.username, email: result.userEmail }
             if(result){
-              this.router.navigate(['booking', { id: eventData._id }]);
+              this.router.navigate(['booking', { id: eventData._id, customName: result.username, customEmail: result.userEmail }]);
             }
 
         });

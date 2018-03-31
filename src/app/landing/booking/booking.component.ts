@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit, Inject, NgZone, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
+import { DatePipe } from '@angular/common';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
@@ -14,16 +15,27 @@ import { DataService } from "../../../provide/data-service";
 })
 export class BookingComponent implements OnInit {
 
+  id: string;
+
   isLinear: boolean = false;
   s__Date: any;
   s__Location: any;
-  s__quantity: number = 0;
-  s__ballot: any ;
+  s__quantity: number;
+  s__ballot: any;
   eventData: any = {};
+  organizorData: any = {};
+  customerInfo: any = {};
   isStep1Table: boolean = false;
   isStep2Table: boolean = false;
   locationData: any;
   ballotList: any;
+  bookingInfo: any = {};
+
+  id_number: string;
+  id_type: string;
+  complete_name: string;
+  address: string;
+  phone: string;
   constructor(
     private router: Router,
     public route: ActivatedRoute,
@@ -35,13 +47,17 @@ export class BookingComponent implements OnInit {
       { value: 0, title: 'Print the ballot direct.' },
       { value: 1, title: 'Pick ticket at sale point.' },
       { value: 2, title: 'Purchasers will send the tickets at an additional cost.'}
-    ]
+    ];
    }
 
   ngOnInit() {
-    let id = this.route.snapshot.paramMap.get('id');
+    this.id = this.route.snapshot.paramMap.get('id');
+    let cusName = this.route.snapshot.paramMap.get('customName');
+    let cusEmail = this.route.snapshot.paramMap.get('customEmail');
+    this.customerInfo = { name: cusName, email: cusEmail};
+    console.log(this.customerInfo);
     let url = this.baseService.eventURL;
-    this.getEventData(id, url);
+    this.getEventData(this.id, url);
   }
 
   getEventData(id, url) {
@@ -51,7 +67,7 @@ export class BookingComponent implements OnInit {
           // this.isLoading = false;
           console.log(data);
           this.eventData = data;
-          this.getOrganizorData();
+          this.getOrganizorData(this.eventData.org_id);
           return true;
         },
         err => {
@@ -61,8 +77,20 @@ export class BookingComponent implements OnInit {
         });
   }
 
-  getOrganizorData() {
-
+  getOrganizorData(id) {
+    let url = this.baseService.organizorURL;
+    this.dataService.getData(url + "/" + id)
+      .subscribe(
+        (data) => {
+          console.log(data);
+          this.organizorData = data;
+          return true;
+        },
+        err => {
+          // this.isLoading = false;
+          console.log('errorData', err);
+          return true;
+        });
   }
 
   openLocationDialog(location): void {
@@ -78,11 +106,10 @@ export class BookingComponent implements OnInit {
   }
 
   onChange(selectedValue:string) {
-    console.log(selectedValue);
+    console.log('selectedValue', selectedValue);
     let date = selectedValue.split("T");
-    let time = selectedValue.split("Z");
 
-    this.s__Date = time[1] + ' ' + date[0];
+    this.s__Date = date[0];
     this.isStep1Table = !!selectedValue;
 
     console.log(this.isStep1Table, this.s__Date);
@@ -97,8 +124,18 @@ export class BookingComponent implements OnInit {
     this.locationData = locationData[0];
   }
 
-  next() {
+  getBookingInfo() {
+    console.log(this.s__quantity);
+    this.bookingInfo = {
+      location: this.locationData.location,
+      quantity: this.s__quantity,
+      price: this.locationData.ticket_price,
+      total_price:  this.s__quantity * this.locationData.ticket_price
+    }
+  }
 
+  getPSE() {
+    console.log(this.id_number);
   }
 
 }

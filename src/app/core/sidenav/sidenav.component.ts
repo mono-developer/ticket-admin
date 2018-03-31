@@ -54,8 +54,8 @@ export class SidenavComponent implements OnInit, OnDestroy {
     this.breadcrumbService.addFriendlyNameForRoute('/dashboard/event-manage/add-event', "Add Events");
     this.breadcrumbService.addFriendlyNameForRoute('/dashboard/organizor-manage/view-organizor', "View Organizor");
     this.breadcrumbService.addFriendlyNameForRoute('/dashboard/organizor-manage/add-organizor', "Add Organizor");
-    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/reports/general-reports', "Gereral Reports");
-    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/reports/date-reports', "Date of Reports");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/financial-reports/general-reports', "Gereral Reports");
+    this.breadcrumbService.addFriendlyNameForRoute('/dashboard/financial-reports/date-reports', "Date of Reports");
     this.breadcrumbService.addFriendlyNameForRoute('/dashboard/coupon-manage/view-coupon', "View Coupons");
     this.breadcrumbService.addFriendlyNameForRoute('/dashboard/coupon-manage/add-coupon', "Add Coupon");
     this.breadcrumbService.addFriendlyNameForRoute('/dashboard/bullentin/view-bullentin', "View Bullentins");

@@ -50,8 +50,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent, LoginErrorDialog } from './settings/login/login.component';
 import { ForgotPasswordComponent } from './settings/forgot-password/forgot-password.component';
 import { RegisterComponent, SignupErrorDialog, PasswordErrorDialog } from './settings/register/register.component';
-import { GeneralReportsComponent } from './reports/general-reports/general-reports.component';
-import { DateReportsComponent } from './reports/date-reports/date-reports.component';
+import { GeneralReportsComponent } from './financial-reports/general-reports/general-reports.component';
+import { DateReportsComponent } from './financial-reports/date-reports/date-reports.component';
 
 import { PageHeaderModule } from "../core/page-header/page-header.module";
 import { MatIconRegistry, MatStepperModule, MatTableModule, MatDialogModule,} from "@angular/material";
@@ -96,18 +96,6 @@ import { ImageSize } from "../../provide/image-size";
     PasswordErrorDialog
   ],
   declarations: [
-    // WidgetComponent,
-    // LineChartWidgetComponent,
-    // SourceOverviewWidgetComponent,
-    // nvD3,
-    // BarChartComponent,
-    // LineChartComponent,
-    // RecentSalesComponent,
-    // PieChartComponent,
-    // GoogleMapsWidgetComponent,
-    // ActivityComponent,
-    // TrafficSourcesComponent,
-    // LoadingOverlayComponent,
     AddCMSComponent,
     ViewCMSComponent,
     ViewSaleUsersComponent,

@@ -22,8 +22,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/settings/login/login.component';
 import { ForgotPasswordComponent } from './pages/settings/forgot-password/forgot-password.component';
 import { RegisterComponent } from './pages/settings/register/register.component';
-import { GeneralReportsComponent } from './pages/reports/general-reports/general-reports.component';
-import { DateReportsComponent } from './pages/reports/date-reports/date-reports.component';
+import { GeneralReportsComponent } from './pages/financial-reports/general-reports/general-reports.component';
+import { DateReportsComponent } from './pages/financial-reports/date-reports/date-reports.component';
 
 import { AccessService } from '../provide/access.service';
 
@@ -44,8 +44,8 @@ const routes: Routes = [
         { path: 'users-manage', component: UsersManageComponent },
         { path: 'organizor-manage/view-organizor', component: ViewOrganizorComponent },
         { path: 'organizor-manage/add-organizor', component: AddOrganizorComponent },
-        { path: 'reports/general-reports', component: GeneralReportsComponent },
-        { path: 'reports/date-reports', component: DateReportsComponent },
+        { path: 'financial-reports/general-reports', component: GeneralReportsComponent },
+        { path: 'financial-reports/date-reports', component: DateReportsComponent },
         { path: 'coupon-manage/view-coupon', component: ViewCouponComponent },
         { path: 'coupon-manage/add-coupon', component: AddCouponComponent },
         { path: 'bullentin/view-bullentin', component: ViewBullentinComponent },

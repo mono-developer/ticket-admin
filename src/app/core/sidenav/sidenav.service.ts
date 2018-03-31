@@ -46,9 +46,9 @@ export class SidenavService {
     menu.addSubItem(organizor_manage, 'View Organizer', '/dashboard/organizor-manage/view-organizor', 1);
     menu.addSubItem(organizor_manage, 'Add Organizer', '/dashboard/organizor-manage/add-organizor', 2);
 
-    let reports = menu.addItem('Reports', 'report', null, 8);
-    menu.addSubItem(reports, 'Gereral Reports ', '/dashboard/reports/general-reports', 1);
-    menu.addSubItem(reports, 'Date of Reports', '/dashboard/reports/date-reports', 2);
+    let reports = menu.addItem('Financial Reports', 'report', null, 8);
+    menu.addSubItem(reports, 'Gereral Reports ', '/dashboard/financial-reports/general-reports', 1);
+    menu.addSubItem(reports, 'Date of Reports', '/dashboard/financial-reports/date-reports', 2);
 
     let coupon_manage = menu.addItem('Coupon Management', 'credit_card', null, 9);
     menu.addSubItem(coupon_manage, 'View Counpons', '/dashboard/coupon-manage/view-coupon', 1);

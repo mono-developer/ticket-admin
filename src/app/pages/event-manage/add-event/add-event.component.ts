@@ -198,12 +198,9 @@ export class AddEventComponent implements OnInit {
 
     dialogRef1.afterClosed().subscribe(result => {
       if(result == undefined){
-        console.log(result);
       }else{
-        console.log(result);
         this.eventData.event_details == undefined ? this.eventData.event_details = []: console.log(this.eventData.event_details);
         this.eventData.event_details.push(result);
-        console.log(this.eventData.event_details);
         this.dataSource1 = new MatTableDataSource(this.eventData.event_details);
       }
     });
@@ -271,7 +268,6 @@ export class AddEventComponent implements OnInit {
           this.eventData.event_bg = image;
         });
       }else{
-        console.log('fdsafds');
         this.isEventImge = true;
       }
     });
@@ -403,11 +399,9 @@ export class SeatDatailsDialogComponent {
 
   fileEvent(event: any) {
     const file = event.target.files[0];
-    console.log(file);
     this.imageSize.sizeImage(file, (size)=>{
       if (size.width == 960 && size.height == 450) {
         this.uploadImage(file, (image)=>{
-          console.log(image);
           this.data.modalData.detail_img = image;
         })
       } else {
@@ -421,7 +415,6 @@ export class SeatDatailsDialogComponent {
     this.uploadService.uploadfile(file).subscribe((data: any) => {
       this.isLoading = false;
       let imageURL = data.Location;
-      console.log(imageURL);
       callback(imageURL);
     }, (err) => {
       this.isLoading = false;
