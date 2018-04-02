@@ -1,6 +1,7 @@
 
-<div class="booking-container">
 
+<div class="booking-container">
+<mat-progress-bar mode="determinate" [value]="progressValue"></mat-progress-bar>
   <mat-horizontal-stepper  #stepper="matHorizontalStepper">
 
     <!-- Step 1 -->
@@ -295,6 +296,7 @@
       <button mat-button class="pse__btn" (click)="getPSE()"></button>
     </mat-step>
   </mat-horizontal-stepper>
+
 
 
 </div>

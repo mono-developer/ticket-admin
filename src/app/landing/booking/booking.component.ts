@@ -7,6 +7,8 @@ import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { BaseService } from "../../../provide/base-service";
 import { DataService } from "../../../provide/data-service";
+import { Observable } from 'rxjs/Rx';
+
 
 @Component({
   selector: 'ms-booking',
@@ -36,6 +38,8 @@ export class BookingComponent implements OnInit {
   complete_name: string;
   address: string;
   phone: string;
+
+  progressValue: any = 0;
   constructor(
     private router: Router,
     public route: ActivatedRoute,
@@ -51,6 +55,7 @@ export class BookingComponent implements OnInit {
    }
 
   ngOnInit() {
+
     this.id = this.route.snapshot.paramMap.get('id');
     let cusName = this.route.snapshot.paramMap.get('customName');
     let cusEmail = this.route.snapshot.paramMap.get('customEmail');
@@ -68,6 +73,7 @@ export class BookingComponent implements OnInit {
           console.log(data);
           this.eventData = data;
           this.getOrganizorData(this.eventData.org_id);
+          this.timeInterval();
           return true;
         },
         err => {
@@ -93,6 +99,41 @@ export class BookingComponent implements OnInit {
         });
   }
 
+  timeInterval() {
+    // Observable.interval(100)
+    //   .take(3000).map((x) => x/30)
+    //   .subscribe((x) => {
+    //     this.progressValue = x;
+    //     console.log(this.progressValue);
+    //     if(this.progressValue == 100){
+    //       // this.isTimerOver();
+    //       alert('fdsfdsafds');
+    //     }
+    //   })
+
+    Observable.interval(100)
+      .take(2000).map((x) => x/5)
+      .subscribe((x) => {
+        this.progressValue = x;
+        console.log(this.progressValue);
+        if (this.progressValue == 100) {
+          this.isTimerOver(this.customerInfo.name);
+        }
+      })
+  }
+
+  isTimerOver(name): void {
+    let dialogRef = this.dialog.open(TimeOverComponent, {
+      width: '350px',
+      data: name
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      this.router.navigate(['']);
+    });
+  }
+
   openLocationDialog(location): void {
     let dialogRef = this.dialog.open(LocationDialogComponent, {
       width: '350px',
@@ -101,7 +142,6 @@ export class BookingComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       console.log(result);
-
     });
   }
 
@@ -139,6 +179,32 @@ export class BookingComponent implements OnInit {
   }
 
 }
+
+@Component({
+  templateUrl: 'time-over.component.html',
+  styleUrls: ['./booking.component.scss'],
+})
+export class TimeOverComponent {
+
+  @ViewChild("search")
+  public searchElementRef: ElementRef;
+
+  constructor(
+    public dialogRef: MatDialogRef<TimeOverComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any) {
+
+      console.log(data);
+    }
+
+  ngOnInit() {
+    console.log(this.data);
+  }
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+}
+
 
 @Component({
   templateUrl: 'location-dialog.component.html',

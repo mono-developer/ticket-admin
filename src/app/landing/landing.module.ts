@@ -10,7 +10,7 @@ import { QuillModule } from 'ngx-quill';
 import { SwiperModule } from 'angular2-useful-swiper'; //or for angular-cli the path will be ../../node_modules/angular2-useful-swiper
 
 import { MainComponent, BookingDialogComponent, DescriptionDialogComponent } from './main/main.component';
-import { BookingComponent, LocationDialogComponent } from './booking/booking.component';
+import { BookingComponent, LocationDialogComponent, TimeOverComponent } from './booking/booking.component';
 import { AdminComponent } from './admin/admin.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SearchComponent } from './toolbar/search/search.component';
@@ -64,7 +64,8 @@ import { AgmCoreModule } from '@agm/core';
   entryComponents: [
     BookingDialogComponent,
     DescriptionDialogComponent,
-    LocationDialogComponent
+    LocationDialogComponent,
+    TimeOverComponent
   ],
   declarations: [
     MainComponent,
@@ -72,6 +73,7 @@ import { AgmCoreModule } from '@agm/core';
     DescriptionDialogComponent,
     BookingComponent,
     LocationDialogComponent,
+    TimeOverComponent,
     AdminComponent,
     ToolbarComponent,
     SearchComponent,

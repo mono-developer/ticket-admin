@@ -40,7 +40,7 @@ export class SidenavService {
     menu.addSubItem(event_manage, 'View Events', '/dashboard/event-manage/view-event', 1);
     menu.addSubItem(event_manage, 'Add Event', '/dashboard/event-manage/add-event', 2);
 
-    let user_manage = menu.addItem('User Management', 'person', '/users-manage', 6);
+    let user_manage = menu.addItem('User Management', 'person', '/dashboard/users-manage', 6);
 
     let organizor_manage = menu.addItem('Event Organizer', 'group_add', null, 7);
     menu.addSubItem(organizor_manage, 'View Organizer', '/dashboard/organizor-manage/view-organizor', 1);

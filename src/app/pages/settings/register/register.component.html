@@ -31,7 +31,7 @@
         </mat-form-field>
 
         <mat-form-field>
-          <mat-select placeholder="Select a Category" name="category" required>
+          <mat-select placeholder="Select a Category" [(ngModel)]="resData.access" name="category" required>
             <mat-option *ngFor="let access of accessList" [value]="access.level">
               {{ access.name }}
             </mat-option>
