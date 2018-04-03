@@ -2,6 +2,15 @@
 
 <div class="booking-container">
 <mat-progress-bar mode="determinate" [value]="progressValue"></mat-progress-bar>
+
+<!-- <div >Timer: {{minute}}: {{second}}s</div> -->
+<div class="timer">Timer:
+  <span>0{{minute}}</span>: <span>{{second}}</span> s
+</div>
+
+
+
+
   <mat-horizontal-stepper  #stepper="matHorizontalStepper">
 
     <!-- Step 1 -->

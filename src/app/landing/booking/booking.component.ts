@@ -39,7 +39,13 @@ export class BookingComponent implements OnInit {
   address: string;
   phone: string;
 
+  // Set timer counter
   progressValue: any = 0;
+  total_timer: any = 0;
+  second: any = 0;
+  minute: number = 0;
+
+
   constructor(
     private router: Router,
     public route: ActivatedRoute,
@@ -63,6 +69,7 @@ export class BookingComponent implements OnInit {
     console.log(this.customerInfo);
     let url = this.baseService.eventURL;
     this.getEventData(this.id, url);
+
   }
 
   getEventData(id, url) {
@@ -99,27 +106,29 @@ export class BookingComponent implements OnInit {
         });
   }
 
-  timeInterval() {
-    // Observable.interval(100)
-    //   .take(3000).map((x) => x/30)
-    //   .subscribe((x) => {
-    //     this.progressValue = x;
-    //     console.log(this.progressValue);
-    //     if(this.progressValue == 100){
-    //       // this.isTimerOver();
-    //       alert('fdsfdsafds');
-    //     }
-    //   })
 
-    Observable.interval(100)
-      .take(2000).map((x) => x/5)
-      .subscribe((x) => {
-        this.progressValue = x;
-        console.log(this.progressValue);
-        if (this.progressValue == 100) {
-          this.isTimerOver(this.customerInfo.name);
-        }
-      })
+
+  timeInterval() {
+
+    let timer = Observable.timer(30, 100);
+    const subscription = timer.subscribe(t => {
+      this.total_timer = t/10;
+      this.minute = Math.floor(this.total_timer / 60);
+      let second = this.total_timer%60;
+      if(this.total_timer % 60 == 0){
+        this.second = "00";
+      }else if(this.total_timer%60 > 0 && this.total_timer % 60 <10){
+        this.second = "0" + second.toString().slice(0, 1);
+      }else{
+        this.second = second.toString().slice(0, 2);
+      }
+
+      this.progressValue = t/30;
+      if (this.progressValue == 100) {
+        subscription.unsubscribe();
+        this.isTimerOver(this.customerInfo.name);
+      }
+    });
   }
 
   isTimerOver(name): void {

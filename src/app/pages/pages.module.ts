@@ -47,7 +47,7 @@ import { AddBullentinComponent } from './bullentin/add-bullentin/add-bullentin.c
 import { BannerImagesComponent } from './banner-images/banner-images.component';
 import { UsersManageComponent } from './users-manage/users-manage.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { LoginComponent, LoginErrorDialog } from './settings/login/login.component';
+import { LoginComponent, LoginErrorDialog, AccessErrorDialog } from './settings/login/login.component';
 import { ForgotPasswordComponent } from './settings/forgot-password/forgot-password.component';
 import { RegisterComponent, SignupErrorDialog, PasswordErrorDialog } from './settings/register/register.component';
 import { GeneralReportsComponent } from './financial-reports/general-reports/general-reports.component';
@@ -92,6 +92,7 @@ import { ImageSize } from "../../provide/image-size";
     EventDatailsDialogComponent,
     SeatDatailsDialogComponent,
     LoginErrorDialog,
+    AccessErrorDialog,
     SignupErrorDialog,
     PasswordErrorDialog
   ],
@@ -121,6 +122,7 @@ import { ImageSize } from "../../provide/image-size";
     EventDatailsDialogComponent,
     SeatDatailsDialogComponent,
     LoginErrorDialog,
+    AccessErrorDialog,
     SignupErrorDialog,
     PasswordErrorDialog
   ],

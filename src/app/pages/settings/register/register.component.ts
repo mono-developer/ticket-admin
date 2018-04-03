@@ -50,22 +50,22 @@ export class RegisterComponent implements OnInit {
   }
 
   signup() {
-    // this.isLoading = true;
+    this.isLoading = true;
     this.resData.status = false;
     console.log(this.resData);
-    // this.userService.signup(this.resData)
-    //   .subscribe(
-    //     (data) => {
-    //       this.isLoading = false;
-    //       sessionStorage.setItem('OAuthInfo', JSON.stringify(data));
-    //       this.router.navigate(['/login']);
-    //       return true;
-    //     },
-    //     error => {
-    //       this.isLoading = false;
-    //       this.openDialog();
-    //       return true;
-    //     });
+    this.userService.signup(this.resData)
+      .subscribe(
+        (data) => {
+          this.isLoading = false;
+          sessionStorage.setItem('OAuthInfo', JSON.stringify(data));
+          this.router.navigate(['/login']);
+          return true;
+        },
+        error => {
+          this.isLoading = false;
+          this.openDialog();
+          return true;
+        });
   }
 
   openDialog() {

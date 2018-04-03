@@ -225,6 +225,15 @@ agm-map {
   border: 3px solid #fff;
 }
 
+.timer{
+  font-size: 16px;
+  text-align: right;
+  span{
+    font-size: 20px;
+    color: #00f300;
+  }
+}
+
 .time__over{
   h2, p{
     text-align: center;
@@ -233,6 +242,7 @@ agm-map {
     width: 100px;
     margin: 0 auto;
     display: block;
+    border: 2px solid #3f51b5;
   }
 }
 

@@ -63,24 +63,35 @@ export class LoginComponent implements OnInit {
         (data) => {
           this.isLoading = false;
           console.log('DataLogin',data);
-          sessionStorage.setItem('OAuthInfo', JSON.stringify(data));
-          this.router.navigate(['/dashboard']);
+          if(data.user.status){
+            sessionStorage.setItem('OAuthInfo', JSON.stringify(data));
+            this.router.navigate(['/dashboard']);
+          }else{
+            this.accessError();
+          }
+
           return true;
         },
         err => {
           this.isLoading = false;
           console.log('errorData', err);
-          this.openDialog();
+          this.openPasswordError();
           return true;
         });
   }
 
-  openDialog() {
+  accessError() {
+    this.dialogRef = this.dialog.open(AccessErrorDialog, {
+      disableClose: false
+    });
+    this.dialogRef.afterClosed();
+  }
+
+  openPasswordError() {
     this.dialogRef = this.dialog.open(LoginErrorDialog, {
       disableClose: false
     });
-
-    this.dialogRef.afterClosed()
+    this.dialogRef.afterClosed();
   }
 
 }
@@ -89,7 +100,6 @@ export class LoginComponent implements OnInit {
   selector: 'ms-loginerror-dialog',
   template: `
   <h2>The login credentials are incorrect</h2>
-
   <mat-dialog-actions align="end">
     <button mat-button (click)="dialogRef.close()">OK</button>
   </mat-dialog-actions>
@@ -97,4 +107,17 @@ export class LoginComponent implements OnInit {
 })
 export class LoginErrorDialog {
   constructor(public dialogRef: MatDialogRef<LoginErrorDialog>) { }
+}
+
+@Component({
+  selector: 'ms-accesserror-dialog',
+  template: `
+  <h2>You have no access</h2>
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="dialogRef.close()">OK</button>
+  </mat-dialog-actions>
+  `
+})
+export class AccessErrorDialog {
+  constructor(public dialogRef: MatDialogRef<AccessErrorDialog>) { }
 }
