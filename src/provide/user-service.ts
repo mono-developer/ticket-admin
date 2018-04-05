@@ -24,4 +24,10 @@ export class UserService {
       .catch((error: any) => Observable.throw(error || 'Server error'));
   }
 
+  updateProfile(url, id,  body, token) {
+    return this.http.patch(url + "/" + id + "?token=" + token, body, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error || 'Server error'));
+  }
+
 }

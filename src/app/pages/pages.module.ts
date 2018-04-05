@@ -50,6 +50,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent, LoginErrorDialog, AccessErrorDialog } from './settings/login/login.component';
 import { ForgotPasswordComponent } from './settings/forgot-password/forgot-password.component';
 import { RegisterComponent, SignupErrorDialog, PasswordErrorDialog } from './settings/register/register.component';
+import { ProfileComponent } from './settings/profile/profile.component';
 import { GeneralReportsComponent } from './financial-reports/general-reports/general-reports.component';
 import { DateReportsComponent } from './financial-reports/date-reports/date-reports.component';
 
@@ -124,7 +125,8 @@ import { ImageSize } from "../../provide/image-size";
     LoginErrorDialog,
     AccessErrorDialog,
     SignupErrorDialog,
-    PasswordErrorDialog
+    PasswordErrorDialog,
+    ProfileComponent
   ],
   providers: [
     // D3ChartService,

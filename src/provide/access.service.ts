@@ -28,7 +28,6 @@ export class AccessService implements CanActivate {
   public canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     // Get token and set for all requests.
     this.canAccess = this.getCanAccess();
-    console.log("this.canaccess", this.canAccess);
     if (!this.canAccess) {
       this.router.navigate(['login']);
     }
@@ -37,10 +36,9 @@ export class AccessService implements CanActivate {
 
 
   getCanAccess(): boolean {
-    let oAuthRawInfo = sessionStorage.getItem('OAuthInfo');
-    console.log('oAuthRawInfo', oAuthRawInfo);
-    let oAuthInfo = JSON.parse(oAuthRawInfo);
-    console.log('oAuthInfo', oAuthInfo);
-    return oAuthRawInfo !== undefined && oAuthInfo !== null;
+    let userRawInfo = sessionStorage.getItem('userInfo');
+    let userInfo = JSON.parse(userRawInfo);
+    console.log('oAuthInfo', userInfo);
+    return userRawInfo !== undefined && userInfo !== null;
   }
 }

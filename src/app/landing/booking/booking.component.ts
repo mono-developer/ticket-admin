@@ -124,7 +124,7 @@ export class BookingComponent implements OnInit {
       }
 
       this.progressValue = t/30;
-      if (this.progressValue == 100) {
+      if (this.progressValue == 1) {
         subscription.unsubscribe();
         this.isTimerOver(this.customerInfo.name);
       }

@@ -9,14 +9,13 @@ import { Router, NavigationEnd } from "@angular/router";
 export class ToolbarUserButtonComponent implements OnInit {
 
   isOpen: boolean;
-  name: string;
+  userInfo: any;
   constructor(
     private router: Router,
   ) { }
 
   ngOnInit() {
-    let oAuthRawInfo = JSON.parse(sessionStorage.getItem('OAuthInfo'));
-    this.name = oAuthRawInfo.user.name;
+    this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
   }
 
   toggleDropdown() {
@@ -28,9 +27,13 @@ export class ToolbarUserButtonComponent implements OnInit {
   }
 
   goLandingPage() {
-    console.log(' go LandingPage');
-    sessionStorage.removeItem('OAuthInfo');
+    sessionStorage.removeItem('userInfo');
     this.router.navigate(['']);
+  }
+
+  goProfilePage() {
+    this.isOpen = false;
+    this.router.navigate(['dashboard/profile']);
   }
 
 }

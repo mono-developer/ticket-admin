@@ -65,16 +65,17 @@ export class SidenavService {
 
 
     ngOnInit() {
-      let oAuthRawInfo = JSON.parse(sessionStorage.getItem('OAuthInfo'));
-      this.name = oAuthRawInfo.user.name;
+      let userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+      this.name = userInfo.name;
       console.log(this.name);
     }
 
 
   addItem(name: string, icon: string, route: any, position: number, status: boolean, badge?: string, badgeColor?: string, customClass?: string) {
 
-    let oAuthRawInfo = JSON.parse(sessionStorage.getItem('OAuthInfo'));
-    let access = oAuthRawInfo.user.access;
+    let userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+    let access = userInfo.access;
+    console.log(access);
 
     let item = new SidenavItem({
       name: name,
@@ -89,7 +90,6 @@ export class SidenavService {
     });
 
     this._items.push(item);
-    console.log(this._items);
     this._itemsSubject.next(this._items);
 
     return item;

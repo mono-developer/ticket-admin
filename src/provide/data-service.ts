@@ -14,9 +14,9 @@ export class DataService {
   token: string;
 
   constructor(public http: Http, public baseService: BaseService) {
-    let oAuthRawInfo = sessionStorage.getItem('OAuthInfo');
-    let oAuthInfo = JSON.parse(oAuthRawInfo);
-    oAuthInfo ? this.token = oAuthInfo.token : '';
+    this.token = sessionStorage.getItem('token');
+    console.log(this.token);
+    // oAuthInfo ? this.token = oAuthInfo.token : '';
 
   }
 
@@ -33,6 +33,7 @@ export class DataService {
   }
 
   patchData(url, id, body) {
+    console.log(url + "/" + id + "?token=" + this.token);
     return this.http.patch(url + "/" + id + "?token=" + this.token, body, options)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error || 'Server error'));

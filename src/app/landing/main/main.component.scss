@@ -236,6 +236,68 @@ mat-form-field {
 
 }
 
+.category__tab{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin: 10px 5px;
+  width: 99%;
+  box-shadow: 1px 1px 7px;
+  .bg__img{
+    width: 260px;
+    img{
+      width: 90%;
+      margin: 0 auto;
+      display: block;
+    }
+  }
+  .head{
+    width: 300px;
+    h3, p{
+      margin: 5px;
+      color: #000;
+      span{
+        color: dimgray;
+      }
+    }
+    .info{
+      img{
+        width: 18px;
+        margin-bottom: -4px;
+      }
+      font-size: 14px;
+      margin-bottom: 4px;
+      color: #393939;
+    }
+  }
+  .pro_info{
+    width: 300px;
+    p{
+      color: #393939;
+    }
+  }
+  .actions{
+    padding: 0 15px;
+    .active{
+     width: 80px;
+     font-size: 16px;
+     background-color: #39a905;
+     border-radius: 15px;
+     text-align: center;
+     color: white;
+     margin: 0 auto;
+     margin-bottom: 5px;
+    }
+    button{
+      width: 120px;
+      margin: 0 auto;
+      display: block;
+      color: white;
+      margin: 5px;
+    }
+  }
+}
+
 
 .swiper-config1 {
     swiper{
@@ -259,7 +321,7 @@ mat-form-field {
     .swiper-slide {
       background-position: center;
       background-size: cover;
-      width: 400px;
+      width: 500px;
       height: 300px;
         .name{
           margin: 50px 0 20px 0;

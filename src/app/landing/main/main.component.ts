@@ -21,6 +21,7 @@ export class MainComponent implements OnInit, AfterViewInit {
 
     selectedIndex: number = 0;
     categoryData: any = [];
+    categoryList: any = [];
 
     config: any;
     config1: any;
@@ -75,8 +76,6 @@ export class MainComponent implements OnInit, AfterViewInit {
         };
     }
 
-
-
     ngAfterViewInit() {
         setTimeout(() => {
             window.dispatchEvent(new Event('resize'));
@@ -85,6 +84,7 @@ export class MainComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.getEventList();
+        this.getCategoryList();
     }
 
     getEventList() {
@@ -103,6 +103,35 @@ export class MainComponent implements OnInit, AfterViewInit {
                 return true;
             });
     }
+
+    getCategoryList() {
+        this.dataService.getData(this.baseService.categoryURL)
+            .subscribe(
+                (data) => {
+                    this.categoryList = data;
+                    console.log('categoryList', data);
+                    return true;
+                },
+                err => {
+                    console.log('errorData', err);
+                    return true;
+                });
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     openBookingDialog(eventData): void {
         let dialogRef = this.dialog.open(BookingDialogComponent, {

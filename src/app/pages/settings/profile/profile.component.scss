@@ -1,0 +1,73 @@
+@import "../../../../styles/_var";
+
+:host {
+  display: block;
+  background: #fff url('/assets/img/backgrounds/3.jpg') no-repeat center center fixed;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+
+.profile{
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  max-width: 790px;
+  background-color: lightgray;
+  top: 5%;
+  position: relative;
+  align-items: center;
+  .pro_img{
+    width: 35%;
+    padding: 20px;
+    img{
+      width: 100%;
+    }
+  }
+  .pro_info{
+    h2{
+      padding: 0 20px;
+    }
+    h2, p{
+      margin-bottom: 0;
+    }
+    .title {
+      width: 60px;
+      font-size: 16px;
+      text-align: center;
+    }
+    .value {
+      font-size: 18px;
+      font-weight: 500;
+    }
+  }
+}
+
+.uploadImg {
+  background: #ff9603;
+  display: table;
+  color: #fff;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  font-size: 20px;
+  padding: 0;
+  margin: 0 auto;
+  position: relative;
+  top: -35px;
+  border: 1px solid;
+
+  .mat-icon {
+    font-size: 25px;
+    text-align: center;
+    display: block;
+    margin: 0px auto;
+    line-height: 40px;
+  }
+}
+
+input[type="file"] {
+  display: none;
+}
+
+

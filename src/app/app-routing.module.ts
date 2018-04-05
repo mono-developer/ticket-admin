@@ -22,6 +22,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { LoginComponent } from './pages/settings/login/login.component';
 import { ForgotPasswordComponent } from './pages/settings/forgot-password/forgot-password.component';
 import { RegisterComponent } from './pages/settings/register/register.component';
+import { ProfileComponent } from './pages/settings/profile/profile.component';
 import { GeneralReportsComponent } from './pages/financial-reports/general-reports/general-reports.component';
 import { DateReportsComponent } from './pages/financial-reports/date-reports/date-reports.component';
 
@@ -31,8 +32,10 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, pathMatch: 'full' },
   { path: 'register', component: RegisterComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
+
   { path: 'dashboard', component: AdminComponent, canActivate: [AccessService], children: [
         { path: '', component: DashboardComponent },
+        { path: 'profile', component: ProfileComponent },
         { path: 'content-manage/view-cms', component: ViewCMSComponent },
         { path: 'content-manage/add-cms', component: AddCMSComponent },
         { path: 'sales-point/view-sale-users', component: ViewSaleUsersComponent },

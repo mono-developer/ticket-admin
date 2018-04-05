@@ -49,31 +49,53 @@
         <div class="event-sec">
             <h2>Categorys</h2>
             <mat-tab-group class="tab-bg">
-                <mat-tab label="MUSIC">
-                    <div class="swiper-config1">
-                        <swiper [config]="config1" #usefulSwiper>
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide" *ngFor="let item of profiles; let index = index" [ngStyle]="{'background-image': 'url(' + item.url + ')'}">
-                                    <div class="name">{{item.event_name}}</div>
-                                    <div class="date"><img src="assets/img/icons/calendar.png" alt="">{{item.date}}</div>
-                                    <div class="location"><img src="assets/img/icons/location.png" alt="">{{item.location}}</div>
-                                    <div class="share_btns">
-                                        <button class="left_btn" mat-button (click)="openBookingDialog(item.event_name)">Book Now</button>
-                                        <button class="right_btn" mat-button (click)="openDescriptionDialog(item)">Description</button>
-                                    </div>
-                                </div>
+                <mat-tab label="All">
+                    <div class="category__tab" *ngFor="let item of eventList">
+                        <div class="bg__img">
+                            <img [src]="item.event_bg" alt="">
+                        </div>
+                        <div class="head">
+                            <h3>{{item.event_name}}</h3>
+                            <p><span>by </span>{{item.category.name}}</p>
+                            <div class="info"><img src="assets/img/icons/calendar.png" alt="">{{item.event_details[0].date | date:'dd-MM-yyyy'}}</div>
+                            <div class="info"><img src="assets/img/icons/location.png" alt="">{{item.meeting_place}}
                             </div>
-                            <!-- Add Pagination -->
-                            <div class="swiper-pagination"></div>
-                        </swiper>
+                        </div>
+                        <div class="pro_info">
+                            <p>{{item.program_info}}</p>
+                        </div>
+                        <div class="actions">
+                            <div class="active" [ngStyle]="{'background-color':item.status? '#39a905' : '#f74984' }">{{item.status ? 'Active' : 'Inactive'}}</div>
+                            <button mat-button style="background: #5e73e4">Description</button>
+                            <button mat-button style="background: #f74984">Booking</button>
+                        </div>
                     </div>
                 </mat-tab>
-                <mat-tab label="CONCERT"></mat-tab>
-                <mat-tab label="FAMILY"></mat-tab>
-                <mat-tab label="THEATER"></mat-tab>
-                <mat-tab label="SPORT"></mat-tab>
-                <mat-tab label="CIRCUS"></mat-tab>
-                <mat-tab label="OTHER"></mat-tab>
+                <mat-tab *ngFor="let category of categoryList" [label]="category.name" style="padding: 10px;">
+                    <div *ngFor="let item of eventList">
+                        <div class="category__tab" *ngIf="item.category_id == category._id">
+                            <div class="bg__img">
+                                <img [src]="item.event_bg" alt="">
+                            </div>
+                            <div class="head">
+                                <h3>title</h3>
+                                <p><span>by </span>{{item.category.name}}</p>
+                                <div class="info"><img src="assets/img/icons/calendar.png" alt=""> {{item.event_details[0].date | date:'dd-MM-yyyy'}}</div>
+                                <div class="info"><img src="assets/img/icons/location.png" alt=""> {{item.meeting_place}}</div>
+                            </div>
+                            <div class="pro_info">
+                                <p>{{item.program_info}}</p>
+                            </div>
+                            <div class="actions">
+                                <div class="active" [ngStyle]="{'background-color':item.status? '#39a905' : '#f74984' }">{{item.status ? 'Active' : 'Inactive'}}</div>
+                                <button mat-button style="background: #5e73e4">Description</button>
+                                <button mat-button style="background: #f74984">Booking</button>
+                            </div>
+                        </div>
+                    </div>
+
+                </mat-tab>
+
             </mat-tab-group>
         </div>
 
@@ -83,24 +105,25 @@
                 <mat-tab label="TODAY" class="sch-table">
                     <div class="timeline-wrap  overflow-hide mb-30">
                         <ul class="timeline">
-                            <li>
+                            <li *ngFor="let item of eventList; let index = index;" [ngClass]="{'timeline-inverted': index%2 == 1}">
                                 <div class="timeline-badge">
-                                <i class="zmdi zmdi-case font-indigo"></i>
+                                    <!-- <i class="zmdi zmdi-case font-indigo"></i> -->
+                                    <img [src]="item.event_bg" alt="">
                                 </div>
-                                <div class="timeline-panel mdl-card pt-30 pb-30 border-top-indigo">
-                                <div class="timeline-heading">
-                                    <h4 class="mb-10">inauguration</h4>
-                                    <span class="duration mb-5">9:30am - 11:30am</span>
-                                    <span class="institution">By John Doe</span>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="mt-25">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet.
-                                    Dicens hoc contra serpentibus isto.</p>
-                                </div>
+                                <div class="timeline-panel mdl-card pt-30 pb-30 border-top-indigo" [ngClass]="{'border-top-pink': index%2 == 1}">
+                                    <div class="timeline-heading">
+                                        <h4 class="mb-10">{{item.event_name}}</h4>
+                                        <!-- <span class="duration mb-5">9:30am - 11:30am</span> -->
+                                        <span class="duration mb-5">{{item.event_details[0].date | date:'dd-MM-yyyy'}}</span>
+                                        <span class="institution">By {{item.category.name}}</span>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p class="mt-25">{{item.add_info}}</p>
+                                    </div>
                                 </div>
                             </li>
 
-                            <li class="timeline-inverted">
+                            <!-- <li class="timeline-inverted">
                                 <div class="timeline-badge">
                                 <i class="zmdi zmdi-format-color-text font-pink"></i>
                                 </div>
@@ -164,7 +187,7 @@
                                         Dicens hoc contra serpentibus isto.</p>
                                     </div>
                                 </div>
-                            </li>
+                            </li> -->
                             <li class="clearfix no-float"></li>
                         </ul>
                     </div>

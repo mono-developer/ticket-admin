@@ -32,7 +32,7 @@ export class LoginComponent implements OnInit {
   ) {  }
 
   ngOnInit() {
-    sessionStorage.removeItem('OAuthInfo');
+    sessionStorage.removeItem('userInfo');
     let userData = sessionStorage.getItem('UserData');
     if(userData){
       this.userData = JSON.parse(userData);
@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
       sessionStorage.removeItem('UserData');
       this.userData = { email: '', password: '' };
     }
-
   }
 
   changedRemember() {
@@ -48,28 +47,24 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-
-    console.log(this.userData);
-    if(this.isRemember == true){
-      sessionStorage.setItem('UserData', JSON.stringify(this.userData));
-    }else{
-      sessionStorage.removeItem('UserData');
-    }
-
     this.isLoading = true;
-
     this.userService.login(this.userData)
       .subscribe(
         (data) => {
           this.isLoading = false;
           console.log('DataLogin',data);
+          if (this.isRemember == true) {
+            sessionStorage.setItem('UserData', JSON.stringify(this.userData));
+          } else {
+            sessionStorage.removeItem('UserData');
+          }
           if(data.user.status){
-            sessionStorage.setItem('OAuthInfo', JSON.stringify(data));
+            sessionStorage.setItem('token', JSON.stringify(data.token));
+            sessionStorage.setItem('userInfo', JSON.stringify(data.user));
             this.router.navigate(['/dashboard']);
           }else{
             this.accessError();
           }
-
           return true;
         },
         err => {

@@ -1,8 +1,9 @@
 <div class="user-button-container" #userButton (msClickOutside)="onClickOutside()">
   <button class="user-button" mat-button (click)="toggleDropdown()" [class.open]="isOpen">
     <span fxLayout="row" fxLayoutAlign="start center">
-      <img class="avatar" src="assets/img/avatars/noavatar.png">
-      <span class="name" fxHide fxShow.gt-sm>{{name}}</span>
+      <img class="avatar" *ngIf="!userInfo.photo" src="assets/img/avatars/noavatar.png">
+      <img class="avatar" *ngIf="userInfo.photo" [src]="userInfo.photo">
+      <span class="name" fxHide fxShow.gt-sm>{{userInfo.name}}</span>
       <mat-icon class="icon" fxHide fxShow.gt-sm>keyboard_arrow_down</mat-icon>
     </span>
   </button>
@@ -10,7 +11,7 @@
   <div class="dropdown mat-elevation-z1" [class.open]="isOpen">
     <div class="content">
       <div class="list">
-        <div class="item" fxLayout="row" fxLayoutAlign="start center" matRipple>
+        <div class="item" fxLayout="row" fxLayoutAlign="start center" matRipple (click)="goProfilePage()">
           <mat-icon class="icon">account_circle</mat-icon>
           <span class="title">Profile</span>
         </div>
