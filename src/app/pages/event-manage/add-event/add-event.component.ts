@@ -58,7 +58,8 @@ export class AddEventComponent implements OnInit {
   isTicketImg: boolean = false;
   isLoading: boolean = false;
 
-  public searchControl: FormControl;
+  searchControl: FormControl;
+
 
   constructor(
     private _formBuilder: FormBuilder,

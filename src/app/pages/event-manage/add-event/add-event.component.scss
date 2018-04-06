@@ -13,6 +13,25 @@ mat-horizontal-stepper{
   }
 }
 
+mat-form-field{
+  font-size: 15px;
+  height: 70px;
+  input, mat-select{
+    font-size: 17px;
+    margin-top: 5px;
+    color: rgba(0, 0, 0, .87);
+  }
+  mat-datepicker-toggle{
+    font-size: 25px;
+    position: absolute;
+    right: -4px;
+    top: 25px;
+  }
+
+
+}
+
+
 .step-border{
   width: 90%;
   margin: 20px auto;
@@ -27,6 +46,7 @@ mat-horizontal-stepper{
       width: 100%;
       padding: 0;
       padding-right: 20px;
+
     }
   }
   @media only screen and (min-width: 600px)  {
@@ -69,14 +89,16 @@ mat-horizontal-stepper{
       }
     }
   }
-  .submit{
-    width: 25%;
+  .next_btn {
+    width: 150px;
     font-size: 18px;
     margin-top: 30px;
     display: block;
     margin: 0 auto;
-    left: 60%;
-    border: 2px solid green;
+    left: calc(50% - 75px);
+    margin: 0 auto;
+    background: #5b76c9;
+    color: #fff;
   }
   .btns{
     width: 80%;
@@ -189,6 +211,7 @@ mat-horizontal-stepper{
       padding: 0;
       height: 40px;
       color: #fff;
+      margin-top: 20px;
     }
   }
 

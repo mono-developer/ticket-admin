@@ -45,20 +45,21 @@ export class MainComponent implements OnInit, AfterViewInit {
         this.profiles = this.ticketData.profileData;
         this.categoryData = this.ticketData.categoryList;
 
-        this.config = {
-            speed: 600,
-            parallax: true,
-            pagination: {
-                el: '.swiper-pagination',
-                clickable: true,
-            },
-            navigation: {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-            },
-        }
+        // this.config = {
+        //     speed: 600,
+        //     parallax: true,
+        //     pagination: {
+        //         el: '.swiper-pagination',
+        //         clickable: true,
+        //     },
+        //     navigation: {
+        //         nextEl: '.swiper-button-next',
+        //         prevEl: '.swiper-button-prev',
+        //     },
+        // }
+        let that = this;
 
-        this.config1 = {
+        that.config1 = {
             effect: 'coverflow',
             grabCursor: true,
             centeredSlides: true,

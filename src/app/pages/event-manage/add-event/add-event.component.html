@@ -5,12 +5,18 @@
   <!-- Step 1 -->
     <mat-step [stepControl]="firstFormGroup">
 
-        <div class="step-border">
-            <form class="step1" #form="ngForm">
+        <div class="step-border" style="max-width: 750px;">
+            <form class="Event Details" #form="ngForm">
                 <ng-template matStepLabel>STEP 1</ng-template>
 
+                <mat-form-field>
+                   Name of the Event
+                    <input type="text" matInput name="name" [(ngModel)]="eventData.event_name" required>
+                </mat-form-field>
+
                 <mat-form-field >
-                    <mat-select placeholder="Select a Category" name="category" [(ngModel)]="eventData.category_id" required>
+                   Select a Category
+                    <mat-select name="category" [(ngModel)]="eventData.category_id" required>
                         <mat-option *ngFor="let category of categoryList" [value]="category._id">
                         {{ category.name }}
                         </mat-option>
@@ -18,20 +24,14 @@
                 </mat-form-field>
 
                 <mat-form-field>
-                    <input type="text" matInput placeholder="Name of the Event" name="name" [(ngModel)]="eventData.event_name" required>
-                </mat-form-field>
-
-                <mat-form-field>
-                    <input matInput placeholder="Meeting Place" autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" name="meeting_place" [(ngModel)]="eventData.meeting_place" #search [formControl]="searchControl" required>
-                </mat-form-field>
-
-                <mat-form-field>
-                    <input type="text" matInput placeholder="City" name="city" [(ngModel)]="eventData.city" required>
+                   Meeting Place
+                    <input matInput autocorrect="off" autocapitalize="off" spellcheck="off" type="text" class="form-control" name="meeting_place" [(ngModel)]="eventData.meeting_place" #search [formControl]="searchControl" required>
                 </mat-form-field>
 
                 <div class="org_details">
                     <mat-form-field>
-                        <mat-select placeholder="Select Organizor" name="org" [(ngModel)]="eventData.org_id" required>
+                       Select Organizor
+                        <mat-select name="org" [(ngModel)]="eventData.org_id" required>
                             <mat-option *ngFor="let org of organizorList" [value]="org._id">
                                 {{ org.name }}
                             </mat-option>
@@ -42,7 +42,16 @@
                     </button>
                 </div>
 
-                <button class="submit" color="secondary" mat-raised-button style="margin-left: 8px;" [disabled]="!form.valid || !eventData.category_id || !eventData.org_id || !eventData.meeting_place" matStepperNext>Next</button>
+                <div class="date">
+                    <mat-form-field>
+                       Start Date
+                        <input matInput [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                    </mat-form-field>
+                </div>
+
+                <button class="next_btn" color="secondary" mat-raised-button style="margin-left: 8px;" [disabled]="!form.valid || !eventData.category_id || !eventData.org_id || !eventData.meeting_place" matStepperNext>Next</button>
             </form>
         </div>
         <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
