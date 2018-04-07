@@ -1,72 +1,82 @@
-<h1 mat-dialog-title style="text-align: center">Add Seat Deatails</h1>
+<h1 mat-dialog-title style="text-align: center">Seat Information</h1>
 <div mat-dialog-content>
-  <form #form="ngForm">
-    <div class="form-container">
-      <mat-form-field style="width: 49%">
-        <input type="text" matInput placeholder="Location" name="location" [(ngModel)]="data.modalData.location" required>
-      </mat-form-field>
+    <form #form="ngForm">
+        <div class="form-container">
+            <mat-form-field>
+                Location
+                <input type="text" matInput name="location" [(ngModel)]="data.modalData.location" required>
+            </mat-form-field>
 
-      <mat-form-field style="width: 49%">
-        <input type="tel" matInput placeholder="Price of Ticket" name="ticket_price" [(ngModel)]="data.modalData.ticket_price" required>
-      </mat-form-field>
+            <mat-form-field>
+                Ticket Price
+                <input type="tel" matInput name="ticket_price" [(ngModel)]="data.modalData.ticket_price" required>
+            </mat-form-field>
 
-      <mat-form-field style="width: 49%">
-        <input type="tel" matInput placeholder="Number of tickets per location" name="tickets_number" [(ngModel)]="data.modalData.tickets_number" required>
-      </mat-form-field>
+            <mat-form-field>
+               Quantity Ticket
+                <input type="tel" matInput name="tickets_number" [(ngModel)]="data.modalData.tickets_number" required>
+            </mat-form-field>
 
-      <mat-form-field style="width: 49%">
-        <input type="tel" matInput placeholder="Type of charge" name="type_charge" [(ngModel)]="data.modalData.type_charge" required>
-      </mat-form-field>
+            <mat-form-field>
+                Payment Type
+                <input type="tel" matInput name="type_charge" [(ngModel)]="data.modalData.payment_type" required>
+            </mat-form-field>
 
-      <mat-form-field style="width: 49%">
-        <input type="tel" matInput placeholder="Load Amount (%)" name="load_amount" [(ngModel)]="data.modalData.amount" required>
-      </mat-form-field>
+            <mat-form-field>
+                Load Amount (%)
+                <input type="tel" matInput name="load_amount" [(ngModel)]="data.modalData.load_amount" required>
+            </mat-form-field>
 
-      <mat-form-field style="width: 49%">
-        <input type="tel" matInput placeholder="Quantity Service Charge" name="quantity" [(ngModel)]="data.modalData.quantity" required>
-      </mat-form-field>
+            <mat-form-field>
+                Quantity Charge Service
+                <input type="text" matInput name="quantity" [(ngModel)]="data.modalData.quantity_service" required>
+            </mat-form-field>
 
-      <mat-form-field style="width: 49%">
-        <input type="text" matInput placeholder="Discount Type" name="type_discount" [(ngModel)]="data.modalData.discount_type" required>
-      </mat-form-field>
+            <mat-form-field>
+                Discount Type
+                <input type="text" matInput name="type_discount" [(ngModel)]="data.modalData.discount_type" required>
+            </mat-form-field>
+            <mat-form-field>
+                Price Discount (%)
+                <input type="tel" matInput name="price_percent" [(ngModel)]="data.modalData.discount_price" required>
+            </mat-form-field>
 
-      <div class="date_picker">
-        <mat-form-field>
-          <input matInput [matDatepicker]="start" placeholder="Start Date" name="start_date" [(ngModel)]="data.modalData.date_start" required>
-          <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
-          <mat-datepicker #start></mat-datepicker>
-        </mat-form-field>
+            <div class="date_time">
+                <mat-form-field>
+                    Ticket sales Start
+                    <input matInput [matDatepicker]="start" name="start_date" [(ngModel)]="data.modalData.sale_sdate" required>
+                    <mat-datepicker-toggle matSuffix [for]="start"></mat-datepicker-toggle>
+                    <mat-datepicker #start></mat-datepicker>
+                </mat-form-field>
+                <w-mat-timepicker class="time" color="primary" [(userTime)]="data.modalData.sale_stime" name="s_time" required></w-mat-timepicker>
+            </div>
+            <div class="date_time">
+                <mat-form-field>
+                    Ticket sales End
+                    <input matInput [matDatepicker]="end" name="end_date" [(ngModel)]="data.modalData.sale_edate" required>
+                    <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
+                    <mat-datepicker #end></mat-datepicker>
+                </mat-form-field>
+                <w-mat-timepicker class="time" color="primary" [(userTime)]="data.modalData.sale_etime" name="s_time" required></w-mat-timepicker>
+            </div>
 
-        <mat-form-field style="width: 49%">
-          <input matInput [matDatepicker]="end" placeholder="End Date" name="end_date" [(ngModel)]="data.modalData.date_end" required>
-          <mat-datepicker-toggle matSuffix [for]="end"></mat-datepicker-toggle>
-          <mat-datepicker #end></mat-datepicker>
-        </mat-form-field>
-      </div>
+            <div mat-dialog-actions class="btns">
+                <button mat-button (click)="onNoClick()" color="primary">No Thanks</button>
+                <button mat-button color="primary" [mat-dialog-close]="data.modalData" [disabled]="!form.valid" cdkFocusInitial>Ok</button>
+            </div>
 
-      <mat-form-field style="width: 49%">
-        <input type="tel" matInput placeholder="Price Discount %" name="price_percent" [(ngModel)]="data.modalData.discount_price" required>
-      </mat-form-field>
 
-      <mat-form-field style="width: 49%">
-        <mat-select placeholder="Seat Category Box" name="state" [(ngModel)]="data.modalData.seat_value">
-          <mat-option *ngFor="let state of boxList" [value]="state.value">
-            {{ state.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-      <label id="#img"> Upload Image
-        <input type="file" id="File" (change)="fileEvent($event)" size="60">
-      </label>
-      <p [ngStyle]="{'color': data.modalData.detail_img ? 'red' : 'green' }">The size should be 960px x 450px</p>
-      <img id="sky" class="img_url" [src]="data.modalData.detail_img" alt="">
-    </div>
-  </form>
-
+            <!-- <mat-form-field style="width: 49%">
+                Seat Category Box
+                <mat-select name="state" [(ngModel)]="data.modalData.seat_box">
+                    <mat-option *ngFor="let state of boxList" [value]="state.value">
+                        {{ state.name }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field> -->
+        </div>
+    </form>
 </div>
-<div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.modalData" [disabled]="!form.valid || !data.modalData.seat_value" cdkFocusInitial>Ok</button>
-</div>
+
+
 <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>

@@ -59,7 +59,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.removeItem('UserData');
           }
           if(data.user.status){
-            sessionStorage.setItem('token', JSON.stringify(data.token));
+            sessionStorage.setItem('token', data.token);
             sessionStorage.setItem('userInfo', JSON.stringify(data.user));
             this.router.navigate(['/dashboard']);
           }else{

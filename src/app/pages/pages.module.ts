@@ -55,7 +55,8 @@ import { GeneralReportsComponent } from './financial-reports/general-reports/gen
 import { DateReportsComponent } from './financial-reports/date-reports/date-reports.component';
 
 import { PageHeaderModule } from "../core/page-header/page-header.module";
-import { MatIconRegistry, MatStepperModule, MatTableModule, MatDialogModule,} from "@angular/material";
+import { MatIconRegistry, MatStepperModule, MatTableModule, MatDialogModule, MatCardModule, MatSnackBarModule} from "@angular/material";
+import { MaterialTimeControlModule } from '../../provide/material-time-control.module';
 import { UserService } from "../../provide/user-service";
 import { BaseService } from "../../provide/base-service";
 import { DataService } from "../../provide/data-service";
@@ -87,7 +88,10 @@ import { ImageSize } from "../../provide/image-size";
     MatDialogModule,
     AlertsModule.forRoot(),
     WidgetseModule,
-    LoadingOverlayModule
+    LoadingOverlayModule,
+    MaterialTimeControlModule,
+    MatCardModule,
+    MatSnackBarModule,
   ],
   entryComponents: [
     EventDatailsDialogComponent,

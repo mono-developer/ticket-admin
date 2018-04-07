@@ -37,9 +37,21 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/animations@^5.1.2":
+  version "5.2.9"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-5.2.9.tgz#220db9fb5a52a193db0023d721b23ddd25a75770"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/cdk@5.0.0-rc0":
   version "5.0.0-rc0"
   resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-5.0.0-rc0.tgz#b7225af1d8d23c13ac14bbd3fe1c6b427eb71368"
+  dependencies:
+    tslib "^1.7.1"
+
+"@angular/cdk@^5.0.2":
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-5.2.4.tgz#c0a429a8710d8fedb157f546e21cb49d4335f7f7"
   dependencies:
     tslib "^1.7.1"
 
@@ -114,6 +126,12 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/common@^5.1.2":
+  version "5.2.9"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-5.2.9.tgz#beb25d4434498abae56bd8dc2c01ade3f6c45e81"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/compiler-cli@^5.2.0":
   version "5.2.7"
   resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-5.2.7.tgz#3bad9d5e4c25ebc51e1bb67b71b26a97d6d3bbc5"
@@ -129,9 +147,21 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/compiler@^5.1.2":
+  version "5.2.9"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-5.2.9.tgz#1d03bc1e8b38c259bc58114d691c2140d244f8f5"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/core@^5.0.0":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-5.0.1.tgz#a4a74afc7e2058d30b8263eb6d66daace9f427ba"
+  dependencies:
+    tslib "^1.7.1"
+
+"@angular/core@^5.1.2":
+  version "5.2.9"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-5.2.9.tgz#3daf13ef9aa754b9954ed21da3eb322e8b20f667"
   dependencies:
     tslib "^1.7.1"
 
@@ -141,9 +171,19 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/flex-layout@^2.0.0-beta.12":
+  version "2.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-2.0.0-rc.1.tgz#96fa7f85b2c4bacf2784913a2d607e2ed23dc7f1"
+
 "@angular/forms@^5.0.0":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-5.0.1.tgz#69f303c4c13da3caa0de63437588388b6ad62b21"
+  dependencies:
+    tslib "^1.7.1"
+
+"@angular/forms@^5.1.2":
+  version "5.2.9"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-5.2.9.tgz#12c45b3a02c398b354f09cc740d914cd904c0c9c"
   dependencies:
     tslib "^1.7.1"
 
@@ -159,9 +199,21 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/material@^5.0.2":
+  version "5.2.4"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-5.2.4.tgz#9e823798324283d23ea839156fac5bcb73443d55"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/platform-browser-dynamic@^5.0.0":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-5.0.1.tgz#16db67d52d4531563ab15429c6bdfe18bc1bedc8"
+  dependencies:
+    tslib "^1.7.1"
+
+"@angular/platform-browser-dynamic@^5.1.2":
+  version "5.2.9"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-5.2.9.tgz#86075b7bb694861f722ceda29aae186b045c6b7d"
   dependencies:
     tslib "^1.7.1"
 
@@ -171,9 +223,21 @@
   dependencies:
     tslib "^1.7.1"
 
+"@angular/platform-browser@^5.1.2":
+  version "5.2.9"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-5.2.9.tgz#9ee76327b1b3affad68ffa839058661b7704bc2c"
+  dependencies:
+    tslib "^1.7.1"
+
 "@angular/router@^5.0.0":
   version "5.0.1"
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-5.0.1.tgz#9ac08f29302ef60cdfd3c7810d96c265dec463d6"
+  dependencies:
+    tslib "^1.7.1"
+
+"@angular/router@^5.1.2":
+  version "5.2.9"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-5.2.9.tgz#0369df6e60c6da3a5842c6eb35e3958d4ffe727e"
   dependencies:
     tslib "^1.7.1"
 
@@ -1367,6 +1431,10 @@ copy-webpack-plugin@~4.4.1:
 core-js@^2.2.0, core-js@^2.4.0, core-js@^2.4.1, core-js@^2.5.1:
   version "2.5.1"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.1.tgz#ae6874dc66937789b80754ff5428df66819ca50b"
+
+core-js@^2.5.3:
+  version "2.5.4"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.4.tgz#f2c8bf181f2a80b92f360121429ce63a2f0aeae0"
 
 core-object@^3.1.0:
   version "3.1.5"
@@ -3694,6 +3762,28 @@ map-visit@^1.0.0:
   dependencies:
     object-visit "^1.0.0"
 
+"material-time-control@github:SteveDunlap13/MaterialTimeControl":
+  version "0.1.0"
+  resolved "https://codeload.github.com/SteveDunlap13/MaterialTimeControl/tar.gz/b7f29603a1b31f52ce7ef3af3c06d448327b476a"
+  dependencies:
+    "@angular/animations" "^5.1.2"
+    "@angular/cdk" "^5.0.2"
+    "@angular/common" "^5.1.2"
+    "@angular/compiler" "^5.1.2"
+    "@angular/core" "^5.1.2"
+    "@angular/flex-layout" "^2.0.0-beta.12"
+    "@angular/forms" "^5.1.2"
+    "@angular/material" "^5.0.2"
+    "@angular/platform-browser" "^5.1.2"
+    "@angular/platform-browser-dynamic" "^5.1.2"
+    "@angular/router" "^5.1.2"
+    core-js "^2.5.3"
+    hammerjs "^2.0.8"
+    lodash "^4.17.4"
+    moment "^2.20.1"
+    rxjs "^5.5.6"
+    zone.js "0.8.19"
+
 md5.js@^1.3.4:
   version "1.3.4"
   resolved "https://registry.yarnpkg.com/md5.js/-/md5.js-1.3.4.tgz#e9bdbde94a20a5ac18b04340fc5764d5b09d901d"
@@ -3874,6 +3964,10 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
 moment@^2.17.1:
   version "2.19.1"
   resolved "https://registry.yarnpkg.com/moment/-/moment-2.19.1.tgz#56da1a2d1cbf01d38b7e1afc31c10bcfa1929167"
+
+moment@^2.20.1:
+  version "2.22.0"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.22.0.tgz#7921ade01017dd45186e7fee5f424f0b8663a730"
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -6596,6 +6690,10 @@ yeast@0.1.2:
 yn@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/yn/-/yn-2.0.0.tgz#e5adabc8acf408f6385fc76495684c88e6af689a"
+
+zone.js@0.8.19:
+  version "0.8.19"
+  resolved "https://registry.yarnpkg.com/zone.js/-/zone.js-0.8.19.tgz#a4b522cd9e8b7b616a638c297d720d4c7f292f71"
 
 zone.js@^0.8.14:
   version "0.8.18"

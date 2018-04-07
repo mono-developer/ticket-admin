@@ -67,7 +67,7 @@ export class SidenavService {
     ngOnInit() {
       let userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
       this.name = userInfo.name;
-      console.log(this.name);
+      // console.log(this.name);
     }
 
 
@@ -75,7 +75,7 @@ export class SidenavService {
 
     let userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
     let access = userInfo.access;
-    console.log(access);
+    // console.log(access);
 
     let item = new SidenavItem({
       name: name,

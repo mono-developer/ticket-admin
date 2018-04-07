@@ -2,12 +2,14 @@ import { Component, OnInit, AfterViewInit, Inject, NgZone, ElementRef, ViewChild
 import { Router, ActivatedRoute } from "@angular/router";
 import { DatePipe } from '@angular/common';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormControl } from '@angular/forms';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { BaseService } from "../../../provide/base-service";
 import { DataService } from "../../../provide/data-service";
 import { Observable } from 'rxjs/Rx';
+
+import { AgmCoreModule } from '@agm/core';
+import { MouseEvent } from '@agm/core';
 
 
 @Component({
@@ -124,7 +126,7 @@ export class BookingComponent implements OnInit {
       }
 
       this.progressValue = t/30;
-      if (this.progressValue == 1) {
+      if (this.progressValue == 100) {
         subscription.unsubscribe();
         this.isTimerOver(this.customerInfo.name);
       }
@@ -157,10 +159,8 @@ export class BookingComponent implements OnInit {
   onChange(selectedValue:string) {
     console.log('selectedValue', selectedValue);
     let date = selectedValue.split("T");
-
     this.s__Date = date[0];
     this.isStep1Table = !!selectedValue;
-
     console.log(this.isStep1Table, this.s__Date);
   }
 
@@ -214,23 +214,19 @@ export class TimeOverComponent {
   }
 }
 
-
 @Component({
   templateUrl: 'location-dialog.component.html',
   styleUrls: ['./booking.component.scss'],
 })
 export class LocationDialogComponent {
 
-  public latitude: number;
-  public longitude: number;
-  public searchControl: FormControl;
-  public zoom: number;
-
-  @ViewChild("search")
-  public searchElementRef: ElementRef;
+  // google maps zoom level
+  zoom: number = 15;
+  lat: number = 51.673858;
+  lng: number = 7.815982;
+  marker: any;
 
   constructor(
-    private mapsAPILoader: MapsAPILoader,
     private ngZone: NgZone,
     public dialogRef: MatDialogRef<LocationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -242,48 +238,29 @@ export class LocationDialogComponent {
   }
 
   ngOnInit() {
-    //set google maps defaults
-    this.zoom = 4;
-    this.latitude = 39.8282;
-    this.longitude = -98.5795;
-
-    //create search FormControl
-    this.searchControl = new FormControl();
-
-    //set current position
-    this.setCurrentPosition();
-
-    //load Places Autocomplete
-    this.mapsAPILoader.load().then(() => {
-      let autocomplete = new google.maps.places.Autocomplete(this.searchElementRef.nativeElement, {
-        types: ["address"]
-      });
-      autocomplete.addListener("place_changed", () => {
-        this.ngZone.run(() => {
-          //get the place result
-          let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-          //verify result
-          if (place.geometry === undefined || place.geometry === null) {
-            return;
-          }
-
-          //set latitude, longitude and zoom
-          this.latitude = place.geometry.location.lat();
-          this.longitude = place.geometry.location.lng();
-          this.zoom = 12;
-        });
-      });
-    });
+    this.marker =
+      {
+        lat: 51.673858,
+        lng: 7.815982,
+        label: this.data.location,
+        draggable: true
+      }
   }
 
-  private setCurrentPosition() {
-    if ("geolocation" in navigator) {
-      navigator.geolocation.getCurrentPosition((position) => {
-        this.latitude = position.coords.latitude;
-        this.longitude = position.coords.longitude;
-        this.zoom = 12;
-      });
-    }
+  clickedMarker() {
+    console.log('clicked the marker:', this.marker.label)
   }
+
 }
+  // just an interface for type safety.
+  interface marker {
+  lat: number;
+  lng: number;
+  label?: string;
+  draggable: boolean;
+}
+
+
+
+
+

@@ -1,10 +1,13 @@
 
+<!-- <agm-map [latitude]="lat" [longitude]="lng"></agm-map> -->
+<agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
 
+  <agm-marker (markerClick)="clickedMarker()" [latitude]="lat" [longitude]="lng">
 
-  <div class="form-group" style="display: none;">
-    <input placeholder="search for location" autocorrect="off" [value]="data.location" autocapitalize="off" spellcheck="off" type="text" class="form-control"
-      #search [formControl]="searchControl">
-  </div>
-  <agm-map [latitude]="latitude" [longitude]="longitude" [scrollwheel]="false" [zoom]="zoom">
-    <agm-marker [latitude]="latitude" [longitude]="longitude"></agm-marker>
-  </agm-map>
+    <agm-info-window>
+      <strong>{{marker.label}}</strong>
+    </agm-info-window>
+
+  </agm-marker>
+
+</agm-map>

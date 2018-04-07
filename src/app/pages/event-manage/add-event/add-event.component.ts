@@ -43,10 +43,11 @@ export class AddEventComponent implements OnInit {
   stateList: any;
   categoryList: any;
   organizorList: any;
+  reservationList: any;
 
   dataSource1: any;
   dataSource2: any;
-  displayedColumns1 = ['date', 'symbol'];
+  displayedColumns1 = ['date','time', 'symbol'];
   displayedColumns2 = ['location', 'bill', 'tickets', 'type', 'symbol'];
 
   printCheck: boolean;
@@ -59,6 +60,7 @@ export class AddEventComponent implements OnInit {
   isLoading: boolean = false;
 
   searchControl: FormControl;
+
 
 
   constructor(
@@ -75,10 +77,30 @@ export class AddEventComponent implements OnInit {
     private ngZone: NgZone
   ) {
     this.stateList = [
-      { id: 0, name: 'Active', state: true },
-      { id: 1, name: 'Inative', state: false }
+      { id: 0, name: 'Active', status: true },
+      { id: 1, name: 'Inative', status: false }
     ];
+
+    this.reservationList = [
+      { id: 0, name: 'Yes', state: true },
+      { id: 1, name: 'No', state: false }
+    ];
+
+    this.eventData.s_time = { hour: 0, minute: 0, meriden: 'PM', format: 12 };
+    this.eventData.e_time = { hour: 0, minute: 0, meriden: 'PM', format: 12 };
   }
+
+    //TestStep1
+    getStep1() {
+      console.log(this.eventData);
+    }
+
+    getTime(value) {
+      console.log(value);
+    }
+
+
+
 
   ngOnInit() {
 
@@ -98,16 +120,16 @@ export class AddEventComponent implements OnInit {
       autocomplete.addListener("place_changed", () => {
         this.ngZone.run(() => {
           let place: google.maps.places.PlaceResult = autocomplete.getPlace();
-
-          this.eventData.meeting_place = place.formatted_address;
-          console.log('Location', this.eventData.meeting_place);
+          this.eventData.place = place.formatted_address;
+          this.eventData.latitude = place.geometry.location.lat();
+          this.eventData.longitude = place.geometry.location.lng();
+          console.log('place', this.eventData.place, this.eventData.latitude, this.eventData.longitude);
           if (place.geometry === undefined || place.geometry === null) {
             return;
           }
         });
       });
     });
-
   }
 
   getEventData(id) {
@@ -163,8 +185,8 @@ export class AddEventComponent implements OnInit {
   }
 
   getCouponData() {
-    let org_url = this.baseService.couponURL;
-    this.dataService.getData(org_url)
+    let cp_url = this.baseService.couponURL;
+    this.dataService.getData(cp_url)
       .subscribe(
         (data) => {
           this.couponList = data;
@@ -189,7 +211,7 @@ export class AddEventComponent implements OnInit {
   openEventDialog(): void {
     let modalData: any = {
       date: '',
-      time: ''
+      time: { hour: 0, minute: 0, meriden: 'PM', format: 12 }
     };
 
     let dialogRef1 = this.dialog.open(EventDatailsDialogComponent, {
@@ -200,6 +222,7 @@ export class AddEventComponent implements OnInit {
     dialogRef1.afterClosed().subscribe(result => {
       if(result == undefined){
       }else{
+        console.log(result);
         this.eventData.event_details == undefined ? this.eventData.event_details = []: console.log(this.eventData.event_details);
         this.eventData.event_details.push(result);
         this.dataSource1 = new MatTableDataSource(this.eventData.event_details);
@@ -209,7 +232,7 @@ export class AddEventComponent implements OnInit {
 
   editEvent(item: any): void {
     let dialogRef1 = this.dialog.open(EventDatailsDialogComponent, {
-      width: '470px',
+      width: '350px',
       data: { modalData: item }
     });
     dialogRef1.afterClosed();
@@ -223,6 +246,8 @@ export class AddEventComponent implements OnInit {
   openSeatDialog(): void {
 
    let modalData: any = {};
+    modalData.sale_stime = { hour: 0, minute: 0, meriden: 'PM', format: 12 };
+    modalData.sale_etime = { hour: 0, minute: 0, meriden: 'PM', format: 12 }
 
     let dialogRef = this.dialog.open(SeatDatailsDialogComponent, {
       width: '470px',
@@ -233,9 +258,9 @@ export class AddEventComponent implements OnInit {
       if (result == undefined) {
         console.log('undefined');
       } else {
-        console.log(result);
         this.eventData.seat_details == undefined ? this.eventData.seat_details = [] : console.log(this.eventData.seat_details);
         this.eventData.seat_details.push(result);
+        console.log(this.eventData.seat_details);
         this.dataSource2 = new MatTableDataSource(this.eventData.seat_details);
       }
     });
@@ -316,36 +341,37 @@ export class AddEventComponent implements OnInit {
   }
 
   postEventData() {
-    this.isLoading = true;
-    this.dataService.postData(this.url, this.eventData)
-      .subscribe(
-        (data) => {
-          this.router.navigate(['dashboard/event-manage/view-event']);
-          return true;
-        },
-        error => {
-          this.isLoading = false;
-          console.log('errorData', error);
-          return true;
-        }
-      )
+    // this.isLoading = true;
+    console.log(this.eventData);
+    // this.dataService.postData(this.url, this.eventData)
+    //   .subscribe(
+    //     (data) => {
+    //       this.router.navigate(['dashboard/event-manage/view-event']);
+    //       return true;
+    //     },
+    //     error => {
+    //       this.isLoading = false;
+    //       console.log('errorData', error);
+    //       return true;
+    //     });
   }
 
   putEventData() {
-    this.isLoading = true;
-    this.dataService.patchData(this.url, this.id, this.eventData)
-      .subscribe(
-        (data) => {
-          this.isLoading = false;
-          console.log('eventData', data);
-          this.router.navigate(['dashboard/event-manage/view-event']);
-          return true;
-        },
-        error => {
-          this.isLoading = false;
-          console.log('errorData', error);
-          return true;
-        });
+    console.log(this.eventData);
+    // this.isLoading = true;
+    // this.dataService.patchData(this.url, this.id, this.eventData)
+    //   .subscribe(
+    //     (data) => {
+    //       this.isLoading = false;
+    //       console.log('eventData', data);
+    //       this.router.navigate(['dashboard/event-manage/view-event']);
+    //       return true;
+    //     },
+    //     error => {
+    //       this.isLoading = false;
+    //       console.log('errorData', error);
+    //       return true;
+    //     });
   }
 
   done(){
@@ -383,44 +409,17 @@ export class SeatDatailsDialogComponent {
                     { id: 1, name: "No", value: false }
                   ];
   public isLoading: boolean = false;
-  // private isGetImage: boolean = false;
 
   constructor(
     private alerts: AlertsService,
     private uploadService: UploadFileService,
     public dialogRef2: MatDialogRef<SeatDatailsDialogComponent>,
-    private imageSize: ImageSize,
     @Inject(MAT_DIALOG_DATA) public data: any) {
+      console.log(data);
     }
 
   onNoClick(): void {
     this.dialogRef2.close();
   }
 
-  fileEvent(event: any) {
-    const file = event.target.files[0];
-    this.imageSize.sizeImage(file, (size)=>{
-      if (size.width == 960 && size.height == 450) {
-        this.uploadImage(file, (image)=>{
-          this.data.modalData.detail_img = image;
-        })
-      } else {
-        // this.isGetImage = true;
-      }
-    });
-  }
-
-  uploadImage(file, callback) {
-    this.isLoading = true;
-    this.uploadService.uploadfile(file).subscribe((data: any) => {
-      this.isLoading = false;
-      let imageURL = data.Location;
-      callback(imageURL);
-    }, (err) => {
-      this.isLoading = false;
-      console.log("errror", err);
-    });
-  }
 }
-
-
