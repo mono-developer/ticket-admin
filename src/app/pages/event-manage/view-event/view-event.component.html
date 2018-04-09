@@ -3,21 +3,27 @@
     <mat-table #table [dataSource]="dataSource">
 
       <!-- Category Column -->
-      <ng-container matColumnDef="category">
-        <mat-header-cell *matHeaderCellDef> Event Category </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.category.name}} </mat-cell>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef> Event Name </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.event_name}} </mat-cell>
       </ng-container>
 
       <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <mat-header-cell *matHeaderCellDef> Name of the Event </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.event_name}} </mat-cell>
+      <ng-container matColumnDef="category">
+        <mat-header-cell *matHeaderCellDef> Category </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.category.name}} </mat-cell>
+      </ng-container>
+
+      <!-- Organizer Column -->
+      <ng-container matColumnDef="organizer">
+        <mat-header-cell *matHeaderCellDef> Organizer </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.organization.name}} </mat-cell>
       </ng-container>
 
       <!-- Place Column -->
       <ng-container matColumnDef="place">
-        <mat-header-cell *matHeaderCellDef> Meeting Place </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.meeting_place}} </mat-cell>
+        <mat-header-cell *matHeaderCellDef> Place </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.place}} </mat-cell>
       </ng-container>
 
       <!-- State Column -->
@@ -31,6 +37,7 @@
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
         <mat-cell *matCellDef="let element">
           <button mat-button (click)="edit(element)"><mat-icon>border_color</mat-icon></button>
+          <button mat-button (click)="duplicate(element)"><mat-icon>control_point_duplicate</mat-icon></button>
           <button mat-button (click)="delete(element)"><mat-icon>delete</mat-icon></button>
           <button mat-button><mat-icon>date_range</mat-icon></button>
 

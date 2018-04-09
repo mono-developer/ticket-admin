@@ -41,7 +41,8 @@ mat-form-field {
   .swiper-config1 {
     height: 600px;
     width: 100%;
-    background-image: url(assets/img/backgrounds/bg.jpeg);
+    background-image: url('../../../assets/img/backgrounds/bg.jpeg');
+
     background-size: cover;
     background-position: center;
     swiper {
@@ -185,15 +186,20 @@ mat-form-field {
       margin: 0 auto;
       display: block;
     }
+    h3,p {
+      margin: 5px;
+      color: #000;
+      text-align: center;
+      span {
+        color: dimgray;
+      }
+    }
   }
   .head{
     width: 300px;
     h3, p{
       margin: 5px;
       color: #000;
-      span{
-        color: dimgray;
-      }
     }
     .info{
       img{
@@ -209,6 +215,8 @@ mat-form-field {
     width: 300px;
     p{
       color: #393939;
+      height: 120px;
+      overflow-y: scroll;
     }
   }
   .actions{

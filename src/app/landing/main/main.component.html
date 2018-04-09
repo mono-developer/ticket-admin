@@ -4,11 +4,11 @@
         <div class="swiper-config1">
             <swiper [config]="config1" #usefulSwiper>
                 <div class="swiper-wrapper">
-                    <div class="swiper-slide" *ngFor="let item of eventList; let index = index" [ngStyle]="{'background-image': 'url(' + item.event_bg + ')'}">
+                    <div class="swiper-slide" *ngFor="let item of eventList; let index = index" [ngStyle]="{'background-image': 'url(' + item.event_img + ')'}">
                         <div class="name">{{item.event_name}}</div>
                         <div class="category">{{item.category.name}}</div>
-                        <div class="date"><img src="assets/img/icons/calendar.png" alt="">{{item.event_details[0].date | date:'dd-MM-yyyy'}}</div>
-                        <div class="location"><img src="assets/img/icons/location.png" alt="">{{item.meeting_place}}</div>
+                        <div class="date"><img src="assets/img/icons/calendar.png" alt="">{{item.s_time.hour}}:{{item.s_time.minute}} {{item.s_time.meriden}}, {{item.s_date | date:'dd/MM/yyyy'}} - {{item.e_time.hour}}:{{item.e_time.minute}} {{item.e_time.meriden}}, {{item.e_date | date:'dd/MM/yyyy'}}</div>
+                        <div class="location"><img src="assets/img/icons/location.png" alt="">{{item.place}}</div>
                         <div class="share_btns">
                             <button class="left_btn" mat-button (click)="openBookingDialog(item)">Book Now</button>
                             <button class="right_btn" mat-button (click)="openDescriptionDialog(item)">Description</button>
@@ -44,40 +44,41 @@
                 <mat-tab label="All">
                     <div class="category__tab" *ngFor="let item of eventList">
                         <div class="bg__img">
-                            <img [src]="item.event_bg" alt="">
+                            <img [src]="item.event_img" alt="">
+                            <p><span>by </span>{{item.organization.name}}</p>
                         </div>
                         <div class="head">
                             <h3>{{item.event_name}}</h3>
-                            <p><span>by </span>{{item.category.name}}</p>
-                            <div class="info"><img src="assets/img/icons/calendar.png" alt="">{{item.event_details[0].date | date:'dd-MM-yyyy'}}</div>
-                            <div class="info"><img src="assets/img/icons/location.png" alt="">{{item.meeting_place}}
+                            <p>{{item.category.name}}</p>
+                            <div class="info"><img src="assets/img/icons/calendar.png" alt="">{{item.s_date | date:'dd/MM/yyyy'}} - {{item.e_date | date:'dd/MM/yyyy'}}</div>
+                            <div class="info"><img src="assets/img/icons/location.png" alt="">{{item.place}}
                             </div>
                         </div>
                         <div class="pro_info">
-                            <p>{{item.program_info}}</p>
+                            <p>{{item.event_info}}</p>
                         </div>
                         <div class="actions">
                             <div class="active" [ngStyle]="{'background-color':item.status? '#39a905' : '#f74984' }">{{item.status ? 'Active' : 'Inactive'}}</div>
                             <button mat-button style="background: #5e73e4">Description</button>
-                            <button mat-button style="background: #f74984">Booking</button>
+                            <button mat-button style="background: #f74984" [disabled]="!item.status">Booking</button>
                         </div>
                     </div>
-
                 </mat-tab>
                 <mat-tab *ngFor="let category of categoryList" [label]="category.name" style="padding: 10px;">
                     <div *ngFor="let item of eventList">
                         <div class="category__tab" *ngIf="item.category_id == category._id">
                             <div class="bg__img">
-                                <img [src]="item.event_bg" alt="">
+                                <img [src]="item.event_img" alt="">
+                                <p><span>by </span>{{item.organization.name}}</p>
                             </div>
                             <div class="head">
                                 <h3>title</h3>
-                                <p><span>by </span>{{item.category.name}}</p>
-                                <div class="info"><img src="assets/img/icons/calendar.png" alt=""> {{item.event_details[0].date | date:'dd-MM-yyyy'}}</div>
-                                <div class="info"><img src="assets/img/icons/location.png" alt=""> {{item.meeting_place}}</div>
+                                <p>{{item.category.name}}</p>
+                                <div class="info"><img src="assets/img/icons/calendar.png" alt=""> {{item.s_date | date:'dd/MM/yyyy'}} - {{item.e_date | date:'dd/MM/yyyy'}} </div>
+                                <div class="info"><img src="assets/img/icons/location.png" alt=""> {{item.place}}</div>
                             </div>
                             <div class="pro_info">
-                                <p>{{item.program_info}}</p>
+                                <p>{{item.event_info}}</p>
                             </div>
                             <div class="actions">
                                 <div class="active" [ngStyle]="{'background-color':item.status? '#39a905' : '#f74984' }">{{item.status ? 'Active' : 'Inactive'}}</div>
@@ -101,86 +102,21 @@
                             <li *ngFor="let item of eventList; let index = index;" [ngClass]="{'timeline-inverted': index%2 == 1}">
                                 <div class="timeline-badge">
                                     <!-- <i class="zmdi zmdi-case font-indigo"></i> -->
-                                    <img [src]="item.event_bg" alt="">
+                                    <img [src]="item.event_img" alt="">
                                 </div>
                                 <div class="timeline-panel mdl-card pt-30 pb-30 border-top-indigo" [ngClass]="{'border-top-pink': index%2 == 1}">
                                     <div class="timeline-heading">
                                         <h4 class="mb-10">{{item.event_name}}</h4>
                                         <!-- <span class="duration mb-5">9:30am - 11:30am</span> -->
-                                        <span class="duration mb-5">{{item.event_details[0].date | date:'dd-MM-yyyy'}}</span>
-                                        <span class="institution">By {{item.category.name}}</span>
+                                        <span class="duration mb-5">{{item.s_date | date:'dd/MM/yyyy'}} - {{item.e_date | date:'dd/MM/yyyy'}}</span>
+                                        <span class="institution">{{item.category.name}}</span>
                                     </div>
                                     <div class="timeline-body">
-                                        <p class="mt-25">{{item.add_info}}</p>
+                                        <p class="mt-15">{{item.event_info}}</p>
                                     </div>
                                 </div>
                             </li>
 
-                            <!-- <li class="timeline-inverted">
-                                <div class="timeline-badge">
-                                <i class="zmdi zmdi-format-color-text font-pink"></i>
-                                </div>
-                                <div class="timeline-panel mdl-card  pt-30 pb-30 border-top-pink">
-                                <div class="timeline-heading">
-                                    <h4 class="mb-10">John Live</h4>
-                                    <span class="duration mb-5">11:30am - 12:30pm</span>
-                                    <span class="institution">By John Doe</span>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="mt-25">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet.
-                                    Dicens hoc contra serpentibus isto.</p>
-                                </div>
-                                </div>
-                            </li>
-
-                            <li>
-                                <div class="timeline-badge">
-                                <i class="zmdi zmdi-city-alt font-teal"></i>
-                                </div>
-                                <div class="timeline-panel mdl-card pt-30 pb-30 border-top-teal">
-                                <div class="timeline-heading">
-                                    <h4 class="mb-10">Lunch</h4>
-                                    <span class="duration mb-5">12:30pm - 1:30pm</span>
-                                    <span class="institution">Lunch Break</span>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="mt-25">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet.
-                                    Dicens hoc contra serpentibus isto.</p>
-                                </div>
-                                </div>
-                            </li>
-                            <li class="timeline-inverted">
-                                <div class="timeline-badge">
-                                <i class="zmdi zmdi-nature-people font-pink"></i>
-                                </div>
-                                <div class="timeline-panel mdl-card  pt-30 pb-30 border-top-indigo">
-                                <div class="timeline-heading">
-                                    <h4 class="mb-10">Jazz Madness</h4>
-                                    <span class="duration mb-5">1:30pm - 2:30pm</span>
-                                    <span class="institution">By Andrew Joe</span>
-                                </div>
-                                <div class="timeline-body">
-                                    <p class="mt-25">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet.
-                                    Dicens hoc contra serpentibus isto.</p>
-                                </div>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="timeline-badge">
-                                    <i class="zmdi zmdi-markunread-mailbox font-teal"></i>
-                                </div>
-                                <div class="timeline-panel mdl-card pt-30 pb-30 border-top-pink">
-                                    <div class="timeline-heading">
-                                        <h4 class="mb-10">melody songs</h4>
-                                        <span class="duration mb-5">2:30pm - 5:30pm</span>
-                                        <span class="institution">By Carin Mark</span>
-                                    </div>
-                                    <div class="timeline-body">
-                                        <p class="mt-25">Invitamus me testatur sed quod non dum animae tuae lacrimis ut libertatem deum rogus aegritudinis causet.
-                                        Dicens hoc contra serpentibus isto.</p>
-                                    </div>
-                                </div>
-                            </li> -->
                             <li class="clearfix no-float"></li>
                         </ul>
                     </div>

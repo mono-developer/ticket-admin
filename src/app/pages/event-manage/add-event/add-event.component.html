@@ -9,13 +9,13 @@
 
                 <!-- Event Name -->
                 <mat-form-field>
-                     Name of the Event
+                    Name of the Event
                     <input type="text" matInput name="name" [(ngModel)]="eventData.event_name" required>
                 </mat-form-field>
 
                 <!-- Category -->
                 <mat-form-field >
-                   Select a Category
+                  Select a Category
                     <mat-select name="category" [(ngModel)]="eventData.category_id" required>
                         <mat-option *ngFor="let category of categoryList" [value]="category._id">
                         {{ category.name }}
@@ -83,12 +83,12 @@
                         <p [ngStyle]="{'color': isEventImge ? 'red' : 'green'}">(image size must be 1080 * 400px)</p>
                     </div>
                     <div class="right-event">
-                        <label id="#bb" class="upload_img" *ngIf="!eventData.event_bg">
+                        <label id="#bb" class="upload_img" *ngIf="!eventData.event_img">
                             <mat-icon>add</mat-icon>
                             <p>Add Event Image</p>
                             <input type="file" id="File" (change)="eventImage($event)" size="60">
                         </label>
-                        <img *ngIf="eventData.event_bg" [src]="eventData.event_bg"  alt="">
+                        <img *ngIf="eventData.event_img" [src]="eventData.event_img"  alt="">
                     </div>
                 </div>
 
@@ -98,7 +98,7 @@
                   <textarea matInput [rows]="4" name="information" [(ngModel)]="eventData.event_info" required></textarea>
                 </mat-form-field>
 
-                <button class="next_btn" color="secondary" mat-raised-button style="margin-left: 8px;" (click)="getStep1()" matStepperNext>Next</button>
+                <button class="next_btn" color="secondary" mat-raised-button style="margin-left: 8px;" matStepperNext>Next</button>
             </form>
         </div>
         <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
@@ -198,7 +198,7 @@
 
                 <div class="btns">
                     <button style="float: left;" color="secondary" mat-raised-button mat-button>Back</button>
-                    <button style="float: right;"color="secondary" mat-raised-button mat-button matStepperNext [disabled]="!eventData.event_details || !eventData.seat_details">Next</button>
+                    <button style="float: right;"color="secondary" mat-raised-button mat-button matStepperNext>Next</button>
                 </div>
 
             </form>
@@ -266,7 +266,7 @@
 
                 <div class="btns">
                     <button style="float: left;" mat-button matStepperPrevious>Back</button>
-                    <button style="float: right;" mat-button matStepperNext [disabled]="!form3.valid || !eventData.ticket_image || !eventData.reservation || !eventData.coupon_id || !eventData.event_map || !eventData.event_bg">Next</button>
+                    <button style="float: right;" mat-button matStepperNext [disabled]="!form3.valid">Next</button>
                 </div>
             </form>
         </div>
@@ -283,13 +283,13 @@
                     <div class="selection">
                         <p>Selection of tickets</p>
                         <div fxLayout="column">
-                            <mat-checkbox [(ngModel)]="eventData.value_print" style="margin-bottom: 15px;" name="print" required>
+                            <mat-checkbox [(ngModel)]="eventData.value_print" style="margin-bottom: 15px;" name="print">
                                 Print ballot directly
                             </mat-checkbox>
-                            <mat-checkbox color="primary" [(ngModel)]="eventData.value_pick" style="margin-bottom: 15px;" name="pick" required>
+                            <mat-checkbox color="primary" [(ngModel)]="eventData.value_pick" style="margin-bottom: 15px;" name="pick">
                                 Pick up the ticket at the point of sale
                             </mat-checkbox>
-                            <mat-checkbox color="warn" [(ngModel)]="eventData.value_purchaser" style="margin-bottom: 15px;" name="purchaser" required>
+                            <mat-checkbox color="warn" [(ngModel)]="eventData.value_purchaser" style="margin-bottom: 15px;" name="purchaser">
                                 Purchaser will send a ballot requesting an additional charge
                             </mat-checkbox>
                         </div>
@@ -305,7 +305,7 @@
                     <mat-form-field>
                         Select Status
                         <mat-select [(ngModel)]="eventData.status" name="status" required>
-                            <mat-option *ngFor="let item of stateList" [value]="item.state">
+                            <mat-option *ngFor="let item of stateList" [value]="item.status">
                                 {{ item.name }}
                             </mat-option>
                         </mat-select>
@@ -313,7 +313,7 @@
 
                     <div class="btns">
                         <button style="float: left;" mat-button matStepperPrevious>Back</button>
-                        <button style="float: right;" mat-button matStepperNext [disabled]="!form4.valid " (click)="done()">Done</button>
+                        <button style="float: right;" mat-button matStepperNext [disabled]="!form4.valid" (click)="done()">Done</button>
                     </div>
 
                 </form>

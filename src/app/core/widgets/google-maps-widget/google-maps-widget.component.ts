@@ -7,8 +7,8 @@ import {Component, OnInit, Input} from '@angular/core';
 export class GoogleMapsWidgetComponent implements OnInit {
 
   @Input('height') height: string = '450px';
-  @Input('lat') lat: number = 40.730610;
-  @Input('lng') lng: number = -73.935242;
+  @Input('lat') lat: number = 4.994140;
+  @Input('lng') lng: number = -74.093002;
   @Input('styles') styles = [
     {
       "featureType": "water",

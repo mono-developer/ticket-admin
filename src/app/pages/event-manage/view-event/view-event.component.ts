@@ -16,7 +16,7 @@ export class ViewEventComponent implements OnInit {
   url: string;
   eventList: any;
   categoryList: any;
-  displayedColumns = ['category', 'name', 'place', 'state', 'symbol'];
+  displayedColumns = ['name', 'category', 'organizer', 'place', 'state', 'symbol'];
   dataSource: any;
   isLoading: boolean = false;
   constructor(
@@ -48,15 +48,14 @@ export class ViewEventComponent implements OnInit {
         });
   }
 
-  getCategoryName(id) {
-
-    let longWords = this.categoryList.filter(word => word.length > 6);
-  }
-
-
   edit(item: any) {
     console.log("senddata", item);
-    this.router.navigate(['./dashboard/event-manage/add-event', { item: item._id }]);
+    this.router.navigate(['./dashboard/event-manage/add-event', { item: item._id, value: 'edit' }]);
+  }
+
+  duplicate(item: any) {
+    console.log("senddata", item);
+    this.router.navigate(['./dashboard/event-manage/add-event', { item: item._id, value: 'duplicate' }]);
   }
 
   delete(item: any) {

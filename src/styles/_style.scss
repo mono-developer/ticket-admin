@@ -1488,7 +1488,8 @@ blockquote {
 		.timeline-panel {
 			width: calc(100% - 75px);
 			float: left;
-			position: relative;
+      position: relative;
+      max-height: 300px;
 			.institution {
 				color:$color_1;
 			}

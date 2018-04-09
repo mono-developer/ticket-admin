@@ -19,15 +19,11 @@ import { DataService } from "../../../provide/data-service";
 })
 export class MainComponent implements OnInit, AfterViewInit {
 
-    selectedIndex: number = 0;
     categoryData: any = [];
     categoryList: any = [];
 
-    config: any;
+    // config: any;
     config1: any;
-    config2: any;
-    profiles: any;
-    profile_id: number;
     eventList: any;
     isLoading: boolean = false;
 
@@ -42,7 +38,6 @@ export class MainComponent implements OnInit, AfterViewInit {
         public baseService: BaseService,
         public dataService: DataService
     ) {
-        this.profiles = this.ticketData.profileData;
         this.categoryData = this.ticketData.categoryList;
 
         // this.config = {
@@ -119,21 +114,6 @@ export class MainComponent implements OnInit, AfterViewInit {
                 });
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     openBookingDialog(eventData): void {
         let dialogRef = this.dialog.open(BookingDialogComponent, {
         width: '350px',
@@ -146,7 +126,6 @@ export class MainComponent implements OnInit, AfterViewInit {
             if(result){
               this.router.navigate(['booking', { id: eventData._id, customName: result.username, customEmail: result.userEmail }]);
             }
-
         });
     }
 
@@ -159,7 +138,6 @@ export class MainComponent implements OnInit, AfterViewInit {
 
         dialogRef.afterClosed().subscribe(result => {
             console.log(result);
-
         });
     }
 
