@@ -32,9 +32,10 @@ export class AddCategoryComponent implements OnInit {
   ) {
 
     this.categoryData = { name: '', value: '' };
-    this.stateList = [ { id: 0, name: 'Active', value: true },
-                       { id: 1, name: 'Deative', value: false }
-                    ];
+    this.stateList = [ 
+       { id: 0, name: 'Active', value: true },
+       { id: 1, name: 'Deative', value: false }
+      ];
   }
 
   ngOnInit() {
