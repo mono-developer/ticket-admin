@@ -90,6 +90,7 @@ export class MainComponent implements OnInit, AfterViewInit {
             (data) => {
                 this.isLoading = false;
                 this.eventList = data;
+                this.eventDateArray(data);
                 console.log('eventList', data);
                 return true;
             },
@@ -98,6 +99,12 @@ export class MainComponent implements OnInit, AfterViewInit {
                 console.log('errorData', err);
                 return true;
             });
+    }
+
+    eventDateArray(data) {
+      let today = new Date().getTime();
+      let sampleDate = new Date(data[0].e_date).getTime();
+      console.log('today', today, sampleDate);
     }
 
     getCategoryList() {

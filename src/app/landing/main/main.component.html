@@ -22,7 +22,6 @@
     </div>
 
     <div class="main-content">
-
         <div class="event-sec">
             <h2>About The Ticket App</h2>
             <div class="des">
@@ -39,8 +38,9 @@
         </div>
 
         <div class="event-sec">
-            <h2>Categorys</h2>
+            <h2>Categories</h2>
             <mat-tab-group class="tab-bg">
+
                 <mat-tab label="All">
                     <div class="category__tab" *ngFor="let item of eventList">
                         <div class="bg__img">
@@ -64,6 +64,7 @@
                         </div>
                     </div>
                 </mat-tab>
+
                 <mat-tab *ngFor="let category of categoryList" [label]="category.name" style="padding: 10px;">
                     <div *ngFor="let item of eventList">
                         <div class="category__tab" *ngIf="item.category_id == category._id">
@@ -72,7 +73,7 @@
                                 <p><span>by </span>{{item.organization.name}}</p>
                             </div>
                             <div class="head">
-                                <h3>title</h3>
+                                <h3>{{item.event_name}}</h3>
                                 <p>{{item.category.name}}</p>
                                 <div class="info"><img src="assets/img/icons/calendar.png" alt=""> {{item.s_date | date:'dd/MM/yyyy'}} - {{item.e_date | date:'dd/MM/yyyy'}} </div>
                                 <div class="info"><img src="assets/img/icons/location.png" alt=""> {{item.place}}</div>
@@ -87,7 +88,6 @@
                             </div>
                         </div>
                     </div>
-
                 </mat-tab>
 
             </mat-tab-group>
@@ -116,15 +116,43 @@
                                     </div>
                                 </div>
                             </li>
+                            <li class="clearfix no-float"></li>
+                        </ul>
+                    </div>
+                </mat-tab>
+
+                <mat-tab label="TOMORROW">Tomorrow</mat-tab>
+
+                <mat-tab label="THIS WEEK">This Week</mat-tab>
+
+                <mat-tab label="THIS MONTH">This Month</mat-tab>
+
+                <mat-tab label="ALL">
+                    <div class="timeline-wrap  overflow-hide mb-30">
+                        <ul class="timeline">
+                            <li *ngFor="let item of eventList; let index = index;" [ngClass]="{'timeline-inverted': index%2 == 1}">
+                                <div class="timeline-badge">
+                                    <!-- <i class="zmdi zmdi-case font-indigo"></i> -->
+                                    <img [src]="item.event_img" alt="">
+                                </div>
+                                <div class="timeline-panel mdl-card pt-30 pb-30 border-top-indigo" [ngClass]="{'border-top-pink': index%2 == 1}">
+                                    <div class="timeline-heading">
+                                        <h4 class="mb-10">{{item.event_name}}</h4>
+                                        <!-- <span class="duration mb-5">9:30am - 11:30am</span> -->
+                                        <span class="duration mb-5">{{item.s_date | date:'dd/MM/yyyy'}} - {{item.e_date | date:'dd/MM/yyyy'}}</span>
+                                        <span class="institution">{{item.category.name}}</span>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p class="mt-15">{{item.event_info}}</p>
+                                    </div>
+                                </div>
+                            </li>
 
                             <li class="clearfix no-float"></li>
                         </ul>
                     </div>
-
                 </mat-tab>
-                <mat-tab label="THIS WEEK">This Week</mat-tab>
-                <mat-tab label="THIS MONTH">This Month</mat-tab>
-                <mat-tab label="ALL">All</mat-tab>
+
             </mat-tab-group>
         </div>
 

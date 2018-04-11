@@ -10,6 +10,7 @@ import { Observable } from 'rxjs/Rx';
 
 import { AgmCoreModule } from '@agm/core';
 import { MouseEvent } from '@agm/core';
+import { select } from 'd3';
 
 
 @Component({
@@ -20,20 +21,21 @@ import { MouseEvent } from '@agm/core';
 export class BookingComponent implements OnInit {
 
   id: string;
-
   isLinear: boolean = false;
-  s__Date: any;
-  s__Location: any;
+  event_date: any = {time: '', date: ''};
+  s__Location: any = {};
   s__quantity: number;
   s__ballot: any;
-  eventData: any = {};
-  organizorData: any = {};
-  customerInfo: any = {};
+  eventData: any;
+  organizerData: any = {};
+  categoryData: any = {};
+  customerInfo: any;
   isStep1Table: boolean = false;
   isStep2Table: boolean = false;
-  locationData: any;
+  ticket: any;
   ballotList: any;
   bookingInfo: any = {};
+  pseInfo: any = {};
 
   id_number: string;
   id_type: string;
@@ -47,7 +49,6 @@ export class BookingComponent implements OnInit {
   second: any = 0;
   minute: number = 0;
 
-
   constructor(
     private router: Router,
     public route: ActivatedRoute,
@@ -55,23 +56,24 @@ export class BookingComponent implements OnInit {
     public baseService: BaseService,
     public dataService: DataService
   ) {
+    this.eventData = {};
     this.ballotList = [
       { value: 0, title: 'Print the ballot direct.' },
       { value: 1, title: 'Pick ticket at sale point.' },
       { value: 2, title: 'Purchasers will send the tickets at an additional cost.'}
     ];
-   }
-
-  ngOnInit() {
-
     this.id = this.route.snapshot.paramMap.get('id');
     let cusName = this.route.snapshot.paramMap.get('customName');
     let cusEmail = this.route.snapshot.paramMap.get('customEmail');
-    this.customerInfo = { name: cusName, email: cusEmail};
+    this.customerInfo = { name: cusName, email: cusEmail };
     console.log(this.customerInfo);
-    let url = this.baseService.eventURL;
-    this.getEventData(this.id, url);
 
+   }
+
+  ngOnInit() {
+    let url = this.baseService.eventURL;
+    console.log(this.id, url);
+    this.getEventData(this.id, url);
   }
 
   getEventData(id, url) {
@@ -81,7 +83,8 @@ export class BookingComponent implements OnInit {
           // this.isLoading = false;
           console.log(data);
           this.eventData = data;
-          this.getOrganizorData(this.eventData.org_id);
+          this.organizerData = data.organization;
+          this.categoryData = data.category;
           this.timeInterval();
           return true;
         },
@@ -91,24 +94,6 @@ export class BookingComponent implements OnInit {
           return true;
         });
   }
-
-  getOrganizorData(id) {
-    let url = this.baseService.organizorURL;
-    this.dataService.getData(url + "/" + id)
-      .subscribe(
-        (data) => {
-          console.log(data);
-          this.organizorData = data;
-          return true;
-        },
-        err => {
-          // this.isLoading = false;
-          console.log('errorData', err);
-          return true;
-        });
-  }
-
-
 
   timeInterval() {
 
@@ -128,7 +113,7 @@ export class BookingComponent implements OnInit {
       this.progressValue = t/30;
       if (this.progressValue == 100) {
         subscription.unsubscribe();
-        // this.isTimerOver(this.customerInfo.name);
+        this.isTimerOver(this.customerInfo.name);
       }
     });
   }
@@ -145,10 +130,10 @@ export class BookingComponent implements OnInit {
     });
   }
 
-  openLocationDialog(location): void {
+  openLocationDialog(data): void {
     let dialogRef = this.dialog.open(LocationDialogComponent, {
       width: '350px',
-      data: { location: location }
+      data: { location: data.place, lat: data.latitude, lng: data.longitude }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -156,35 +141,36 @@ export class BookingComponent implements OnInit {
     });
   }
 
-  onChange(selectedValue:string) {
-    console.log('selectedValue', selectedValue);
-    let date = selectedValue.split("T");
-    this.s__Date = date[0];
-    this.isStep1Table = !!selectedValue;
-    console.log(this.isStep1Table, this.s__Date);
+  onChange(value:any) {
+    this.isStep1Table = !!value;
+    this.event_date = {
+      time: value.time,
+      date: value.date
+    }
+    console.log(this.isStep1Table, this.event_date);
   }
 
   onChangedLocation(value: string){
     this.isStep2Table = !!value;
     console.log(this.eventData);
-    let locationData = this.eventData.seat_details.filter((book: any) =>
-      book.location === value
+    let locationData = this.eventData.ticket_data.filter((item: any) =>
+      item.location === value
     );
-    this.locationData = locationData[0];
+    this.ticket = locationData[0];
   }
 
   getBookingInfo() {
     console.log(this.s__quantity);
     this.bookingInfo = {
-      location: this.locationData.location,
+      location: this.ticket.location,
       quantity: this.s__quantity,
-      price: this.locationData.ticket_price,
-      total_price:  this.s__quantity * this.locationData.ticket_price
+      price: this.ticket.ticket_price,
+      total_price: this.s__quantity * Number(this.ticket.ticket_price)
     }
   }
 
   getPSE() {
-    console.log(this.id_number);
+    console.log(this.pseInfo);
   }
 
 }
@@ -222,8 +208,8 @@ export class LocationDialogComponent {
 
   // google maps zoom level
   zoom: number = 15;
-  lat: number = 51.673858;
-  lng: number = 7.815982;
+  lat: number;
+  lng: number;
   marker: any;
 
   styles = [
@@ -495,6 +481,9 @@ export class LocationDialogComponent {
     public dialogRef: MatDialogRef<LocationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
     console.log(this.data)
+    this.lat = Number(data.lat);
+    this.lng = Number(data.lng);
+    console.log(this.lng, this.lat);
   }
 
   onNoClick(): void {
@@ -504,8 +493,8 @@ export class LocationDialogComponent {
   ngOnInit() {
     this.marker =
       {
-        lat: 51.673858,
-        lng: 7.815982,
+        lat: this.lat,
+        lng: this.lng,
         label: this.data.location,
         draggable: true
       }

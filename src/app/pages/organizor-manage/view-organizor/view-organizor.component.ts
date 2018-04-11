@@ -28,7 +28,7 @@ export class ViewOrganizorComponent implements OnInit {
    }
 
   ngOnInit() {
-  this.url = this.baseService.userURL;
+  this.url = this.baseService.organizorURL;
   this.getOrgList();
   }
 
@@ -38,11 +38,8 @@ export class ViewOrganizorComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          this.orgList = data.filter((book: any) =>
-            book.access === "1"
-          );
+          this.orgList = data;
           console.log(this.orgList);
-
           this.dataSource = new MatTableDataSource(this.orgList);
           return true;
         },

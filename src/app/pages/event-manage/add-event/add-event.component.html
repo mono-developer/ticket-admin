@@ -88,7 +88,9 @@
                             <p>Add Event Image</p>
                             <input type="file" id="File" (change)="eventImage($event)" size="60">
                         </label>
-                        <img *ngIf="eventData.event_img" [src]="eventData.event_img"  alt="">
+                        <label id="#bb" class="upload_img" *ngIf="eventData.event_img" [ngStyle]="{'background-image': 'url(' + eventData.event_img + ')'}">
+                          <input type="file" id="File" (change)="eventImage($event)" size="60">
+                        </label>
                     </div>
                 </div>
 
@@ -224,7 +226,9 @@
                             <p>Add Stage Map Image</p>
                             <input type="file" id="File" (change)="seatImage($event)" size="60">
                         </label>
-                        <img *ngIf="eventData.seat_img" [src]="eventData.seat_img" alt="">
+                        <label id="#bb" class="upload_img seat_img" *ngIf="eventData.seat_img" [ngStyle]="{'background-image': 'url(' + eventData.seat_img + ')'}">
+                          <input type="file" id="File" (change)="seatImage($event)" size="60">
+                        </label>
                     </div>
                 </div>
 
@@ -257,10 +261,15 @@
                     <div class="right-event">
                         <label id="#bb" class="upload_img ticket_img" *ngIf="!eventData.ticket_img">
                             <mat-icon>add</mat-icon>
-                            <p>Add Ticket Image</p>
+                            <p>Add Ticket Imagesss</p>
                             <input type="file" id="File" (change)="ticketImage($event)" size="60">
                         </label>
-                        <img *ngIf="eventData.ticket_img" [src]="eventData.ticket_img" alt="">
+
+                        <label id="#bb" class="upload_img ticket_img" *ngIf="eventData.ticket_img" [ngStyle]="{'background-image': 'url(' + eventData.ticket_img + ')'}">
+                          <input type="file" id="File" (change)="ticketImage($event)" size="60">
+                        </label>
+
+                        <!-- <img *ngIf="eventData.ticket_img" [src]="eventData.ticket_img" alt=""> -->
                     </div>
                 </div>
 

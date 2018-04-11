@@ -26,6 +26,12 @@ export class DataService {
       .catch((error: any) => Observable.throw(error || 'Server error'));
   }
 
+  getTestData(url, token) {
+    return this.http.get(url + "?token=" + token, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error || 'Server error'));
+  }
+
   postData(url, body) {
     return this.http.post(url + "?token=" + this.token, body, options)
       .map((res: Response) => res.json())

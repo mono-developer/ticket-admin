@@ -105,7 +105,17 @@ mat-horizontal-stepper{
     padding: 30px 20px;
     margin-top: 50px;
   }
+}
 
+.ticket_details{
+  width: 100%;
+  display: flex;
+  img{
+    width: 50%;
+    min-width: 250px;
+    height: 100%;
+    padding: 0 20px;
+  }
 }
 
 table{
