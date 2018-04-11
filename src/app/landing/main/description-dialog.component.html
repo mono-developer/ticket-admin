@@ -4,10 +4,10 @@
     <mat-card-title>{{data.event_name}}</mat-card-title>
     <mat-card-subtitle>{{data.category.name}}</mat-card-subtitle>
   </mat-card-header>
-  <img mat-card-image style="width: 100%; margin:0 auto" [src]="data.event_bg" alt="Photo of a Shiba Inu">
+  <img mat-card-image style="width: 100%; margin:0 auto" [src]="data.event_img" alt="Photo of a Shiba Inu">
   <mat-card-content>
-    <p>{{data.add_info}}</p>
-    <div class="date"><img src="assets/img/icons/location.png" alt="">{{data.meeting_place}}</div>
+    <p>{{data.event_info}}</p>
+    <div class="date"><img src="assets/img/icons/location.png" alt="">{{data.place}}</div>
 
   </mat-card-content>
   <mat-card-actions>

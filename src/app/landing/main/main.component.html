@@ -59,8 +59,9 @@
                         </div>
                         <div class="actions">
                             <div class="active" [ngStyle]="{'background-color':item.status? '#39a905' : '#f74984' }">{{item.status ? 'Active' : 'Inactive'}}</div>
-                            <button mat-button style="background: #5e73e4">Description</button>
-                            <button mat-button style="background: #f74984" [disabled]="!item.status">Booking</button>
+                            <button mat-button style="background: #5e73e4" (click)="openDescriptionDialog(item)">Description</button>
+                            <button mat-button style="background: #f74984" [disabled]="!item.status" (click)="openBookingDialog(item)">Booking</button>
+
                         </div>
                     </div>
                 </mat-tab>
@@ -83,8 +84,8 @@
                             </div>
                             <div class="actions">
                                 <div class="active" [ngStyle]="{'background-color':item.status? '#39a905' : '#f74984' }">{{item.status ? 'Active' : 'Inactive'}}</div>
-                                <button mat-button style="background: #5e73e4">Description</button>
-                                <button mat-button style="background: #f74984">Booking</button>
+                                <button mat-button style="background: #5e73e4" (click)="openDescriptionDialog(item)">Description</button>
+                                <button mat-button style="background: #f74984" (click)="openBookingDialog(item)">Booking</button>
                             </div>
                         </div>
                     </div>
