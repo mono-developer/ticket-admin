@@ -13,6 +13,7 @@ import { routeAnimation } from "../../route.animation";
 export class PageHeaderComponent implements OnInit {
 
   @Input() title: string ='';
+  @Input() button: string ='';
 
   constructor() { }
 

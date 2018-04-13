@@ -1,0 +1,177 @@
+
+.bg{
+  height: 600px;
+  width: 100%;
+  background-image: url('../../../assets/img/backgrounds/bg.jpeg');
+  background-size: cover;
+  background-position: center;
+  filter: blur(31px) brightness(0.9);
+
+}
+.main-content{
+  margin-top: -200px;
+  padding: 20px;
+  background-color: #dbdbdb;
+  position: relative;
+  .event-content{
+    display: flex;
+    .left-content {
+      width: 60%;
+      padding: 20px;
+      background: #fff;
+      border-radius: 3px;
+      img {
+        width: 100%;
+        border-radius: 5px;
+      }
+      .description{
+        width: 100%;
+        p{
+          color: #000;
+        }
+      }
+    }
+
+    .right-content {
+      width: calc(40% - 20px);
+      padding: 20px;
+      background: #fff;
+      margin-left: 20px;
+      border-radius: 3px;
+      ul{
+        padding: 0px;
+        margin: 0px;
+        li{
+          margin-bottom: 13px;
+          -webkit-box-align: center;
+          -webkit-align-items: center;
+          -ms-flex-align: center;
+          align-items: center;
+          display: -webkit-box;
+          display: -webkit-flex;
+          display: -ms-flexbox;
+          display: flex;
+          width: 100%;
+          i {
+            font-size: 18px;
+            color: crimson;
+            width: 25px;
+            min-width: 25px;
+            display: inline-block;
+          }
+          span{
+            font-weight: 600;
+            display: inline-block;
+            min-width: 80px;
+            width: 80px;
+            vertical-align: middle;
+            color: darkslategrey;
+          }
+          div {
+            display: inline-block;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+
+  .tab-bg{
+    background-color: #fff;
+
+    .schedule{
+      width: 90%;
+      display: block;
+      margin: 20px auto;
+      border: 1px solid gray;
+      border-radius: 5px;
+      padding: 10px 20px;
+      p{
+        font-weight: 600;
+        margin: 5px;
+        color: darkslategrey;
+        i {
+          font-size: 18px;
+          color: crimson;
+        }
+        span{
+          color: gray;
+        }
+      }
+    }
+
+    .ticket_price{
+      display: flex;
+      border: 1px solid;
+      margin: 10px auto;
+      border-radius: 5px;
+      width: 90%;
+      padding: 5px;
+      align-items: center;
+      .price{
+        width: 200px;
+        h3{
+          margin: 0;
+          text-align: center;
+        }
+        p{
+          font-size: 50px;
+          line-height: 50px;
+          font-weight: 600;
+          margin: 5px;
+          color: #e52222;
+          text-align: center;
+        }
+        button{
+          background: orange;
+          display: block;
+          margin: 0 auto;
+          width: 100px;
+          border-radius: 20px;
+          color: #fff;
+        }
+      }
+      .ticket{
+        p {
+          font-weight: 600;
+          margin: 5px;
+          color: darkslategrey;
+          i {
+            font-size: 18px;
+            color: #ffa500;
+          }
+          span {
+            color: gray;
+          }
+        }
+      }
+    }
+    .stage_map{
+      margin: 0 auto;
+      display: block;
+    }
+  }
+
+}
+
+.other_info{
+  margin-top: 20px;
+  width: 100%;
+  display: flex;
+  .map_view{
+    width: calc(50% - 20px);
+    height: 400px;
+    display: block;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-left: 20px;
+    agm-map {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+}
+
+
+

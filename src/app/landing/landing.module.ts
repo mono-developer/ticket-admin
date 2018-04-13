@@ -11,6 +11,7 @@ import { SwiperModule } from 'angular2-useful-swiper'; //or for angular-cli the 
 
 import { MainComponent, BookingDialogComponent, DescriptionDialogComponent } from './main/main.component';
 import { BookingComponent, LocationDialogComponent, TimeOverComponent } from './booking/booking.component';
+import { Booking1Component } from './booking1/booking1.component';
 import { AdminComponent } from './admin/admin.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SearchComponent } from './toolbar/search/search.component';
@@ -72,6 +73,7 @@ import { AgmCoreModule } from '@agm/core';
     BookingDialogComponent,
     DescriptionDialogComponent,
     BookingComponent,
+    Booking1Component,
     LocationDialogComponent,
     TimeOverComponent,
     AdminComponent,

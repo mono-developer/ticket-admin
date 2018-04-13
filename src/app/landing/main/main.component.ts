@@ -137,17 +137,20 @@ export class MainComponent implements OnInit, AfterViewInit {
     }
 
     openDescriptionDialog(data): void {
-        console.log('Description');
-        let dialogRef = this.dialog.open(DescriptionDialogComponent, {
-            width: '400px',
-            data: data
-        });
+      console.log(data._id);
 
-        dialogRef.afterClosed().subscribe(result => {
-            console.log(result);
-        });
+      this.router.navigate(['booking1', { id: data._id}]);
+        // console.log('Description');
+        // let dialogRef = this.dialog.open(DescriptionDialogComponent, {
+        //     width: '400px',
+        //     data: data
+        // });
+
+        // dialogRef.afterClosed().subscribe(result => {
+        //     console.log(result);
+        // });
+
     }
-
 }
 
 //Booking Dialog

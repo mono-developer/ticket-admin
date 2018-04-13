@@ -32,12 +32,35 @@
 
 .content-container {
   height: 100vh;
+  .header{
+    position: absolute;
+    height: 80px;
+    width: 100%;
+    color: lightgray;
+    display: block;
+    z-index: 9;
+    background-color: rgba(0, 0, 0, 0.4);
+    border-bottom: 1px solid rgba(180, 180, 180, 0.15);
+    padding: 10px 20px;
+    .logo{
+      background-image: url('../../../assets/img/icons/icon-white.png');
+      width: 140px;
+      height: 100%;
+      background-size: 100% 100%;
+      background-color: transparent;
+      border: none;
+    }
+    .login{
+      font-size: 18px;
+    }
+  }
 }
 
 .main-container {
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100% - #{$height__main-toolbar});
+  // height: calc(100% - #{$height__main-toolbar});
+  height: 100%;
   position: relative;
   ms-dashboard {
     width: 100%;

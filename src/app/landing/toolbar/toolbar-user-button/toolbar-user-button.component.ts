@@ -22,9 +22,9 @@ export class ToolbarUserButtonComponent implements OnInit {
     this.isOpen = !this.isOpen;
   }
 
-  goLogin() {
-    this.router.navigate(['dashboard']);
-  }
+  // goLogin() {
+  //   this.router.navigate(['../../../pages/settings/login']);
+  // }
 
   onClickOutside() {
     this.isOpen = false;

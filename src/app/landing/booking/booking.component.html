@@ -108,9 +108,11 @@
                 </mat-select>
               </mat-form-field>
 
-              <mat-form-field>
-                <input type="number" matInput placeholder="Quantity" [(ngModel)]="s__quantity">
-              </mat-form-field>
+              <div class="ticket_number" *ngIf="isStep2Table">
+                <button mat-raised-button color="accent" (click)="minQuantity()" [disabled]="s__quantity == 1">-</button>
+                <div class="counter">{{s__quantity}}</div>
+                <button mat-raised-button color="accent" (click)="addQuantity()" [disabled]="s__quantity == 8">+</button>
+              </div>
 
               <mat-form-field *ngIf="isStep2Table">
                 <mat-select placeholder="Favorite Ticket" [(ngModel)]="s__ballot">

@@ -6,6 +6,8 @@ import {Subscription} from "rxjs";
 import {MediaChange} from "@angular/flex-layout";
 import {Router, NavigationEnd} from "@angular/router";
 
+import * as screenfull from 'screenfull';
+
 @Component({
   selector: 'ms-admin',
   templateUrl: './admin.component.html',
@@ -21,6 +23,7 @@ export class AdminComponent implements OnInit, OnDestroy {
   isMobile: boolean = false;
   buyNowToolbarVisible = true;
 
+  isFullscreen: boolean = false;
   constructor(
     private router: Router,
   ) { }
@@ -40,4 +43,12 @@ export class AdminComponent implements OnInit, OnDestroy {
   onActivate(e, scrollContainer) {
     scrollContainer.scrollTop = 0;
   }
+
+  toggleFullscreen() {
+    if (screenfull.enabled) {
+      screenfull.toggle();
+      this.isFullscreen = !this.isFullscreen;
+    }
+  }
+
 }

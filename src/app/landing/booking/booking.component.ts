@@ -1,7 +1,7 @@
 import { Component, OnInit, AfterViewInit, Inject, NgZone, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { DatePipe } from '@angular/common';
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { BaseService } from "../../../provide/base-service";
@@ -24,7 +24,7 @@ export class BookingComponent implements OnInit {
   isLinear: boolean = false;
   event_date: any = {time: '', date: ''};
   s__Location: any = {};
-  s__quantity: number;
+  s__quantity: number = 1;
   s__ballot: any;
   eventData: any;
   organizerData: any = {};
@@ -53,6 +53,7 @@ export class BookingComponent implements OnInit {
     private router: Router,
     public route: ActivatedRoute,
     public dialog: MatDialog,
+    public snackBar: MatSnackBar,
     public baseService: BaseService,
     public dataService: DataService
   ) {
@@ -113,19 +114,18 @@ export class BookingComponent implements OnInit {
       this.progressValue = t/30;
       if (this.progressValue == 100) {
         subscription.unsubscribe();
-        this.isTimerOver(this.customerInfo.name);
+        // this.isTimerOver(this.customerInfo.name);
+        this.openSnackBar(this.customerInfo.name)
       }
     });
   }
 
-  isTimerOver(name): void {
-    let dialogRef = this.dialog.open(TimeOverComponent, {
-      width: '350px',
-      data: name
+  openSnackBar(name) {
+    let aa = this.snackBar.openFromComponent(TimeOverComponent, {
+      duration: 2000,
     });
 
-    dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
+    aa.afterDismissed().subscribe(() => {
       this.router.navigate(['']);
     });
   }
@@ -169,6 +169,16 @@ export class BookingComponent implements OnInit {
     }
   }
 
+
+  addQuantity() {
+    this.s__quantity++;
+    console.log(this.s__quantity);
+  }
+  minQuantity() {
+    this.s__quantity--;
+    console.log(this.s__quantity);
+  }
+
   getPSE() {
     console.log(this.pseInfo);
   }
@@ -177,28 +187,12 @@ export class BookingComponent implements OnInit {
 
 @Component({
   templateUrl: 'time-over.component.html',
-  styleUrls: ['./booking.component.scss'],
+  styleUrls: ['./booking.component.scss']
 })
 export class TimeOverComponent {
-
-  @ViewChild("search")
-  public searchElementRef: ElementRef;
-
-  constructor(
-    public dialogRef: MatDialogRef<TimeOverComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-
-      console.log(data);
-    }
-
-  ngOnInit() {
-    console.log(this.data);
-  }
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
+  constructor() { }
 }
+
 
 @Component({
   templateUrl: 'location-dialog.component.html',
@@ -211,270 +205,7 @@ export class LocationDialogComponent {
   lat: number;
   lng: number;
   marker: any;
-
-  styles = [
-    {
-      "featureType": "water",
-      "elementType": "labels.text",
-      "stylers": [
-        {
-          "visibility": "simplified"
-        },
-        {
-          "invert_lightness": false
-        },
-        {
-          "color": "#004963"
-        },
-        {
-          "weight": 8
-        }
-      ]
-    },
-    {
-      "featureType": "water",
-      "elementType": "geometry.fill",
-      "stylers": [
-        {
-          "invert_lightness": false
-        },
-        {
-          "color": "#b7ebeb"
-        },
-        {
-          "saturation": -53
-        },
-        {
-          "lightness": 2
-        }
-      ]
-    },
-    {
-      "featureType": "landscape.man_made",
-      "elementType": "geometry",
-      "stylers": [
-        {
-          "visibility": "on"
-        },
-        {
-          "invert_lightness": false
-        },
-        {
-          "hue": "#767878"
-        },
-        {
-          "saturation": -93
-        },
-        {
-          "lightness": 56
-        }
-      ]
-    },
-    {
-      "featureType": "landscape.man_made",
-      "elementType": "geometry.stroke",
-      "stylers": [
-        {
-          "visibility": "on"
-        },
-        {
-          "color": "#b8dbe0"
-        },
-        {
-          "saturation": -7
-        },
-        {
-          "lightness": 33
-        }
-      ]
-    },
-    {
-      "featureType": "poi",
-      "elementType": "all",
-      "stylers": [
-        {
-          "visibility": "simplified"
-        },
-        {
-          "saturation": -1
-        }
-      ]
-    },
-    {
-      "featureType": "poi.park",
-      "elementType": "geometry.fill",
-      "stylers": [
-        {
-          "color": "#d1e6d7"
-        }
-      ]
-    },
-    {
-      "featureType": "poi.sports_complex",
-      "elementType": "all",
-      "stylers": [
-        {
-          "saturation": -100
-        },
-        {
-          "lightness": 61
-        }
-      ]
-    },
-    {
-      "featureType": "poi.school",
-      "elementType": "all",
-      "stylers": [
-        {
-          "visibility": "off"
-        },
-        {
-          "saturation": -100
-        },
-        {
-          "lightness": 80
-        }
-      ]
-    },
-    {
-      "featureType": "poi.place_of_worship",
-      "elementType": "all",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    },
-    {
-      "featureType": "poi.business",
-      "elementType": "all",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    },
-    {
-      "featureType": "administrative.land_parcel",
-      "elementType": "labels.text",
-      "stylers": [
-        {
-          "visibility": "simplified"
-        },
-        {
-          "color": "#d74340"
-        },
-        {
-          "saturation": -32
-        }
-      ]
-    },
-    {
-      "featureType": "transit.line",
-      "elementType": "all",
-      "stylers": [
-        {
-          "visibility": "off"
-        }
-      ]
-    },
-    {
-      "featureType": "transit.station.rail",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "color": "#d74340"
-        }
-      ]
-    },
-    {
-      "featureType": "transit.station.rail",
-      "elementType": "labels.icon",
-      "stylers": [
-        {
-          "visibility": "simplified"
-        },
-        {
-          "lightness": 0
-        },
-        {
-          "gamma": 2.05
-        }
-      ]
-    },
-    {
-      "featureType": "road.highway",
-      "elementType": "geometry.fill",
-      "stylers": [
-        {
-          "lightness": 100
-        }
-      ]
-    },
-    {
-      "featureType": "road.highway",
-      "elementType": "geometry.stroke",
-      "stylers": [
-        {
-          "saturation": -100
-        },
-        {
-          "lightness": 78
-        }
-      ]
-    },
-    {
-      "featureType": "road.highway",
-      "elementType": "labels.text.fill",
-      "stylers": [
-        {
-          "visibility": "on"
-        },
-        {
-          "color": "#000000"
-        },
-        {
-          "lightness": 40
-        }
-      ]
-    },
-    {
-      "featureType": "road.arterial",
-      "elementType": "geometry.stroke",
-      "stylers": [
-        {
-          "saturation": -100
-        },
-        {
-          "lightness": 54
-        }
-      ]
-    },
-    {
-      "featureType": "road.local",
-      "elementType": "geometry.stroke",
-      "stylers": [
-        {
-          "visibility": "on"
-        },
-        {
-          "saturation": -100
-        },
-        {
-          "lightness": 28
-        }
-      ]
-    },
-    {
-      "featureType": "road.local",
-      "elementType": "geometry.fill",
-      "stylers": [
-        {
-          "color": "#ffffff"
-        }
-      ]
-    }
-  ];
+  styles = null;
 
   constructor(
     private ngZone: NgZone,

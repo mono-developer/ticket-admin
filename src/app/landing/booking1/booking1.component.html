@@ -1,0 +1,116 @@
+
+
+<div *ngIf="eventData">
+    <div class="dashboard-container" fxLayout="column" fxLayoutAlign="start stretch">
+        <div class="bg" [ngStyle]="{'background-image': 'url(' + eventData.event_img + ')'}"></div>
+    </div>
+
+    <div class="main-content">
+        <div class="event-content">
+            <div class="left-content">
+                <img [src]="eventData.event_img" alt="">
+                <div class="description">
+                    <p>Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per
+                        conubia nostra, per inceptos himenaeos. Mauris in erat justo. Morbi accumsan ipsum velit.Class aptent
+                        taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.mauris vitae erat consequat
+                        auctor eu in elit.</p>
+                </div>
+            </div>
+            <div class="right-content">
+                <h3>Event: {{eventData.event_name}}</h3>
+                <ul>
+                    <li>
+                        <i class="fa fa-hand-o-right"></i>
+                        <span>Category:</span>
+                        <span>{{eventData.category.name}}</span>
+                    </li>
+                    <li>
+                        <i class="fa fa-calendar-check-o"></i>
+                        <span>Start Date:</span>
+                        <div>{{eventData.s_date | date: 'dd/mm/yyyy'}}</div>
+                    </li>
+                    <li>
+                        <i class="fa fa-calendar-times-o"></i>
+                        <span>End Date:</span>
+                        <div>{{eventData.s_date | date: 'dd/mm/yyyy'}}</div>
+                    </li>
+                    <li>
+                        <i class="fa fa-map-marker"></i>
+                        <span>Address:</span>
+                        <div>{{eventData.place}}</div>
+                    </li>
+                    <li>
+                        <i class="fa fa-map-signs"></i>
+                        <span>Organizer:</span>
+                        <div>{{orgData.name}}</div>
+                    </li>
+                    <li>
+                        <i class="fa fa-user"></i>
+                        <span>Email:</span>
+                        <div>{{orgData.org_email}}</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="other_info">
+            <mat-tab-group class="tab-bg" *ngIf="eventData">
+                <mat-tab label="SCHEDULES">
+                    <!-- ghjkgjkgjh -->
+                    <div class="schedule" *ngFor="let item of dateInfo">
+                    <p>
+                        <i class="fa fa-calendar-check-o"></i> {{item.date | date: 'dd/mm/yyyy'}}</p>
+                    </div>
+                </mat-tab>
+
+                <mat-tab label="TICKETS & PRICES">
+                    <div class="ticket_price" *ngFor="let item1 of ticketInfo">
+                        <div class="price">
+                            <h3>{{item1.location}}</h3>
+                            <p>${{item1.ticket_price}}</p>
+                            <button mat-button>Buy Ticket!</button>
+                        </div>
+                        <div class="ticket">
+                            <p>
+                                <i class="fa fa-ticket"></i> Quantity:
+                                <span>{{item1.quantity}}</span>
+                            </p>
+                            <p>
+                                <i class="fa fa-cart-plus"></i> Payment Type:
+                                <span>{{item1.payment_type}}</span>
+                            </p>
+                            <p>
+                                <i class="fa fa-calendar-plus-o"></i> Sale Terms:
+                                <span></span>
+                            </p>
+                            <p>
+                                <i class="fa fa-share-square"></i> Charge Service:
+                                <span>kkk</span>
+                            </p>
+                        </div>
+                    </div>
+                </mat-tab>
+
+                <mat-tab label="STAGE MAP">
+                    <div class="stage_map">
+                        <img [src]="eventData.seat_img" alt="">
+                    </div>
+                </mat-tab>
+
+            </mat-tab-group>
+            <div class="map_view">
+                <agm-map [latitude]="lat" [longitude]="lng" [styles]="styles" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false">
+                    <agm-marker (markerClick)="clickedMarker()" [latitude]="lat" [longitude]="lng">
+                        <agm-info-window>
+                            <strong>{{marker.label}}</strong>
+                        </agm-info-window>
+                    </agm-marker>
+                </agm-map>
+            </div>
+        </div>
+
+        <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
+    </div>
+
+
+</div>

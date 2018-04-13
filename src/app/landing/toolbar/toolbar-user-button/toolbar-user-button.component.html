@@ -23,7 +23,7 @@
           <span class="title">Help</span>
         </div>
         <mat-divider></mat-divider>
-        <div class="item" fxLayout="row" fxLayoutAlign="start center" matRipple (click)="goLogin()">
+        <div class="item" fxLayout="row" fxLayoutAlign="start center" matRipple [routerLink]="['/login']">
           <mat-icon class="icon">exit_to_app</mat-icon>
           <!-- <span class="title">Logout</span> -->
           <span class="title">Login</span>
