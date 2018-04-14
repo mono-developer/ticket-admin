@@ -29,6 +29,7 @@ export class ViewSaleUsersComponent implements OnInit {
 
   ngOnInit() {
     this.url = this.baseService.salesUserURL;
+    this.token = sessionStorage.getItem('token');
     this.getSalesUserList();
   }
 
