@@ -183,7 +183,7 @@ export class AddEventComponent implements OnInit {
 
   getCouponData() {
     let cp_url = this.baseService.couponURL;
-    this.dataService.getNoTokenData(cp_url)
+    this.dataService.getData(cp_url, this.token)
       .subscribe(
         (data) => {
           this.couponList = data;
