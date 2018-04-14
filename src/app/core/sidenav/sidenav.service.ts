@@ -65,7 +65,7 @@ export class SidenavService {
 
 
     ngOnInit() {
-      let userInfo = JSON.parse(localStorage.getItem('userInfo'));
+      let userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
       this.name = userInfo.name;
       // console.log(this.name);
     }
@@ -73,7 +73,7 @@ export class SidenavService {
 
   addItem(name: string, icon: string, route: any, position: number, status: boolean, badge?: string, badgeColor?: string, customClass?: string) {
 
-    let userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    let userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
     let access = userInfo.access;
     // console.log(access);
 
@@ -158,7 +158,7 @@ export class SidenavService {
   nextCurrentlyOpenByRoute(route: string) {
     let currentlyOpen = [ ];
 
-    let item = this.findByRouteRecursive(route, this._items);
+    let item: any = this.findByRouteRecursive(route, this._items);
 
     if (item && item.hasParent()) {
       currentlyOpen = this.getAllParents(item);

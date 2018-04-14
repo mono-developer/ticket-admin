@@ -13,6 +13,7 @@ import { DataService } from "../../../../provide/data-service";
 export class ViewBullentinComponent implements OnInit {
   page_title: string = 'View Newsletter';
   url: string;
+  token: string;
   letterList: any;
   displayedColumns = ['title', 'description', 'symbol'];
   dataSource: any;
@@ -26,12 +27,13 @@ export class ViewBullentinComponent implements OnInit {
 
   ngOnInit() {
     this.url = this.baseService.newsLetterURL;
+    this.token = sessionStorage.getItem('token');
     this.getNewsLetterList();
   }
 
   getNewsLetterList() {
     this.isLoading = true;
-    this.dataService.getData(this.url)
+    this.dataService.getData(this.url, this.token)
       .subscribe(
         (data) => {
           this.isLoading = false;
@@ -54,7 +56,7 @@ export class ViewBullentinComponent implements OnInit {
 
   delete(item: any) {
     this.isLoading = true;
-    this.dataService.deleteData(this.url, item._id)
+    this.dataService.deleteData(this.url, item._id, this.token)
       .subscribe(
         (data) => {
           console.log('letterList', data);

@@ -19,6 +19,7 @@ export class AddCategoryComponent implements OnInit {
   page_title: string = "Add Category";
   id: string;
   url: string;
+  token: string;
   categoryData: any;
   categoryList: any;
   isLoading: boolean = false;
@@ -40,6 +41,7 @@ export class AddCategoryComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('item');
     this.url = this.baseService.categoryURL;
+    this.token = sessionStorage.getItem('token');
     console.log('item', this.id);
     if (this.id) {
       this.getCategoryData(this.id);
@@ -50,7 +52,7 @@ export class AddCategoryComponent implements OnInit {
 
   getCategoryData(id) {
     this.isLoading = true;
-    this.dataService.getData(this.url + "/" + id)
+    this.dataService.getNoTokenData(this.url + "/" + id)
       .subscribe(
         (data) => {
           this.isLoading = false;
@@ -73,7 +75,7 @@ export class AddCategoryComponent implements OnInit {
 
   postCategoryData() {
     this.isLoading = true;
-    this.dataService.postData(this.url, this.categoryData)
+    this.dataService.postData(this.url, this.token, this.categoryData)
       .subscribe(
         (data) => {
           console.log('categoryData', data);
@@ -90,7 +92,7 @@ export class AddCategoryComponent implements OnInit {
 
   putCategoryData() {
     this.isLoading = true;
-    this.dataService.patchData(this.url, this.id, this.categoryData)
+    this.dataService.patchData(this.url, this.id, this.token, this.categoryData)
       .subscribe(
         (data) => {
           this.isLoading = false;

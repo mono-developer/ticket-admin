@@ -15,6 +15,7 @@ export class ViewCMSComponent implements OnInit {
 
   page_title: string = 'View Pages';
   url: string;
+  token: string;
   cmsList: Element[];
   displayedColumns = ['title', 'description', 'state', 'symbol'];
   dataSource:any;
@@ -28,13 +29,14 @@ export class ViewCMSComponent implements OnInit {
 
   ngOnInit() {
     this.url = this.baseService.contentURL;
+    this.token = sessionStorage.getItem('token');
     console.log(this.url);
     this.getcmsList();
   }
 
   getcmsList(){
     this.isLoading = true;
-    this.dataService.getData(this.url)
+    this.dataService.getData(this.url, this.token)
       .subscribe(
         (data) => {
           this.isLoading = false;
@@ -56,7 +58,7 @@ export class ViewCMSComponent implements OnInit {
 
   delete(item) {
     this.isLoading = true;
-    this.dataService.deleteData(this.url, item._id)
+    this.dataService.deleteData(this.url, item._id, this.token)
       .subscribe(
         (data) => {
           console.log('cmsData', data);

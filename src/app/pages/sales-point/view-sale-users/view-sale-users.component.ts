@@ -5,6 +5,7 @@ import { json } from 'd3';
 
 import { BaseService } from "../../../../provide/base-service";
 import { DataService } from "../../../../provide/data-service";
+import { SlotDateTimeRangeRequest } from 'aws-sdk/clients/ec2';
 
 @Component({
   selector: 'ms-view-sale-users',
@@ -14,6 +15,7 @@ import { DataService } from "../../../../provide/data-service";
 export class ViewSaleUsersComponent implements OnInit {
   page_title: string = 'Management of sales teams';
   url: string;
+  token: string;
   usersList: Element[];
   displayedColumns = ['first_name', 'sales_email', 'phone', 'title', 'state', 'symbol'];
   dataSource: any;
@@ -32,7 +34,7 @@ export class ViewSaleUsersComponent implements OnInit {
 
   getSalesUserList() {
     this.isLoading = true;
-    this.dataService.getData(this.url)
+    this.dataService.getData(this.url, this.token)
       .subscribe(
         (data) => {
           this.isLoading = false;
@@ -54,7 +56,7 @@ export class ViewSaleUsersComponent implements OnInit {
 
   delete(item: any) {
     this.isLoading = true;
-    this.dataService.deleteData(this.url, item._id)
+    this.dataService.deleteData(this.url, item._id, this.token)
       .subscribe(
         (data) => {
           console.log('cmsData', data);

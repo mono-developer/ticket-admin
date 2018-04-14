@@ -19,6 +19,7 @@ export class AddCouponComponent implements OnInit {
   page_title: string = "Add Coupon";
   id:string;
   url: string;
+  token: string;
   couponData: any;
   stateList: any;
   isLoading: any;
@@ -39,6 +40,7 @@ export class AddCouponComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('item');
     this.url = this.baseService.couponURL;
+    this.token = sessionStorage.getItem('token');
     console.log('item', this.id);
     if (this.id) {
       this.getCouponData(this.id);
@@ -49,7 +51,7 @@ export class AddCouponComponent implements OnInit {
 
   getCouponData(id) {
     this.isLoading = true;
-    this.dataService.getData(this.url + "/" + id)
+    this.dataService.getData(this.url + "/" + id, this.token)
       .subscribe(
         (data) => {
           this.isLoading = false;
@@ -72,7 +74,7 @@ export class AddCouponComponent implements OnInit {
   postCouponData() {
     this.isLoading = true;
     console.log(this.couponData);
-    this.dataService.postData(this.url, this.couponData)
+    this.dataService.postData(this.url, this.token, this.couponData)
       .subscribe(
         (data) => {
           console.log('couponData', data);
@@ -89,7 +91,7 @@ export class AddCouponComponent implements OnInit {
 
   putCouponData() {
     this.isLoading = true;
-    this.dataService.patchData(this.url, this.id, this.couponData)
+    this.dataService.patchData(this.url, this.id, this.token, this.couponData)
       .subscribe(
         (data) => {
           this.isLoading = false;

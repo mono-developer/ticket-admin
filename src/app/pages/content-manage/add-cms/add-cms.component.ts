@@ -18,6 +18,7 @@ export class AddCMSComponent implements OnInit {
   page_title: string = 'Add New Page';
   id: string;
   url: string;
+  token: string;
   cmsData: any;
   stateList: any;
   isLoading: boolean = false;
@@ -39,6 +40,7 @@ export class AddCMSComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('item');
     this.url = this.baseService.contentURL;
+    this.token = sessionStorage.getItem('token');
     console.log('item', this.id);
     if(this.id){
       this.getcmsData(this.id);
@@ -49,7 +51,7 @@ export class AddCMSComponent implements OnInit {
 
   getcmsData(id) {
     this.isLoading = true;
-    this.dataService.getData(this.url + "/" + id)
+    this.dataService.getData(this.url + "/" + id, this.token)
       .subscribe(
         (data) => {
           this.isLoading = false;
@@ -71,7 +73,7 @@ export class AddCMSComponent implements OnInit {
 
   postcmsData() {
     this.isLoading = true;
-    this.dataService.postData(this.url, this.cmsData)
+    this.dataService.postData(this.url, this.token, this.cmsData)
       .subscribe(
         (data) => {
           console.log('cmsData', data);
@@ -88,7 +90,7 @@ export class AddCMSComponent implements OnInit {
 
   putcmsData() {
     this.isLoading = true;
-    this.dataService.patchData(this.url, this.id, this.cmsData)
+    this.dataService.patchData(this.url, this.id, this.token, this.cmsData)
       .subscribe(
         (data) => {
           this.isLoading = false;

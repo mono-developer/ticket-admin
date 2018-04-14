@@ -11,42 +11,35 @@ const options = new RequestOptions({ headers: headers });
 @Injectable()
 export class DataService {
 
-  token: string;
+  constructor(public http: Http, public baseService: BaseService) {}
 
-  constructor(public http: Http, public baseService: BaseService) {
-    this.token = localStorage.getItem('token');
-    console.log(this.token);
-    // oAuthInfo ? this.token = oAuthInfo.token : '';
-
-  }
-
-  getData(url) {
-    return this.http.get(url + "?token=" + this.token, options)
+  getNoTokenData(url) {
+    return this.http.get(url, options)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error || 'Server error'));
   }
 
-  getTestData(url, token) {
+  getData(url, token) {
     return this.http.get(url + "?token=" + token, options)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error || 'Server error'));
   }
 
-  postData(url, body) {
-    return this.http.post(url + "?token=" + this.token, body, options)
+  postData(url, token, body) {
+    return this.http.post(url + "?token=" + token, body, options)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error || 'Server error'));
   }
 
-  patchData(url, id, body) {
-    console.log(url + "/" + id + "?token=" + this.token);
-    return this.http.patch(url + "/" + id + "?token=" + this.token, body, options)
+  patchData(url, id, token, body) {
+    console.log(url + "/" + id + "?token=" + token);
+    return this.http.patch(url + "/" + id + "?token=" + token, body, options)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error || 'Server error'));
   }
 
-  deleteData(url, id) {
-    return this.http.delete(url + "/" + id + "?token=" + this.token, options)
+  deleteData(url, id, token) {
+    return this.http.delete(url + "/" + id + "?token=" + token, options)
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error || 'Server error'));
   }

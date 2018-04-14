@@ -14,8 +14,9 @@ export class UsersManageComponent implements OnInit {
   page_title: string = 'Management of sales teams';
 
   url: string;
+  token: string;
   isLoading: boolean = false;
-  userList
+  userList: any;
 
 
   displayedColumns = ['first_name', 'email', 'status', 'symbol'];
@@ -30,12 +31,13 @@ export class UsersManageComponent implements OnInit {
 
   ngOnInit() {
     this.url = this.baseService.userURL;
+    this.token = sessionStorage.getItem('token');
     this.getUsersList();
   }
 
   getUsersList() {
     this.isLoading = true;
-    this.dataService.getData(this.url)
+    this.dataService.getData(this.url, this.token)
       .subscribe(
         (data) => {
           this.isLoading = false;
@@ -53,7 +55,7 @@ export class UsersManageComponent implements OnInit {
 
   deleteUser(id) {
     this.isLoading = true;
-    this.dataService.deleteData(this.url, id)
+    this.dataService.deleteData(this.url, id, this.token)
       .subscribe(
         (data) => {
           console.log('userData', data);

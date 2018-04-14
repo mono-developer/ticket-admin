@@ -78,7 +78,7 @@ export class BookingComponent implements OnInit {
   }
 
   getEventData(id, url) {
-    this.dataService.getData(url + "/" + id)
+    this.dataService.getNoTokenData(url + "/" + id)
       .subscribe(
         (data) => {
           // this.isLoading = false;

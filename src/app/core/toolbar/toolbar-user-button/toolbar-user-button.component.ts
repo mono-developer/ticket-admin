@@ -15,7 +15,7 @@ export class ToolbarUserButtonComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    this.userInfo = JSON.parse(localStorage.getItem('userInfo'));
+    this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
   }
 
   toggleDropdown() {
@@ -27,7 +27,7 @@ export class ToolbarUserButtonComponent implements OnInit {
   }
 
   goLandingPage() {
-    localStorage.removeItem('userInfo');
+    sessionStorage.removeItem('userInfo');
     this.router.navigate(['']);
   }
 

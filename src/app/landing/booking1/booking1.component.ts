@@ -319,7 +319,7 @@ export class Booking1Component implements OnInit {
 
   getEventData(id, url) {
     this.isLoading = true;
-    this.dataService.getData(url + "/" + id)
+    this.dataService.getNoTokenData(url + "/" + id)
       .subscribe(
         (data) => {
           this.isLoading = false;

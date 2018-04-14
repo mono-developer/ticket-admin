@@ -85,7 +85,7 @@ export class MainComponent implements OnInit, AfterViewInit {
 
     getEventList() {
         this.isLoading = true;
-        this.dataService.getData(this.baseService.eventURL)
+        this.dataService.getNoTokenData(this.baseService.eventURL)
         .subscribe(
             (data) => {
                 this.isLoading = false;
@@ -108,7 +108,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     }
 
     getCategoryList() {
-        this.dataService.getData(this.baseService.categoryURL)
+      this.dataService.getNoTokenData(this.baseService.categoryURL)
             .subscribe(
                 (data) => {
                     this.categoryList = data;

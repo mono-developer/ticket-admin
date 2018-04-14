@@ -15,6 +15,7 @@ export class ViewOrganizorComponent implements OnInit {
 
   page_title: string = 'View Organizor';
   url: string;
+  token: string;
   orgList: Element[];
   displayedColumns = ['name', 'person', 'email', 'phone', 'state', 'symbol'];
   dataSource: any;
@@ -34,7 +35,7 @@ export class ViewOrganizorComponent implements OnInit {
 
   getOrgList(){
     this.isLoading = true;
-    this.dataService.getData(this.url)
+    this.dataService.getNoTokenData(this.url)
       .subscribe(
         (data) => {
           this.isLoading = false;
@@ -56,7 +57,7 @@ export class ViewOrganizorComponent implements OnInit {
 
   delete(item) {
     this.isLoading = true;
-    this.dataService.deleteData(this.url, item._id)
+    this.dataService.deleteData(this.url, item._id, this.token)
       .subscribe(
         (data) => {
           console.log('orgData', data);

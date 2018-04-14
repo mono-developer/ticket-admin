@@ -20,6 +20,7 @@ export class AddSaleUsersComponent implements OnInit {
   page_title: string = 'Add user of the sales team'
   id: string;
   url: string;
+  token: string;
   salesUserData: any;
   stateList: any;
   isLoading: boolean = false;
@@ -38,6 +39,7 @@ export class AddSaleUsersComponent implements OnInit {
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('item');
     this.url = this.baseService.salesUserURL;
+    this.token = sessionStorage.getItem('token');
     console.log('item', this.id);
     if (this.id) {
       this.getSalesUserData(this.id);
@@ -48,7 +50,7 @@ export class AddSaleUsersComponent implements OnInit {
 
   getSalesUserData(id) {
     this.isLoading = true;
-    this.dataService.getData(this.url + "/" + id)
+    this.dataService.getData(this.url + "/" + id, this.token)
       .subscribe(
         (data) => {
           this.isLoading = false;
@@ -70,7 +72,7 @@ export class AddSaleUsersComponent implements OnInit {
 
   postUserData() {
     this.isLoading = true;
-    this.dataService.postData(this.url, this.salesUserData)
+    this.dataService.postData(this.url, this.token, this.salesUserData)
       .subscribe(
         (data) => {
           console.log('salesUserData', data);
@@ -87,7 +89,7 @@ export class AddSaleUsersComponent implements OnInit {
 
   putUserData() {
     this.isLoading = true;
-    this.dataService.patchData(this.url, this.id, this.salesUserData)
+    this.dataService.patchData(this.url, this.id, this.token, this.salesUserData)
       .subscribe(
         (data) => {
           console.log('userData', data);

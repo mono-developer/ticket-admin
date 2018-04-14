@@ -38,6 +38,7 @@ export class AddEventComponent implements OnInit {
 
   id: string;
   url: string;
+  token: string;
   page_value: string;
   eventData: any = {};
   couponList: any = [];
@@ -92,6 +93,7 @@ export class AddEventComponent implements OnInit {
   ngOnInit() {
 
     this.id = this.route.snapshot.paramMap.get('item');
+    this.token = sessionStorage.getItem('token');
     this.page_value = this.route.snapshot.paramMap.get('value');
     console.log(this.page_value);
     this.url = this.baseService.eventURL;
@@ -129,7 +131,7 @@ export class AddEventComponent implements OnInit {
 
   getEventData(id) {
 
-    this.dataService.getData(this.url + "/" + id)
+    this.dataService.getNoTokenData(this.url + "/" + id)
       .subscribe(
         (data) => {
           this.isLoading = false;
@@ -149,7 +151,7 @@ export class AddEventComponent implements OnInit {
   getCategoryData() {
     this.isLoading = true;
     let cate_url = this.baseService.categoryURL;
-    this.dataService.getData(cate_url)
+    this.dataService.getNoTokenData(cate_url)
       .subscribe(
         (data) => {
           this.categoryList = data;
@@ -165,7 +167,7 @@ export class AddEventComponent implements OnInit {
 
   getOrgData() {
     let org_url = this.baseService.organizorURL;
-    this.dataService.getData(org_url)
+    this.dataService.getNoTokenData(org_url)
       .subscribe(
         (data) => {
           this.organizorList = data;
@@ -181,7 +183,7 @@ export class AddEventComponent implements OnInit {
 
   getCouponData() {
     let cp_url = this.baseService.couponURL;
-    this.dataService.getData(cp_url)
+    this.dataService.getNoTokenData(cp_url)
       .subscribe(
         (data) => {
           this.couponList = data;
@@ -336,7 +338,7 @@ export class AddEventComponent implements OnInit {
 
   postEventData() {
     this.isLoading = true;
-    this.dataService.postData(this.url, this.eventData)
+    this.dataService.postData(this.url, this.token ,this.eventData)
       .subscribe(
         (data) => {
           this.router.navigate(['dashboard/event-manage/view-event']);
@@ -351,7 +353,7 @@ export class AddEventComponent implements OnInit {
 
   putEventData() {
     this.isLoading = true;
-    this.dataService.patchData(this.url, this.id, this.eventData)
+    this.dataService.patchData(this.url, this.id, this.token, this.eventData)
       .subscribe(
         (data) => {
           this.isLoading = false;
