@@ -14,7 +14,7 @@ export class DataService {
   token: string;
 
   constructor(public http: Http, public baseService: BaseService) {
-    this.token = sessionStorage.getItem('token');
+    this.token = localStorage.getItem('token');
     console.log(this.token);
     // oAuthInfo ? this.token = oAuthInfo.token : '';
 
