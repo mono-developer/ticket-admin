@@ -32,12 +32,12 @@ export class LoginComponent implements OnInit {
   ) {  }
 
   ngOnInit() {
-    sessionStorage.removeItem('userInfo');
-    let userData = sessionStorage.getItem('UserData');
+    localStorage.removeItem('userInfo');
+    let userData = localStorage.getItem('UserData');
     if(userData){
       this.userData = JSON.parse(userData);
     }else{
-      sessionStorage.removeItem('UserData');
+      localStorage.removeItem('UserData');
       this.userData = { email: '', password: '' };
     }
   }
@@ -54,13 +54,13 @@ export class LoginComponent implements OnInit {
           this.isLoading = false;
           console.log('DataLogin',data);
           if (this.isRemember == true) {
-            sessionStorage.setItem('UserData', JSON.stringify(this.userData));
+            localStorage.setItem('UserData', JSON.stringify(this.userData));
           } else {
-            sessionStorage.removeItem('UserData');
+            localStorage.removeItem('UserData');
           }
           if(data.user.status){
-            sessionStorage.setItem('token', data.token);
-            sessionStorage.setItem('userInfo', JSON.stringify(data.user));
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('userInfo', JSON.stringify(data.user));
             this.router.navigate(['/dashboard']);
           }else{
             this.accessError();

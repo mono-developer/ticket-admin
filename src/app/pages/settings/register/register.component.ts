@@ -57,7 +57,7 @@ export class RegisterComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          sessionStorage.setItem('OAuthInfo', JSON.stringify(data));
+          localStorage.setItem('OAuthInfo', JSON.stringify(data));
           this.router.navigate(['/login']);
           return true;
         },
