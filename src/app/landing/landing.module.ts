@@ -28,7 +28,6 @@ import { MatIconRegistry, MatStepperModule, MatTableModule, MatDialogModule, } f
 
 import { LoadingOverlayModule } from '../core/loading-overlay/loading-overlay.module';
 import { WidgetseModule } from '../core/widgets/widgets.module';
-import { TicketDataService } from "../../provide/ticketDemoService";
 import { BaseService } from "../../provide/base-service";
 import { DataService } from "../../provide/data-service";
 
@@ -84,7 +83,6 @@ import { AgmCoreModule } from '@agm/core';
     ToolbarUserButtonComponent
   ],
   providers: [
-    TicketDataService,
     BaseService,
     DataService
   ]

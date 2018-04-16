@@ -1,44 +1,36 @@
 <ms-page-header [title]="page_title"></ms-page-header>
 <div class="main_div">
 
-  <form class="title">
+  <form class="title" #form="ngForm">
     <mat-form-field>
-      <input type="text" matInput placeholder="Promotional code" name="pro_code" [(ngModel)]="couponData.pro_code">
+      <input type="text" matInput placeholder="Promotional code" name="pro_code" [(ngModel)]="couponData.pro_code" required>
     </mat-form-field>
-  </form>
 
-  <form>
     <mat-form-field>
-      <textarea matInput placeholder="Description" name="description" [(ngModel)]="couponData.description"></textarea>
+      <textarea matInput placeholder="Description" name="description" [(ngModel)]="couponData.description" required></textarea>
     </mat-form-field>
-  </form>
 
-  <form>
     <mat-form-field>
-      <input type="text" matInput placeholder="Discount (%)" name="discount" [(ngModel)]="couponData.discount">
+      <input type="text" matInput placeholder="Discount (%)" name="discount" [(ngModel)]="couponData.discount" required>
     </mat-form-field>
-  </form>
 
-  <form>
     <mat-form-field>
-      <input matInput [matDatepicker]="picker" placeholder="Valid Until" name="valid_date" [(ngModel)]="couponData.valid_date">
+      <input matInput [matDatepicker]="picker" placeholder="Valid Until" name="valid_date" [(ngModel)]="couponData.valid_date" required>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
+
+    <div class="state">
+      <mat-form-field class="state_list">
+          <mat-select placeholder="Select State" name="state" [(ngModel)]="couponData.state" required>
+            <mat-option *ngFor="let state of stateList" [value]="state.value">
+              {{ state.name }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+    </div>
   </form>
 
-  <div class="state">
-
-    <mat-form-field class="state_list">
-        <mat-select placeholder="Select State" name="state" [(ngModel)]="couponData.state">
-          <mat-option *ngFor="let state of stateList" [value]="state.value">
-            {{ state.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-  </div>
-
-  <button mat-raised-button class="submit" (click)="submit()">Add Coupon</button>
+  <button mat-raised-button class="submit" color="primary" (click)="submit()" [disabled]="!form.valid">Add Coupon</button>
   <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
 </div>

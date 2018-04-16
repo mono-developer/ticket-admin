@@ -2,27 +2,37 @@
 
 <div class="main_div">
 
-  <form class="title">
-    <mat-form-field class="title_input">
-      <input matInput placeholder="New Category Name" name="cate_name" [(ngModel)]="categoryData.name">
+  <form class="title"  #form="ngForm">
+
+    <mat-form-field>
+      <input matInput placeholder="New Category Name" name="cate_name" [(ngModel)]="categoryData.name" required>
     </mat-form-field>
+
+
+    <mat-form-field >
+      <mat-select placeholder="Select State" name="state" [(ngModel)]="categoryData.state" required>
+        <mat-option *ngFor="let state of stateList" [value]="state.value">
+          {{ state.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-select placeholder="Select Icon" name="icon" [(ngModel)]="categoryData.icon" required>
+        <mat-option *ngFor="let item of iconList" [value]="item.icon">
+          {{item.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+  <!-- Description -->
+    <mat-form-field style="min-height: 125px;">
+      <textarea matInput placeholder="Description" [rows]="4" name="information" [(ngModel)]="categoryData.description" required></textarea >
+    </mat-form-field>
+
   </form>
 
-
-  <div class="state">
-
-    <mat-form-field class="state_list">
-        <mat-select placeholder="Select State" name="state" [(ngModel)]="categoryData.state">
-          <mat-option *ngFor="let state of stateList" [value]="state.value">
-            {{ state.name }}
-          </mat-option>
-        </mat-select>
-      </mat-form-field>
-
-  </div>
-
-
-  <button class="submit" mat-raised-button (click)="submit()">Submit</button>
+  <button class="submit" color="primary" mat-raised-button (click)="submit()" [disabled]="!form.valid">Submit</button>
   <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
 
 </div>

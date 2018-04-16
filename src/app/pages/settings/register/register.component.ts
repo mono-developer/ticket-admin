@@ -31,7 +31,9 @@ export class RegisterComponent implements OnInit {
   ) {
     this.accessList = [
       { level: '0', name: 'Admin' },
-      { level: '1', name: 'Event Organizor' }
+      { level: '1', name: 'Event Organizor' },
+      { level: '2', name: 'Point of Sales' },
+
     ];
   }
 

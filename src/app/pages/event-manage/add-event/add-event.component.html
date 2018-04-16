@@ -100,7 +100,11 @@
                   <textarea matInput [rows]="4" name="information" [(ngModel)]="eventData.event_info" required></textarea>
                 </mat-form-field>
 
-                <button class="next_btn" color="secondary" mat-raised-button style="margin-left: 8px;" matStepperNext>Next</button>
+                <button class="next_btn"
+                color="primary"
+                mat-raised-button
+                matStepperNext
+                [disabled]="!form.valid || !eventData.event_img">Next</button>
             </form>
         </div>
         <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
@@ -199,8 +203,16 @@
                 </div>
 
                 <div class="btns">
-                    <button style="float: left;" color="secondary" mat-raised-button mat-button>Back</button>
-                    <button style="float: right;"color="secondary" mat-raised-button mat-button matStepperNext>Next</button>
+                    <button style="float: left;"
+                    color="primary"
+                    mat-raised-button
+                    mat-button
+                    matStepperPrevious>Back</button>
+                    <button style="float: right;"
+                    color="primary"
+                    mat-raised-button
+                    mat-button
+                    matStepperNext>Next</button>
                 </div>
 
             </form>
@@ -268,14 +280,21 @@
                         <label id="#bb" class="upload_img ticket_img" *ngIf="eventData.ticket_img" [ngStyle]="{'background-image': 'url(' + eventData.ticket_img + ')'}">
                           <input type="file" id="File" (change)="ticketImage($event)" size="60">
                         </label>
-
-                        <!-- <img *ngIf="eventData.ticket_img" [src]="eventData.ticket_img" alt=""> -->
                     </div>
                 </div>
 
                 <div class="btns">
-                    <button style="float: left;" mat-button matStepperPrevious>Back</button>
-                    <button style="float: right;" mat-button matStepperNext [disabled]="!form3.valid">Next</button>
+                    <button style="float: left;"
+                    color="primary"
+                    mat-raised-button
+                    mat-button
+                    matStepperPrevious>Back</button>
+                    <button style="float: right;"
+                    color="primary"
+                    mat-raised-button
+                    mat-button
+                    matStepperNext
+                    [disabled]="!form3.valid || !eventData.ticket_img || !eventData.seat_img">Next</button>
                 </div>
             </form>
         </div>
@@ -285,7 +304,7 @@
   <!-- Step 4 -->
     <mat-step [stepControl]="fourFormGroup">
         <div class="step-border">
-            <form #form4="ngForm">
+            <form >
                 <ng-template matStepLabel>Other Information</ng-template>
 
                     <!-- Select Ticket -->
@@ -321,8 +340,18 @@
                     </mat-form-field>
 
                     <div class="btns">
-                        <button style="float: left;" mat-button matStepperPrevious>Back</button>
-                        <button style="float: right;" mat-button matStepperNext [disabled]="!form4.valid" (click)="done()">Done</button>
+                        <button style="float: left;"
+                        color="primary"
+                        mat-raised-button
+                        mat-button
+                        matStepperPrevious>Back</button>
+
+                        <button style="float: right;"
+                        color="primary"
+                        mat-raised-button
+                        mat-button
+                        matStepperNext
+                        [disabled]="!eventData.status || !eventData.program_info" (click)="done()">Done</button>
                     </div>
 
                 </form>

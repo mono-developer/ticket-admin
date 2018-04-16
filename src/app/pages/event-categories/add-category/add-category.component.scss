@@ -19,22 +19,14 @@
     margin-bottom: 20px;
     mat-form-field{
       width: 100%;
+      margin-top: 20px;
     }
   }
 
-  .state{
-    width: 100%;
-    margin-bottom: 30px;
-    .state_list{
-      width: 100%;
-    }
-  }
   .submit{
     width: 80%;
     min-width: 300px;
     max-width: 500px;
-    background-color: #ff9702;
-    color: #fff;
     font-size: 18px;
     margin-top: 30px;
     display: block;

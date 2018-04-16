@@ -3,7 +3,6 @@ import {fadeInAnimation} from "../../route.animation";
 
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { TicketDataService } from "../../../provide/ticketDemoService";
 import { BaseService } from "../../../provide/base-service";
 import { DataService } from "../../../provide/data-service";
 
@@ -21,12 +20,10 @@ export class MainComponent implements OnInit, AfterViewInit {
 
     categoryData: any = [];
     categoryList: any = [];
-
-    // config: any;
     config1: any;
     eventList: any;
+    colorList: any;
     isLoading: boolean = false;
-
     username: string;
     useremail: string;
 
@@ -34,12 +31,9 @@ export class MainComponent implements OnInit, AfterViewInit {
         public router: Router,
         public route: ActivatedRoute,
         public dialog: MatDialog,
-        public ticketData: TicketDataService,
         public baseService: BaseService,
         public dataService: DataService
     ) {
-        this.categoryData = this.ticketData.categoryList;
-
         // this.config = {
         //     speed: 600,
         //     parallax: true,
@@ -70,6 +64,8 @@ export class MainComponent implements OnInit, AfterViewInit {
                 el: '.swiper-pagination',
             },
         };
+
+      this.colorList = ['lightgreen', 'cornflowerblue', 'skyblue', 'fuchsia', 'chartreuse', 'cyan', 'chartreuse', 'skyblue', 'lightgreen' ]
     }
 
     ngAfterViewInit() {

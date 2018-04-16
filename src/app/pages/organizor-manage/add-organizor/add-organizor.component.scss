@@ -11,6 +11,7 @@
   form{
     mat-form-field{
       width: 100%;
+      margin-top: 15px;
     }
   }
 
@@ -24,8 +25,6 @@
   .submit{
     width: 80%;
     min-width: 300px;
-    background-color: #ff9702;
-    color: #fff;
     font-size: 18px;
     margin-top: 30px;
     display: block;

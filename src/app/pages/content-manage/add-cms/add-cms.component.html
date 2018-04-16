@@ -1,28 +1,28 @@
 <ms-page-header [title]="page_title"></ms-page-header>
 
 <div class="main_div">
-  <form>
+  <form #form="ngForm">
     <mat-form-field>
-      <input type="text" matInput placeholder="Title" name="title" [(ngModel)]="cmsData.title">
+      <input type="text" matInput placeholder="Title" name="title" [(ngModel)]="cmsData.title" required>
     </mat-form-field>
+
+
+    <div class="description">
+      <p>Description</p>
+      <quill-editor name="description" [(ngModel)]="cmsData.description" required></quill-editor>
+    </div>
+
+    <div class="state">
+      <mat-form-field class="state_list">
+        <mat-select placeholder="Select State" name="state" [(ngModel)]="cmsData.state" required>
+          <mat-option *ngFor="let state of stateList" [value]="state.state">
+            {{ state.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
   </form>
-
-  <div class="description">
-    <p>Description</p>
-    <quill-editor name="description" [(ngModel)]="cmsData.description"></quill-editor>
-  </div>
-
-  <div class="state">
-    <mat-form-field class="state_list">
-      <mat-select placeholder="Select State" name="state" [(ngModel)]="cmsData.state">
-        <mat-option *ngFor="let state of stateList" [value]="state.state">
-          {{ state.name }}
-        </mat-option>
-      </mat-select>
-    </mat-form-field>
-  </div>
-
-  <button mat-raised-button class="submit" (click)="submit()">Submit</button>
+  <button mat-raised-button class="submit" color="primary" (click)="submit()" [disabled]="!form.valid">Submit</button>
   <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
 </div>
 

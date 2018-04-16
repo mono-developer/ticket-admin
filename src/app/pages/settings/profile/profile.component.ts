@@ -36,7 +36,7 @@ export class ProfileComponent implements OnInit {
 
   ngOnInit() {
     this.url = this.baseService.userURL;
-    this.token = JSON.parse(sessionStorage.getItem('token'));
+    this.token = sessionStorage.getItem('token');
     this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
     console.log(this.userInfo);
 
@@ -70,7 +70,7 @@ export class ProfileComponent implements OnInit {
           this.isLoading = false;
           if (data.status == "Success"){
 
-            console.log('eventData', data);
+            console.log('userData', data);
             sessionStorage.setItem('userInfo', JSON.stringify(data.user));
             return true;
           }

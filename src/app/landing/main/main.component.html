@@ -7,6 +7,7 @@
                     <div class="swiper-slide" *ngFor="let item of eventList; let index = index" [ngStyle]="{'background-image': 'url(' + item.event_img + ')'}">
                         <div class="name">{{item.event_name}}</div>
                         <div class="category">{{item.category.name}}</div>
+                        <!-- <div class="category" *ngIf="item.category">{{item.category.name}}</div> -->
                         <div class="date"><img src="assets/img/icons/calendar.png" alt="">{{item.s_time.hour}}:{{item.s_time.minute}} {{item.s_time.meriden}}, {{item.s_date | date:'dd/MM/yyyy'}} - {{item.e_time.hour}}:{{item.e_time.minute}} {{item.e_time.meriden}}, {{item.e_date | date:'dd/MM/yyyy'}}</div>
                         <div class="location"><img src="assets/img/icons/location.png" alt="">{{item.place}}</div>
                         <div class="share_btns">
@@ -29,8 +30,8 @@
                 per inceptos himenaeos. Mauris in erat justo. Morbi accumsan ipsum velit.Class aptent taciti sociosqu ad litora torquent
                 per conubia nostra, per inceptos himenaeos.mauris vitae erat consequat auctor eu in elit.</p>
 
-                <div class="category" *ngFor="let item of categoryData">
-                    <mat-icon [ngStyle]="{'color': item.color}">{{item.icon}}</mat-icon>
+                <div class="category" *ngFor="let item of categoryList; let index = index">
+                    <mat-icon [ngStyle]="{'color': colorList[index]}">{{item.icon}}</mat-icon>
                     <h4>{{item.name}}</h4>
                     <p>{{item.description}}</p>
                 </div>

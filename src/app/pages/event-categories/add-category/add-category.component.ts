@@ -22,6 +22,7 @@ export class AddCategoryComponent implements OnInit {
   token: string;
   categoryData: any;
   categoryList: any;
+  iconList: any;
   isLoading: boolean = false;
   stateList: any;
 
@@ -33,9 +34,19 @@ export class AddCategoryComponent implements OnInit {
   ) {
 
     this.categoryData = { name: '', value: '' };
-    this.stateList = [ { id: 0, name: 'Active', value: true },
-                       { id: 1, name: 'Deative', value: false }
-                    ];
+    this.stateList = [
+      { id: 0, name: 'Active', value: true },
+      { id: 1, name: 'Deative', value: false }
+    ];
+    this.iconList = [
+      { id: 0, name: 'Library Music', icon: 'library_music' },
+      { id: 1, name: 'Queue Music', icon: 'queue_music' },
+      { id: 1, name: 'Family', icon: 'group' },
+      { id: 1, name: 'Circus', icon: 'music_note' },
+      { id: 1, name: 'Device Bub', icon: 'device_hub' },
+      { id: 1, name: 'Fintness Center', icon: 'fitness_center' },
+      { id: 1, name: 'Information', icon: 'info_outline' }
+    ];
   }
 
   ngOnInit() {
@@ -46,17 +57,16 @@ export class AddCategoryComponent implements OnInit {
     if (this.id) {
       this.getCategoryData(this.id);
     } else {
-      this.categoryData = { name: '', value: '' };
+      this.categoryData = { };
     }
   }
 
   getCategoryData(id) {
     this.isLoading = true;
-    this.dataService.getNoTokenData(this.url + "/" + id)
+    this.dataService.getData(this.url + "/" + id, this.token)
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('letterData', data);
           this.categoryData = data;
           return true;
         },
@@ -68,17 +78,14 @@ export class AddCategoryComponent implements OnInit {
   }
 
   submit(){
-    console.log(this.categoryData);
     this.id ? this.putCategoryData() : this.postCategoryData();
   }
-
 
   postCategoryData() {
     this.isLoading = true;
     this.dataService.postData(this.url, this.token, this.categoryData)
       .subscribe(
         (data) => {
-          console.log('categoryData', data);
           this.router.navigate(['dashboard/event-categories/view-category']);
           return true;
         },
@@ -86,8 +93,7 @@ export class AddCategoryComponent implements OnInit {
           this.isLoading = false;
           console.log('errorData', error);
           return true;
-        }
-      )
+        });
   }
 
   putCategoryData() {
@@ -96,7 +102,6 @@ export class AddCategoryComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('categoryData', data);
           this.router.navigate(['dashboard/event-categories/view-category']);
           return true;
         },
