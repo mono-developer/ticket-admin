@@ -8,7 +8,7 @@
                         <div class="name">{{item.event_name}}</div>
                         <div class="category">{{item.category.name}}</div>
                         <!-- <div class="category" *ngIf="item.category">{{item.category.name}}</div> -->
-                        <div class="date"><img src="assets/img/icons/calendar.png" alt="">{{item.s_time.hour}}:{{item.s_time.minute}} {{item.s_time.meriden}}, {{item.s_date | date:'dd/MM/yyyy'}} - {{item.e_time.hour}}:{{item.e_time.minute}} {{item.e_time.meriden}}, {{item.e_date | date:'dd/MM/yyyy'}}</div>
+                        <div class="date"><img src="assets/img/icons/calendar.png" alt="">{{item.s_time.hour}}:{{item.s_time.minute==0 ? '00' : item.s_time.minute}} {{item.s_time.meriden}}, {{item.s_date | date:'dd/MM/yyyy'}} - {{item.e_time.hour}}:{{item.e_time.minute == 0 ? '00' : item.e_time.minute}} {{item.e_time.meriden}}, {{item.e_date | date:'dd/MM/yyyy'}}</div>
                         <div class="location"><img src="assets/img/icons/location.png" alt="">{{item.place}}</div>
                         <div class="share_btns">
                             <button class="left_btn" mat-button (click)="openBookingDialog(item)">Book Now</button>

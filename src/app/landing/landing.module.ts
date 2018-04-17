@@ -13,7 +13,7 @@ import { MainComponent, BookingDialogComponent, DescriptionDialogComponent } fro
 import { BookingComponent, LocationDialogComponent, TimeOverComponent } from './booking/booking.component';
 import { Booking1Component } from './booking1/booking1.component';
 import { CustomerLoginComponent } from './customer-setting/customer-login/customer-login.component';
-import { CustomerSignupComponent } from './customer-setting/customer-signup/customer-signup.component';
+import { CustomerProfilComponent } from './customer-setting/customer-profile/customer-profile.component';
 import { AdminComponent } from './admin/admin.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { SearchComponent } from './toolbar/search/search.component';
@@ -67,7 +67,8 @@ import { AgmCoreModule } from '@agm/core';
     DescriptionDialogComponent,
     LocationDialogComponent,
     TimeOverComponent,
-    CustomerLoginComponent
+    CustomerLoginComponent,
+    CustomerProfilComponent
   ],
   declarations: [
     MainComponent,
@@ -76,7 +77,7 @@ import { AgmCoreModule } from '@agm/core';
     BookingComponent,
     Booking1Component,
     CustomerLoginComponent,
-    CustomerSignupComponent,
+    CustomerProfilComponent,
     LocationDialogComponent,
     TimeOverComponent,
     AdminComponent,

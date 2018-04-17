@@ -12,7 +12,7 @@
     <div class="content" style="margin-top: 36px;">
 
       <div *ngIf="userInfo" class="list">
-        <div class="item" fxLayout="row" fxLayoutAlign="start center" matRipple>
+        <div class="item" fxLayout="row" fxLayoutAlign="start center" matRipple (click)="customerProfile()">
           <mat-icon class="icon">account_circle</mat-icon>
           <span class="title">Profile</span>
         </div>

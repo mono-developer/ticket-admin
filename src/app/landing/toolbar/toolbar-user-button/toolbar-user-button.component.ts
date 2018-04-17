@@ -50,12 +50,24 @@ export class ToolbarUserButtonComponent implements OnInit {
         this.userInfo = result;
         sessionStorage.setItem('userInfo', JSON.stringify(result));
       }else if(result == 'register'){
-        console.log('register');
+        this.router.navigate(['/register']);
       }else if(result == 'forgot'){
-        console.log('error');
+        this.router.navigate(['/forgot-password', {page: 'customer'}]);
       }else{
         console.log('cancel');
       }
+    });
+  }
+
+  customerProfile() {
+    this.isOpen = false;
+    let dialogRef = this.dialog.open(CustomerLoginComponent, {
+      width: '350px',
+      data: this.userInfo
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+     console.log(result);
     });
   }
 

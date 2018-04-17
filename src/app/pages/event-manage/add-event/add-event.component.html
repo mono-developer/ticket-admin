@@ -119,7 +119,7 @@
 
                 <!-- Event Datess  -->
                 <div class="details-border">
-                    <h4>Event Dates</h4>
+                    <h4>Event Dates vvv</h4>
                     <div class="details_header">
                         <p>Add new Date</p>
                         <button mat-button (click)="openEventDialog()">
@@ -135,7 +135,7 @@
 
                             <ng-container matColumnDef="time">
                                 <mat-header-cell *matHeaderCellDef> Time </mat-header-cell>
-                                <mat-cell *matCellDef="let element">{{element.time.hour}}:{{element.time.minute}} {{element.time.meriden}}</mat-cell>
+                                <mat-cell *matCellDef="let element">{{element.time.hour}}:{{element.time.minute == 0 ? '00': element.time.minute }} {{element.time.meriden}}</mat-cell>
                             </ng-container>
 
                             <ng-container matColumnDef="symbol">

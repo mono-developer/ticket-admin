@@ -22,7 +22,7 @@
                 <mat-form-field>
                   <mat-select placeholder="Select Date" #t (change)="onChange(t.value)" name="s_Date" required>
                     <mat-option *ngFor="let item of eventData.event_date" [value]="item">
-                      {{item.time.hour}}:{{item.time.minute}} {{item.time.meriden}}, {{item.date | date: 'dd/MM/yyyy'}}
+                      {{item.time.hour}}:{{item.time.minute == 0 ? '00' : item.time.minute}} {{item.time.meriden}}, {{item.date | date: 'dd/MM/yyyy'}}
                     </mat-option>
                   </mat-select>
                 </mat-form-field>
@@ -49,8 +49,8 @@
                   <td>{{item.ticket_price}}</td>
                   <td>{{item.tickets_number}}</td>
                   <td>{{item.payment_type}}</td>
-                  <td>{{item.sale_stime.hour}}:{{item.sale_stime.minute}} {{item.sale_stime.meriden}} {{item.sale_sdate | date: 'dd/MM/yyyy'}}
-                    - {{item.sale_etime.hour}}:{{item.sale_etime.minute}} {{item.sale_etime.meriden}} {{item.sale_edate | date: 'dd/MM/yyyy'}}
+                  <td>{{item.sale_stime.hour}}:{{item.sale_stime.minute == 0 ? '00': item.sale_stime.minute}} {{item.sale_stime.meriden}} {{item.sale_sdate | date: 'dd/MM/yyyy'}}
+                    - {{item.sale_etime.hour}}:{{item.sale_etime.minute == 0 ? '00': item.sale_etime.minute}} {{item.sale_etime.meriden}} {{item.sale_edate | date: 'dd/MM/yyyy'}}
                   </td>
                 </tr>
               </tbody>
@@ -79,7 +79,7 @@
                 <tbody>
                   <tr>
                     <td>Date:</td>
-                    <td>{{event_date.time.hour}}:{{event_date.time.minute}} {{event_date.time.meriden}}, {{event_date.date | date: 'dd/MM/yyyy'}}</td>
+                    <td>{{event_date.time.hour}}:{{event_date.time.minute == 0 ? '00' : event_date.time.minute}} {{event_date.time.meriden}}, {{event_date.date | date: 'dd/MM/yyyy'}}</td>
                   </tr>
                 </tbody>
                 <tbody>
@@ -141,8 +141,8 @@
                 <td>{{ticket.ticket_price}}</td>
                 <td>{{ticket.tickets_number}}</td>
                 <td>{{ticket.payment_type}}</td>
-                <td>{{ticket.sale_stime.hour}}:{{ticket.sale_stime.minute}} {{ticket.sale_stime.meriden}} {{ticket.sale_sdate | date: 'dd/MM/yyyy'}}
-                  - {{ticket.sale_etime.hour}}:{{ticket.sale_etime.minute}} {{ticket.sale_etime.meriden}} {{ticket.sale_edate | date: 'dd/MM/yyyy'}}
+                <td>{{ticket.sale_stime.hour}}:{{ticket.sale_stime.minute == 0 ? '00' : ticket.sale_stime.minute}} {{ticket.sale_stime.meriden}} {{ticket.sale_sdate | date: 'dd/MM/yyyy'}}
+                  - {{ticket.sale_etime.hour}}:{{ticket.sale_etime.minute == 0 ? '00' : ticket.sale_etime.minute}} {{ticket.sale_etime.meriden}} {{ticket.sale_edate | date: 'dd/MM/yyyy'}}
                 </td>
               </tr>
             </tbody>
@@ -168,7 +168,7 @@
                 </tr>
                 <tr>
                   <td>Date:</td>
-                  <td>{{event_date.time.hour}}:{{event_date.time.minute}} {{event_date.time.meriden}}, {{event_date.date | date: 'dd/MM/yyyy'}}</td>
+                  <td>{{event_date.time.hour}}:{{event_date.time.minute == 0 ? '00' : event_date.time.minute}} {{event_date.time.meriden}}, {{event_date.date | date: 'dd/MM/yyyy'}}</td>
                 </tr>
                 <tr>
                   <td>Place:</td>
@@ -220,7 +220,7 @@
                 </tr>
                 <tr>
                   <td>Date:</td>
-                  <td>{{event_date.time.hour}}:{{event_date.time.minute}} {{event_date.time.meriden}}, {{event_date.date | date: 'dd/MM/yyyy'}}</td>
+                  <td>{{event_date.time.hour}}:{{event_date.time.minute == 0 ? '00' : event_date.time.minute}} {{event_date.time.meriden}}, {{event_date.date | date: 'dd/MM/yyyy'}}</td>
                 </tr>
                 <tr>
                   <td>Meeting Place:</td>

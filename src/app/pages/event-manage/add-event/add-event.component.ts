@@ -222,6 +222,7 @@ export class AddEventComponent implements OnInit {
         console.log(result);
         this.eventData.event_date == undefined ? this.eventData.event_date = [] : console.log(this.eventData.event_date);
         this.eventData.event_date.push(result);
+        console.log(this.eventData.event_date);
         this.dataSource1 = new MatTableDataSource(this.eventData.event_date);
       }
     });
