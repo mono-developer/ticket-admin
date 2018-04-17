@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 @Component({
   selector: 'ms-toolbar-user-button',
@@ -10,24 +11,37 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class ToolbarUserButtonComponent implements OnInit {
 
   isOpen: boolean;
+  userInfo: any;
 
   constructor(
     public router: Router,
+    public dialog: MatDialog,
   ) { }
 
   ngOnInit() {
+    this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+    console.log('userInfo', this.userInfo);
   }
 
   toggleDropdown() {
     this.isOpen = !this.isOpen;
   }
 
-  // goLogin() {
-  //   this.router.navigate(['../../../pages/settings/login']);
-  // }
+  logout() {
+    sessionStorage.clear();
+    this.onClickOutside();
+    setTimeout(() => {
+      window.location.reload();
+    }, 1000);
+  }
+
+  customerLogin() {
+    console.log('customer Login');
+  }
 
   onClickOutside() {
     this.isOpen = false;
   }
 
 }
+

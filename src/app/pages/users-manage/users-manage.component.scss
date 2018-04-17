@@ -18,7 +18,7 @@
       button{
         margin: 3px;
         padding: 3px;
-        min-width: 80px;
+        min-width: 30px;
         height: 30px;
         line-height: 20px;
         background: #ff9603;
@@ -32,4 +32,30 @@
 .mat-table {
   overflow: auto;
   max-height: 500px;
+}
+
+.get_access{
+  width: 100%;
+  h2{
+    width: 100%;
+    text-align: center;
+  }
+  p{
+    width: 100%;
+    span{
+      font-size: 18px;
+      font-weight: 500;
+      margin-left: 10px;
+    }
+  }
+  .state_list{
+    width: 100%;
+  }
+
+}
+.access_btns{
+  button{
+    width: 36%;
+    margin: 20px;
+  }
 }

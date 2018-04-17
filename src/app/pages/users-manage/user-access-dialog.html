@@ -1,0 +1,24 @@
+
+
+
+<div class="get_access">
+  <h2>User Access</h2>
+  <p>name:
+    <span>{{data.name}}</span>
+  </p>
+  <p>name:
+    <span>{{data.email}}</span>
+  </p>
+  <mat-form-field class="state_list">
+    <mat-select placeholder="Select State" name="state" [(ngModel)]="data.status" required>
+      <mat-option *ngFor="let state of stateList" [value]="state.status">
+        {{ state.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="access_btns">
+  <button mat-raised-button color="primary" (click)="onNoClick()">No Thanks</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>
+

@@ -7,35 +7,35 @@
       <div class="register-content" fxLayout="column" fxLayoutAlign="start stretch">
 
         <mat-form-field>
-          <input matInput placeholder="Name" type="text" name="name" required [(ngModel)]="resData.name">
+          <input matInput placeholder="Name" type="text" name="name" [(ngModel)]="resData.name" required>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="E-Mail" type="email" name="email" required [(ngModel)]="resData.email">
+          <input matInput placeholder="E-Mail" type="email" name="email" [(ngModel)]="resData.email" required>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Password" type="password" name="password" required [(ngModel)]="resData.password">
+          <input matInput placeholder="Password" type="password" name="password" [(ngModel)]="resData.password" required>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Password (Confirm)" type="password" name="password-confirm" required [(ngModel)]="passwordConfirm">
+          <input matInput placeholder="Password (Confirm)" type="password" name="password-confirm" [(ngModel)]="passwordConfirm" required>
         </mat-form-field>
 
         <mat-form-field>
-          <input matInput placeholder="Cell Phone" type="tel" name="phone" required [(ngModel)]="resData.phone">
-        </mat-form-field>
-
-        <mat-form-field>
-          <input matInput placeholder="City" type="text" name="city" required [(ngModel)]="resData.city">
-        </mat-form-field>
-
-        <mat-form-field>
-          <mat-select placeholder="Select a Category" [(ngModel)]="resData.access" name="category" required>
+          <mat-select placeholder="Select Access" [(ngModel)]="resData.access" name="access" required>
             <mat-option *ngFor="let access of accessList" [value]="access.level">
               {{ access.name }}
             </mat-option>
           </mat-select>
+        </mat-form-field>
+
+        <mat-form-field *ngIf="resData.access == ''">
+          <input matInput placeholder="Cell Phone" type="tel" name="phone" [(ngModel)]="resData.phone">
+        </mat-form-field>
+
+        <mat-form-field *ngIf="resData.access == '1'">
+          <input matInput placeholder="City" type="text" name="city" [(ngModel)]="resData.city">
         </mat-form-field>
 
         <div class="extra-options" fxLayout="row" fxLayoutAlign="center center">

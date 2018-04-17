@@ -81,7 +81,7 @@
 .main-container {
   overflow-y: auto;
   overflow-x: hidden;
-  height: calc(100% - #{$height__main-toolbar});
+  height: 100%;
   position: relative;
 }
 

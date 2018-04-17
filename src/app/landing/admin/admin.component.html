@@ -12,7 +12,11 @@
       <mat-icon *ngIf="isFullscreen">fullscreen_exit</mat-icon>
     </button>
 
-    <button mat-button class="login" [routerLink]="'dashboard'">Login</button>
+    <!-- <button *ngIf="!userData" mat-button class="login" [routerLink]="'dashboard'">Login</button> -->
+    <div class="user-button-container">
+      <ms-toolbar-user-button></ms-toolbar-user-button>
+    </div>
+
 
   </div>
   <div class="main-container" #scrollContainer style="background: #323232">

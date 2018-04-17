@@ -24,8 +24,8 @@
     <ng-container matColumnDef="symbol">
       <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
       <mat-cell *matCellDef="let element">
-        <!-- <button mat-button><mat-icon>border_color</mat-icon></button> -->
-        <button mat-button (click)="deleteUser(element._id)"><mat-icon>delete</mat-icon> Delete</button>
+        <button mat-button (click)="openDialog(element)"><mat-icon>border_color</mat-icon></button>
+        <button mat-button (click)="deleteUser(element._id)"><mat-icon>delete</mat-icon></button>
       </mat-cell>
     </ng-container>
 

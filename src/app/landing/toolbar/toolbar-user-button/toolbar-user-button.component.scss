@@ -16,7 +16,8 @@
 
     .name {
       margin: 0 8px 0 10px;
-      color: #000;
+      color: #fff;
+      font-size: 18px;
     }
 
     .icon {
@@ -37,9 +38,9 @@
   }
 
   .dropdown {
-    background: white;
+    background: transparent;
     position: absolute;
-    top: $height__main-toolbar;
+    top: 50px;
     right: 0;
     width: 100%;
     min-width: 160px;

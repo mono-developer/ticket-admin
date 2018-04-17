@@ -18,6 +18,7 @@ import { DataService } from "../../../provide/data-service";
 })
 export class MainComponent implements OnInit, AfterViewInit {
 
+    userInfo: any;
     categoryData: any = [];
     categoryList: any = [];
     config1: any;
@@ -75,6 +76,8 @@ export class MainComponent implements OnInit, AfterViewInit {
     }
 
     ngOnInit() {
+        this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+        console.log('mainUserInfo', this.userInfo);
         this.getEventList();
         this.getCategoryList();
     }

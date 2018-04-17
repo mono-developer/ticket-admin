@@ -26,7 +26,9 @@ export class AdminComponent implements OnInit, OnDestroy {
   isFullscreen: boolean = false;
   constructor(
     private router: Router,
-  ) { }
+  ) {
+
+   }
 
   ngOnInit() {
 

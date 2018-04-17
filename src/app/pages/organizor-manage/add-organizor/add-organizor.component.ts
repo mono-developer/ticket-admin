@@ -91,6 +91,7 @@ export class AddOrganizorComponent implements OnInit {
     this.dataService.patchData(this.url, this.id, this.token, this.orgData)
       .subscribe(
         (data) => {
+          this.isLoading = false;
           console.log('orgData', data);
           this.router.navigate(['dashboard/organizor-manage/view-organizor']);
           return true;
@@ -108,6 +109,7 @@ export class AddOrganizorComponent implements OnInit {
     this.dataService.postData(this.url, this.token, this.orgData)
       .subscribe(
         (data) => {
+          this.isLoading = false;
           console.log('cmsData', data);
           this.router.navigate(['dashboard/organizor-manage/view-organizor']);
           return true;

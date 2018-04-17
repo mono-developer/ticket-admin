@@ -58,11 +58,13 @@ export class LoginComponent implements OnInit {
           } else {
             sessionStorage.removeItem('UserData');
           }
-          if(data.user.status){
+          if (data.user.status && ( data.user.access == '0' || data.user.access == '1')){
             sessionStorage.setItem('token', data.token);
             sessionStorage.setItem('userInfo', JSON.stringify(data.user));
             this.router.navigate(['/dashboard']);
-          }else{
+          // }else if (data.user.access == '2') {
+
+          } else{
             this.accessError();
           }
           return true;

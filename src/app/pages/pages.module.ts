@@ -45,7 +45,7 @@ import { ViewCouponComponent } from './coupon-manage/view-coupon/view-coupon.com
 import { ViewBullentinComponent } from './bullentin/view-bullentin/view-bullentin.component';
 import { AddBullentinComponent } from './bullentin/add-bullentin/add-bullentin.component';
 import { BannerImagesComponent } from './banner-images/banner-images.component';
-import { UsersManageComponent } from './users-manage/users-manage.component';
+import { UsersManageComponent, UserAccessDialogComponent } from './users-manage/users-manage.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent, LoginErrorDialog, AccessErrorDialog } from './settings/login/login.component';
 import { ForgotPasswordComponent } from './settings/forgot-password/forgot-password.component';
@@ -94,6 +94,7 @@ import { ImageSize } from "../../provide/image-size";
     MatSnackBarModule,
   ],
   entryComponents: [
+    UserAccessDialogComponent,
     EventDatailsDialogComponent,
     SeatDatailsDialogComponent,
     LoginErrorDialog,
@@ -124,6 +125,7 @@ import { ImageSize } from "../../provide/image-size";
     RegisterComponent,
     GeneralReportsComponent,
     DateReportsComponent,
+    UserAccessDialogComponent,
     EventDatailsDialogComponent,
     SeatDatailsDialogComponent,
     LoginErrorDialog,

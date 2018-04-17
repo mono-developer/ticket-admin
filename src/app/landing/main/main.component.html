@@ -23,20 +23,6 @@
     </div>
 
     <div class="main-content">
-        <div class="event-sec">
-            <h2>About The Ticket App</h2>
-            <div class="des">
-              <p>Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
-                per inceptos himenaeos. Mauris in erat justo. Morbi accumsan ipsum velit.Class aptent taciti sociosqu ad litora torquent
-                per conubia nostra, per inceptos himenaeos.mauris vitae erat consequat auctor eu in elit.</p>
-
-                <div class="category" *ngFor="let item of categoryList; let index = index">
-                    <mat-icon [ngStyle]="{'color': colorList[index]}">{{item.icon}}</mat-icon>
-                    <h4>{{item.name}}</h4>
-                    <p>{{item.description}}</p>
-                </div>
-            </div>
-        </div>
 
         <div class="event-sec">
             <h2>Categories</h2>
@@ -157,6 +143,22 @@
 
             </mat-tab-group>
         </div>
+
+        <div class="event-sec">
+            <h2>About</h2>
+            <div class="des">
+                <p>Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+                per inceptos himenaeos. Mauris in erat justo. Morbi accumsan ipsum velit.Class aptent taciti sociosqu ad litora torquent
+                per conubia nostra, per inceptos himenaeos.mauris vitae erat consequat auctor eu in elit.</p>
+
+                <div class="category" *ngFor="let item of categoryList; let index = index">
+                    <mat-icon [ngStyle]="{'color': colorList[index]}">{{item.icon}}</mat-icon>
+                    <h4>{{item.name}}</h4>
+                    <p>{{item.description}}</p>
+                </div>
+            </div>
+        </div>
+
 
         <!-- Contact and Venue -->
         <div class="event-sec">
