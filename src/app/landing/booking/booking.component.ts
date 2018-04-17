@@ -169,7 +169,6 @@ export class BookingComponent implements OnInit {
     }
   }
 
-
   addQuantity() {
     this.s__quantity++;
     console.log(this.s__quantity);
@@ -192,7 +191,6 @@ export class BookingComponent implements OnInit {
 export class TimeOverComponent {
   constructor() { }
 }
-
 
 @Component({
   templateUrl: 'location-dialog.component.html',

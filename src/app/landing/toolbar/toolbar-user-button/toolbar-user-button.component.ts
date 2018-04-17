@@ -2,6 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { CustomerLoginComponent } from '../../customer-setting/customer-login/customer-login.component';
 
 @Component({
   selector: 'ms-toolbar-user-button',
@@ -29,14 +30,33 @@ export class ToolbarUserButtonComponent implements OnInit {
 
   logout() {
     sessionStorage.clear();
-    this.onClickOutside();
-    setTimeout(() => {
-      window.location.reload();
-    }, 1000);
+    this.isOpen = false;
+    this.userInfo = null;
+    // setTimeout(() => {
+    //   window.location.reload();
+    // }, 1000);
   }
 
   customerLogin() {
-    console.log('customer Login');
+    this.isOpen = false;
+    let dialogRef = this.dialog.open(CustomerLoginComponent, {
+      width: '350px',
+      data: {email: '', password: ''}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('result', result);
+      if(result.access == '2'){
+        this.userInfo = result;
+        sessionStorage.setItem('userInfo', JSON.stringify(result));
+      }else if(result == 'register'){
+        console.log('register');
+      }else if(result == 'forgot'){
+        console.log('error');
+      }else{
+        console.log('cancel');
+      }
+    });
   }
 
   onClickOutside() {

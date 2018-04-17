@@ -1,3 +1,34 @@
 
 
 
+.signup {
+  img {
+    width: 150px;
+    margin: 0 auto;
+    display: block;
+  }
+  h1 {
+    text-align: center;
+    margin: 20px;
+  }
+  .error {
+    color: crimson;
+    margin: 5px;
+  }
+  .note {
+    button {
+      padding: 0;
+      color: crimson;
+    }
+    .register {
+      color: cornflowerblue;
+      float: right;
+    }
+  }
+  .btns {
+    button {
+      width: 150px;
+      margin: 0 auto;
+    }
+  }
+}

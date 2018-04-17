@@ -66,7 +66,8 @@ import { AgmCoreModule } from '@agm/core';
     BookingDialogComponent,
     DescriptionDialogComponent,
     LocationDialogComponent,
-    TimeOverComponent
+    TimeOverComponent,
+    CustomerLoginComponent
   ],
   declarations: [
     MainComponent,

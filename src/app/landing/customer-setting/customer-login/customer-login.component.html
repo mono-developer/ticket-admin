@@ -1,6 +1,38 @@
 
+<div class="login">
+  <img src="../../../../assets/img/icons/icon-dark.png" alt="">
+  <h1 mat-dialog-title>Customer Login</h1>
 
-<div >
-    Custom Login Component
+    <form #form="ngForm">
+      <div fxLayout="column">
+        <mat-form-field>
+          <input type="email" matInput placeholder="E-Mail" [(ngModel)]="data.email" name="email" required>
+        </mat-form-field>
 
+        <mat-form-field>
+          <input type="password" matInput placeholder="Password" [(ngModel)]="data.password" name="password" required>
+        </mat-form-field>
+
+        <p class="error" *ngIf="errorAccess">No Customer Access</p>
+        <p class="error" *ngIf="errorPassword">User Email / Password is Invalid</p>
+
+        <p class="note">
+          <br/>
+          <button mat-button  color="primary" [mat-dialog-close]="'forgot'">Forgot Password?</button>
+          <button mat-button color="primary" class="register" [mat-dialog-close]="'register'">Register</button>
+        </p>
+
+      </div>
+      <div mat-dialog-actions class="btns">
+        <button mat-raised-button
+        color="primary"
+        cdkFocusInitial
+
+        (click)="login()"
+        [disabled]="!form.valid">Login</button>
+      </div>
+    </form>
+  <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
 </div>
+
+
