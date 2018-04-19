@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
+import { MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { json } from 'd3';
+import { DeleteDialogComponent } from '../../delete-dialog/delete-dialog.component';
 import { BaseService } from "../../../../provide/base-service";
 import { DataService } from "../../../../provide/data-service";
 
@@ -23,6 +24,7 @@ export class ViewEventComponent implements OnInit {
   isLoading: boolean = false;
   constructor(
     public router: Router,
+    public dialog: MatDialog,
     public baseService: BaseService,
     public dataService: DataService
   ) { }
@@ -61,9 +63,19 @@ export class ViewEventComponent implements OnInit {
     this.router.navigate(['./dashboard/event-manage/add-event', { item: item._id, value: 'duplicate' }]);
   }
 
-  delete(item: any) {
+  delete(item) {
+    let dialogRef1 = this.dialog.open(DeleteDialogComponent, {
+      width: '350px',
+      data: { alert: 'Do you want to delete this Event?' }
+    });
+    dialogRef1.afterClosed().subscribe(result => {
+      result ? this.deleteEvent(item._id) : '';
+    });
+  }
+
+  deleteEvent(id) {
     this.isLoading = true;
-    this.dataService.deleteData(this.url, item._id, this.token)
+    this.dataService.deleteData(this.url, id, this.token)
       .subscribe(
         (data) => {
           console.log('eventList', data);

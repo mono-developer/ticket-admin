@@ -109,9 +109,9 @@
               </mat-form-field>
 
               <div class="ticket_number" *ngIf="isStep2Table">
-                <button mat-raised-button color="accent" (click)="minQuantity()" [disabled]="s__quantity == 1">-</button>
+                <button mat-raised-button color="primary" (click)="minQuantity()" [disabled]="s__quantity == 1">-</button>
                 <div class="counter">{{s__quantity}}</div>
-                <button mat-raised-button color="accent" (click)="addQuantity()" [disabled]="s__quantity == 8">+</button>
+                <button mat-raised-button color="primary" (click)="addQuantity()" [disabled]="s__quantity == 8">+</button>
               </div>
 
               <mat-form-field *ngIf="isStep2Table">

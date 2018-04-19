@@ -16,6 +16,8 @@ import {MatSnackBar, MatSnackBarConfig} from "@angular/material";
 export class SidenavComponent implements OnInit, OnDestroy {
 
   items: SidenavItem[];
+  userState: string;
+
 
   private _itemsSubscription: Subscription;
   private _routerEventsSubscription: Subscription;
@@ -28,6 +30,9 @@ export class SidenavComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit() {
+    let userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+    this.userState = userInfo.access;
+
     this._itemsSubscription = this.sidenavService.items$
       .subscribe((items: SidenavItem[]) => {
         this.items = this.sortRecursive(items, 'position');
@@ -102,5 +107,9 @@ export class SidenavComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     this._itemsSubscription.unsubscribe();
     this._routerEventsSubscription.unsubscribe();
+  }
+
+  getStateNavItem(item: SidenavItem) {
+    return item.status.indexOf(this.userState) > -1;
   }
 }

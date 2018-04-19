@@ -2,15 +2,15 @@
   <div class="sales-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource">
 
-      <ng-container matColumnDef="first_name">
+      <ng-container matColumnDef="name">
         <mat-header-cell *matHeaderCellDef> Sales User </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.sales_name}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.name}} </mat-cell>
       </ng-container>
 
       <!-- Email Column -->
-      <ng-container matColumnDef="sales_email">
+      <ng-container matColumnDef="email">
         <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.sales_email}} </mat-cell>
+        <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
       </ng-container>
 
       <!-- Phone Column -->
@@ -20,15 +20,15 @@
       </ng-container>
 
       <!-- Title Column -->
-      <ng-container matColumnDef="title">
-        <mat-header-cell *matHeaderCellDef> Job Title </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
+      <ng-container matColumnDef="city">
+        <mat-header-cell *matHeaderCellDef> City </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.city}} </mat-cell>
       </ng-container>
 
       <!-- Active Column -->
       <ng-container matColumnDef="state">
           <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
-          <mat-cell *matCellDef="let element"> {{element.state ? 'Active' : 'Inactive'}} </mat-cell>
+          <mat-cell *matCellDef="let element"> {{element.status ? 'Active' : 'Inactive'}} </mat-cell>
         </ng-container>
 
       <!-- Symbol Column -->

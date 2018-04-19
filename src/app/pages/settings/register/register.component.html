@@ -30,11 +30,11 @@
           </mat-select>
         </mat-form-field>
 
-        <mat-form-field *ngIf="resData.access == ''">
+        <mat-form-field>
           <input matInput placeholder="Cell Phone" type="tel" name="phone" [(ngModel)]="resData.phone">
         </mat-form-field>
 
-        <mat-form-field *ngIf="resData.access == '1'">
+        <mat-form-field>
           <input matInput placeholder="City" type="text" name="city" [(ngModel)]="resData.city">
         </mat-form-field>
 

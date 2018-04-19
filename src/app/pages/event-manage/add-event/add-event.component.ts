@@ -166,11 +166,14 @@ export class AddEventComponent implements OnInit {
   }
 
   getOrgData() {
-    let org_url = this.baseService.organizorURL;
-    this.dataService.getNoTokenData(org_url)
+    let org_url = this.baseService.userURL;
+    this.dataService.getData(org_url, this.token)
       .subscribe(
         (data) => {
-          this.organizorList = data;
+
+          this.organizorList = data.filter((item: any) =>
+            item.access === '1'
+          );
           this.getCouponData();
           return true;
         },

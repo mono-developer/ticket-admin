@@ -4,6 +4,7 @@ import { Router, ActivatedRoute } from "@angular/router";
 
 import { BaseService } from "./../../../provide/base-service";
 import { DataService } from "./../../../provide/data-service";
+import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'ms-users-manage',
@@ -18,8 +19,9 @@ export class UsersManageComponent implements OnInit {
   token: string;
   isLoading: boolean = false;
   userList: any;
+  accessList: any;
 
-  displayedColumns = ['first_name', 'email', 'status', 'symbol'];
+  displayedColumns = ['first_name', 'email', 'access', 'status', 'symbol'];
   dataSource: any;
 
   constructor(
@@ -28,7 +30,7 @@ export class UsersManageComponent implements OnInit {
     public baseService: BaseService,
     public dataService: DataService
   ) {
-
+    this.accessList = [ 'Admin', 'Organizer', 'Point of Sale'];
   }
 
   ngOnInit() {
@@ -53,6 +55,16 @@ export class UsersManageComponent implements OnInit {
           console.log('errorData', err);
           return true;
         });
+  }
+
+  deleteItem (id){
+    let dialogRef1 = this.dialog.open(DeleteDialogComponent, {
+      width: '350px',
+      data: { alert: 'Do you want to delete this User?' }
+    });
+    dialogRef1.afterClosed().subscribe(result =>{
+      result ? this.deleteUser(id) : '';
+    });
   }
 
   deleteUser(id) {
@@ -117,6 +129,7 @@ export class UsersManageComponent implements OnInit {
 export class UserAccessDialogComponent {
 
   stateList: any;
+  accessList: any;
   constructor(
     public dialogRef: MatDialogRef<UserAccessDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
@@ -125,6 +138,10 @@ export class UserAccessDialogComponent {
         { id: 0, name: 'Active', status: true },
         { id: 1, name: 'Inactive' ,status: false }
       ];
+      this.accessList = [
+        { id: 1, name: 'Organizer', access: '1' },
+        { id: 2, name: 'Point of Sale', access: '2' }
+      ]
     }
 
   onNoClick(): void {

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
+import { MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { json } from 'd3';
+import { DeleteDialogComponent } from '../../delete-dialog/delete-dialog.component';
 
 import { BaseService } from "../../../../provide/base-service";
 import { DataService } from "../../../../provide/data-service";
@@ -23,6 +24,7 @@ export class ViewCMSComponent implements OnInit {
 
   constructor(
     public router: Router,
+    public dialog: MatDialog,
     public baseService: BaseService,
     public dataService: DataService
   ) { }
@@ -57,8 +59,18 @@ export class ViewCMSComponent implements OnInit {
   }
 
   delete(item) {
+    let dialogRef1 = this.dialog.open(DeleteDialogComponent, {
+      width: '350px',
+      data: { alert: 'Do you want to delete this Content?' }
+    });
+    dialogRef1.afterClosed().subscribe(result => {
+      result ? this.deleteItem(item._id) : '';
+    });
+  }
+
+  deleteItem(id) {
     this.isLoading = true;
-    this.dataService.deleteData(this.url, item._id, this.token)
+    this.dataService.deleteData(this.url, id, this.token)
       .subscribe(
         (data) => {
           console.log('cmsData', data);
@@ -69,8 +81,7 @@ export class ViewCMSComponent implements OnInit {
           this.isLoading = false;
           console.log('errorData', error);
           return true;
-        }
-      )
+        });
   }
 
   newCMS() {

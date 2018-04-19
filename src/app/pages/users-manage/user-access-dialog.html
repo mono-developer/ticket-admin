@@ -2,15 +2,26 @@
 
 
 <div class="get_access">
-  <h2>User Access</h2>
-  <p>name:
+  <h2>User Statement</h2>
+  <p>User Name:
     <span>{{data.name}}</span>
   </p>
-  <p>name:
+  <p>E-Mail:
     <span>{{data.email}}</span>
   </p>
+  <p *ngIf="data.access == '0'">User Access:
+    <span>Admin</span>
+  </p>
+  <mat-form-field class="state_list" *ngIf="data.access != '0'">
+    <mat-select placeholder="Select Access" name="access" [(ngModel)]="data.access" required>
+      <mat-option *ngFor="let item of accessList" [value]="item.access">
+        {{ item.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <mat-form-field class="state_list">
-    <mat-select placeholder="Select State" name="state" [(ngModel)]="data.status" required>
+    <mat-select placeholder="Select Statement" name="state" [(ngModel)]="data.status" required>
       <mat-option *ngFor="let state of stateList" [value]="state.status">
         {{ state.name }}
       </mat-option>

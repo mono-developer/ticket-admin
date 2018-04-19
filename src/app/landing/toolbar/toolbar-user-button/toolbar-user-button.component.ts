@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { CustomerLoginComponent } from '../../customer-setting/customer-login/customer-login.component';
+import { CustomerProfilComponent } from '../../customer-setting/customer-profile/customer-profile.component';
 
 @Component({
   selector: 'ms-toolbar-user-button',
@@ -59,9 +60,9 @@ export class ToolbarUserButtonComponent implements OnInit {
     });
   }
 
-  customerProfile() {
+  userProfile() {
     this.isOpen = false;
-    let dialogRef = this.dialog.open(CustomerLoginComponent, {
+    let dialogRef = this.dialog.open(CustomerProfilComponent, {
       width: '350px',
       data: this.userInfo
     });

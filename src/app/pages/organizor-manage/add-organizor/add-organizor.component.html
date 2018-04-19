@@ -1,46 +1,58 @@
 <ms-page-header [title]="page_title"></ms-page-header>
-<div class="main_div">
+<div class="main-box">
 
-  <form #form="ngForm">
-    <mat-form-field>
-      <input type="text" matInput placeholder="Organizor Name" name="name" [(ngModel)]="orgData.name" required>
-    </mat-form-field>
-  </form>
+  <div class="demo-preview" fxLayout="row" fxLayoutAlign="center center">
+    <form #form="ngForm">
+      <div class="add-box">
 
-  <form>
-      <mat-form-field>
-        <input type="tel" matInput placeholder="Registration of the Organizor" name="number" [(ngModel)]="orgData.reg_number" required>
-      </mat-form-field>
+        <mat-form-field static>
+          <input type="text" matInput placeholder="New Organizer" name="name" [(ngModel)]="userData.name" required>
+          <span matPrefix>
+            <mat-icon>person</mat-icon>
+          </span>
+        </mat-form-field>
 
-    <mat-form-field>
-      <input type="text" matInput placeholder="Contact Person" name="person" [(ngModel)]="orgData.person" required>
-    </mat-form-field>
+        <mat-form-field static>
+          <input type="email" matInput placeholder="Email" name="email" [(ngModel)]="userData.email" required>
+          <span matPrefix>
+            <mat-icon>email</mat-icon>
+          </span>
+        </mat-form-field>
 
-    <mat-form-field>
-      <input type="email" matInput placeholder="Email" name="email" [(ngModel)]="orgData.org_email" required>
-    </mat-form-field>
+        <mat-form-field fxFlex>
+          <input type="text" matInput placeholder="Password" name="password" [(ngModel)]="userData.password" required>
+          <span matPrefix>
+            <mat-icon>vpn_key</mat-icon>
+          </span>
+        </mat-form-field>
 
-    <mat-form-field>
-      <input type="tel" matInput placeholder="Mobile" name="mobile" [(ngModel)]="orgData.mobile" required>
-    </mat-form-field>
+        <mat-form-field fxFlex>
+          <input type="tel" matInput placeholder="Phone" name="phone" [(ngModel)]="userData.phone">
+          <span matPrefix>
+            <mat-icon>phonelink_setup</mat-icon>
+          </span>
+        </mat-form-field>
 
-    <mat-form-field>
-      <input type="text" matInput placeholder="Address" name="address" [(ngModel)]="orgData.address" required>
-    </mat-form-field>
+        <mat-form-field fxFlex>
+          <input type="text" matInput placeholder="Address" name="city" [(ngModel)]="userData.city">
+          <span matPrefix>
+            <mat-icon>title</mat-icon>
+          </span>
+        </mat-form-field>
 
-
-    <div class="state">
-
-      <mat-form-field class="state_list">
-          <mat-select placeholder="Select State" name="state" [(ngModel)]="orgData.state" required>
-            <mat-option *ngFor="let state of stateList" [value]="state.value">
+        <mat-form-field class="state_list">
+          <mat-select placeholder="Select State" name="state" [(ngModel)]="userData.status">
+            <mat-option *ngFor="let state of stateList" [value]="state.status">
               {{ state.name }}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-    </div>
-  </form>
-  <button mat-raised-button color="primary" class="submit" (click)="submit()" [disabled]="!form.valid">Submit</button>
+        <button mat-raised-button color="primary" class="submit" [disabled]="!form.valid" (click)="submit()">Submit</button>
+
+      </div>
+    </form>
+
+  </div>
   <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
 </div>

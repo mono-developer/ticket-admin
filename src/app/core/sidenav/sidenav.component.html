@@ -18,7 +18,10 @@
   <div class="sidenav-scrollbar-container" fxLayout="column">
     <ms-scrollbar>
       <mat-nav-list fxLayout="column" class="sidenav-list sidenav-toplevel">
-          <ms-sidenav-item *ngFor="let item of items" [item]="item"></ms-sidenav-item>
+        <div *ngFor="let item of items">
+          <ms-sidenav-item  [item]="item" *ngIf = "getStateNavItem(item)"></ms-sidenav-item>
+        </div>
+
       </mat-nav-list>
     </ms-scrollbar>
   </div>

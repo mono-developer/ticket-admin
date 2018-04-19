@@ -11,8 +11,8 @@ import { SidenavService } from "../sidenav.service";
 })
 export class SidenavItemComponent implements OnInit {
 
-  @Input('item')
-  item: SidenavItem;
+  @Input('item')  item: SidenavItem;
+
 
   @HostBinding('class.open')
   get isOpen() {
@@ -25,8 +25,8 @@ export class SidenavItemComponent implements OnInit {
     private sidenavService: SidenavService
   ) { }
 
-  ngOnInit() {
-  }
+  ngOnInit() { }
+
 
   toggleDropdown(): void {
     if (this.item.hasSubItems()) {

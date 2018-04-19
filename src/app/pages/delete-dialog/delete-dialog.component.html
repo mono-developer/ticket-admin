@@ -1,0 +1,12 @@
+<div class="section">
+
+  <h1 mat-dialog-title>Warning!</h1>
+
+    <p>{{data.alert}}</p>
+
+  <div mat-dialog-actions class="btns">
+    <button mat-button (click)="onNoClick()" color="primary">No Thanks</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="'sure'" cdkFocusInitial>Ok</button>
+  </div>
+
+</div>

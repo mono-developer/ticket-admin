@@ -3,6 +3,7 @@ import { routeAnimation } from "../../../route.animation";
 import { Router, ActivatedRoute } from "@angular/router";
 import { BaseService } from "../../../../provide/base-service";
 import { DataService } from "../../../../provide/data-service";
+import { UserService } from "../../../../provide/user-service";
 
 @Component({
   selector: 'ms-add-organizor',
@@ -20,57 +21,41 @@ export class AddOrganizorComponent implements OnInit {
   url: string;
   token: string;
   stateList: any;
-  orgData: any ;
+  userData: any = {};
   isLoading: boolean = false;
 
   constructor(
     private router: Router,
     public route: ActivatedRoute,
     public baseService: BaseService,
-    public dataService: DataService
+    public dataService: DataService,
+    public userService: UserService
   ) {
-    this.orgData = {
-      name: '',
-      number: '',
-      person: '',
-      eamil: '',
-      mobile: '',
-      address: '',
-      value: ''
-    };
-    this.stateList = [ { id: 0, name: 'Activate', value: true },
-                       { id: 1, name: 'Deactivate', value: false }
+       this.stateList = [ { id: 0, name: 'Active', status: true },
+                       { id: 1, name: 'Intivate', status: false }
                     ];
   }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('item');
-    this.url = this.baseService.organizorURL;
+    this.url = this.baseService.userURL;
     this.token = sessionStorage.getItem('token');
     console.log('item', this.id);
     if (this.id) {
       this.getOrgData(this.id);
     } else {
-      this.orgData = {
-        name: '',
-        number: '',
-        person: '',
-        eamil: '',
-        mobile: '',
-        address: '',
-        value: ''
-      };
+      this.userData.status = false;
     }
   }
 
   getOrgData(id) {
     this.isLoading = true;
-    this.dataService.getNoTokenData(this.url + "/" + id)
+    this.dataService.getData(this.url + "/" + id, this.token)
       .subscribe(
         (data) => {
           this.isLoading = false;
           console.log('orgData', data);
-          this.orgData = data;
+          this.userData = data;
           return true;
         },
         err => {
@@ -82,13 +67,13 @@ export class AddOrganizorComponent implements OnInit {
 
 
   submit() {
-    console.log(this.orgData);
+    console.log(this.userData);
     this.id ? this.putOrgData() : this.postOrgData();
   }
 
   putOrgData() {
     this.isLoading = true;
-    this.dataService.patchData(this.url, this.id, this.token, this.orgData)
+    this.userService.updateProfile(this.url, this.id, this.userData, this.token)
       .subscribe(
         (data) => {
           this.isLoading = false;
@@ -106,11 +91,12 @@ export class AddOrganizorComponent implements OnInit {
   postOrgData() {
 
     this.isLoading = true;
-    this.dataService.postData(this.url, this.token, this.orgData)
+    this.userData.access = '1';
+    this.userService.signup(this.userData)
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('cmsData', data);
+          console.log('orgData', data);
           this.router.navigate(['dashboard/organizor-manage/view-organizor']);
           return true;
         },

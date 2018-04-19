@@ -58,12 +58,10 @@ export class LoginComponent implements OnInit {
           } else {
             sessionStorage.removeItem('UserData');
           }
-          if (data.user.status && ( data.user.access == '0' || data.user.access == '1')){
+          if (data.user.status){
             sessionStorage.setItem('token', data.token);
             sessionStorage.setItem('userInfo', JSON.stringify(data.user));
             this.router.navigate(['/dashboard']);
-          // }else if (data.user.access == '2') {
-
           } else{
             this.accessError();
           }
@@ -109,7 +107,7 @@ export class LoginErrorDialog {
 @Component({
   selector: 'ms-accesserror-dialog',
   template: `
-  <h2>You have no access</h2>
+  <h2>User Access is Invalid</h2>
   <mat-dialog-actions align="end">
     <button mat-button (click)="dialogRef.close()">OK</button>
   </mat-dialog-actions>

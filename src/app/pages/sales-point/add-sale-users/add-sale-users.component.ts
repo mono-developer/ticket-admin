@@ -3,6 +3,7 @@ import { routeAnimation } from "../../../route.animation";
 import { Router, ActivatedRoute } from "@angular/router";
 import { BaseService } from "../../../../provide/base-service";
 import { DataService } from "../../../../provide/data-service";
+import { UserService } from "../../../../provide/user-service";
 import * as _ from 'lodash';
 
 
@@ -21,30 +22,30 @@ export class AddSaleUsersComponent implements OnInit {
   id: string;
   url: string;
   token: string;
-  salesUserData: any;
+  userData: any = {};
   stateList: any;
   isLoading: boolean = false;
   constructor(
     private router: Router,
     public route: ActivatedRoute,
     public baseService: BaseService,
-    public dataService: DataService
+    public dataService: DataService,
+    public userService: UserService
   ) {
-    this.salesUserData = { sales_name: '', sales_email: '', password: '', phone: '', title: '', state: '' };
     this.stateList = [  { id: 0, name: 'Active', state: true },
                         { id: 1, name: 'Inative', state: false }
                     ];
+    this.userData.status = false;
   }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('item');
-    this.url = this.baseService.salesUserURL;
+    this.url = this.baseService.userURL;
     this.token = sessionStorage.getItem('token');
+    console.log(this.token);
     console.log('item', this.id);
     if (this.id) {
       this.getSalesUserData(this.id);
-    } else {
-      this.salesUserData = { sales_name: '', sales_email: '', password: '', phone: '', title: '', state: '' };
     }
   }
 
@@ -54,8 +55,8 @@ export class AddSaleUsersComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('salesUserData', data);
-          this.salesUserData = data;
+          this.userData = data;
+          console.log(this.userData);
           return true;
         },
         err => {
@@ -66,13 +67,14 @@ export class AddSaleUsersComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.salesUserData);
+    console.log(this.userData);
     this.id ? this.putUserData() : this.postUserData();
   }
 
   postUserData() {
     this.isLoading = true;
-    this.dataService.postData(this.url, this.token, this.salesUserData)
+    this.userData.access = '2';
+    this.userService.signup(this.userData)
       .subscribe(
         (data) => {
           console.log('salesUserData', data);
@@ -89,7 +91,7 @@ export class AddSaleUsersComponent implements OnInit {
 
   putUserData() {
     this.isLoading = true;
-    this.dataService.patchData(this.url, this.id, this.token, this.salesUserData)
+    this.userService.updateProfile(this.url, this.id, this.userData, this.token)
       .subscribe(
         (data) => {
           console.log('userData', data);

@@ -24,65 +24,62 @@ export class SidenavService {
   ) {
     let menu = this;
 
-    let dashboard = menu.addItem('Dashboard', 'dashboard', '/dashboard', 1, true);
+    let dashboard = menu.addItem('Dashboard', 'dashboard', '/dashboard', 1, ['0', '1', '2']);
 
-    let content_manage = menu.addItem('Content Management', 'content_copy', null, 2, true);
+    let content_manage = menu.addItem('Content Management', 'content_copy', null, 2, ['0', '1']);
     menu.addSubItem(content_manage, 'View Pages', '/dashboard/content-manage/view-cms', 1);
     menu.addSubItem(content_manage, 'Add Page', '/dashboard/content-manage/add-cms', 2);
 
-    let team_manage = menu.addItem('Point of Sales', 'group', null, 3, true);
+    let team_manage = menu.addItem('Point of Sales', 'group', null, 3, ['0', '1', '2']);
     menu.addSubItem(team_manage, 'View sales user', '/dashboard/sales-point/view-sale-users', 1);
     menu.addSubItem(team_manage, 'Add sales user', '/dashboard/sales-point/add-sale-users', 2);
 
-    let event_category = menu.addItem('Event Categories', 'event_note', null, 4, true);
+    let event_category = menu.addItem('Event Categories', 'event_note', null, 4, ['0', '1']);
     menu.addSubItem(event_category, 'View Categories', '/dashboard/event-categories/view-category', 1);
     menu.addSubItem(event_category, 'Add Category', '/dashboard/event-categories/add-category', 2);
 
-    let event_manage = menu.addItem('Event Management', 'map', null, 5, true);
+    let event_manage = menu.addItem('Event Management', 'map', null, 5, ['0']);
     menu.addSubItem(event_manage, 'View Events', '/dashboard/event-manage/view-event', 1);
     menu.addSubItem(event_manage, 'Add Event', '/dashboard/event-manage/add-event', 2);
 
-    let user_manage = menu.addItem('User Management', 'person', '/dashboard/users-manage', 6, true);
+    let user_manage = menu.addItem('User Management', 'person', '/dashboard/users-manage', 6, ['0', '1', '2']);
 
-    let organizor_manage = menu.addItem('Event Organizer', 'group_add', null, 7, true);
+    let organizor_manage = menu.addItem('Event Organizer', 'group_add', null, 7, ['0']);
     menu.addSubItem(organizor_manage, 'View Organizer', '/dashboard/organizor-manage/view-organizor', 1);
     menu.addSubItem(organizor_manage, 'Add Organizer', '/dashboard/organizor-manage/add-organizor', 2);
 
-    let reports = menu.addItem('Financial Reports', 'report', null, 8, true);
+    let reports = menu.addItem('Financial Reports', 'report', null, 8, ['0', '1', '2']);
     menu.addSubItem(reports, 'Gereral Reports ', '/dashboard/financial-reports/general-reports', 1);
     menu.addSubItem(reports, 'Date of Reports', '/dashboard/financial-reports/date-reports', 2);
 
-    let coupon_manage = menu.addItem('Coupon Management', 'credit_card', null, 9, true);
+    let coupon_manage = menu.addItem('Coupon Management', 'credit_card', null, 9, ['0', '1']);
     menu.addSubItem(coupon_manage, 'View Counpons', '/dashboard/coupon-manage/view-coupon', 1);
     menu.addSubItem(coupon_manage, 'Add Coupon', '/dashboard/coupon-manage/add-coupon', 2);
 
-    let newsletters = menu.addItem('Newsletters', 'new_releases', null, 10, true);
+    let newsletters = menu.addItem('Newsletters', 'new_releases', null, 10, ['0']);
     menu.addSubItem(newsletters, 'View Newsletters', '/dashboard/bullentin/view-bullentin', 1);
     menu.addSubItem(newsletters, 'Add Newslatters', '/dashboard/bullentin/add-bullentin', 2);
 
-    let banner_images = menu.addItem('Banner Images', 'burst_mode', '/dashboard/banner-images', 11, true);
+    let banner_images = menu.addItem('Banner Images', 'burst_mode', '/dashboard/banner-images', 11, ['0']);
   }
 
 
     ngOnInit() {
       let userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+      console.log(userInfo);
       this.name = userInfo.name;
       // console.log(this.name);
     }
 
 
-  addItem(name: string, icon: string, route: any, position: number, status: boolean, badge?: string, badgeColor?: string, customClass?: string) {
-
-    let userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
-    let access = userInfo.access;
-    // console.log(access);
+  addItem(name: string, icon: string, route: any, position: number, status?: string[], badge?: string, badgeColor?: string, customClass?: string) {
 
     let item = new SidenavItem({
       name: name,
       icon: icon,
       route: route,
       subItems: [ ],
-      status: status? access == "0": access == "1",
+      status: status,
       position: position || 99,
       badge: badge || null,
       badgeColor: badgeColor || null,

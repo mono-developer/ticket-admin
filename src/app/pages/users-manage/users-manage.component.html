@@ -14,6 +14,12 @@
       <mat-cell *matCellDef="let element"> {{element.email}} </mat-cell>
     </ng-container>
 
+    <!-- Email Column -->
+    <ng-container matColumnDef="access">
+      <mat-header-cell *matHeaderCellDef> Access </mat-header-cell>
+      <mat-cell *matCellDef="let element"> {{ accessList[element.access] }} </mat-cell>
+    </ng-container>
+
     <!-- State Column -->
     <ng-container matColumnDef="status">
         <mat-header-cell *matHeaderCellDef> State </mat-header-cell>
@@ -25,7 +31,7 @@
       <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
       <mat-cell *matCellDef="let element">
         <button mat-button (click)="openDialog(element)"><mat-icon>border_color</mat-icon></button>
-        <button mat-button (click)="deleteUser(element._id)"><mat-icon>delete</mat-icon></button>
+        <button mat-button (click)="deleteItem(element._id)" *ngIf="element.access != '0'"><mat-icon>delete</mat-icon></button>
       </mat-cell>
     </ng-container>
 

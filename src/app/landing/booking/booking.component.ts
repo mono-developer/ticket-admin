@@ -171,7 +171,6 @@ export class BookingComponent implements OnInit {
 
   addQuantity() {
     this.s__quantity++;
-    console.log(this.s__quantity);
   }
   minQuantity() {
     this.s__quantity--;

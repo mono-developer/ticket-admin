@@ -52,14 +52,6 @@ export class RegisterComponent implements OnInit {
 
   signup() {
     console.log(this.resData);
-    if (this.resData.access == '1') {
-      this.addOrganizer();
-    } else {
-      this.addCustomer();
-    }
-  }
-
-  addOrganizer() {
     this.isLoading = true;
     this.resData.status = false;
     this.userService.signup(this.resData)
@@ -77,22 +69,40 @@ export class RegisterComponent implements OnInit {
         });
   }
 
-  addCustomer() {
-    this.isLoading = true;
-    this.userService.signup(this.resData)
-      .subscribe(
-        (data) => {
-          this.isLoading = false;
-          sessionStorage.setItem('OAuthInfo', JSON.stringify(data));
-          this.router.navigate(['']);
-          return true;
-        },
-        error => {
-          this.isLoading = false;
-          this.openDialog();
-          return true;
-        });
-  }
+  // addOrganizer() {
+  //   this.isLoading = true;
+  //   this.resData.status = false;
+  //   this.userService.signup(this.resData)
+  //     .subscribe(
+  //       (data) => {
+  //         this.isLoading = false;
+  //         sessionStorage.setItem('OAuthInfo', JSON.stringify(data));
+  //         this.router.navigate(['/login']);
+  //         return true;
+  //       },
+  //       error => {
+  //         this.isLoading = false;
+  //         this.openDialog();
+  //         return true;
+  //       });
+  // }
+
+  // addCustomer() {
+  //   this.isLoading = true;
+  //   this.userService.signup(this.resData)
+  //     .subscribe(
+  //       (data) => {
+  //         this.isLoading = false;
+  //         sessionStorage.setItem('OAuthInfo', JSON.stringify(data));
+  //         this.router.navigate(['']);
+  //         return true;
+  //       },
+  //       error => {
+  //         this.isLoading = false;
+  //         this.openDialog();
+  //         return true;
+  //       });
+  // }
 
   openDialog() {
     this.dialogRef1 = this.dialog.open(SignupErrorDialog, {

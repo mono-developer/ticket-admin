@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
+import { MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router } from '@angular/router';
 import { json } from 'd3';
 
 import { BaseService } from "../../../../provide/base-service";
 import { DataService } from "../../../../provide/data-service";
-import { SlotDateTimeRangeRequest } from 'aws-sdk/clients/ec2';
+import { DeleteDialogComponent } from '../../delete-dialog/delete-dialog.component';
 
 @Component({
   selector: 'ms-view-sale-users',
@@ -17,18 +17,19 @@ export class ViewSaleUsersComponent implements OnInit {
   url: string;
   token: string;
   usersList: Element[];
-  displayedColumns = ['first_name', 'sales_email', 'phone', 'title', 'state', 'symbol'];
+  displayedColumns = ['name', 'email', 'phone', 'city', 'state', 'symbol'];
   dataSource: any;
   isLoading: boolean = false;
 
   constructor(
     public router: Router,
+    public dialog: MatDialog,
     public baseService: BaseService,
     public dataService: DataService) {
    }
 
   ngOnInit() {
-    this.url = this.baseService.salesUserURL;
+    this.url = this.baseService.userURL;
     this.token = sessionStorage.getItem('token');
     this.getSalesUserList();
   }
@@ -40,7 +41,9 @@ export class ViewSaleUsersComponent implements OnInit {
         (data) => {
           this.isLoading = false;
           console.log('salesList', data);
-          this.usersList = data;
+          this.usersList = data.filter((item: any) =>
+            item.access === '2'
+          );
           this.dataSource = new MatTableDataSource(this.usersList);
           return true;
         },
@@ -55,9 +58,22 @@ export class ViewSaleUsersComponent implements OnInit {
     this.router.navigate(['dashboard/sales-point/add-sale-users', { item: item._id }]);
   }
 
-  delete(item: any) {
+  delete(item) {
+    let dialogRef1 = this.dialog.open(DeleteDialogComponent, {
+      width: '350px',
+      data: {
+        alert: `
+      If you delete this item, it will delete all Events that are connected with this Seller.
+      Do you want to delete this seller from list? ` }
+    });
+    dialogRef1.afterClosed().subscribe(result => {
+      result ? this.deleteSeller(item._id) : '';
+    });
+  }
+
+  deleteSeller(id) {
     this.isLoading = true;
-    this.dataService.deleteData(this.url, item._id, this.token)
+    this.dataService.deleteData(this.url, id, this.token)
       .subscribe(
         (data) => {
           console.log('cmsData', data);

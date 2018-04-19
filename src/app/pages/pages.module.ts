@@ -62,6 +62,7 @@ import { BaseService } from "../../provide/base-service";
 import { DataService } from "../../provide/data-service";
 import { UploadFileService } from '../../provide/upload-file.service';
 import { ImageSize } from "../../provide/image-size";
+import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
 
 @NgModule({
   imports: [
@@ -100,7 +101,8 @@ import { ImageSize } from "../../provide/image-size";
     LoginErrorDialog,
     AccessErrorDialog,
     SignupErrorDialog,
-    PasswordErrorDialog
+    PasswordErrorDialog,
+    DeleteDialogComponent
   ],
   declarations: [
     AddCMSComponent,
@@ -132,7 +134,8 @@ import { ImageSize } from "../../provide/image-size";
     AccessErrorDialog,
     SignupErrorDialog,
     PasswordErrorDialog,
-    ProfileComponent
+    ProfileComponent,
+    DeleteDialogComponent,
   ],
   providers: [
     // D3ChartService,
