@@ -21,6 +21,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     userInfo: any;
     categoryData: any = [];
     categoryList: any = [];
+    config: any;
     config1: any;
     eventList: any;
     colorList: any;
@@ -35,19 +36,19 @@ export class MainComponent implements OnInit, AfterViewInit {
         public baseService: BaseService,
         public dataService: DataService
     ) {
-        // this.config = {
-        //     speed: 600,
-        //     parallax: true,
-        //     pagination: {
-        //         el: '.swiper-pagination',
-        //         clickable: true,
-        //     },
-        //     navigation: {
-        //         nextEl: '.swiper-button-next',
-        //         prevEl: '.swiper-button-prev',
-        //     },
-        // }
+
         let that = this;
+
+        that.config = {
+          slidesPerView: 2,
+          spaceBetween: 30,
+          centeredSlides: true,
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+        }
+
 
         that.config1 = {
             effect: 'coverflow',
