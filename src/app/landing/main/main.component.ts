@@ -1,6 +1,5 @@
 import { Component, OnInit, AfterViewInit, Inject} from '@angular/core';
 import {fadeInAnimation} from "../../route.animation";
-
 import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { BaseService } from "../../../provide/base-service";
@@ -24,6 +23,7 @@ export class MainComponent implements OnInit, AfterViewInit {
     config: any;
     config1: any;
     eventList: any;
+    bannerList: any;
     colorList: any;
     isLoading: boolean = false;
     username: string;
@@ -81,6 +81,7 @@ export class MainComponent implements OnInit, AfterViewInit {
         console.log('mainUserInfo', this.userInfo);
         this.getEventList();
         this.getCategoryList();
+        this.getBanner();
     }
 
     getEventList() {
@@ -120,6 +121,21 @@ export class MainComponent implements OnInit, AfterViewInit {
                     return true;
                 });
     }
+
+  getBanner() {
+    this.dataService.getNoTokenData(this.baseService.bannerURL)
+      .subscribe(
+        (data) => {
+          this.bannerList = data;
+          console.log('bannerList', data);
+          return true;
+        },
+        err => {
+          console.log('errorData', err);
+          return true;
+        });
+  }
+
 
     openBookingDialog(eventData): void {
         let dialogRef = this.dialog.open(BookingDialogComponent, {
