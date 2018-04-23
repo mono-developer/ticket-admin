@@ -16,6 +16,8 @@ export class BaseService {
   public couponURL = this.baseUrl + "/coupon";
   public eventURL = this.baseUrl + "/event";
   public userURL = this.baseUrl + "/user";
+  public bgroundURL = this.baseUrl + "/background";
+  public bannerURL = this.baseUrl + "/banner";
 
   constructor(public http: Http) {
     console.log('Hello BaseService Provider');

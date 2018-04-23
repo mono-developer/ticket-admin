@@ -30,7 +30,7 @@ export class SidenavService {
     menu.addSubItem(content_manage, 'View Pages', '/dashboard/content-manage/view-cms', 1);
     menu.addSubItem(content_manage, 'Add Page', '/dashboard/content-manage/add-cms', 2);
 
-    let team_manage = menu.addItem('Point of Sales', 'group', null, 3, ['0', '1', '2']);
+    let team_manage = menu.addItem('Point of Sales', 'group', null, 3, ['0']);
     menu.addSubItem(team_manage, 'View sales user', '/dashboard/sales-point/view-sale-users', 1);
     menu.addSubItem(team_manage, 'Add sales user', '/dashboard/sales-point/add-sale-users', 2);
 
@@ -60,7 +60,7 @@ export class SidenavService {
     menu.addSubItem(newsletters, 'View Newsletters', '/dashboard/bullentin/view-bullentin', 1);
     menu.addSubItem(newsletters, 'Add Newslatters', '/dashboard/bullentin/add-bullentin', 2);
 
-    let banner_images = menu.addItem('Banner Images', 'burst_mode', '/dashboard/banner-images', 11, ['0']);
+    let banner_images = menu.addItem('Background & Banner', 'burst_mode', '/dashboard/banner-images', 11, ['0']);
   }
 
 

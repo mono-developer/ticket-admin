@@ -44,7 +44,7 @@ import { AddCouponComponent } from './coupon-manage/add-coupon/add-coupon.compon
 import { ViewCouponComponent } from './coupon-manage/view-coupon/view-coupon.component';
 import { ViewBullentinComponent } from './bullentin/view-bullentin/view-bullentin.component';
 import { AddBullentinComponent } from './bullentin/add-bullentin/add-bullentin.component';
-import { BannerImagesComponent } from './banner-images/banner-images.component';
+import { BannerImagesComponent, AddBannerComponent, ViewBannerComponent } from './banner-images/banner-images.component';
 import { UsersManageComponent, UserAccessDialogComponent } from './users-manage/users-manage.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { LoginComponent, LoginErrorDialog, AccessErrorDialog } from './settings/login/login.component';
@@ -98,6 +98,8 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     UserAccessDialogComponent,
     EventDatailsDialogComponent,
     SeatDatailsDialogComponent,
+    AddBannerComponent,
+    ViewBannerComponent,
     LoginErrorDialog,
     AccessErrorDialog,
     SignupErrorDialog,
@@ -120,6 +122,8 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     ViewBullentinComponent,
     AddBullentinComponent,
     BannerImagesComponent,
+    AddBannerComponent,
+    ViewBannerComponent,
     UsersManageComponent,
     DashboardComponent,
     LoginComponent,

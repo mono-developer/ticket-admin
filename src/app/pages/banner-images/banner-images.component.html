@@ -1,24 +1,65 @@
 <ms-page-header [title]="page_title"></ms-page-header>
-  <div class="sales-container mat-elevation-z8">
+
+<div class="bg_view">
+  <h3>Background Image</h3>
+  <div class="mat-elevation-z2">
+    <table class="table tableHover">
+      <thead style="background: #84cce7;">
+        <tr>
+          <th>Title</th>
+          <th>Background Image</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>{{bgData.title}}</td>
+          <td class="custom-link" (click)="viewImage(bgData.url)">{{bgData.url}}</td>
+          <td>
+            <button mat-button class="bg_btn" (click)="editBgDialog(bgData)">
+            <mat-icon>border_color</mat-icon>
+          </button>
+        </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+
+<div class="banner_view">
+  <div class="banner_title">
+    <h3>Banner List</h3>
+    <button mat-button (click)="bannerDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+
+  <div class="mat-elevation-z8 banner_container">
     <mat-table #table [dataSource]="dataSource">
 
       <!-- Section column -->
-      <ng-container matColumnDef="section">
-        <mat-header-cell *matHeaderCellDef> Section </mat-header-cell>
-        <mat-cell *matCellDef="let element"> {{element.section}} </mat-cell>
+      <ng-container matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef> Title </mat-header-cell>
+        <mat-cell *matCellDef="let element"> {{element.title}} </mat-cell>
       </ng-container>
 
       <!-- Name Column -->
       <ng-container matColumnDef="image">
-        <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
-        <mat-cell *matCellDef="let element"> <img [src]="element.image" alt=""></mat-cell>
+        <mat-header-cell style="min-width: 50%" *matHeaderCellDef> Image </mat-header-cell>
+        <mat-cell class="custom-link" *matCellDef="let element" (click)="viewImage(element.url)">{{element.url}}</mat-cell>
       </ng-container>
 
       <!-- Symbol Column -->
       <ng-container matColumnDef="button">
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button mat-button>{{element.button}}</button>
+          <button mat-button (click)="editBannerDialog(element)">
+            <mat-icon>border_color</mat-icon>
+          </button>
+          <button mat-button (click)="delete(element)">
+            <mat-icon>delete</mat-icon>
+          </button>
         </mat-cell>
       </ng-container>
 
@@ -26,3 +67,6 @@
       <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
     </mat-table>
   </div>
+  <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
+</div>
+
