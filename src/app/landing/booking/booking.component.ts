@@ -11,6 +11,8 @@ import { Observable } from 'rxjs/Rx';
 import { AgmCoreModule } from '@agm/core';
 import { MouseEvent } from '@agm/core';
 import { select } from 'd3';
+import { first } from 'rxjs/operators';
+import { start } from 'repl';
 
 
 @Component({
@@ -97,12 +99,15 @@ export class BookingComponent implements OnInit {
   }
 
   timeInterval() {
-
+    let startTime = new Date().getTime();
     let timer = Observable.timer(30, 100);
+    console.log(timer);
     const subscription = timer.subscribe(t => {
-      this.total_timer = t/10;
+      let newTime = new Date().getTime();
+      this.total_timer = (newTime - startTime)/1000;
       this.minute = Math.floor(this.total_timer / 60);
       let second = this.total_timer%60;
+
       if(this.total_timer % 60 == 0){
         this.second = "00";
       }else if(this.total_timer%60 > 0 && this.total_timer % 60 <10){
@@ -111,10 +116,10 @@ export class BookingComponent implements OnInit {
         this.second = second.toString().slice(0, 2);
       }
 
-      this.progressValue = t/30;
-      if (this.progressValue == 100) {
+      this.progressValue = (newTime - startTime)/3000;
+      if (this.minute == 5) {
+        this.progressValue = 100;
         subscription.unsubscribe();
-        // this.isTimerOver(this.customerInfo.name);
         this.openSnackBar(this.customerInfo.name)
       }
     });

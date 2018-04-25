@@ -11,6 +11,7 @@ mat-horizontal-stepper{
   margin: 0 auto;
   height: 100%;
   padding: 5% 0;
+  padding-top: 100px;
   mat-card{
     max-width: 100%;
   }
@@ -97,7 +98,6 @@ mat-horizontal-stepper{
         font-size: 16px;
         color: black;
       }
-
     }
   }
   .location_about {
@@ -126,10 +126,7 @@ mat-horizontal-stepper{
         background-color: #fff;
         border-radius: 5px;
       }
-
     }
-
-
   }
 }
 

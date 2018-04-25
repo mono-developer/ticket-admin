@@ -49,7 +49,6 @@ export class MainComponent implements OnInit, AfterViewInit {
           },
         }
 
-
         that.config1 = {
             effect: 'coverflow',
             grabCursor: true,
@@ -110,16 +109,16 @@ export class MainComponent implements OnInit, AfterViewInit {
 
     getCategoryList() {
       this.dataService.getNoTokenData(this.baseService.categoryURL)
-            .subscribe(
-                (data) => {
-                    this.categoryList = data;
-                    console.log('categoryList', data);
-                    return true;
-                },
-                err => {
-                    console.log('errorData', err);
-                    return true;
-                });
+          .subscribe(
+              (data) => {
+                  this.categoryList = data;
+                  console.log('categoryList', data);
+                  return true;
+              },
+              err => {
+                  console.log('errorData', err);
+                  return true;
+              });
     }
 
   getBanner() {
