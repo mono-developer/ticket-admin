@@ -31,9 +31,10 @@ export class AddOrganizorComponent implements OnInit {
     public dataService: DataService,
     public userService: UserService
   ) {
-       this.stateList = [ { id: 0, name: 'Active', status: true },
-                       { id: 1, name: 'Intivate', status: false }
-                    ];
+      this.stateList = [
+        { id: 0, name: 'Active', status: true },
+        { id: 1, name: 'Intivate', status: false }
+        ];
   }
 
   ngOnInit() {
@@ -64,7 +65,6 @@ export class AddOrganizorComponent implements OnInit {
           return true;
         });
   }
-
 
   submit() {
     console.log(this.userData);
@@ -106,7 +106,5 @@ export class AddOrganizorComponent implements OnInit {
           return true;
         });
   }
-
-
 
 }

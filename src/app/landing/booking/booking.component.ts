@@ -68,6 +68,7 @@ export class BookingComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('id');
     let cusName = this.route.snapshot.paramMap.get('customName');
     let cusEmail = this.route.snapshot.paramMap.get('customEmail');
+    this.s__Location = this.route.snapshot.paramMap.get('location');
     this.customerInfo = { name: cusName, email: cusEmail };
     console.log(this.customerInfo);
 
@@ -77,6 +78,7 @@ export class BookingComponent implements OnInit {
     let url = this.baseService.eventURL;
     console.log(this.id, url);
     this.getEventData(this.id, url);
+
   }
 
   getEventData(id, url) {
@@ -88,6 +90,10 @@ export class BookingComponent implements OnInit {
           this.eventData = data;
           this.organizerData = data.organization;
           this.categoryData = data.category;
+          if (this.s__Location) {
+            let that = this;
+            this.onChangedLocation(this.s__Location);
+          }
           this.timeInterval();
           return true;
         },

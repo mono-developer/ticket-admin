@@ -1,0 +1,44 @@
+h1 {
+  text-align: center;
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.btns {
+  width: 80%;
+  margin: 0 auto;
+  button {
+    border: 1px solid green;
+    width: 100px;
+  }
+  .left-btn {
+    float: left;
+  }
+  .right-btn {
+    float: right;
+  }
+}
+
+.example-card {
+  max-width: 400px;
+  mat-card-title {
+    font-size: 20px;
+  }
+  mat-card-content {
+    .date {
+      img {
+        width: 20px;
+        margin-bottom: -7px;
+      }
+    }
+  }
+  button {
+    margin: 0 auto;
+    display: block;
+    border: 2px solid #728de6;
+    margin-right: 5px;
+  }
+}
+

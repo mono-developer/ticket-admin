@@ -65,8 +65,9 @@ export class ViewOrganizorComponent implements OnInit {
       width: '350px',
       data: {
         alert: `
-      If you delete this item, it will delete all Events that are connected with this Organizer.
-      Do you want to delete this Organizer from list? ` }
+                If you delete this item, it will delete all Events that are connected with this Organizer.
+                Do you want to delete this Organizer from list? `
+              }
     });
     dialogRef1.afterClosed().subscribe(result => {
       result ? this.deleteOrg(item._id) : '';
@@ -86,8 +87,7 @@ export class ViewOrganizorComponent implements OnInit {
           this.isLoading = false;
           console.log('errorData', error);
           return true;
-        }
-      )
+        });
   }
 
 }

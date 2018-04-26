@@ -81,8 +81,7 @@ export class UsersManageComponent implements OnInit {
           this.isLoading = false;
           console.log('errorData', error);
           return true;
-        }
-      )
+        });
   }
 
   openDialog(data): void {

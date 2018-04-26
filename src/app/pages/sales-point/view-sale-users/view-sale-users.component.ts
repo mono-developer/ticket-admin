@@ -84,8 +84,7 @@ export class ViewSaleUsersComponent implements OnInit {
           this.isLoading = false;
           console.log('errorData', error);
           return true;
-        }
-      )
+        });
   }
 
 

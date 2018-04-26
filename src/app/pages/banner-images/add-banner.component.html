@@ -12,6 +12,7 @@
       <label id="#bb" class="upload_img seat_img" *ngIf="!data.url">
         <mat-icon>add</mat-icon>
         <p>Add Stage Map Image</p>
+        <p style="font-size: 14px;">(Image size must be 800 x 533)</p>
         <input type="file" id="File" (change)="setImage($event)" size="60">
       </label>
       <label id="#bb" class="upload_img seat_img" *ngIf="data.url" [ngStyle]="{'background-image': 'url(' + data.url + ')'}">

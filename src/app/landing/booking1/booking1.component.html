@@ -68,7 +68,7 @@
                         <div class="price">
                             <h3>{{item1.location}}</h3>
                             <p>${{item1.ticket_price}}</p>
-                            <button mat-button>Buy Ticket!</button>
+                            <button mat-button (click)="buyTicket(item1.location)">Buy Ticket!</button>
                         </div>
                         <div class="ticket">
                             <p>

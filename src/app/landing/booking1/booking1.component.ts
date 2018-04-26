@@ -1,9 +1,11 @@
 import { Component, OnInit, AfterViewInit, Inject, NgZone, ElementRef, ViewChild  } from '@angular/core';
 import { Router, ActivatedRoute } from "@angular/router";
 import { fadeInAnimation } from "../../route.animation";
+import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
 import { BaseService } from "../../../provide/base-service";
 import { DataService } from "../../../provide/data-service";
+import { BookingDialogComponent } from '../booking-dialog/booking-dialog.component';
 
 import { AgmCoreModule } from '@agm/core';
 import { } from 'googlemaps';
@@ -30,6 +32,8 @@ export class Booking1Component implements OnInit {
   ticketInfo: any;
   isLoading: boolean = false;
 
+  username: string;
+  useremail: string;
   // google map
 
   zoom: number = 15;
@@ -303,6 +307,7 @@ export class Booking1Component implements OnInit {
   constructor(
     private router: Router,
     public route: ActivatedRoute,
+    public dialog: MatDialog,
     public baseService: BaseService,
     public dataService: DataService,
     private ngZone: NgZone,
@@ -345,6 +350,23 @@ export class Booking1Component implements OnInit {
 
   clickedMarker() {
     console.log('clicked the marker:', this.marker.label)
+  }
+
+  buyTicket(location) {
+    console.log(location);
+
+    let dialogRef = this.dialog.open(BookingDialogComponent, {
+      width: '350px',
+      data: { name: this.eventData.event_name, username: this.username, userEmail: this.useremail }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log(result);
+      let customerData = { name: result.username, email: result.userEmail }
+      if (result) {
+        this.router.navigate(['booking', { id: this.id, customName: result.username, customEmail: result.userEmail, location: location }]);
+      }
+    });
   }
 }
 interface marker {

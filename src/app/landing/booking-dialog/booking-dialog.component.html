@@ -1,6 +1,5 @@
-
-
-<h1 mat-dialog-title>{{data.name}} </h1>
+<h1 mat-dialog-title>
+  {{data.name}} </h1>
 <div mat-dialog-content>
   <form #form="ngForm">
     <mat-form-field>
@@ -17,4 +16,3 @@
   <button mat-button class="left-btn" (click)="onNoClick()">No Thanks</button>
   <button mat-button [mat-dialog-close]="data" [disabled]="!form.valid" cdkFocusInitial>Book</button>
 </div>
-

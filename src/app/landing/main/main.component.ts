@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { BaseService } from "../../../provide/base-service";
 import { DataService } from "../../../provide/data-service";
-
+import { BookingDialogComponent } from '../booking-dialog/booking-dialog.component';
 
 @Component({
     selector: 'ms-main',
@@ -168,40 +168,3 @@ export class MainComponent implements OnInit, AfterViewInit {
     }
 }
 
-//Booking Dialog
-@Component({
-    templateUrl: 'booking-dialog.component.html',
-    styleUrls: ['./dialog.component.scss'],
-})
-export class BookingDialogComponent {
-
-
-constructor(
-    public dialogRef: MatDialogRef<BookingDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-      console.log(this.data);
-    }
-
-onNoClick(): void {
-        this.dialogRef.close();
-    }
-}
-
-// Description Dialog
-
-@Component({
-    templateUrl: 'description-dialog.component.html',
-    styleUrls: ['./dialog.component.scss'],
-})
-export class DescriptionDialogComponent {
-
-constructor(
-    public dialogRef: MatDialogRef<DescriptionDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-        console.log(this.data)
-    }
-
-    onNoClick(): void {
-        this.dialogRef.close();
-    }
-}

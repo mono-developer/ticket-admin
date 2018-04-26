@@ -264,8 +264,8 @@ export class AddBannerComponent {
   }
 
   openSnackBar() {
-    this.snackBar.open('Image Size must be 100px' , 'ok', {
-      duration: 2000,
+    this.snackBar.open('Image Size must be 800px X 533px' , 'OK', {
+      duration: 4000,
     });
   }
 

@@ -6,8 +6,6 @@ import { DataService } from "../../../../provide/data-service";
 import { UserService } from "../../../../provide/user-service";
 import * as _ from 'lodash';
 
-
-
 @Component({
   selector: 'ms-add-sale-users',
   templateUrl: './add-sale-users.component.html',
@@ -85,8 +83,7 @@ export class AddSaleUsersComponent implements OnInit {
           this.isLoading = false;
           console.log('errorData', error);
           return true;
-        }
-      )
+        });
   }
 
   putUserData() {
@@ -103,8 +100,7 @@ export class AddSaleUsersComponent implements OnInit {
           this.isLoading = false;
           console.log('errorData', error);
           return true;
-        }
-      )
+        });
   }
 
   getEscaped(text: string) {

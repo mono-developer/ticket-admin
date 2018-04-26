@@ -9,9 +9,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 import { QuillModule } from 'ngx-quill';
 import { SwiperModule } from 'angular2-useful-swiper'; //or for angular-cli the path will be ../../node_modules/angular2-useful-swiper
 
-import { MainComponent, BookingDialogComponent, DescriptionDialogComponent } from './main/main.component';
+import { MainComponent } from './main/main.component';
 import { BookingComponent, LocationDialogComponent, TimeOverComponent } from './booking/booking.component';
 import { Booking1Component } from './booking1/booking1.component';
+import { BookingDialogComponent } from './booking-dialog/booking-dialog.component';
 import { CustomerLoginComponent } from './customer-setting/customer-login/customer-login.component';
 import { CustomerProfilComponent } from './customer-setting/customer-profile/customer-profile.component';
 import { AdminComponent } from './admin/admin.component';
@@ -64,7 +65,6 @@ import { AgmCoreModule } from '@agm/core';
   ],
   entryComponents: [
     BookingDialogComponent,
-    DescriptionDialogComponent,
     LocationDialogComponent,
     TimeOverComponent,
     CustomerLoginComponent,
@@ -73,7 +73,6 @@ import { AgmCoreModule } from '@agm/core';
   declarations: [
     MainComponent,
     BookingDialogComponent,
-    DescriptionDialogComponent,
     BookingComponent,
     Booking1Component,
     CustomerLoginComponent,

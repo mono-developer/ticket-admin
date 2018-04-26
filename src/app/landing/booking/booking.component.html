@@ -39,8 +39,10 @@
                   <th>Location</th>
                   <th>Quantity Ticket</th>
                   <th>Ticket Price</th>
+
                   <th>Charge Service</th>
                   <th>Sales Range</th>
+                  <th>Payment Type</th>
                 </tr>
               </thead>
               <tbody>
@@ -48,10 +50,12 @@
                   <td>{{item.location}}</td>
                   <td>{{item.ticket_price}}</td>
                   <td>{{item.tickets_number}}</td>
-                  <td>{{item.payment_type}}</td>
+
+                  <td>{{item.quantity_service}}</td>
                   <td>{{item.sale_stime.hour}}:{{item.sale_stime.minute == 0 ? '00': item.sale_stime.minute}} {{item.sale_stime.meriden}} {{item.sale_sdate | date: 'dd/MM/yyyy'}}
                     - {{item.sale_etime.hour}}:{{item.sale_etime.minute == 0 ? '00': item.sale_etime.minute}} {{item.sale_etime.meriden}} {{item.sale_edate | date: 'dd/MM/yyyy'}}
                   </td>
+                  <td>{{item.payment_type}}</td>
                 </tr>
               </tbody>
             </table>
