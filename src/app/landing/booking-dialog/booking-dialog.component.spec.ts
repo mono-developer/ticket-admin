@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { BookingDialogComponent } from './book-dialog.component';
+import { BookingDialogComponent } from './booking-dialog.component';
 
 describe('BookingDialogComponent', () => {
   let component: BookingDialogComponent;

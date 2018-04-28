@@ -171,12 +171,14 @@ export class BookingComponent implements OnInit {
   }
 
   getBookingInfo() {
-    console.log(this.s__quantity);
+    console.log(this.ticket);
     this.bookingInfo = {
       location: this.ticket.location,
       quantity: this.s__quantity,
       price: this.ticket.ticket_price,
-      total_price: this.s__quantity * Number(this.ticket.ticket_price)
+      charge_service: this.ticket.quantity_service,
+      total_price: this.s__quantity * Number(this.ticket.ticket_price),
+      sum: this.s__quantity * Number(this.ticket.ticket_price) + Number(this.ticket.quantity_service)
     }
   }
 

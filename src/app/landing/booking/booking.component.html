@@ -144,7 +144,7 @@
                 <td>{{ticket.location}}</td>
                 <td>{{ticket.ticket_price}}</td>
                 <td>{{ticket.tickets_number}}</td>
-                <td>{{ticket.payment_type}}</td>
+                <td>{{ticket.quantity_service}}</td>
                 <td>{{ticket.sale_stime.hour}}:{{ticket.sale_stime.minute == 0 ? '00' : ticket.sale_stime.minute}} {{ticket.sale_stime.meriden}} {{ticket.sale_sdate | date: 'dd/MM/yyyy'}}
                   - {{ticket.sale_etime.hour}}:{{ticket.sale_etime.minute == 0 ? '00' : ticket.sale_etime.minute}} {{ticket.sale_etime.meriden}} {{ticket.sale_edate | date: 'dd/MM/yyyy'}}
                 </td>
@@ -266,10 +266,16 @@
                 <td>{{bookingInfo.total_price}}</td>
               </tr>
             </tbody>
+            <tbody>
+              <tr>
+                <td>Charge Servie</td>
+                <td>{{bookingInfo.charge_service}}</td>
+              </tr>
+            </tbody>
             <tbody class="total_sum">
               <tr>
                 <td>Sum</td>
-                <td>{{bookingInfo.total_price}}</td>
+                <td>{{bookingInfo.sum}}</td>
               </tr>
             </tbody>
           </table>

@@ -102,10 +102,49 @@ export class MainComponent implements OnInit, AfterViewInit {
     }
 
     eventDateArray(data) {
-      let today = new Date().getTime();
-      let sampleDate = new Date(data[0].e_date).getTime();
-      console.log('today', today, sampleDate);
+      let todays = [];
+      let tomorrows = [];
+      let thisWeeks = [];
+      let thisMonths = [];
+
+      let today = new Date().setHours(0, 0, 0, 0);
+      let monday;
+      let sunday;
+
+      data.map((item) => {
+
+        let startDate = new Date(item.s_date).setHours(0, 0, 0, 0);
+        let endDate = new Date(item.e_date).setHours(0, 0, 0, 0);
+
+        if( startDate == today || endDate == today) {
+          todays.push(item);
+        }
+
+        if( (startDate >= monday || startDate <= sunday) && (endDate >= monday || endDate <=sunday)) {
+
+        }
+
+
+      });
+      // const today = new Date();
+      // let todayDate = today.setHours(0, 0, 0, 0);
+
+      // let newGetDate = this.eventList[2].event_date[1].date;
+      // let newDate = new Date(newGetDate).setHours(0, 0, 0, 0);
+
+      // if(todayDate === newDate){
+      //   console.log('same', todayDate);
+      // }
+
     }
+
+  getMonday(d) {
+    d = new Date(d);
+    var day = d.getDay(),
+      diff = d.getDate() - day + (day == 0 ? -6 : 1); // adjust when day is sunday
+    return new Date(d.setDate(diff));
+  }
+
 
     getCategoryList() {
       this.dataService.getNoTokenData(this.baseService.categoryURL)
