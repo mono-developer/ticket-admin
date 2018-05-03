@@ -43,4 +43,17 @@ export class DataService {
       .map((res: Response) => res.json())
       .catch((error: any) => Observable.throw(error || 'Server error'));
   }
+
+  postNoTokenData(url, body) {
+    return this.http.post(url, body, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error || 'Server error'));
+  }
+
+  deleteNoTokenData(url, id) {
+    return this.http.delete(url + "/" + id, options)
+      .map((res: Response) => res.json())
+      .catch((error: any) => Observable.throw(error || 'Server error'));
+  }
+
 }

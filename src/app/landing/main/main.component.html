@@ -187,20 +187,20 @@
             <div class="contact_venue">
                 <div class="contact">
                     <h3>Hi There, Happy hear form you</h3>
-                    <form class="example-form">
+                    <form class="example-form" #form="ngForm">
                         <mat-form-field class="example-full-width">
-                            <input type="text" matInput placeholder="Name" value="">
+                            <input type="text" matInput placeholder="Name" [(ngModel)]="venueData.title" name="name" required>
                         </mat-form-field>
 
                         <mat-form-field class="example-full-width">
-                            <input type="email" matInput placeholder="Email" value="">
+                            <input type="email" matInput placeholder="Email" [(ngModel)]="venueData.email" name="eamil" required>
                         </mat-form-field>
 
                         <mat-form-field class="example-full-width">
-                            <textarea matInput placeholder="Message"></textarea>
+                            <textarea matInput placeholder="Message" [(ngModel)]="venueData.description" name="description" required></textarea>
                         </mat-form-field>
 
-                        <button mat-button class="submit">SUBMIT</button>
+                        <button mat-button class="submit" color="primary" (click)="leaveFeedback()" [disabled]="!form.valid">SUBMIT</button>
 
                     </form>
                 </div>

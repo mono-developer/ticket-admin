@@ -5,14 +5,13 @@
     <mat-form-field>
       <input type="text" matInput placeholder="Title" name="title" [(ngModel)]="letterData.title">
     </mat-form-field>
+
+    <mat-form-field>
+      <textarea matInput placeholder="Description" rows="3" name="comment" [(ngModel)]="letterData.description"></textarea>
+    </mat-form-field>
+
   </form>
 
-  <div class="description">
-    <p>Description</p>
-    <quill-editor name="description" [(ngModel)]="letterData.description"></quill-editor>
-  </div>
 
 
-  <button mat-raised-button class="submit" (click)="submit()">Submit</button>
-  <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
 </div>

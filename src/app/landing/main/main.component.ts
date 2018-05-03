@@ -29,6 +29,8 @@ export class MainComponent implements OnInit, AfterViewInit {
     username: string;
     useremail: string;
 
+    venueData: any;
+
     constructor(
         public router: Router,
         public route: ActivatedRoute,
@@ -65,7 +67,7 @@ export class MainComponent implements OnInit, AfterViewInit {
                 el: '.swiper-pagination',
             },
         };
-
+      this.venueData = { title: '', email: '', description: '' };
       this.colorList = ['lightgreen', 'cornflowerblue', 'skyblue', 'fuchsia', 'chartreuse', 'cyan', 'chartreuse', 'skyblue', 'lightgreen' ]
     }
 
@@ -205,5 +207,25 @@ export class MainComponent implements OnInit, AfterViewInit {
         // });
 
     }
-}
+
+    leaveFeedback() {
+      let url = this.baseService.newsLetterURL;
+      console.log(this.venueData);
+      this.isLoading = true;
+      this.dataService.postNoTokenData(url, this.venueData)
+        .subscribe(
+          (data) => {
+            this.isLoading = false;
+            console.log('', data);
+            this.venueData = { title: '', email:'', description: ''};
+            return true;
+          },
+          error => {
+            this.isLoading = false;
+            console.log('errorData', error);
+            return true;
+          }
+        )
+    }
+ }
 

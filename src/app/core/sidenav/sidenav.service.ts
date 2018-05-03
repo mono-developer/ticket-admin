@@ -56,9 +56,11 @@ export class SidenavService {
     menu.addSubItem(coupon_manage, 'View Counpons', '/dashboard/coupon-manage/view-coupon', 1);
     menu.addSubItem(coupon_manage, 'Add Coupon', '/dashboard/coupon-manage/add-coupon', 2);
 
-    let newsletters = menu.addItem('Newsletters', 'new_releases', null, 10, []);
-    menu.addSubItem(newsletters, 'View Newsletters', '/dashboard/bullentin/view-bullentin', 1);
-    menu.addSubItem(newsletters, 'Add Newslatters', '/dashboard/bullentin/add-bullentin', 2);
+    let newsletters = menu.addItem('Newsletters', 'new_releases', '/dashboard/bullentin/view-bullentin', 10, ['0', '1', '2']);
+
+    // let newsletters = menu.addItem('Newsletters', 'new_releases', null, 10, ['0']);
+    // menu.addSubItem(newsletters, 'View Newsletters', '/dashboard/bullentin/view-bullentin', 1);
+    // menu.addSubItem(newsletters, 'Add Newslatters', '/dashboard/bullentin/add-bullentin', 2);
 
     let banner_images = menu.addItem('Background & Banner', 'burst_mode', '/dashboard/banner-images', 11, ['0']);
   }
