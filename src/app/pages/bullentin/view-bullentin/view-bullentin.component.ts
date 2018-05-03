@@ -56,10 +56,11 @@ export class ViewBullentinComponent implements OnInit {
 
   delete(item: any) {
     this.isLoading = true;
-    this.dataService.deleteData(this.url, item._id, this.token)
+    this.dataService.deleteNoTokenData(this.url, item._id)
       .subscribe(
         (data) => {
           console.log('letterList', data);
+          this.isLoading = false;
           this.getNewsLetterList();
           return true;
         },

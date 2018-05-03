@@ -217,7 +217,7 @@ export class MainComponent implements OnInit, AfterViewInit {
           (data) => {
             this.isLoading = false;
             console.log('', data);
-            this.venueData = { title: '', email:'', description: ''};
+            location.reload();
             return true;
           },
           error => {
