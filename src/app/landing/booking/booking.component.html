@@ -41,8 +41,8 @@
                   <th>Ticket Price</th>
 
                   <th>Charge Service</th>
-                  <th>Sales Range</th>
-                  <th>Payment Type</th>
+                  <!-- <th>Sales Range</th> -->
+                  <!-- <th>Payment Type</th> -->
                 </tr>
               </thead>
               <tbody>
@@ -52,10 +52,10 @@
                   <td>{{item.tickets_number}}</td>
 
                   <td>{{item.quantity_service}}</td>
-                  <td>{{item.sale_stime.hour}}:{{item.sale_stime.minute == 0 ? '00': item.sale_stime.minute}} {{item.sale_stime.meriden}} {{item.sale_sdate | date: 'dd/MM/yyyy'}}
+                  <!-- <td>{{item.sale_stime.hour}}:{{item.sale_stime.minute == 0 ? '00': item.sale_stime.minute}} {{item.sale_stime.meriden}} {{item.sale_sdate | date: 'dd/MM/yyyy'}}
                     - {{item.sale_etime.hour}}:{{item.sale_etime.minute == 0 ? '00': item.sale_etime.minute}} {{item.sale_etime.meriden}} {{item.sale_edate | date: 'dd/MM/yyyy'}}
-                  </td>
-                  <td>{{item.payment_type}}</td>
+                  </td> -->
+                  <!-- <td>{{item.payment_type}}</td> -->
                 </tr>
               </tbody>
             </table>
@@ -80,12 +80,12 @@
                     <td>{{organizerData.name}}</td>
                   </tr>
                 </tbody>
-                <tbody>
+                <!-- <tbody>
                   <tr>
                     <td>Date:</td>
                     <td>{{event_date.time.hour}}:{{event_date.time.minute == 0 ? '00' : event_date.time.minute}} {{event_date.time.meriden}}, {{event_date.date | date: 'dd/MM/yyyy'}}</td>
                   </tr>
-                </tbody>
+                </tbody> -->
                 <tbody>
                   <tr>
                     <td>Place:</td>
@@ -136,7 +136,7 @@
                 <th>Quantity Ticket</th>
                 <th>Ticket Price</th>
                 <th>Charge Service</th>
-                <th>Sales Range</th>
+                <!-- <th>Sales Range</th> -->
               </tr>
             </thead>
             <tbody>
@@ -145,9 +145,9 @@
                 <td>{{ticket.ticket_price}}</td>
                 <td>{{ticket.tickets_number}}</td>
                 <td>{{ticket.quantity_service}}</td>
-                <td>{{ticket.sale_stime.hour}}:{{ticket.sale_stime.minute == 0 ? '00' : ticket.sale_stime.minute}} {{ticket.sale_stime.meriden}} {{ticket.sale_sdate | date: 'dd/MM/yyyy'}}
+                <!-- <td>{{ticket.sale_stime.hour}}:{{ticket.sale_stime.minute == 0 ? '00' : ticket.sale_stime.minute}} {{ticket.sale_stime.meriden}} {{ticket.sale_sdate | date: 'dd/MM/yyyy'}}
                   - {{ticket.sale_etime.hour}}:{{ticket.sale_etime.minute == 0 ? '00' : ticket.sale_etime.minute}} {{ticket.sale_etime.meriden}} {{ticket.sale_edate | date: 'dd/MM/yyyy'}}
-                </td>
+                </td> -->
               </tr>
             </tbody>
           </table>
@@ -184,7 +184,7 @@
 
           <h2>Booking Information</h2>
           <div class="ticket_details">
-            <img [src]="eventData.ticket_img" alt="" >
+            <!-- <img [src]="eventData.ticket_img" alt="" > -->
             <table class="table">
               <thead>
                 <tr>

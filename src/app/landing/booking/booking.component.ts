@@ -62,7 +62,7 @@ export class BookingComponent implements OnInit {
     this.eventData = {};
     this.ballotList = [
       { value: 0, title: 'Print the ballot direct.' },
-      { value: 1, title: 'Pick ticket at sale point.' },
+      // { value: 1, title: 'Pick ticket at sale point.' },
       { value: 2, title: 'Purchasers will send the tickets at an additional cost.'}
     ];
     this.id = this.route.snapshot.paramMap.get('id');
