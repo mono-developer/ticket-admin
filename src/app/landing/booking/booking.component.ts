@@ -36,6 +36,7 @@ export class BookingComponent implements OnInit {
   isStep2Table: boolean = false;
   ticket: any;
   ballotList: any;
+  ballotValue = false;
   bookingInfo: any = {};
   pseInfo: any = {};
 
@@ -170,15 +171,23 @@ export class BookingComponent implements OnInit {
     this.ticket = locationData[0];
   }
 
+  changedFav(value) {
+
+    value == 2? this.ballotValue = true : this.ballotValue = false;
+
+  }
+
   getBookingInfo() {
     console.log(this.ticket);
+    const add_price = this.ballotValue? 15000: 0;
     this.bookingInfo = {
       location: this.ticket.location,
       quantity: this.s__quantity,
       price: this.ticket.ticket_price,
+      add_price: add_price,
       charge_service: this.ticket.quantity_service,
       total_price: this.s__quantity * Number(this.ticket.ticket_price),
-      sum: this.s__quantity * Number(this.ticket.ticket_price) + Number(this.ticket.quantity_service)
+      sum: this.s__quantity * Number(this.ticket.ticket_price) + Number(this.ticket.quantity_service) + add_price
     }
   }
 

@@ -119,7 +119,7 @@
               </div>
 
               <mat-form-field *ngIf="isStep2Table">
-                <mat-select placeholder="Favorite Ticket" [(ngModel)]="s__ballot">
+                <mat-select placeholder="Favorite Ticket" [(ngModel)]="s__ballot" (change)="changedFav(s__ballot)">
                   <mat-option *ngFor="let item of ballotList" [value]="item.value">
                     {{ item.title }}
                   </mat-option>
@@ -137,6 +137,7 @@
                 <th>Ticket Price</th>
                 <th>Charge Service</th>
                 <!-- <th>Sales Range</th> -->
+                <th *ngIf="this.ballotValue">Additional Cost</th>
               </tr>
             </thead>
             <tbody>
@@ -144,10 +145,11 @@
                 <td>{{ticket.location}}</td>
                 <td>{{ticket.ticket_price}}</td>
                 <td>{{ticket.tickets_number}}</td>
-                <td>{{ticket.quantity_service}}</td>
+                <td >{{ticket.quantity_service}}</td>
                 <!-- <td>{{ticket.sale_stime.hour}}:{{ticket.sale_stime.minute == 0 ? '00' : ticket.sale_stime.minute}} {{ticket.sale_stime.meriden}} {{ticket.sale_sdate | date: 'dd/MM/yyyy'}}
                   - {{ticket.sale_etime.hour}}:{{ticket.sale_etime.minute == 0 ? '00' : ticket.sale_etime.minute}} {{ticket.sale_etime.meriden}} {{ticket.sale_edate | date: 'dd/MM/yyyy'}}
                 </td> -->
+                <td *ngIf="this.ballotValue">15000</td>
               </tr>
             </tbody>
           </table>
@@ -191,6 +193,7 @@
                   <th>Ticket Category</th>
                   <th>Ticket Quantity</th>
                   <th>Ticket Price</th>
+                  <th  *ngIf="this.ballotValue">Additional Price</th>
                   <th>Total Price</th>
                 </tr>
               </thead>
@@ -199,6 +202,7 @@
                   <td>{{bookingInfo.location}}</td>
                   <td>{{bookingInfo.quantity}}</td>
                   <td>{{bookingInfo.price}}</td>
+                  <td>{{bookingInfo.add_price}}</td>
                   <td>{{bookingInfo.total_price}}</td>
                 </tr>
               </tbody>
@@ -264,6 +268,12 @@
               <tr>
                 <td>Ticket Price</td>
                 <td>{{bookingInfo.total_price}}</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>Addition Price</td>
+                <td>{{bookingInfo.add_price}}</td>
               </tr>
             </tbody>
             <tbody>

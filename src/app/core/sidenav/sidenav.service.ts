@@ -42,7 +42,7 @@ export class SidenavService {
     menu.addSubItem(event_manage, 'View Events', '/dashboard/event-manage/view-event', 1);
     menu.addSubItem(event_manage, 'Add Event', '/dashboard/event-manage/add-event', 2);
 
-    let user_manage = menu.addItem('User Management', 'person', '/dashboard/users-manage', 6, ['0', '1', '2']);
+    let user_manage = menu.addItem('User Management', 'person', '/dashboard/users-manage', 6, ['0', '1']);
 
     let organizor_manage = menu.addItem('Event Organizer', 'group_add', null, 7, ['0']);
     menu.addSubItem(organizor_manage, 'View Organizer', '/dashboard/organizor-manage/view-organizor', 1);
@@ -56,7 +56,7 @@ export class SidenavService {
     menu.addSubItem(coupon_manage, 'View Counpons', '/dashboard/coupon-manage/view-coupon', 1);
     menu.addSubItem(coupon_manage, 'Add Coupon', '/dashboard/coupon-manage/add-coupon', 2);
 
-    let newsletters = menu.addItem('Newsletters', 'new_releases', '/dashboard/bullentin/view-bullentin', 10, ['0', '1', '2']);
+    let newsletters = menu.addItem('Newsletters', 'new_releases', '/dashboard/bullentin/view-bullentin', 10, ['0', '1']);
 
     // let newsletters = menu.addItem('Newsletters', 'new_releases', null, 10, ['0']);
     // menu.addSubItem(newsletters, 'View Newsletters', '/dashboard/bullentin/view-bullentin', 1);
