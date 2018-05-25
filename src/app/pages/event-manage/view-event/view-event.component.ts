@@ -14,7 +14,6 @@ import { DataService } from "../../../../provide/data-service";
 export class ViewEventComponent implements OnInit {
 
   page_title: string = 'Event Management';
-  bb: string = 'test' ;
   url: string;
   token: string;
   eventList: any;

@@ -328,12 +328,11 @@ export class Booking1Component implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log(data);
+          console.log('eventData', data);
           this.eventData = data;
           this.orgData = data.organization;
           this.dateInfo = data.event_date;
           this.ticketInfo = data.ticket_data;
-
           this.lat = Number(data.latitude);
           this.lng = Number(data.longitude);
 
@@ -343,7 +342,6 @@ export class Booking1Component implements OnInit {
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }

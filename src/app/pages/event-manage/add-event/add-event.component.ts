@@ -130,12 +130,12 @@ export class AddEventComponent implements OnInit {
   }
 
   getEventData(id) {
-
+    console.log('url', this.url);
     this.dataService.getNoTokenData(this.url + "/" + id)
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log(data);
+          console.log( 'eventData', data);
           this.eventData = data;
           this.dataSource1 = new MatTableDataSource(data.event_date);
           this.dataSource2 = new MatTableDataSource(data.ticket_data);

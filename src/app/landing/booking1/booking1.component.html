@@ -10,10 +10,7 @@
             <div class="left-content">
                 <img [src]="eventData.event_img" alt="">
                 <div class="description">
-                    <p>Sed non mauris vitae erat consequat auctor eu in elit. Class aptent taciti sociosqu ad litora torquent per
-                        conubia nostra, per inceptos himenaeos. Mauris in erat justo. Morbi accumsan ipsum velit.Class aptent
-                        taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.mauris vitae erat consequat
-                        auctor eu in elit.</p>
+                    <p>{{eventData.event_info}}</p>
                 </div>
             </div>
             <div class="right-content">
@@ -27,12 +24,12 @@
                     <li>
                         <i class="fa fa-calendar-check-o"></i>
                         <span>Start Date:</span>
-                        <div>{{eventData.s_date | date: 'dd/mm/yyyy'}}</div>
+                        <div>{{eventData.s_date | date: 'dd/MM/yyyy'}}</div>
                     </li>
                     <li>
                         <i class="fa fa-calendar-times-o"></i>
                         <span>End Date:</span>
-                        <div>{{eventData.s_date | date: 'dd/mm/yyyy'}}</div>
+                        <div>{{eventData.e_date | date: 'dd/MM/yyyy'}}</div>
                     </li>
                     <li>
                         <i class="fa fa-map-marker"></i>
@@ -47,7 +44,7 @@
                     <li>
                         <i class="fa fa-user"></i>
                         <span>Email:</span>
-                        <div>{{orgData.org_email}}</div>
+                        <div>{{orgData.email}}</div>
                     </li>
                 </ul>
             </div>
