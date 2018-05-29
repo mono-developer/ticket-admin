@@ -202,7 +202,7 @@
                   <td>{{bookingInfo.location}}</td>
                   <td>{{bookingInfo.quantity}}</td>
                   <td>{{bookingInfo.price}}</td>
-                  <td>{{bookingInfo.add_price}}</td>
+                  <td *ngIf="this.ballotValue">{{bookingInfo.add_price}}</td>
                   <td>{{bookingInfo.total_price}}</td>
                 </tr>
               </tbody>
@@ -226,10 +226,10 @@
                   <td>Organizer:</td>
                   <td>{{organizerData.name}}</td>
                 </tr>
-                <tr>
+                <!-- <tr>
                   <td>Date:</td>
                   <td>{{event_date.time.hour}}:{{event_date.time.minute == 0 ? '00' : event_date.time.minute}} {{event_date.time.meriden}}, {{event_date.date | date: 'dd/MM/yyyy'}}</td>
-                </tr>
+                </tr> -->
                 <tr>
                   <td>Meeting Place:</td>
                   <td>{{eventData.place}}</td>

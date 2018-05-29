@@ -130,7 +130,6 @@ export class AddEventComponent implements OnInit {
   }
 
   getEventData(id) {
-    console.log('url', this.url);
     this.dataService.getNoTokenData(this.url + "/" + id)
       .subscribe(
         (data) => {
@@ -143,7 +142,6 @@ export class AddEventComponent implements OnInit {
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
