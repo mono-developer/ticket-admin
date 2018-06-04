@@ -37,11 +37,10 @@
               <thead>
                 <tr>
                   <th>Location</th>
-                  <th>Quantity Ticket</th>
                   <th>Ticket Price</th>
-
+                  <th>Quantity Ticket</th>
                   <th>Charge Service</th>
-                  <!-- <th>Sales Range</th> -->
+                  <th>Discount Price</th>
                   <!-- <th>Payment Type</th> -->
                 </tr>
               </thead>
@@ -50,8 +49,8 @@
                   <td>{{item.location}}</td>
                   <td>{{item.ticket_price}}</td>
                   <td>{{item.tickets_number}}</td>
-
                   <td>{{item.quantity_service}}</td>
+                  <td>{{item.discount_price}}</td>
                   <!-- <td>{{item.sale_stime.hour}}:{{item.sale_stime.minute == 0 ? '00': item.sale_stime.minute}} {{item.sale_stime.meriden}} {{item.sale_sdate | date: 'dd/MM/yyyy'}}
                     - {{item.sale_etime.hour}}:{{item.sale_etime.minute == 0 ? '00': item.sale_etime.minute}} {{item.sale_etime.meriden}} {{item.sale_edate | date: 'dd/MM/yyyy'}}
                   </td> -->
@@ -133,10 +132,10 @@
             <thead>
               <tr>
                 <th>Location</th>
-                <th>Quantity Ticket</th>
                 <th>Ticket Price</th>
+                <th>Quantity Ticket</th>
                 <th>Charge Service</th>
-                <!-- <th>Sales Range</th> -->
+                <th>Discount Price</th>
                 <th *ngIf="this.ballotValue">Additional Cost</th>
               </tr>
             </thead>
@@ -144,8 +143,9 @@
               <tr>
                 <td>{{ticket.location}}</td>
                 <td>{{ticket.ticket_price}}</td>
-                <td>{{ticket.tickets_number}}</td>
+                <td>{{s__quantity}}</td>
                 <td >{{ticket.quantity_service}}</td>
+                <td >{{ticket.discount_price}}</td>
                 <!-- <td>{{ticket.sale_stime.hour}}:{{ticket.sale_stime.minute == 0 ? '00' : ticket.sale_stime.minute}} {{ticket.sale_stime.meriden}} {{ticket.sale_sdate | date: 'dd/MM/yyyy'}}
                   - {{ticket.sale_etime.hour}}:{{ticket.sale_etime.minute == 0 ? '00' : ticket.sale_etime.minute}} {{ticket.sale_etime.meriden}} {{ticket.sale_edate | date: 'dd/MM/yyyy'}}
                 </td> -->
@@ -193,8 +193,10 @@
                   <th>Ticket Category</th>
                   <th>Ticket Quantity</th>
                   <th>Ticket Price</th>
-                  <th  *ngIf="this.ballotValue">Additional Price</th>
                   <th>Total Price</th>
+                  <th *ngIf="this.ballotValue">Additional Price</th>
+                  <th *ngIf="bookingInfo.discount_price">Discount Price</th>
+                  <th>Charge Service</th>
                 </tr>
               </thead>
               <tbody>
@@ -202,8 +204,10 @@
                   <td>{{bookingInfo.location}}</td>
                   <td>{{bookingInfo.quantity}}</td>
                   <td>{{bookingInfo.price}}</td>
-                  <td *ngIf="this.ballotValue">{{bookingInfo.add_price}}</td>
                   <td>{{bookingInfo.total_price}}</td>
+                  <td *ngIf="this.ballotValue">{{bookingInfo.add_price}}</td>
+                  <th *ngIf="bookingInfo.discount_price">{{bookingInfo.discount_price}}</th>
+                  <td>{{bookingInfo.charge_service}}</td>
                 </tr>
               </tbody>
             </table>
@@ -280,6 +284,12 @@
               <tr>
                 <td>Charge Servie</td>
                 <td>{{bookingInfo.charge_service}}</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>Discount Price</td>
+                <td>{{bookingInfo.discount_price}}</td>
               </tr>
             </tbody>
             <tbody class="total_sum">

@@ -79,7 +79,6 @@ export class MainComponent implements OnInit, AfterViewInit {
 
     ngOnInit() {
         this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
-        console.log('mainUserInfo', this.userInfo);
         this.getEventList();
         this.getCategoryList();
         this.getBanner();
@@ -93,12 +92,10 @@ export class MainComponent implements OnInit, AfterViewInit {
                 this.isLoading = false;
                 this.eventList = data;
                 this.eventDateArray(data);
-                console.log('eventList', data);
                 return true;
             },
             err => {
                 this.isLoading = false;
-                console.log('errorData', err);
                 return true;
             });
     }
@@ -153,11 +150,9 @@ export class MainComponent implements OnInit, AfterViewInit {
           .subscribe(
               (data) => {
                   this.categoryList = data;
-                  console.log('categoryList', data);
                   return true;
               },
               err => {
-                  console.log('errorData', err);
                   return true;
               });
     }
@@ -167,11 +162,9 @@ export class MainComponent implements OnInit, AfterViewInit {
       .subscribe(
         (data) => {
           this.bannerList = data;
-          console.log('bannerList', data);
           return true;
         },
         err => {
-          console.log('errorData', err);
           return true;
         });
   }
@@ -184,7 +177,6 @@ export class MainComponent implements OnInit, AfterViewInit {
         });
 
         dialogRef.afterClosed().subscribe(result => {
-            console.log(result);
             let customerData = { name: result.username, email: result.userEmail }
             if(result){
               this.router.navigate(['booking', { id: eventData._id, customName: result.username, customEmail: result.userEmail }]);
@@ -193,7 +185,6 @@ export class MainComponent implements OnInit, AfterViewInit {
     }
 
     openDescriptionDialog(data): void {
-      console.log(data._id);
 
       this.router.navigate(['booking1', { id: data._id}]);
         // console.log('Description');
@@ -210,19 +201,16 @@ export class MainComponent implements OnInit, AfterViewInit {
 
     leaveFeedback() {
       let url = this.baseService.newsLetterURL;
-      console.log(this.venueData);
       this.isLoading = true;
       this.dataService.postNoTokenData(url, this.venueData)
         .subscribe(
           (data) => {
             this.isLoading = false;
-            console.log('', data);
             location.reload();
             return true;
           },
           error => {
             this.isLoading = false;
-            console.log('errorData', error);
             return true;
           }
         )

@@ -63,7 +63,6 @@ export class BookingComponent implements OnInit {
     this.eventData = {};
     this.ballotList = [
       { value: 0, title: 'Print the ballot direct.' },
-      // { value: 1, title: 'Pick ticket at sale point.' },
       { value: 2, title: 'Purchasers will send the tickets at an additional cost.'}
     ];
     this.id = this.route.snapshot.paramMap.get('id');
@@ -71,13 +70,11 @@ export class BookingComponent implements OnInit {
     let cusEmail = this.route.snapshot.paramMap.get('customEmail');
     this.s__Location = this.route.snapshot.paramMap.get('location');
     this.customerInfo = { name: cusName, email: cusEmail };
-    console.log(this.customerInfo);
 
    }
 
   ngOnInit() {
     let url = this.baseService.eventURL;
-    console.log(this.id, url);
     this.getEventData(this.id, url);
 
   }
@@ -86,8 +83,6 @@ export class BookingComponent implements OnInit {
     this.dataService.getNoTokenData(url + "/" + id)
       .subscribe(
         (data) => {
-          // this.isLoading = false;
-          console.log(data);
           this.eventData = data;
           this.organizerData = data.organization;
           this.categoryData = data.category;
@@ -99,8 +94,6 @@ export class BookingComponent implements OnInit {
           return true;
         },
         err => {
-          // this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
@@ -108,7 +101,6 @@ export class BookingComponent implements OnInit {
   timeInterval() {
     let startTime = new Date().getTime();
     let timer = Observable.timer(30, 100);
-    console.log(timer);
     const subscription = timer.subscribe(t => {
       let newTime = new Date().getTime();
       this.total_timer = (newTime - startTime)/1000;
@@ -149,7 +141,6 @@ export class BookingComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
     });
   }
 
@@ -159,12 +150,10 @@ export class BookingComponent implements OnInit {
       time: value.time,
       date: value.date
     }
-    console.log(this.isStep1Table, this.event_date);
   }
 
   onChangedLocation(value: string){
     this.isStep2Table = !!value;
-    console.log(this.eventData);
     let locationData = this.eventData.ticket_data.filter((item: any) =>
       item.location === value
     );
@@ -186,8 +175,11 @@ export class BookingComponent implements OnInit {
       price: this.ticket.ticket_price,
       add_price: add_price,
       charge_service: this.ticket.quantity_service,
+      discount_price: this.ticket.discount_price,
       total_price: this.s__quantity * Number(this.ticket.ticket_price),
-      sum: this.s__quantity * Number(this.ticket.ticket_price) + Number(this.ticket.quantity_service) + add_price
+      sum: this.s__quantity * Number(this.ticket.ticket_price) +
+            Number(this.ticket.quantity_service) +
+            add_price - Number(this.ticket.discount_price)
     }
   }
 
@@ -196,7 +188,6 @@ export class BookingComponent implements OnInit {
   }
   minQuantity() {
     this.s__quantity--;
-    console.log(this.s__quantity);
   }
 
   getPSE() {
@@ -230,10 +221,8 @@ export class LocationDialogComponent {
     private ngZone: NgZone,
     public dialogRef: MatDialogRef<LocationDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-    console.log(this.data)
     this.lat = Number(data.lat);
     this.lng = Number(data.lng);
-    console.log(this.lng, this.lat);
   }
 
   onNoClick(): void {
@@ -251,7 +240,6 @@ export class LocationDialogComponent {
   }
 
   clickedMarker() {
-    console.log('clicked the marker:', this.marker.label)
   }
 
 }
