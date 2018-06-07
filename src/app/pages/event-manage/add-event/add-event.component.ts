@@ -134,7 +134,6 @@ export class AddEventComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log( 'eventData', data);
           this.eventData = data;
           this.dataSource1 = new MatTableDataSource(data.event_date);
           this.dataSource2 = new MatTableDataSource(data.ticket_data);
@@ -158,7 +157,6 @@ export class AddEventComponent implements OnInit {
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
@@ -168,7 +166,6 @@ export class AddEventComponent implements OnInit {
     this.dataService.getData(org_url, this.token)
       .subscribe(
         (data) => {
-
           this.organizorList = data.filter((item: any) =>
             item.access === '1'
           );
@@ -177,7 +174,6 @@ export class AddEventComponent implements OnInit {
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
@@ -197,7 +193,6 @@ export class AddEventComponent implements OnInit {
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
@@ -220,10 +215,8 @@ export class AddEventComponent implements OnInit {
     dialogRef1.afterClosed().subscribe(result => {
       if(result == undefined){
       }else{
-        console.log(result);
         this.eventData.event_date == undefined ? this.eventData.event_date = [] : console.log(this.eventData.event_date);
         this.eventData.event_date.push(result);
-        console.log(this.eventData.event_date);
         this.dataSource1 = new MatTableDataSource(this.eventData.event_date);
       }
     });
@@ -254,11 +247,9 @@ export class AddEventComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result == undefined) {
-        console.log('undefined');
       } else {
         this.eventData.ticket_data == undefined ? this.eventData.ticket_data = [] : console.log(this.eventData.ticket_data);
         this.eventData.ticket_data.push(result);
-        console.log(this.eventData.ticket_data);
         this.dataSource2 = new MatTableDataSource(this.eventData.ticket_data);
       }
     });
@@ -312,7 +303,6 @@ export class AddEventComponent implements OnInit {
   }
 
   ticketImage(event: any) {
-
     const file = event.target.files[0];
     this.imageSize.sizeImage(file, (size) => {
       if (size.width == 590 && size.height == 968) {
@@ -320,7 +310,6 @@ export class AddEventComponent implements OnInit {
           this.eventData.ticket_img = image;
         })
       } else {
-        console.log('error');
         this.isTicketImg = true;
       }
     });
@@ -334,7 +323,6 @@ export class AddEventComponent implements OnInit {
       callback(imageURL);
     }, (err) => {
       this.isLoading = false;
-      console.log("errror", err);
     });
   }
 
@@ -348,7 +336,6 @@ export class AddEventComponent implements OnInit {
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }
@@ -359,19 +346,16 @@ export class AddEventComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('eventData', data);
           this.router.navigate(['dashboard/event-manage/view-event']);
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }
 
   done(){
-    console.log(this.eventData);
     this.id && this.page_value == 'edit' ? this.putEventData() : this.postEventData();
   }
 
@@ -411,7 +395,6 @@ export class SeatDatailsDialogComponent {
     private uploadService: UploadFileService,
     public dialogRef2: MatDialogRef<SeatDatailsDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      console.log(data);
       this.boxList = [
         { id: 0, name: "Yes", value: true },
         { id: 1, name: "No", value: false }

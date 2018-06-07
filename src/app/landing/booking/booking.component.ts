@@ -7,7 +7,6 @@ import { MapsAPILoader } from '@agm/core';
 import { BaseService } from "../../../provide/base-service";
 import { DataService } from "../../../provide/data-service";
 import { Observable } from 'rxjs/Rx';
-
 import { AgmCoreModule } from '@agm/core';
 import { MouseEvent } from '@agm/core';
 import { select } from 'd3';
@@ -161,13 +160,10 @@ export class BookingComponent implements OnInit {
   }
 
   changedFav(value) {
-
     value == 2? this.ballotValue = true : this.ballotValue = false;
-
   }
 
   getBookingInfo() {
-    console.log(this.ticket);
     const add_price = this.ballotValue? 15000: 0;
     this.bookingInfo = {
       location: this.ticket.location,

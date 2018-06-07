@@ -53,7 +53,6 @@
         <div class="other_info">
             <mat-tab-group class="tab-bg" *ngIf="eventData">
                 <mat-tab label="SCHEDULES">
-                    <!-- ghjkgjkgjh -->
                     <div class="schedule" *ngFor="let item of dateInfo">
                     <p>
                         <i class="fa fa-calendar-check-o"></i> {{item.date | date: 'dd/mm/yyyy'}}</p>
@@ -105,9 +104,6 @@
                 </agm-map>
             </div>
         </div>
-
         <ms-loading-overlay [isLoading]="isLoading"></ms-loading-overlay>
     </div>
-
-
 </div>

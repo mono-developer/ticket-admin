@@ -51,7 +51,6 @@ export class RegisterComponent implements OnInit {
   }
 
   signup() {
-    console.log(this.resData);
     this.isLoading = true;
     this.resData.status = false;
     this.userService.signup(this.resData)

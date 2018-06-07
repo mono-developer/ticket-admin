@@ -5,9 +5,7 @@ import { fadeInAnimation } from "../../../route.animation";
 import { BaseService } from "../../../../provide/base-service";
 import { UserService } from "../../../../provide/user-service";
 import { Observable } from 'rxjs/Rx';
-
 import * as _ from 'lodash';
-
 
 @Component({
   selector: 'ms-login',
@@ -43,7 +41,6 @@ export class LoginComponent implements OnInit {
   }
 
   changedRemember() {
-    console.log(this.isRemember);
   }
 
   login() {
@@ -52,7 +49,6 @@ export class LoginComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('DataLogin',data);
           if (this.isRemember == true) {
             sessionStorage.setItem('UserData', JSON.stringify(this.userData));
           } else {
@@ -69,7 +65,6 @@ export class LoginComponent implements OnInit {
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           this.openPasswordError();
           return true;
         });

@@ -8,7 +8,6 @@
       <input matInput placeholder="New Category Name" name="cate_name" [(ngModel)]="categoryData.name" required>
     </mat-form-field>
 
-
     <mat-form-field >
       <mat-select placeholder="Select State" name="state" [(ngModel)]="categoryData.state" required>
         <mat-option *ngFor="let state of stateList" [value]="state.value">

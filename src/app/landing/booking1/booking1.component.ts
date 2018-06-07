@@ -25,7 +25,6 @@ import { select } from 'd3';
 export class Booking1Component implements OnInit {
 
   id: string;
-  // url: string;
   eventData: any;
   orgData: any;
   dateInfo: any;
@@ -34,8 +33,8 @@ export class Booking1Component implements OnInit {
 
   username: string;
   useremail: string;
-  // google map
 
+  // google map
   zoom: number = 15;
   lat: number;
   lng: number;
@@ -347,11 +346,9 @@ export class Booking1Component implements OnInit {
   }
 
   clickedMarker() {
-    console.log('clicked the marker:', this.marker.label)
   }
 
   buyTicket(location) {
-    console.log(location);
 
     let dialogRef = this.dialog.open(BookingDialogComponent, {
       width: '350px',
@@ -359,7 +356,6 @@ export class Booking1Component implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       let customerData = { name: result.username, email: result.userEmail }
       if (result) {
         this.router.navigate(['booking', { id: this.id, customName: result.username, customEmail: result.userEmail, location: location }]);

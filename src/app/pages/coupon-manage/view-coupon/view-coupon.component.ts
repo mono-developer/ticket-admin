@@ -42,20 +42,17 @@ export class ViewCouponComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('couponList', data);
           this.couponList = data;
           this.dataSource = new MatTableDataSource(this.couponList);
           return true;
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
 
   edit(item: any) {
-    console.log("senddata", item);
     this.router.navigate(['dashboard/coupon-manage/add-coupon', { item: item._id }]);
   }
 
@@ -74,17 +71,12 @@ export class ViewCouponComponent implements OnInit {
     this.dataService.deleteData(this.url, id, this.token)
       .subscribe(
         (data) => {
-          console.log('couponList', data);
           this.getCouponList();
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
-        }
-      )
+        })
   }
-
-
 }

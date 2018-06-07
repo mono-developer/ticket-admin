@@ -34,31 +34,31 @@ export class ViewEventComponent implements OnInit {
     this.getEventList();
   }
 
+  newEvent() {
+    this.router.navigate(['./dashboard/event-manage/add-event']);
+  }
+
   getEventList() {
     this.isLoading = true;
     this.dataService.getNoTokenData(this.url)
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('eventList', data);
           this.eventList = data;
           this.dataSource = new MatTableDataSource(this.eventList);
           return true;
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
 
   edit(item: any) {
-    console.log("senddata", item);
     this.router.navigate(['./dashboard/event-manage/add-event', { item: item._id, value: 'edit' }]);
   }
 
   duplicate(item: any) {
-    console.log("senddata", item);
     this.router.navigate(['./dashboard/event-manage/add-event', { item: item._id, value: 'duplicate' }]);
   }
 
@@ -77,13 +77,11 @@ export class ViewEventComponent implements OnInit {
     this.dataService.deleteData(this.url, id, this.token)
       .subscribe(
         (data) => {
-          console.log('eventList', data);
           this.getEventList();
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         }
       )

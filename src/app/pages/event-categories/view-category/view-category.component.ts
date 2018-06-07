@@ -39,20 +39,17 @@ export class ViewCategoryComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('categoryList', data);
           this.categoryList = data;
           this.dataSource = new MatTableDataSource(this.categoryList);
           return true;
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
 
   edit(item: any) {
-    console.log("senddata", item);
     this.router.navigate(['dashboard/event-categories/add-category', { item: item._id }]);
   }
 
@@ -73,13 +70,11 @@ export class ViewCategoryComponent implements OnInit {
     this.dataService.deleteData(this.url, id, this.token)
       .subscribe(
         (data) => {
-          console.log('categoryList', data);
           this.getCategoryList();
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         }
       )

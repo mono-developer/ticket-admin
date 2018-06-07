@@ -31,7 +31,6 @@ export class AdminComponent implements OnInit, OnDestroy {
    }
 
   ngOnInit() {
-
     setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
     }, 2000);

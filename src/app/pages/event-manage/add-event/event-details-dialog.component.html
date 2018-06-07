@@ -2,22 +2,20 @@
 
 <h1 mat-dialog-title>Event Date</h1>
 <div mat-dialog-content>
-    <form #form="ngForm">
-        <div fxLayout="column" class="event_date">
-            <mat-form-field>
-                Date
-                <input matInput name="date" [matDatepicker]="picker" [(ngModel)]="data.modalData.date" required>
-                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                <mat-datepicker #picker></mat-datepicker>
-            </mat-form-field>
-            <div>
-                <p>Time</p>
-                <w-mat-timepicker class="time" color="primary" [(userTime)]="data.modalData.time" name="s_time" required></w-mat-timepicker>
-            </div>
-
-        </div>
-    </form>
-
+  <form #form="ngForm">
+    <div fxLayout="column" class="event_date">
+      <mat-form-field>
+        Date
+        <input matInput name="date" [matDatepicker]="picker" [(ngModel)]="data.modalData.date" required>
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+      <div>
+        <p>Time</p>
+        <w-mat-timepicker class="time" color="primary" [(userTime)]="data.modalData.time" name="s_time" required></w-mat-timepicker>
+      </div>
+    </div>
+  </form>
 </div>
 <div mat-dialog-actions class="btns">
     <button mat-button (click)="onNoClick()" color="primary">No Thanks</button>

@@ -16,7 +16,6 @@ import * as _ from 'lodash';
 })
 export class AddBullentinComponent implements OnInit {
 
-
   page_title: string = 'Add NewsLetter';
   id: string;
   url: string;
@@ -36,7 +35,6 @@ export class AddBullentinComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('item');
     this.url = this.baseService.newsLetterURL;
     this.token = sessionStorage.getItem('token');
-    console.log('item', this.id);
     if (this.id) {
       this.getNewsLetterData(this.id);
     } else {
@@ -50,37 +48,30 @@ export class AddBullentinComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('letterData', data);
           this.letterData = data;
           return true;
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
 
   submit() {
-    console.log(this.letterData);
     this.id ? this.putLetterData() : this.postLetterData();
   }
 
   postLetterData() {
     this.isLoading = true;
-    this.dataService.postData(this.url, this.token, this.letterData)
-      .subscribe(
-        (data) => {
-          console.log('letterData', data);
-          this.router.navigate(['dashboard/bullentin/view-bullentin']);
-          return true;
-        },
-        error => {
-          this.isLoading = false;
-          console.log('errorData', error);
-          return true;
-        }
-      )
+    this.dataService.postData(this.url, this.token, this.letterData).subscribe(
+    (data) => {
+      this.router.navigate(['dashboard/bullentin/view-bullentin']);
+      return true;
+    },
+    error => {
+      this.isLoading = false;
+      return true;
+    })
   }
 
   putLetterData() {
@@ -88,17 +79,14 @@ export class AddBullentinComponent implements OnInit {
     this.dataService.patchData(this.url, this.id, this.token, this.letterData)
       .subscribe(
         (data) => {
-          console.log('letterData', data);
           this.isLoading = false;
           this.router.navigate(['dashboard/bullentin/view-bullentin']);
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
-        }
-      )
+        })
   }
 
   getEscaped(text: string) {

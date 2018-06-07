@@ -8,7 +8,6 @@ export class ImageSize {
 
   image: any;
   constructor(public http: Http) {
-    console.log('Hello BaseService Provider');
   }
 
   sizeImage(file: any, callback) {

@@ -6,9 +6,7 @@ import { UserService } from "../../../../provide/user-service";
 import { DataService } from "../../../../provide/data-service";
 import { UploadFileService } from '../../../../provide/upload-file.service';
 import { Observable } from 'rxjs/Rx';
-
 import * as _ from 'lodash';
-
 
 @Component({
   selector: 'ms-profile',
@@ -38,8 +36,6 @@ export class ProfileComponent implements OnInit {
     this.url = this.baseService.userURL;
     this.token = sessionStorage.getItem('token');
     this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
-    console.log(this.userInfo);
-
   }
 
   updatePhoto(event) {
@@ -58,26 +54,21 @@ export class ProfileComponent implements OnInit {
       callback(imageURL);
     }, (err) => {
       this.isLoading = false;
-      console.log("errror", err);
     });
   }
 
   updateProfile() {
-    console.log(this.userInfo);
     this.userService.updateProfile(this.url, this.userInfo._id, this.userInfo, this.token)
       .subscribe(
         (data) => {
           this.isLoading = false;
           if (data.status == "Success"){
-
-            console.log('userData', data);
             sessionStorage.setItem('userInfo', JSON.stringify(data.user));
             return true;
           }
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }

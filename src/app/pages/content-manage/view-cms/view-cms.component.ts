@@ -3,7 +3,6 @@ import { MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@a
 import { Router } from '@angular/router';
 import { json } from 'd3';
 import { DeleteDialogComponent } from '../../delete-dialog/delete-dialog.component';
-
 import { BaseService } from "../../../../provide/base-service";
 import { DataService } from "../../../../provide/data-service";
 
@@ -32,7 +31,6 @@ export class ViewCMSComponent implements OnInit {
   ngOnInit() {
     this.url = this.baseService.contentURL;
     this.token = sessionStorage.getItem('token');
-    console.log(this.url);
     this.getcmsList();
   }
 
@@ -42,14 +40,12 @@ export class ViewCMSComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('cmsList', data);
           this.cmsList = data;
           this.dataSource = new MatTableDataSource(this.cmsList);
           return true;
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
@@ -73,13 +69,11 @@ export class ViewCMSComponent implements OnInit {
     this.dataService.deleteData(this.url, id, this.token)
       .subscribe(
         (data) => {
-          console.log('cmsData', data);
           this.getcmsList();
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }
@@ -89,7 +83,6 @@ export class ViewCMSComponent implements OnInit {
   }
 
   goSubpage(item) {
-    console.log(item);
   }
 
 }

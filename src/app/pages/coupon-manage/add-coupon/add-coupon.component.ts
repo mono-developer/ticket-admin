@@ -31,17 +31,16 @@ export class AddCouponComponent implements OnInit {
     public dataService: DataService
   ) {
     this.couponData = { pro_code: '', description: '', discount: '', valid_date: '', state: '' };
-    this.stateList = [ { id: 0, name: 'Active', value: true },
-                       { id: 1, name: 'Inactive', value: false }
-                    ];
-
+    this.stateList = [
+      { id: 0, name: 'Active', value: true },
+      { id: 1, name: 'Inactive', value: false }
+    ];
    }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('item');
     this.url = this.baseService.couponURL;
     this.token = sessionStorage.getItem('token');
-    console.log('item', this.id);
     if (this.id) {
       this.getCouponData(this.id);
     } else {
@@ -55,38 +54,31 @@ export class AddCouponComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('couponData', data);
           this.couponData = data;
           return true;
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
 
   submit() {
-    console.log(this.couponData);
     this.id ? this.putCouponData() : this.postCouponData();
   }
 
   postCouponData() {
     this.isLoading = true;
-    console.log(this.couponData);
     this.dataService.postData(this.url, this.token, this.couponData)
       .subscribe(
         (data) => {
-          console.log('couponData', data);
           this.router.navigate(['dashboard/coupon-manage/view-coupon']);
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
-        }
-      )
+        })
   }
 
   putCouponData() {
@@ -95,18 +87,12 @@ export class AddCouponComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('couponData', data);
           this.router.navigate(['dashboard/coupon-manage/view-coupon']);
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
-        }
-      )
+        })
   }
-
-
-
 }

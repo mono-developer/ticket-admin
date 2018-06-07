@@ -14,7 +14,6 @@ import { DeleteDialogComponent } from '../delete-dialog/delete-dialog.component'
 export class UsersManageComponent implements OnInit {
 
   page_title: string = 'Management of sales teams';
-
   url: string;
   token: string;
   isLoading: boolean = false;
@@ -45,14 +44,12 @@ export class UsersManageComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('userList', data);
           this.userList = data;
           this.dataSource = new MatTableDataSource(this.userList);
           return true;
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
@@ -73,13 +70,11 @@ export class UsersManageComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('userData', data);
           this.getUsersList();
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }
@@ -92,7 +87,6 @@ export class UsersManageComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result != undefined){
-        console.log(result);
         let accessData = {
           status: result.status
         }
@@ -107,13 +101,11 @@ export class UsersManageComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('UserData', data);
           this.getUsersList();
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }
@@ -132,7 +124,6 @@ export class UserAccessDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<UserAccessDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      console.log(this.data);
       this.stateList = [
         { id: 0, name: 'Active', status: true },
         { id: 1, name: 'Inactive' ,status: false }

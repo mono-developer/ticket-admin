@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 import { Router } from '@angular/router';
 import { json } from 'd3';
-
 import { BaseService } from "../../../../provide/base-service";
 import { DataService } from "../../../../provide/data-service";
 import { DeleteDialogComponent } from '../../delete-dialog/delete-dialog.component';
@@ -42,7 +41,6 @@ export class ViewOrganizorComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('salesList', data);
           this.orgList = data.filter((item: any) =>
             item.access === '1'
           );
@@ -51,7 +49,6 @@ export class ViewOrganizorComponent implements OnInit {
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
@@ -79,13 +76,11 @@ export class ViewOrganizorComponent implements OnInit {
     this.dataService.deleteData(this.url, id, this.token)
       .subscribe(
         (data) => {
-          console.log('orgData', data);
           this.getOrgList();
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }

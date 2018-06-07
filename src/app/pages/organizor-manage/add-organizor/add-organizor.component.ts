@@ -41,7 +41,6 @@ export class AddOrganizorComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('item');
     this.url = this.baseService.userURL;
     this.token = sessionStorage.getItem('token');
-    console.log('item', this.id);
     if (this.id) {
       this.getOrgData(this.id);
     } else {
@@ -55,19 +54,16 @@ export class AddOrganizorComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('orgData', data);
           this.userData = data;
           return true;
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
 
   submit() {
-    console.log(this.userData);
     this.id ? this.putOrgData() : this.postOrgData();
   }
 
@@ -77,13 +73,11 @@ export class AddOrganizorComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('orgData', data);
           this.router.navigate(['dashboard/organizor-manage/view-organizor']);
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }
@@ -96,13 +90,11 @@ export class AddOrganizorComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('orgData', data);
           this.router.navigate(['dashboard/organizor-manage/view-organizor']);
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }

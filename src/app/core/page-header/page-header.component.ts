@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { routeAnimation } from "../../route.animation";
 
 @Component({
@@ -14,10 +14,15 @@ export class PageHeaderComponent implements OnInit {
 
   @Input() title: string ='';
   @Input() button: string ='';
+  @Output() addEventPage = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
+  }
+
+  onClickEvent() {
+    this.addEventPage.emit();
   }
 
 }

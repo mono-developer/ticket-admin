@@ -53,7 +53,6 @@ export class AddCategoryComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('item');
     this.url = this.baseService.categoryURL;
     this.token = sessionStorage.getItem('token');
-    console.log('item', this.id);
     if (this.id) {
       this.getCategoryData(this.id);
     } else {
@@ -72,7 +71,6 @@ export class AddCategoryComponent implements OnInit {
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
@@ -91,7 +89,6 @@ export class AddCategoryComponent implements OnInit {
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }
@@ -107,7 +104,6 @@ export class AddCategoryComponent implements OnInit {
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         }
       )

@@ -40,7 +40,6 @@ export class ViewSaleUsersComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('salesList', data);
           this.usersList = data.filter((item: any) =>
             item.access === '2'
           );
@@ -49,7 +48,6 @@ export class ViewSaleUsersComponent implements OnInit {
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
@@ -76,17 +74,14 @@ export class ViewSaleUsersComponent implements OnInit {
     this.dataService.deleteData(this.url, id, this.token)
       .subscribe(
         (data) => {
-          console.log('cmsData', data);
           this.getSalesUserList();
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }
-
 
 }
 

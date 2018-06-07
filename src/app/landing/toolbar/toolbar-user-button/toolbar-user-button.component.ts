@@ -22,7 +22,6 @@ export class ToolbarUserButtonComponent implements OnInit {
 
   ngOnInit() {
     this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
-    console.log('userInfo', this.userInfo);
   }
 
   toggleDropdown() {
@@ -33,9 +32,6 @@ export class ToolbarUserButtonComponent implements OnInit {
     sessionStorage.clear();
     this.isOpen = false;
     this.userInfo = null;
-    // setTimeout(() => {
-    //   window.location.reload();
-    // }, 1000);
   }
 
   customerLogin() {
@@ -46,7 +42,6 @@ export class ToolbarUserButtonComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('result', result);
       if(result.access == '2'){
         this.userInfo = result;
         sessionStorage.setItem('userInfo', JSON.stringify(result));
@@ -55,7 +50,6 @@ export class ToolbarUserButtonComponent implements OnInit {
       }else if(result == 'forgot'){
         this.router.navigate(['/forgot-password', {page: 'customer'}]);
       }else{
-        console.log('cancel');
       }
     });
   }
@@ -68,7 +62,6 @@ export class ToolbarUserButtonComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-     console.log(result);
     });
   }
 

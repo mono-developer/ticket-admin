@@ -19,7 +19,6 @@ export class BookingDialogComponent implements OnInit {
     public dialogRef: MatDialogRef<BookingDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {
-    console.log(this.data);
   }
 
   ngOnInit() { }

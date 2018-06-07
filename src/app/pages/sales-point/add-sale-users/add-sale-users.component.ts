@@ -40,8 +40,6 @@ export class AddSaleUsersComponent implements OnInit {
     this.id = this.route.snapshot.paramMap.get('item');
     this.url = this.baseService.userURL;
     this.token = sessionStorage.getItem('token');
-    console.log(this.token);
-    console.log('item', this.id);
     if (this.id) {
       this.getSalesUserData(this.id);
     }
@@ -54,18 +52,15 @@ export class AddSaleUsersComponent implements OnInit {
         (data) => {
           this.isLoading = false;
           this.userData = data;
-          console.log(this.userData);
           return true;
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
 
   submit() {
-    console.log(this.userData);
     this.id ? this.putUserData() : this.postUserData();
   }
 
@@ -75,13 +70,11 @@ export class AddSaleUsersComponent implements OnInit {
     this.userService.signup(this.userData)
       .subscribe(
         (data) => {
-          console.log('salesUserData', data);
           this.router.navigate(['dashboard/sales-point/view-sale-users']);
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }
@@ -91,14 +84,12 @@ export class AddSaleUsersComponent implements OnInit {
     this.userService.updateProfile(this.url, this.id, this.userData, this.token)
       .subscribe(
         (data) => {
-          console.log('userData', data);
           this.isLoading = false;
           this.router.navigate(['dashboard/sales-point/view-sale-users']);
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }

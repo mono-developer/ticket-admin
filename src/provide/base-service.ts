@@ -20,7 +20,6 @@ export class BaseService {
   public bannerURL = this.baseUrl + "/banner";
 
   constructor(public http: Http) {
-    console.log('Hello BaseService Provider');
   }
 
 

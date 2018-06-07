@@ -30,12 +30,10 @@ export class BannerImagesComponent implements OnInit {
     public router: Router,
     public route: ActivatedRoute,
   ) {
-
    }
 
   ngOnInit() {
     this.token = sessionStorage.getItem('token');
-
     this.getBannerList();
   }
 
@@ -46,13 +44,11 @@ export class BannerImagesComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('bgData', data);
           this.bgData = data;
           return true;
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
@@ -64,7 +60,6 @@ export class BannerImagesComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('bannerData', data);
           this.bgData = data;
           this.getBgData();
           this.dataSource = new MatTableDataSource(this.bgData);
@@ -72,7 +67,6 @@ export class BannerImagesComponent implements OnInit {
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
@@ -134,7 +128,6 @@ export class BannerImagesComponent implements OnInit {
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }
@@ -151,7 +144,6 @@ export class BannerImagesComponent implements OnInit {
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }
@@ -168,7 +160,6 @@ export class BannerImagesComponent implements OnInit {
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
         });
   }
@@ -186,22 +177,16 @@ export class BannerImagesComponent implements OnInit {
   deleteBanner(id) {
     this.isLoading = true;
     let url = this.baseService.bannerURL
-    this.dataService.deleteData(url, id, this.token)
-      .subscribe(
-        (data) => {
-          console.log('bannerList', data);
-          this.getBannerList();
-          return true;
-        },
-        error => {
-          this.isLoading = false;
-          console.log('errorData', error);
-          return true;
-        }
-      )
+    this.dataService.deleteData(url, id, this.token).subscribe(
+    (data) => {
+      this.getBannerList();
+      return true;
+    },
+    error => {
+      this.isLoading = false;
+      return true;
+    })
   }
-
-
 }
 
 // View Banner Dialog
@@ -212,9 +197,7 @@ export class BannerImagesComponent implements OnInit {
 export class ViewBannerComponent {
   constructor(
     public dialogRef: MatDialogRef<ViewBannerComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: any) {
-    console.log(data);
-  }
+    @Inject(MAT_DIALOG_DATA) public data: any) { }
   onNoClick(): void {
     this.dialogRef.close();
   }
@@ -235,11 +218,9 @@ export class AddBannerComponent {
     public snackBar: MatSnackBar,
     public dialogRef1: MatDialogRef<AddBannerComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) {
-      console.log(data);
   }
 
   setImage(event: any) {
-
     const file = event.target.files[0];
     this.imageSize.sizeImage(file, (size) => {
       if (size.width == 800 && size.height == 533) {
@@ -251,6 +232,7 @@ export class AddBannerComponent {
       }
     });
   }
+
   uploadImage(file, callback) {
     this.isLoading = true;
     this.uploadService.uploadfile(file).subscribe((data: any) => {
@@ -259,7 +241,6 @@ export class AddBannerComponent {
       callback(imageURL);
     }, (err) => {
       this.isLoading = false;
-      console.log("errror", err);
     });
   }
 

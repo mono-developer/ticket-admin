@@ -37,20 +37,17 @@ export class ViewBullentinComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('letterList', data);
           this.letterList = data;
           this.dataSource = new MatTableDataSource(this.letterList);
           return true;
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
 
   edit(item: any) {
-    console.log("senddata",item);
     this.router.navigate(['dashboard/bullentin/add-bullentin', { item: item._id }]);
   }
 
@@ -59,17 +56,14 @@ export class ViewBullentinComponent implements OnInit {
     this.dataService.deleteNoTokenData(this.url, item._id)
       .subscribe(
         (data) => {
-          console.log('letterList', data);
           this.isLoading = false;
           this.getNewsLetterList();
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
-        }
-      )
+        })
   }
 
 }

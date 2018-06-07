@@ -31,17 +31,16 @@ export class AddCMSComponent implements OnInit {
   ) {
 
     this.cmsData = { title: '', description: '', state: '' };
-
-    this.stateList = [ { id: 0, name: 'Active', state: true},
-                       { id: 1, name: 'Inative', state: false}
-                    ];
+    this.stateList = [
+      { id: 0, name: 'Active', state: true},
+      { id: 1, name: 'Inative', state: false}
+    ];
   }
 
   ngOnInit() {
     this.id = this.route.snapshot.paramMap.get('item');
     this.url = this.baseService.contentURL;
     this.token = sessionStorage.getItem('token');
-    console.log('item', this.id);
     if(this.id){
       this.getcmsData(this.id);
     }else{
@@ -55,19 +54,16 @@ export class AddCMSComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('cmsData', data);
           this.cmsData = data;
           return true;
         },
         err => {
           this.isLoading = false;
-          console.log('errorData', err);
           return true;
         });
   }
 
   submit() {
-    console.log( this.cmsData);
     this.id ? this.putcmsData() : this.postcmsData();
   }
 
@@ -76,16 +72,13 @@ export class AddCMSComponent implements OnInit {
     this.dataService.postData(this.url, this.token, this.cmsData)
       .subscribe(
         (data) => {
-          console.log('cmsData', data);
           this.router.navigate(['dashboard/content-manage/view-cms']);
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
-        }
-      )
+        })
   }
 
   putcmsData() {
@@ -94,16 +87,13 @@ export class AddCMSComponent implements OnInit {
       .subscribe(
         (data) => {
           this.isLoading = false;
-          console.log('cmsData', data);
           this.router.navigate(['dashboard/content-manage/view-cms']);
           return true;
         },
         error => {
           this.isLoading = false;
-          console.log('errorData', error);
           return true;
-        }
-      )
+        })
   }
 
 }
