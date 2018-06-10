@@ -63,6 +63,8 @@ export class SidenavService {
     // menu.addSubItem(newsletters, 'Add Newslatters', '/dashboard/bullentin/add-bullentin', 2);
 
     let banner_images = menu.addItem('Background & Banner', 'burst_mode', '/dashboard/banner-images', 11, ['0']);
+
+    let event_list = menu.addItem('Event List', 'map', '/dashboard/event-manage/view-event', 12, ['2']);
   }
 
 

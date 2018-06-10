@@ -1,4 +1,5 @@
-<ms-page-header [title]="page_title"></ms-page-header>
+<ms-page-header [title]="'View Pages'" [button]="'Add Pages'" (eventClick)="addCMS()"></ms-page-header>
+
 <div class="cms-container mat-elevation-z8">
   <mat-table #table [dataSource]="dataSource">
 
@@ -25,7 +26,6 @@
       <mat-cell *matCellDef="let element">
         <button mat-button (click)="edit(element)"><mat-icon>border_color</mat-icon></button>
         <button mat-button (click)="delete(element)"><mat-icon>delete</mat-icon></button>
-        <button mat-button (click)="newCMS()"><mat-icon>add_circle_outline</mat-icon></button>
         <button mat-button (click)="goSubpage(element)"><mat-icon>call_made</mat-icon></button>
 
       </mat-cell>

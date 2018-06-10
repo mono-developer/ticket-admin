@@ -16,7 +16,6 @@ import * as _ from 'lodash';
   animations: [ routeAnimation ]
 })
 export class AddSaleUsersComponent implements OnInit {
-  page_title: string = 'Add user of the sales team'
   id: string;
   url: string;
   token: string;
@@ -43,6 +42,10 @@ export class AddSaleUsersComponent implements OnInit {
     if (this.id) {
       this.getSalesUserData(this.id);
     }
+  }
+
+  viewUsers() {
+    this.router.navigate(['dashboard/sales-point/view-sale-users']);
   }
 
   getSalesUserData(id) {

@@ -13,7 +13,7 @@ import { DataService } from "../../../../provide/data-service";
 })
 export class ViewEventComponent implements OnInit {
 
-  page_title: string = 'Event Management';
+  userInfo: any;
   url: string;
   token: string;
   eventList: any;
@@ -31,6 +31,8 @@ export class ViewEventComponent implements OnInit {
   ngOnInit() {
     this.url = this.baseService.eventURL;
     this.token = sessionStorage.getItem('token');
+    this.userInfo = JSON.parse(sessionStorage.getItem('userInfo'));
+    console.log('userInfor', this.userInfo);
     this.getEventList();
   }
 
@@ -70,6 +72,12 @@ export class ViewEventComponent implements OnInit {
     dialogRef1.afterClosed().subscribe(result => {
       result ? this.deleteEvent(item._id) : '';
     });
+  }
+
+  bookEvent(item) {
+    console.log(item, this.userInfo);
+    // this.router.navigate(['booking', { id: eventData._id, customName: result.username, customEmail: result.userEmail }]);
+    this.router.navigate(['./dashboard/event-manage/book-event', { id: item._id, customName: this.userInfo.name, customEmail: this.userInfo.email}]);
   }
 
   deleteEvent(id) {

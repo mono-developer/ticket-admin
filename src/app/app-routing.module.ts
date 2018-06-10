@@ -10,6 +10,7 @@ import { AddCategoryComponent } from './pages/event-categories/add-category/add-
 import { ViewCategoryComponent } from './pages/event-categories/view-category/view-category.component';
 import { ViewEventComponent } from './pages/event-manage/view-event/view-event.component';
 import { AddEventComponent } from './pages/event-manage/add-event/add-event.component';
+import { BookEventComponent } from './pages/event-manage/book-event/book-event.component';
 import { AddOrganizorComponent } from './pages/organizor-manage/add-organizor/add-organizor.component';
 import { ViewOrganizorComponent } from './pages/organizor-manage/view-organizor/view-organizor.component';
 import { AddCouponComponent } from './pages/coupon-manage/add-coupon/add-coupon.component';
@@ -44,6 +45,7 @@ const routes: Routes = [
         { path: 'event-categories/add-category', component: AddCategoryComponent },
         { path: 'event-manage/view-event', component: ViewEventComponent },
         { path: 'event-manage/add-event', component: AddEventComponent },
+        { path: 'event-manage/book-event', component: BookEventComponent },
         { path: 'users-manage', component: UsersManageComponent },
         { path: 'organizor-manage/view-organizor', component: ViewOrganizorComponent },
         { path: 'organizor-manage/add-organizor', component: AddOrganizorComponent },

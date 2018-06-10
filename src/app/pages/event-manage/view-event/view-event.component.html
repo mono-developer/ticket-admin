@@ -1,4 +1,5 @@
-<ms-page-header [title]="page_title" [button]="'Add Event'" (addEventPage)="newEvent()"></ms-page-header>
+<ms-page-header *ngIf="userInfo.access != '2'" [title]="'Event Management'" [button]="'Add Event'" (eventClick)="newEvent()"></ms-page-header>
+
 
 <div class="cms-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource">
@@ -37,10 +38,10 @@
       <ng-container matColumnDef="symbol">
         <mat-header-cell *matHeaderCellDef> Action </mat-header-cell>
         <mat-cell *matCellDef="let element">
-          <button mat-button (click)="edit(element)"><mat-icon>border_color</mat-icon></button>
-          <button mat-button (click)="duplicate(element)"><mat-icon>control_point_duplicate</mat-icon></button>
-          <button mat-button (click)="delete(element)"><mat-icon>delete</mat-icon></button>
-          <button mat-button><mat-icon>date_range</mat-icon></button>
+          <button *ngIf="userInfo.access != '2'" mat-button (click)="edit(element)"><mat-icon>border_color</mat-icon></button>
+          <button *ngIf="userInfo.access != '2'" mat-button (click)="duplicate(element)"><mat-icon>control_point_duplicate</mat-icon></button>
+          <button *ngIf="userInfo.access != '2'" mat-button (click)="delete(element)"><mat-icon>delete</mat-icon></button>
+          <button  *ngIf="userInfo.access == '2'" mat-button (click)="bookEvent(element)"><mat-icon>date_range</mat-icon></button>
 
         </mat-cell>
       </ng-container>

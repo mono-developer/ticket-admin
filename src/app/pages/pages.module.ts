@@ -38,6 +38,7 @@ import { AddCategoryComponent } from './event-categories/add-category/add-catego
 import { ViewCategoryComponent } from './event-categories/view-category/view-category.component';
 import { ViewEventComponent } from './event-manage/view-event/view-event.component';
 import { AddEventComponent, EventDatailsDialogComponent, SeatDatailsDialogComponent } from './event-manage/add-event/add-event.component';
+import { BookEventComponent ,LocationDialogComponent, TimeOverComponent} from './event-manage/book-event/book-event.component';
 import { AddOrganizorComponent } from './organizor-manage/add-organizor/add-organizor.component';
 import { ViewOrganizorComponent } from './organizor-manage/view-organizor/view-organizor.component';
 import { AddCouponComponent } from './coupon-manage/add-coupon/add-coupon.component';
@@ -98,6 +99,8 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     UserAccessDialogComponent,
     EventDatailsDialogComponent,
     SeatDatailsDialogComponent,
+    LocationDialogComponent,
+    TimeOverComponent,
     AddBannerComponent,
     ViewBannerComponent,
     LoginErrorDialog,
@@ -115,6 +118,9 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     ViewCategoryComponent,
     ViewEventComponent,
     AddEventComponent,
+    BookEventComponent,
+    LocationDialogComponent,
+    TimeOverComponent,
     AddOrganizorComponent,
     ViewOrganizorComponent,
     AddCouponComponent,

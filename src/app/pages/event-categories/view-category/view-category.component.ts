@@ -33,6 +33,10 @@ export class ViewCategoryComponent implements OnInit {
     this.getCategoryList();
   }
 
+  addCategory() {
+    this.router.navigate(['dashboard/event-categories/add-category']);
+  }
+
   getCategoryList() {
     this.isLoading = true;
     this.dataService.getNoTokenData(this.url)

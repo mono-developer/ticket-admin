@@ -1,4 +1,4 @@
-  <ms-page-header [title]="page_title"></ms-page-header>
+  <ms-page-header [title]="page_title" [button]="'Add User'" (eventClick)="addUsers()"></ms-page-header>
   <div class="sales-container mat-elevation-z8">
     <mat-table #table [dataSource]="dataSource">
 

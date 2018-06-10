@@ -16,7 +16,6 @@ import * as _ from 'lodash';
 })
 export class AddCategoryComponent implements OnInit {
 
-  page_title: string = "Add Category";
   id: string;
   url: string;
   token: string;
@@ -58,6 +57,10 @@ export class AddCategoryComponent implements OnInit {
     } else {
       this.categoryData = { };
     }
+  }
+
+  viewCategory() {
+    this.router.navigate(['dashboard/event-categories/view-category']);
   }
 
   getCategoryData(id) {

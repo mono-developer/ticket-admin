@@ -34,6 +34,10 @@ export class ViewSaleUsersComponent implements OnInit {
     this.getSalesUserList();
   }
 
+  addUsers() {
+    this.router.navigate(['dashboard/sales-point/add-sale-users']);
+  }
+
   getSalesUserList() {
     this.isLoading = true;
     this.dataService.getData(this.url, this.token)

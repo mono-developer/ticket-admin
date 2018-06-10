@@ -34,6 +34,10 @@ export class ViewCMSComponent implements OnInit {
     this.getcmsList();
   }
 
+  addCMS() {
+    this.router.navigate(['dashboard/content-manage/add-cms']);
+  }
+
   getcmsList(){
     this.isLoading = true;
     this.dataService.getData(this.url, this.token)
@@ -76,10 +80,6 @@ export class ViewCMSComponent implements OnInit {
           this.isLoading = false;
           return true;
         });
-  }
-
-  newCMS() {
-    this.router.navigate(['dashboard/content-manage/add-cms']);
   }
 
   goSubpage(item) {

@@ -1,0 +1,344 @@
+<div class="booking-container">
+  <mat-progress-bar mode="determinate" [value]="progressValue"></mat-progress-bar>
+
+  <!-- <div >Timer: {{minute}}: {{second}}s</div> -->
+  <div class="timer">Timer: <span>0{{minute}}</span>: <span>{{second}}</span> s</div>
+
+    <mat-horizontal-stepper  #stepper="matHorizontalStepper">
+
+      <!-- Step 1 -->
+      <mat-step>
+        <form>
+          <ng-template matStepLabel>Select Date</ng-template>
+          <div fxLayout="column" style="padding: 16px;" [hidden]="!eventData">
+            <div class="description">
+              <div class="field date_field">
+                <img [src]="eventData.event_img" alt="">
+                <p><span>Organizer Name: </span> {{organizerData.name}}</p>
+              </div>
+              <div class="about date_about">
+                <h2>{{eventData.event_name}}</h2>
+                <p class="category">Category: {{categoryData.name}}</p>
+                <mat-form-field>
+                  <mat-select placeholder="Select Date" #t (change)="onChange(t.value)" name="s_Date" required>
+                    <mat-option *ngFor="let item of eventData.event_date" [value]="item">
+                      {{item.time.hour}}:{{item.time.minute == 0 ? '00' : item.time.minute}} {{item.time.meriden}}, {{item.date | date: 'dd/MM/yyyy'}}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+                <div class="location">
+                  <img  src="assets/img/icons/location.png" alt="" (mouseenter)="openLocationDialog(eventData)">
+                  <button mat-button (click)="openLocationDialog(eventData)" style="padding: 0">{{eventData.place}}</button>
+                </div>
+              </div>
+            </div>
+
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Location</th>
+                  <th>Ticket Price</th>
+                  <th>Quantity Ticket</th>
+                  <th>Charge Service</th>
+                  <th>Discount Price</th>
+                  <!-- <th>Payment Type</th> -->
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of eventData.ticket_data">
+                  <td>{{item.location}}</td>
+                  <td>{{item.ticket_price}}</td>
+                  <td>{{item.tickets_number}}</td>
+                  <td>{{item.quantity_service}}</td>
+                  <td>{{item.discount_price}}</td>
+                  <!-- <td>{{item.sale_stime.hour}}:{{item.sale_stime.minute == 0 ? '00': item.sale_stime.minute}} {{item.sale_stime.meriden}} {{item.sale_sdate | date: 'dd/MM/yyyy'}}
+                    - {{item.sale_etime.hour}}:{{item.sale_etime.minute == 0 ? '00': item.sale_etime.minute}} {{item.sale_etime.meriden}} {{item.sale_edate | date: 'dd/MM/yyyy'}}
+                  </td> -->
+                  <!-- <td>{{item.payment_type}}</td> -->
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </form>
+        <div fxLayout="row" fxLayoutAlign="end center" class="page__control">
+          <button color="primary" mat-raised-button style="margin-left: 8px;" [disabled]="!isStep1Table" matStepperNext type="button">Next</button>
+        </div>
+      </mat-step>
+
+      <!-- Step 2 -->
+      <mat-step>
+          <ng-template matStepLabel>Select Seat and Ticket</ng-template>
+          <div class="description">
+            <div class="about date_about">
+              <h2>{{eventData.event_name}}</h2>
+              <table class="data__table">
+                <tbody>
+                  <tr>
+                    <td>Organizer:</td>
+                    <td>{{organizerData.name}}</td>
+                  </tr>
+                </tbody>
+                <!-- <tbody>
+                  <tr>
+                    <td>Date:</td>
+                    <td>{{event_date.time.hour}}:{{event_date.time.minute == 0 ? '00' : event_date.time.minute}} {{event_date.time.meriden}}, {{event_date.date | date: 'dd/MM/yyyy'}}</td>
+                  </tr>
+                </tbody> -->
+                <tbody>
+                  <tr>
+                    <td>Place:</td>
+                    <td>{{eventData.place}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="field date_field">
+              <img [src]="eventData.event_img" alt="">
+            </div>
+          </div>
+
+          <div class="description">
+            <div class="field location_field">
+              <img [src]="eventData.seat_img" alt="">
+            </div>
+            <div class="about location_about">
+              <mat-form-field>
+                <mat-select placeholder="Select your Seat" [(ngModel)]="s__Location" #b (change)="onChangedLocation(b.value)">
+                  <mat-option *ngFor="let item of eventData.ticket_data" [value]="item.location">
+                    {{ item.location }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <div class="ticket_number" *ngIf="isStep2Table">
+                <button mat-raised-button color="primary" (click)="minQuantity()" [disabled]="s__quantity == 1">-</button>
+                <div class="counter">{{s__quantity}}</div>
+                <button mat-raised-button color="primary" (click)="addQuantity()" [disabled]="s__quantity == 8">+</button>
+              </div>
+
+              <mat-form-field *ngIf="isStep2Table">
+                <mat-select placeholder="Favorite Ticket" [(ngModel)]="s__ballot" (change)="changedFav(s__ballot)">
+                  <mat-option *ngFor="let item of ballotList" [value]="item.value">
+                    {{ item.title }}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+          </div>
+
+          <table class="table" *ngIf="isStep2Table">
+
+            <thead>
+              <tr>
+                <th>Location</th>
+                <th>Ticket Price</th>
+                <th>Quantity Ticket</th>
+                <th>Charge Service</th>
+                <th>Discount Price</th>
+                <th *ngIf="this.ballotValue">Additional Cost</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>{{ticket.location}}</td>
+                <td>{{ticket.ticket_price}}</td>
+                <td>{{s__quantity}}</td>
+                <td >{{ticket.quantity_service}}</td>
+                <td >{{ticket.discount_price}}</td>
+                <!-- <td>{{ticket.sale_stime.hour}}:{{ticket.sale_stime.minute == 0 ? '00' : ticket.sale_stime.minute}} {{ticket.sale_stime.meriden}} {{ticket.sale_sdate | date: 'dd/MM/yyyy'}}
+                  - {{ticket.sale_etime.hour}}:{{ticket.sale_etime.minute == 0 ? '00' : ticket.sale_etime.minute}} {{ticket.sale_etime.meriden}} {{ticket.sale_edate | date: 'dd/MM/yyyy'}}
+                </td> -->
+                <td *ngIf="this.ballotValue">15000</td>
+              </tr>
+            </tbody>
+          </table>
+          <div fxLayout="row" fxLayoutAlign="end center" class="page__control">
+            <button mat-raised-button matStepperPrevious color="primary">Previous</button>
+            <button color="primary" mat-button mat-raised-button style="margin-left: 8px;" [disabled]="!isStep2Table || !s__quantity" (click)="getBookingInfo()" matStepperNext type="button">Next</button>
+          </div>
+      </mat-step>
+
+      <!-- Step 3 -->
+      <mat-step>
+        <ng-template matStepLabel>Booking Information</ng-template>
+
+          <div class="event_details">
+            <img [src]="eventData.event_img" alt="">
+            <table>
+              <h2>Event Details</h2>
+              <tbody>
+                <tr>
+                  <td>Organizer:</td>
+                  <td>{{organizerData.name}}</td>
+                </tr>
+                <tr>
+                  <td>Date:</td>
+                  <td>{{event_date.time.hour}}:{{event_date.time.minute == 0 ? '00' : event_date.time.minute}} {{event_date.time.meriden}}, {{event_date.date | date: 'dd/MM/yyyy'}}</td>
+                </tr>
+                <tr>
+                  <td>Place:</td>
+                  <td>{{eventData.place}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <h2>Booking Information</h2>
+          <div class="ticket_details">
+            <!-- <img [src]="eventData.ticket_img" alt="" > -->
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Ticket Category</th>
+                  <th>Ticket Quantity</th>
+                  <th>Ticket Price</th>
+                  <th>Total Price</th>
+                  <th *ngIf="this.ballotValue">Additional Price</th>
+                  <th *ngIf="bookingInfo.discount_price">Discount Price</th>
+                  <th>Charge Service</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{bookingInfo.location}}</td>
+                  <td>{{bookingInfo.quantity}}</td>
+                  <td>{{bookingInfo.price}}</td>
+                  <td>{{bookingInfo.total_price}}</td>
+                  <td *ngIf="this.ballotValue">{{bookingInfo.add_price}}</td>
+                  <th *ngIf="bookingInfo.discount_price">{{bookingInfo.discount_price}}</th>
+                  <td>{{bookingInfo.charge_service}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div fxLayout="row" fxLayoutAlign="end center" class="page__control">
+            <button mat-raised-button matStepperPrevious color="primary">Previous</button>
+            <button color="primary" mat-button mat-raised-button style="margin-left: 8px;" matStepperNext type="button">Next</button>
+          </div>
+      </mat-step>
+
+      <!-- Step 4 -->
+      <mat-step>
+        <ng-template matStepLabel>PSE Payment</ng-template>
+        <div class="description">
+          <div class="about date_about">
+            <h2>{{eventData.event_name}}</h2>
+            <table class="data__table">
+              <tbody>
+                <tr>
+                  <td>Organizer:</td>
+                  <td>{{organizerData.name}}</td>
+                </tr>
+                <!-- <tr>
+                  <td>Date:</td>
+                  <td>{{event_date.time.hour}}:{{event_date.time.minute == 0 ? '00' : event_date.time.minute}} {{event_date.time.meriden}}, {{event_date.date | date: 'dd/MM/yyyy'}}</td>
+                </tr> -->
+                <tr>
+                  <td>Meeting Place:</td>
+                  <td>{{eventData.place}}</td>
+                </tr>
+                <tr>
+                  <td>Customer Name:</td>
+                  <td>{{customerInfo.name}}</td>
+                </tr>
+                <tr>
+                  <td>Customer Email:</td>
+                  <td>{{customerInfo.email}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="field date_field">
+            <img [src]="eventData.event_img" alt="">
+          </div>
+        </div>
+        <div class="coupon">
+
+          <table class="total_value">
+            <thead>
+              <tr>
+                <th>Details</th>
+                <th>Total</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Ticket Price</td>
+                <td>{{bookingInfo.price}}</td>
+              </tr>
+            </tbody>
+            <tbody>              
+              <tr>
+                <td>Ticket Quantity</td>
+                <td>{{bookingInfo.quantity}}</td>
+              </tr>
+            </tbody>
+            <tbody>              
+              <tr>
+                <td>Total Price</td>
+                <td>{{bookingInfo.total_price}}</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>Addition Price</td>
+                <td>{{bookingInfo.add_price}}</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>Charge Servie</td>
+                <td>{{bookingInfo.charge_service}}</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>Discount Price</td>
+                <td>{{bookingInfo.discount_price}}</td>
+              </tr>
+            </tbody>
+            <tbody class="total_sum">
+              <tr>
+                <td>Sum</td>
+                <td>{{bookingInfo.sum}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="discount-coupon">
+            <h3>DISCOUNT COUPON</h3>
+            <div class="apply">
+              <input type="number" class="coupon_input" placeholder="1234">
+              <button mat-button>Apply Coupon</button>
+            </div>
+          </div>
+
+        </div>
+
+        <form #form="ngForm" class="valid_form">
+          <div fxLayout="column" style="padding: 16px;">
+            <mat-form-field>
+              <input matInput name="id_number" type="text" placeholder="Identification number / required" [(ngModel)]="pseInfo.id_number" required>
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput name="id_type" type="text" required [(ngModel)]="pseInfo.id_type" placeholder="ID Type">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput name="complete_name" type="text" required [(ngModel)]="pseInfo.complete_name" placeholder="Complete Name">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput name="address" type="text" required [(ngModel)]="pseInfo.address" placeholder="Address">
+            </mat-form-field>
+            <mat-form-field>
+              <input matInput name="phone" type="tel" required [(ngModel)]="pseInfo.phone" placeholder="Phone">
+            </mat-form-field>
+          </div>
+        </form>
+
+        <button mat-button class="pse__btn" (click)="getPSE()"></button>
+      </mat-step>
+    </mat-horizontal-stepper>
+
+
+
+</div>

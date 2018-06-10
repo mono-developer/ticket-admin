@@ -15,7 +15,6 @@ import { DataService } from "../../../../provide/data-service";
 })
 export class AddCMSComponent implements OnInit {
 
-  page_title: string = 'Add New Page';
   id: string;
   url: string;
   token: string;
@@ -46,6 +45,10 @@ export class AddCMSComponent implements OnInit {
     }else{
       this.cmsData = { title: '', description: '', state: '' };
     }
+  }
+
+  viewPage() {
+    this.router.navigate(['dashboard/content-manage/view-cms']);
   }
 
   getcmsData(id) {

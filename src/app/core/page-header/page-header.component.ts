@@ -14,15 +14,16 @@ export class PageHeaderComponent implements OnInit {
 
   @Input() title: string ='';
   @Input() button: string ='';
-  @Output() addEventPage = new EventEmitter<any>();
+  @Output() eventClick = new EventEmitter<any>();
 
   constructor() { }
 
   ngOnInit() {
+    // console.log('button', this.button);
   }
 
   onClickEvent() {
-    this.addEventPage.emit();
+    this.eventClick.emit();
   }
 
 }

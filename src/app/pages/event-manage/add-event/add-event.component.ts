@@ -129,6 +129,10 @@ export class AddEventComponent implements OnInit {
     });
   }
 
+  viewEvent() {
+    this.router.navigate(['dashboard/event-manage/view-event']);
+  }
+
   getEventData(id) {
     this.dataService.getNoTokenData(this.url + "/" + id)
       .subscribe(
