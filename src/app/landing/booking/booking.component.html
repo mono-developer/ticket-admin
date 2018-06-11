@@ -268,13 +268,13 @@
                 <td>{{bookingInfo.price}}</td>
               </tr>
             </tbody>
-            <tbody>              
+            <tbody>
               <tr>
                 <td>Ticket Quantity</td>
                 <td>{{bookingInfo.quantity}}</td>
               </tr>
             </tbody>
-            <tbody>              
+            <tbody>
               <tr>
                 <td>Total Price</td>
                 <td>{{bookingInfo.total_price}}</td>
@@ -334,8 +334,11 @@
             </mat-form-field>
           </div>
         </form>
+        <div class="submit_btns">
+          <button mat-button class="pse__btn" (click)="getPSE()"></button>
+          <button mat-button class="cash__btn" (click)="getPSE()"></button>
+        </div>
 
-        <button mat-button class="pse__btn" (click)="getPSE()"></button>
       </mat-step>
     </mat-horizontal-stepper>
 
