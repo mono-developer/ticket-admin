@@ -20,6 +20,7 @@ import { AccessService } from '../provide/access.service';
 import { UploadFileService } from '../provide/upload-file.service';
 import { AgmCoreModule } from '@agm/core';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -43,12 +44,12 @@ import { AgmCoreModule } from '@agm/core';
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyCA4T-nbBt9fN_rO6Au3EB7XTil_P-cqVI",
       libraries: ["places"]
-    })
+    }),
   ],
   providers: [
     MatIconRegistry,
     AccessService,
-    UploadFileService,
+    UploadFileService
   ],
   bootstrap: [AppComponent]
 })
