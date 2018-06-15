@@ -191,23 +191,23 @@
               <thead>
                 <tr>
                   <th>Ticket Category</th>
-                  <th>Ticket Quantity</th>
                   <th>Ticket Price</th>
+                  <th>Quantity</th>
+                  <th>Charge Service</th>
+                  <th *ngIf="bookingInfo.discount_price">Discount Price</th>
                   <th>Total Price</th>
                   <th *ngIf="this.ballotValue">Additional Price</th>
-                  <th *ngIf="bookingInfo.discount_price">Discount Price</th>
-                  <th>Charge Service</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>{{bookingInfo.location}}</td>
-                  <td>{{bookingInfo.quantity}}</td>
                   <td>{{bookingInfo.price}}</td>
+                  <td>{{bookingInfo.quantity}}</td>
+                  <td>{{bookingInfo.charge_service}}</td>
+                  <th *ngIf="bookingInfo.discount_price">{{bookingInfo.discount_price}}</th>
                   <td>{{bookingInfo.total_price}}</td>
                   <td *ngIf="this.ballotValue">{{bookingInfo.add_price}}</td>
-                  <th *ngIf="bookingInfo.discount_price">{{bookingInfo.discount_price}}</th>
-                  <td>{{bookingInfo.charge_service}}</td>
                 </tr>
               </tbody>
             </table>
@@ -276,18 +276,6 @@
             </tbody>
             <tbody>
               <tr>
-                <td>Total Price</td>
-                <td>{{bookingInfo.total_price}}</td>
-              </tr>
-            </tbody>
-            <tbody>
-              <tr>
-                <td>Addition Price</td>
-                <td>{{bookingInfo.add_price}}</td>
-              </tr>
-            </tbody>
-            <tbody>
-              <tr>
                 <td>Charge Servie</td>
                 <td>{{bookingInfo.charge_service}}</td>
               </tr>
@@ -296,6 +284,18 @@
               <tr>
                 <td>Discount Price</td>
                 <td>{{bookingInfo.discount_price}}</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>Total Price</td>
+                <td>{{bookingInfo.total_price}}</td>
+              </tr>
+            </tbody>
+            <tbody>
+              <tr>
+                <td>Addition Price</td>
+                <td>{{bookingInfo.add_price}}</td>
               </tr>
             </tbody>
             <tbody class="total_sum">

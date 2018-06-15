@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit, Inject, NgZone, ElementRef, ViewChild
 import { Router, ActivatedRoute } from "@angular/router";
 import { DatePipe } from '@angular/common';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
-import { } from 'googlemaps';
+// import { } from 'googlemaps';
 import { MapsAPILoader } from '@agm/core';
 import { BaseService } from "../../../../provide/base-service";
 import { DataService } from "../../../../provide/data-service";
@@ -164,6 +164,7 @@ export class BookEventComponent implements OnInit {
 
   getBookingInfo() {
     const add_price = this.ballotValue? 15000: 0;
+    const total_price = Number(this.ticket.ticket_price) + Number(this.ticket.quantity_service) - Number(this.ticket.discount_price);
     this.bookingInfo = {
       location: this.ticket.location,
       quantity: this.s__quantity,
@@ -171,10 +172,8 @@ export class BookEventComponent implements OnInit {
       add_price: add_price,
       charge_service: this.ticket.quantity_service,
       discount_price: this.ticket.discount_price,
-      total_price: this.s__quantity * Number(this.ticket.ticket_price),
-      sum: this.s__quantity * Number(this.ticket.ticket_price) +
-            Number(this.ticket.quantity_service) +
-            add_price - Number(this.ticket.discount_price)
+      total_price: total_price * this.s__quantity,
+      sum: this.s__quantity * total_price + add_price
     }
   }
 
