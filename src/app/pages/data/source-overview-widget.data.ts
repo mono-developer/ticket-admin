@@ -212,3 +212,63 @@ export const sourceOverviewWidgetData = [
     }
   ],
 ];
+
+export const seatDetailData = [
+
+  {
+    discount_price: "",
+    discount_type: "",
+    load_amount: "",
+    location: "ALFOMBRA",
+    payment_type: "",
+    quantity_service: "",
+    sale_edate: "",
+    sale_etime: { format: 12, meriden: "PM", minute: 0, hour: 0 },
+    sale_sdate: "",
+    sale_stime: { format: 12, meriden: "PM", minute: 30, hour: 6 },
+    ticket_price: "550",
+    tickets_number: "60"
+  },
+  {
+    discount_price: "",
+    discount_type: "",
+    load_amount: "",
+    location: "PALCO DIAMANTE",
+    payment_type: "",
+    quantity_service: "",
+    sale_edate: "",
+    sale_etime: { format: 12, meriden: "PM", minute: 0, hour: 0 },
+    sale_sdate: "",
+    sale_stime: { format: 12, meriden: "PM", minute: 30, hour: 6 },
+    ticket_price: "450",
+    tickets_number: "60"
+  },
+  {
+    discount_price: "",
+    discount_type: "",
+    load_amount: "",
+    location: "PALACO ORO",
+    payment_type: "",
+    quantity_service: "",
+    sale_edate: "",
+    sale_etime: { format: 12, meriden: "PM", minute: 0, hour: 0 },
+    sale_sdate: "",
+    sale_stime: { format: 12, meriden: "PM", minute: 30, hour: 6 },
+    ticket_price: "350",
+    tickets_number: "60"
+  }, {
+    discount_price: "",
+    discount_type: "",
+    load_amount: "",
+    location: "PALCO PLATA",
+    payment_type: "",
+    quantity_service: "",
+    sale_edate: "",
+    sale_etime: { format: 12, meriden: "PM", minute: 0, hour: 0 },
+    sale_sdate: "",
+    sale_stime: { format: 12, meriden: "PM", minute: 30, hour: 6 },
+    ticket_price: "650",
+    tickets_number: "60"
+  },
+
+]

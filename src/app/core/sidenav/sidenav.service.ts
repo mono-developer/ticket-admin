@@ -33,6 +33,7 @@ export class SidenavService {
     let team_manage = menu.addItem('Point of Sales', 'group', null, 3, ['0']);
     menu.addSubItem(team_manage, 'View sales user', '/dashboard/sales-point/view-sale-users', 1);
     menu.addSubItem(team_manage, 'Add sales user', '/dashboard/sales-point/add-sale-users', 2);
+    menu.addSubItem(team_manage, 'Stage Map', '/dashboard/sales-point/stage-map', 3);
 
     let event_category = menu.addItem('Event Categories', 'event_note', null, 4, ['0', '1']);
     menu.addSubItem(event_category, 'View Categories', '/dashboard/event-categories/view-category', 1);

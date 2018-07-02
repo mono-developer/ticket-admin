@@ -5,8 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { MatDialog, MatDialogRef, MAT_DIALOG_DATA, MatTableDataSource} from '@angular/material';
 import { AlertsService } from 'angular-alert-module';
 import { UploadFileService } from '../../../../provide/upload-file.service';
-import { select } from 'd3';
-import { Observable } from 'rxjs';
+import { seatDetailData } from '../../data/source-overview-widget.data';
 
 import { BaseService } from "../../../../provide/base-service";
 import { DataService } from "../../../../provide/data-service";
@@ -46,6 +45,8 @@ export class AddEventComponent implements OnInit {
   categoryList: any;
   organizorList: any;
   reservationList: any;
+  res_status: boolean = false;
+  seatDetailData: any;
 
   dataSource1: any;
   dataSource2: any;
@@ -85,6 +86,8 @@ export class AddEventComponent implements OnInit {
       { id: 0, name: 'Yes', state: true },
       { id: 1, name: 'No', state: false }
     ];
+
+    this.seatDetailData = seatDetailData;
 
     this.eventData.s_time = { hour: 0, minute: 0, meriden: 'PM', format: 12 };
     this.eventData.e_time = { hour: 0, minute: 0, meriden: 'PM', format: 12 };
@@ -141,6 +144,7 @@ export class AddEventComponent implements OnInit {
           this.eventData = data;
           this.dataSource1 = new MatTableDataSource(data.event_date);
           this.dataSource2 = new MatTableDataSource(data.ticket_data);
+          console.log(data.ticket_data);
           return true;
         },
         err => {
@@ -203,6 +207,13 @@ export class AddEventComponent implements OnInit {
 
   addOrg() {
     this.router.navigate(['/dashboard/organizor-manage/add-organizor']);
+  }
+
+  stageMapState() {
+    this.res_status = !this.res_status;
+    if(this.res_status) {
+      this.dataSource2 = new MatTableDataSource(this.seatDetailData);
+    }
   }
 
   openEventDialog(): void {

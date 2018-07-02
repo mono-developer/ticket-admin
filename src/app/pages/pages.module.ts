@@ -33,6 +33,7 @@ import { ScrollbarModule } from '../core/scrollbar/scrollbar.module';
 import { AddCMSComponent } from './content-manage/add-cms/add-cms.component';
 import { ViewCMSComponent } from './content-manage/view-cms/view-cms.component';
 import { ViewSaleUsersComponent } from './sales-point/view-sale-users/view-sale-users.component';
+import { StageMapComponent } from './sales-point/stage-map/stage-map.component';
 import { AddSaleUsersComponent } from './sales-point/add-sale-users/add-sale-users.component';
 import { AddCategoryComponent } from './event-categories/add-category/add-category.component';
 import { ViewCategoryComponent } from './event-categories/view-category/view-category.component';
@@ -64,6 +65,7 @@ import { DataService } from "../../provide/data-service";
 import { UploadFileService } from '../../provide/upload-file.service';
 import { ImageSize } from "../../provide/image-size";
 import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
+import { InfoDialogComponent } from './sales-point/info-dialog/info-dialog.component';
 
 @NgModule({
   imports: [
@@ -107,13 +109,15 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     AccessErrorDialog,
     SignupErrorDialog,
     PasswordErrorDialog,
-    DeleteDialogComponent
+    DeleteDialogComponent,
+    InfoDialogComponent
   ],
   declarations: [
     AddCMSComponent,
     ViewCMSComponent,
     ViewSaleUsersComponent,
     AddSaleUsersComponent,
+    StageMapComponent,
     AddCategoryComponent,
     ViewCategoryComponent,
     ViewEventComponent,
@@ -146,6 +150,7 @@ import { DeleteDialogComponent } from './delete-dialog/delete-dialog.component';
     PasswordErrorDialog,
     ProfileComponent,
     DeleteDialogComponent,
+    InfoDialogComponent
   ],
   providers: [
     // D3ChartService,
