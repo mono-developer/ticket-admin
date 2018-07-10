@@ -111,7 +111,7 @@
           <div class="left-event">
             <p class="top-title">Stage Map</p>
             <p  *ngIf="!res_status" [ngStyle]="{'color': isSeatImg ? 'red' : 'green'}">(image size must be 524px * 365px)</p>
-            <mat-slide-toggle (change)="stageMapState()">Seat Reservation</mat-slide-toggle>
+            <mat-slide-toggle [(ngModel)]="res_status" name="res_status" (change)="stageMapState()">Seat Reservation</mat-slide-toggle>
           </div>
           <div class="right-event" *ngIf="!res_status">
             <label id="#bb" class="upload_img seat_img" *ngIf="!eventData.seat_img">

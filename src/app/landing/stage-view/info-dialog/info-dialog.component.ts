@@ -30,7 +30,18 @@ export class InfoDialogComponent implements OnInit {
     this.subtitle = this.data.section.subtitle;
     this.price = this.data.section.price;
     this.position = '(' + this.data.v_item + '-' + this.data.item + ')';
-   }
+  }
+
+  select(price): void {
+    let response = {
+      title: this.title,
+      v_position: this.data.v_item,
+      h_position: this.data.item,
+      price: price,
+      seleted: true
+    }
+    this.dialogRef.close(response);
+  }
 
   onNoClick(): void {
     this.dialogRef.close();

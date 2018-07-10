@@ -18,7 +18,7 @@ export class StageMapComponent implements OnInit {
       location: 'VIP 1',
       vertical: ["A", "B", "C", "D"],
       color: "#ca0404",
-      horizontal: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+      horizontal: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     },
     {
       title: 'PALCO DIAMANTE',
@@ -27,7 +27,7 @@ export class StageMapComponent implements OnInit {
       location: 'VIP 2',
       vertical: ["A", "B", "C", "D"],
       color: "#4e4eec",
-      horizontal: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+      horizontal: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     },
     {
       title: 'PALACO ORO',
@@ -36,7 +36,7 @@ export class StageMapComponent implements OnInit {
       location: 'General 1',
       vertical: ["A", "B", "C", "D"],
       color: "#02d202",
-      horizontal: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+      horizontal: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     },
     {
       title: 'PALCO PLATA',
@@ -45,7 +45,7 @@ export class StageMapComponent implements OnInit {
       location: 'General 2',
       vertical: ["A", "B", "C", "D"],
       color: "#d4d400",
-      horizontal: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+      horizontal: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15]
     }
   ];
 

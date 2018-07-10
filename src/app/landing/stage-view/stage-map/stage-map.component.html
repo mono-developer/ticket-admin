@@ -1,0 +1,21 @@
+
+  <div class="stage__div">
+    <div class="stand">
+
+    </div>
+    <div class="location">
+      <div class="location_div" *ngFor="let section of items; let ii = index;" [ngStyle]="{'background': section.color }">
+        <div class="secton" *ngFor="let v_item of section.vertical; let jj = index;">
+            <button
+              mat-raised-button
+              *ngFor="let item of section.horizontal; let kk = index;"
+              matTooltip="{{section.title}}, {{section.price[0]}}$, {{v_item}}-{{item.value}}"
+              aria-label="Button that displays a tooltip when focused or hovered over"
+              (click)="openInfo(section, section.price, v_item, item, jj, kk)"
+              [disabled]="getActiveState(ii, jj, kk)"
+              ></button>
+        </div>
+      </div>
+    </div>
+
+  </div>

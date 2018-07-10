@@ -21,6 +21,8 @@ import { SearchComponent } from './toolbar/search/search.component';
 import { SearchBarComponent } from './toolbar/search-bar/search-bar.component';
 import { ToolbarNotificationsComponent } from './toolbar/toolbar-notifications/toolbar-notifications.component';
 import { ToolbarUserButtonComponent } from './toolbar/toolbar-user-button/toolbar-user-button.component';
+import { StageMapComponent } from './stage-view/stage-map/stage-map.component';
+import { InfoDialogComponent } from './stage-view/info-dialog/info-dialog.component';
 
 import { LandingRoutingModule } from "./landing-routing.module";
 import { MaterialComponentsModule } from '../material-components.module';
@@ -68,7 +70,8 @@ import { AgmCoreModule } from '@agm/core';
     LocationDialogComponent,
     TimeOverComponent,
     CustomerLoginComponent,
-    CustomerProfilComponent
+    CustomerProfilComponent,
+    InfoDialogComponent
   ],
   declarations: [
     MainComponent,
@@ -84,7 +87,9 @@ import { AgmCoreModule } from '@agm/core';
     SearchComponent,
     SearchBarComponent,
     ToolbarNotificationsComponent,
-    ToolbarUserButtonComponent
+    ToolbarUserButtonComponent,
+    StageMapComponent,
+    InfoDialogComponent
   ],
   providers: [
     BaseService,

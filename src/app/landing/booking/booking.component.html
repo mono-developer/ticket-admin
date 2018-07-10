@@ -33,6 +33,9 @@
               </div>
             </div>
 
+
+
+
             <table class="table">
               <thead>
                 <tr>
@@ -98,7 +101,8 @@
             </div>
           </div>
 
-          <div class="description">
+
+          <div class="description" *ngIf="!eventData.res_status" >
             <div class="field location_field">
               <img [src]="eventData.seat_img" alt="">
             </div>
@@ -127,8 +131,31 @@
             </div>
           </div>
 
-          <table class="table" *ngIf="isStep2Table">
+          <div class="description" *ngIf="eventData.res_status">
+            <ms-stage-map (clickedItem)="onSelectTicket($event)"></ms-stage-map>
 
+            <table class="table" *ngIf="bookingTickets.length > 0">
+              <thead>
+                <tr>
+                  <th>No</th>
+                  <th>Position</th>
+                  <th>Location</th>
+                  <th>Ticket Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let item of bookingTickets; let i = index;">
+                  <td>{{i+1}}</td>
+                  <td>{{item.v_position}}-{{item.h_position}}</td>
+                  <td>{{item.title}}</td>
+                  <td>{{item.price}}</td>
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+
+          <table class="table" *ngIf="isStep2Table">
             <thead>
               <tr>
                 <th>Location</th>
@@ -153,10 +180,17 @@
               </tr>
             </tbody>
           </table>
-          <div fxLayout="row" fxLayoutAlign="end center" class="page__control">
+
+          <div fxLayout="row" fxLayoutAlign="end center" class="page__control" *ngIf="!eventData.res_status">
             <button mat-raised-button matStepperPrevious color="primary">Previous</button>
             <button color="primary" mat-button mat-raised-button style="margin-left: 8px;" [disabled]="!isStep2Table || !s__quantity" (click)="getBookingInfo()" matStepperNext type="button">Next</button>
           </div>
+
+          <div fxLayout="row" fxLayoutAlign="end center" class="page__control" *ngIf="eventData.res_status">
+            <button mat-raised-button matStepperPrevious color="primary">Previous</button>
+            <button color="primary" mat-button mat-raised-button style="margin-left: 8px;" [disabled]="bookingTickets.length == 0" (click)="getBookingInfo()" matStepperNext type="button">Next</button>
+          </div>
+
       </mat-step>
 
       <!-- Step 3 -->
@@ -185,6 +219,7 @@
           </div>
 
           <h2>Booking Information</h2>
+
           <div class="ticket_details">
             <!-- <img [src]="eventData.ticket_img" alt="" > -->
             <table class="table">

@@ -142,6 +142,7 @@ export class AddEventComponent implements OnInit {
         (data) => {
           this.isLoading = false;
           this.eventData = data;
+          this.res_status = this.eventData.res_status;
           this.dataSource1 = new MatTableDataSource(data.event_date);
           this.dataSource2 = new MatTableDataSource(data.ticket_data);
           console.log(data.ticket_data);
@@ -213,7 +214,11 @@ export class AddEventComponent implements OnInit {
     this.res_status = !this.res_status;
     if(this.res_status) {
       this.dataSource2 = new MatTableDataSource(this.seatDetailData);
+      this.eventData.ticket_data = this.seatDetailData;
     }
+    // else {
+    //   this.dataSource2 = new MatTableDataSource();
+    // }
   }
 
   openEventDialog(): void {

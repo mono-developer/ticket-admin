@@ -38,6 +38,7 @@ export class BookingComponent implements OnInit {
   ballotValue = false;
   bookingInfo: any = {};
   pseInfo: any = {};
+  bookingTickets: any = [];
 
   id_number: string;
   id_type: string;
@@ -50,6 +51,7 @@ export class BookingComponent implements OnInit {
   total_timer: any = 0;
   second: any = 0;
   minute: number = 0;
+  subscription: any;
 
   constructor(
     private router: Router,
@@ -75,7 +77,6 @@ export class BookingComponent implements OnInit {
   ngOnInit() {
     let url = this.baseService.eventURL;
     this.getEventData(this.id, url);
-
   }
 
   getEventData(id, url) {
@@ -92,7 +93,7 @@ export class BookingComponent implements OnInit {
           this.timeInterval();
           return true;
         },
-        err => {
+        (err) => {
           return true;
         });
   }
@@ -100,7 +101,7 @@ export class BookingComponent implements OnInit {
   timeInterval() {
     let startTime = new Date().getTime();
     let timer = Observable.timer(30, 100);
-    const subscription = timer.subscribe(t => {
+    this.subscription = timer.subscribe(t => {
       let newTime = new Date().getTime();
       this.total_timer = (newTime - startTime)/1000;
       this.minute = Math.floor(this.total_timer / 60);
@@ -117,7 +118,7 @@ export class BookingComponent implements OnInit {
       this.progressValue = (newTime - startTime)/3000;
       if (this.minute == 5) {
         this.progressValue = 100;
-        subscription.unsubscribe();
+        this.subscription.unsubscribe();
         this.openSnackBar(this.customerInfo.name)
       }
     });
@@ -141,6 +142,12 @@ export class BookingComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(result => {
     });
+  }
+
+  onSelectTicket(result) {
+    console.log('1111111111', result);
+    this.bookingTickets.push(result);
+    console.log('bookingTickets', this.bookingTickets);
   }
 
   onChange(value:any) {
@@ -189,6 +196,10 @@ export class BookingComponent implements OnInit {
     console.log(this.pseInfo);
   }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+
 }
 
 @Component({
@@ -203,6 +214,7 @@ export class TimeOverComponent {
   templateUrl: 'location-dialog.component.html',
   styleUrls: ['./booking.component.scss'],
 })
+
 export class LocationDialogComponent {
 
   // google maps zoom level

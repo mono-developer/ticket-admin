@@ -45,6 +45,7 @@ import { PageHeaderModule } from './page-header/page-header.module';
     ClickOutsideDirective,
     SearchBarComponent,
     ToolbarNotificationsComponent
+
   ],
   providers: [
     SidenavService,

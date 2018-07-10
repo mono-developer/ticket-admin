@@ -1,0 +1,28 @@
+
+
+.stage__div{
+  width: 500px;
+  display: block;
+  margin: 0 auto;
+  padding: 20px;
+}
+.location{
+  .location_div{
+    padding: 15px 0;
+    width: 100%;
+    .secton{
+      width: 444px;
+      margin: 0 auto;
+      display: block;
+      button {
+        max-width: 20px;
+        min-width: 20px;
+        margin: 3px;
+        padding: 0;
+        min-height: 20px;
+        max-height: 20px;
+        line-height: 0;
+      }
+    }
+  }
+}
